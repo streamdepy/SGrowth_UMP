@@ -2,36 +2,42 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable("outgoing_values", {
-      id: {
+    await queryInterface.createTable("peminjamans", {
+      id_peminjaman: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER,
       },
-      outgoing_doc_id: {
+      id_anggota: {
         type: Sequelize.INTEGER,
       },
-      outgoing_type_id: {
+      id_admin: {
         type: Sequelize.INTEGER,
       },
-      outgoing_attr_id: {
+      tanggal_pengajuan: {
+        type: Sequelize.DATE,
+      },
+      durasi_peminjaman: {
         type: Sequelize.INTEGER,
       },
-      value: {
-        type: Sequelize.STRING,
+      durasi_perpanjangan: {
+        type: Sequelize.INTEGER,
       },
-      createdAt: {
+      tanggal_jatuh_tempo: {
+        type: Sequelize.DATE,
+      },
+      created_at: {
         allowNull: false,
         type: Sequelize.DATE,
       },
-      updatedAt: {
+      updated_at: {
         allowNull: false,
         type: Sequelize.DATE,
       },
     });
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable("outgoing_values");
+    await queryInterface.dropTable("peminjamans");
   },
 };

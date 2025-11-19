@@ -23,7 +23,7 @@ app.engine("hbs", engine({
   helpers: {
     eq: (a, b) => a === b,
   },
-}));
+})); 
 app.set("view engine", "hbs");
 app.set("views", path.join(__dirname, "views"));
 app.set("view options", { layout: "partials" });

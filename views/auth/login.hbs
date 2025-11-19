@@ -1,124 +1,63 @@
-<main id="content" class="w-full max-w-md mx-auto p-6">
-  <div
-    class="mt-7 bg-white border border-gray-200 rounded-xl shadow-sm dark:bg-neutral-900 dark:border-neutral-700"
-  >
-    <div class="p-4 sm:p-7">
-      <div class="text-center">
-        <h1 class="block text-2xl font-bold text-gray-800 dark:text-white">Sign
-          in</h1>
-      </div>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login - Growth</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body>
+    <main class="flex overflow-hidden flex-col items-center px-10 pt-20 text-base bg-white max-md:px-5 max-md:pb-20">
+      <div class="flex flex-col max-w-full w-[480px]">
+        <header class="flex gap-3 items-center self-center max-w-full text-6xl font-bold text-black whitespace-nowrap h-[120px] w-[300px] max-md:text-4xl">
+          <img
+            src="https://api.builder.io/api/v1/image/assets/863c3774457247cf9941fba7937e9907/94785e9c07fee37f095b249f59aeba4255d32350?placeholderIfAbsent=true"
+            alt="Growth Logo"
+            class="object-contain w-[80px]"
+          />
+          <h1 class="max-md:text-4xl">growth</h1>
+        </header>
 
-      <div class="mt-5">
-        <!-- Form -->
-        <form method="post" action="/auth/login">
-          <div class="grid gap-y-4">
-            <!-- Form Group -->
-            <div>
-              <label
-                for="email"
-                class="block text-sm mb-2 dark:text-white"
-              >Email address</label>
-              <div class="relative">
-                <input
-                  type="email"
-                  id="email"
-                  name="email"
-                  class="py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600"
-                  aria-describedby="email-error"
-                />
-                <div
-                  class="hidden absolute inset-y-0 end-0 pointer-events-none pe-3"
-                >
-                  <svg
-                    class="size-5 text-red-500"
-                    width="16"
-                    height="16"
-                    fill="currentColor"
-                    viewBox="0 0 16 16"
-                    aria-hidden="true"
-                  >
-                    <path
-                      d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8 4a.905.905 0 0 0-.9.995l.35 3.507a.552.552 0 0 0 1.1 0l.35-3.507A.905.905 0 0 0 8 4zm.002 6a1 1 0 1 0 0 2 1 1 0 0 0 0-2z"
-                    />
-                  </svg>
-                </div>
-              </div>
-              <p
-                class="hidden text-xs text-red-600 mt-2"
-                id="email-error"
-              >Please include a valid email address so we can get back to you</p>
-            </div>
-            <!-- End Form Group -->
-
-            <!-- Form Group -->
-            <div>
-              <div class="flex justify-between items-center">
-                <label
-                  for="password"
-                  class="block text-sm mb-2 dark:text-white"
-                >Password</label>
-                <a
-                  class="inline-flex items-center gap-x-1 text-sm text-blue-600 decoration-2 hover:underline focus:outline-none focus:underline font-medium dark:text-blue-500"
-                  href="../examples/html/recover-account.html"
-                >Forgot password?</a>
-              </div>
-              <div class="relative">
-                <input
-                  type="password"
-                  id="password"
-                  name="password"
-                  class="py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600"
-                  aria-describedby="password-error"
-                />
-                <div
-                  class="hidden absolute inset-y-0 end-0 pointer-events-none pe-3"
-                >
-                  <svg
-                    class="size-5 text-red-500"
-                    width="16"
-                    height="16"
-                    fill="currentColor"
-                    viewBox="0 0 16 16"
-                    aria-hidden="true"
-                  >
-                    <path
-                      d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8 4a.905.905 0 0 0-.9.995l.35 3.507a.552.552 0 0 0 1.1 0l.35-3.507A.905.905 0 0 0 8 4zm.002 6a1 1 0 1 0 0 2 1 1 0 0 0 0-2z"
-                    />
-                  </svg>
-                </div>
-              </div>
-              <p class="hidden text-xs text-red-600 mt-2" id="password-error">8+
-                characters required</p>
-            </div>
-            <!-- End Form Group -->
-
-            <!-- Checkbox -->
-            <div class="flex items-center">
-              <div class="flex">
-                <input
-                  id="remember-me"
-                  name="remember-me"
-                  type="checkbox"
-                  class="shrink-0 mt-0.5 border-gray-200 rounded text-blue-600 focus:ring-blue-500 dark:bg-neutral-800 dark:border-neutral-700 dark:checked:bg-blue-500 dark:checked:border-blue-500 dark:focus:ring-offset-gray-800"
-                />
-              </div>
-              <div class="ms-3">
-                <label
-                  for="remember-me"
-                  class="text-sm dark:text-white"
-                >Remember me</label>
-              </div>
-            </div>
-            <!-- End Checkbox -->
-
-            <button
-              type="submit"
-              class="w-full py-3 px-4 inline-flex justify-center items-center gap-x-2 text-sm font-medium rounded-lg border border-transparent bg-blue-600 text-white hover:bg-blue-700 focus:outline-none focus:bg-blue-700 disabled:opacity-50 disabled:pointer-events-none"
-            >Sign in</button>
+        <form action="/login" method="POST" class="flex flex-col w-full">
+          <div class="flex flex-col">
+            <label for="email" class="self-start mt-16 text-base font-medium text-gray-500 max-md:mt-8">
+              Email
+            </label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              placeholder="Masukkan Email Usaha"
+              class="px-8 py-4 mt-2 text-base text-black rounded-2xl bg-gray-400 bg-opacity-40 focus:outline-none focus:ring-2 focus:ring-orange-500"
+              required
+            />
           </div>
+
+          <div class="flex flex-col">
+            <label for="password" class="self-start mt-8 text-base font-medium text-gray-500">
+              Password
+            </label>
+            <input
+              type="password"
+              id="password"
+              name="password"
+              placeholder="Masukkan Password"
+              class="px-8 py-4 mt-2 text-base text-black rounded-2xl bg-gray-400 bg-opacity-40 focus:outline-none focus:ring-2 focus:ring-orange-500"
+              required
+            />
+          </div>
+
+        <button type="submit" class="flex overflow-hidden gap-2.5 items-start self-end px-10 py-3 mt-10 text-base font-bold text-center text-white whitespace-nowrap bg-orange-500 rounded-xl shadow-2xl max-md:px-5 hover:bg-orange-600 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-offset-2" > Login </button>
         </form>
-        <!-- End Form -->
+
+        <p class="self-start mt-6 text-base text-gray-600">
+          Belum Punya Akun?
+          <a href="register" class="text-yellow-400 hover:underline focus:outline-none focus:underline">
+            Daftar
+          </a>
+        </p>
       </div>
-    </div>
-  </div>
-</main>
+    </main>
+
+
+  </body>
+</html>

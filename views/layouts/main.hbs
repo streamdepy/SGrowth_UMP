@@ -1,20 +1,18 @@
-<html>
-  <head>
-    <title>Test</title>
-    <!-- Font -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.2.3/css/flag-icons.min.css" />
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>{{title}}</title>
+  <!-- Tailwind CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-50 text-gray-800">
+  {{> navbar }}
 
-    <!-- CSS HS -->
-    <link rel="stylesheet" href="https://preline.co/assets/css/main.min.css?v=1.0.0" />
-  </head>
-  <body class="bg-gray-50 dark:bg-neutral-900">
-    <div class="w-full lg:ps-64">
-      <div class="p-4 sm:p-6 space-y-4 sm:space-y-6">
-        {{{body}}}
-        
-      </div>
-    </div>
-    <script src="https://preline.co/assets/vendor/preline/dist/index.js?v=1.0.0"></script>
-  </body>
+  <main class="container mx-auto p-6">
+    {{{body}}}
+  </main>
+
+  {{> footer }}
+</body>
 </html>

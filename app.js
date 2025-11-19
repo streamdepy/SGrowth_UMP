@@ -1,19 +1,32 @@
 var createError = require("http-errors");
 var express = require("express");
+const dotenv = require("dotenv");
+const cors = require('cors');
+const { engine } = require("express-handlebars");
 var path = require("path");
 var cookieParser = require("cookie-parser");
 var session = require("express-session");
 var logger = require("morgan");
+const sequelize = require("./config/database");
 
-var authRouter = require("./routes/auth");
+dotenv.config();
+const app = express();
+app.use(cors());
+const PORT = process.env.PORT || 3000;
 
-
-var app = express();
-
-// view engine setup
-app.set("views", path.join(__dirname, "views"));
+// Handlebars setup
+app.engine("hbs", engine({
+  extname: ".hbs",
+  defaultLayout: "main",
+  layoutsDir: path.join(__dirname, "views/layouts"),
+  extname: ".hbs",
+  helpers: {
+    eq: (a, b) => a === b,
+  },
+}));
 app.set("view engine", "hbs");
-app.set("view options", { layout: "layouts/main" });
+app.set("views", path.join(__dirname, "views"));
+app.set("view options", { layout: "partials" });
 
 app.use(logger("dev"));
 app.use(express.json());
@@ -28,6 +41,7 @@ app.use(
   })
 );
 
+var authRouter = require("./routes/auth");
 app.use("/", authRouter);
 
 // catch 404 and forward to error handler
@@ -35,15 +49,10 @@ app.use(function (req, res, next) {
   next(createError(404));
 });
 
-// error handler
-app.use(function (err, req, res, next) {
-  // set locals, only providing error in development
-  res.locals.message = err.message;
-  res.locals.error = req.app.get("env") === "development" ? err : {};
-
-  // render the error page
-  res.status(err.status || 500);
-  res.render("error");
-});
+// DB Sync
+sequelize.sync().then(() => {
+  console.log("✅ Database connected & synced");
+  app.listen(PORT, () => console.log(`🚀 Server running at http://localhost:${PORT}`));
+}).catch(err => console.log("❌ DB Error: ", err));
 
 module.exports = app;

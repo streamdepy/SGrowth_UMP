@@ -52,7 +52,7 @@ exports.login = async (req, res) => {
     if (user.role === "auditor") {
       res.redirect("/mitra/dashboard");
     } else {
-      res.redirect("/umkm/dashboard");
+      res.redirect("/mitra/dashboard");
     }
   } catch (error) {
     console.error(error);

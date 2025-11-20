@@ -1,0 +1,74 @@
+<main class="flex flex-col items-start self-center ml-48 mt-16 w-full max-w-[1168px] max-md:mt-10 max-md:max-w-full">
+    <header class="flex gap-3.5 self-start">
+        <img
+            src="https://api.builder.io/api/v1/image/assets/TEMP/07073f8526333ac3749a4d99615ea0579a831ebe?placeholderIfAbsent=true&apiKey=ac04cd396e1f47f18955cd19640f183d"
+            alt="GRI Economic icon"
+            class="object-contain shrink-0 my-auto rounded-full aspect-[1.04] w-[58px]"
+        />
+        <div class="flex flex-col">
+            <h2 class="text-4xl font-semibold text-black">
+                GRI Social
+            </h2>
+            <p class="self-center text-xl font-medium leading-none text-center text-gray-500">
+                Social Performance
+            </p>
+        </div>
+    </header>
+
+    <section class="self-stretch pt-12 pb-20 pl-16 mb-16 mt-10 bg-white rounded-2xl shadow-2xl max-md:pl-5 max-md:max-w-full">
+        <div class="flex gap-10 max-md:flex-col w-full">
+            <!-- ===== Aside: Tambahan Komputasi Otomatis ===== -->
+            <aside class="w-[81%] max-md:ml-0 max-md:w-full">
+                <div class="flex flex-col items-start text-xl font-semibold leading-none text-gray-500 max-md:mt-10">
+                    <h2 class="self-stretch text-3xl text-teal-700">
+                        Ringkasan Otomatis
+                    </h2>
+
+                    <!-- Row: LTIFR & Persentase Karyawan Terlatih -->
+                    <div class="mt-6 flex gap-10 max-md:flex-col">
+                        <!-- LTIFR -->
+                        <div class="flex flex-col items-start">
+                            <div class="font-medium text-gray-500">Lost Time Injury Frequency Rate (LTIFR)</div>
+                            <div class="mt-3 text-4xl leading-none text-teal-700">
+                                <span id="ltifr_val">ITUNG MANUAL %</span>
+                            </div>
+                            <p class="mt-2 text-sm leading-6 text-gray-500 pr-4">
+                                Rumus: <span class="font-medium">LTIFR = (Jumlah cedera kerja × 1.000.000) ÷ (Total jam kerja)</span>
+                            </p>
+                        </div>
+
+                        <!-- Persentase Pelatihan -->
+                        <div class="flex flex-col items-start">
+                            <div class="font-medium text-gray-500">Persentase karyawan terlatih</div>
+                            <div class="mt-3 text-4xl leading-none text-teal-700">
+                                <span id="train_pct_val">-</span><span class="text-2xl">INI JUGA%</span>
+                            </div>
+                            <p class="mt-2 text-sm leading-6 text-gray-500 pr-4">
+                                Rumus: <span class="font-medium">Persentase = (Jumlah karyawan terlatih ÷ Total karyawan) × 100%</span>
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Hint opsional untuk sumber data -->
+                    <div class="mt-6 text-xs text-gray-400 leading-5">
+                        * Nilai di atas akan terisi otomatis jika data K3 & pelatihan tersedia di halaman sebelumnya.
+                    </div>
+                </div>
+            </aside>
+        </div>
+
+        <!-- Buttons pojok kanan kotak putih -->
+        <div class="flex justify-end gap-4 mt-10 w-full pr-8 md:pr-12 lg:pr-16">
+        <button type="button" onclick="window.history.back()"
+            class="px-8 py-2 text-base font-medium text-center text-teal-700 border-teal-700 border border-solid whitespace-nowrap bg-white rounded-xl hover:bg-teal-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 transition-colors">
+            Sebelumnya
+        </button>
+        <a href="/umkm/form-gi"
+            class="px-8 py-2 text-base font-medium text-center text-white whitespace-nowrap bg-lime-500 rounded-xl hover:bg-lime-600 focus:outline-none focus:ring-2 focus:ring-lime-500 focus:ring-offset-2 transition-colors">
+            Simpan
+        </a>
+        </div>
+
+    </section>
+</main>
+

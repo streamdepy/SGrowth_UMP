@@ -42,7 +42,9 @@ app.use(
 );
 
 var authRouter = require("./routes/auth");
+var mitraRouter = require("./routes/mitra");
 app.use("/", authRouter);
+app.use("/mitra", mitraRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

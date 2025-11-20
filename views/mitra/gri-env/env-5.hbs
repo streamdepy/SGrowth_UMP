@@ -13,204 +13,173 @@
     </div>
   </header>
 
-  <!-- Intensitas Emisi -->
-  <section class="flex flex-col items-start py-14 px-16 mt-10 w-full bg-white rounded-2xl shadow-2xl max-w-[981px] max-md:px-5">
-    <h3 class="text-3xl font-semibold text-teal-700">Intensitas Emisi</h3>
-    <p class="mt-3 text-gray-500">Isi indikator intensitas dan data perhitungan secara manual.</p>
+  <form action="/umkm/env-2" method="POST">
+    <!-- GHG Emissions Intensity (305-4) -->
+    <section class="flex flex-col items-start py-14 px-16 mt-10 w-full bg-white rounded-2xl shadow-2xl max-w-[981px] max-md:px-5">
+      <h3 class="text-3xl font-semibold text-teal-700">GHG Emissions Intensity (305-4)</h3>
+      <p class="mt-3 text-gray-500">Fill in the GHG emissions intensity ratio for the organization for this reporting period.</p>
 
-    <!-- Daftar intensitas -->
-    <div id="intensity_list" class="w-full mt-8 space-y-8">
-      <!-- Item #0 (awalan) -->
-      <div class="intensity-item border border-gray-200 rounded-2xl p-4">
-        <!-- Jenis indikator -->
-        <label class="block pb-2 text-base font-medium">Jenis indikator intensitas yang digunakan</label>
-        <select name="intensity[0][indicator]"
-          class="intensity-indicator w-full px-8 py-4 mt-2 text-base text-black rounded-2xl border border-gray-300 bg-slate-50 outline-none hover:ring focus:ring-2 focus:ring-teal-600 transition">
-          <option value="per_unit">tCO₂e per unit produk</option>
-         
-          <option value="per_omzet">tCO₂e per Rp omzet</option>
-          <option value="per_luas">tCO₂e per m² gedung</option>
-          <option value="lainnya">Lainnya</option>
-        </select>
-        <input type="text" name="intensity[0][indicator_other]"
-          placeholder="Sebutkan indikator lain"
-          class="intensity-indicator-other w-full px-8 py-4 mt-3 text-base text-black rounded-2xl border border-gray-300 bg-slate-50 hidden" disabled />
+      <!-- Gases Included in the Calculation Section -->
+      <div id="gases_included_section" class="w-full mt-8">
+        <label for="gases_included" class="block pb-2 text-base font-medium">Gases included in the calculation</label>
+        <div id="gases_included_list" class="space-y-4">
+          <div class="gases-item flex gap-4 items-center">
+            <!-- Gas Dropdown -->
+            <select name="gases_included[]" class="w-3/5 px-8 py-4 mt-2 text-base text-black rounded-2xl border border-gray-300 bg-slate-50 outline-none hover:ring focus:ring-2 focus:ring-teal-600 transition">
+              <option value="">Select gases included</option>
+              <option value="CO2">CO₂ (Carbon Dioxide)</option>
+              <option value="CH4">CH₄ (Methane)</option>
+              <option value="N2O">N₂O (Nitrous Oxide)</option>
+              <option value="HFCs">HFCs (Hydrofluorocarbons)</option>
+              <option value="PFCs">PFCs (Perfluorocarbons)</option>
+              <option value="SF6">SF₆ (Sulfur Hexafluoride)</option>
+              <option value="NF3">NF₃ (Nitrogen Trifluoride)</option>
+            </select>
 
-        <!-- Total emisi + output -->
-        <div class="flex gap-5 mt-6 max-md:flex-col">
-          <div class="w-6/12 max-md:w-full">
-            <label class="block pb-2 text-base font-medium">Total emisi (Scope 1+2) per indikator</label>
-            <input type="number" value="1" step="1" name="intensity[0][total]"
-              placeholder="Masukkan nilai (tCO₂e)"
-              class="intensity-total w-full px-8 py-4 mt-2 text-base text-black rounded-2xl border border-gray-300 bg-slate-50" />
+            <!-- Quantity Input Field -->
+            <input type="number" min="0" step="1" name="gases_quantity[]" placeholder="0" class="w-1/4 px-8 py-4 mt-2 text-base text-black rounded-2xl border border-gray-300 bg-slate-50 outline-none hover:ring focus:ring-2 focus:ring-teal-600 transition" />
+            <button
+              type="button"
+              id="scope4_add_item"
+              class="inline-flex items-center gap-2 px-4 py-2 rounded-xl text-teal-700 text-sm font-medium transition"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="h-5 w-5"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                stroke-width="2"
+                aria-hidden="true"
+              >
+                <path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4" />
+              </svg>
+              Add
+            </button>
           </div>
-          <div class="w-6/12 max-md:w-full">
-            <label class="block pb-2 text-base font-medium">Jumlah output bisnis terkait</label>
-            <input type="number" value="500" step="1" name="intensity[0][output]"
-              placeholder="Masukkan jumlah output"
-              class="intensity-output w-full px-8 py-4 mt-2 text-base text-black rounded-2xl border border-gray-300 bg-slate-50" />
+        </div>
+
+        <!-- Total Gases Count Section -->
+        <div id="total_gases_count" class="mt-4 text-gray-500 text-lg font-semibold">
+          Total gases selected: <span id="gases_count">0</span>
+        </div>
+      </div>
+
+      <!-- Organization-Specific Metric (Denominator) -->
+      <div class="w-full mt-8">
+        <label for="organization_metric" class="block pb-2 text-base font-medium">Organization-specific metric (denominator)</label>
+        <input type="text" name="organization_metric" id="organization_metric"
+          class="w-full px-8 py-4 mt-2 text-base text-black rounded-2xl border border-gray-300 bg-slate-50 outline-none hover:ring focus:ring-2 focus:ring-teal-600 transition" />
+        <p class="mt-2 text-gray-500 text-sm">Specify the organization-specific metric used to calculate the GHG intensity ratio.</p>
+      </div>
+
+      <!-- Types of GHG Emissions Included in the Intensity Ratio -->
+      <div class="w-full mt-8">
+        <label for="ghg_types_included" class="block pb-2 text-base font-medium">Types of GHG emissions included in the intensity ratio</label>
+        <div class="flex flex-col gap-4 mt-2">
+          <!-- Checkbox for Direct (Scope 1) -->
+          <label class="flex items-center gap-2 text-base text-black">
+            <input type="checkbox" name="ghg_types_included[]" value="direct_scope1" class="w-5 h-5 border border-gray-300 rounded">
+            Direct (Scope 1)
+          </label>
+
+          <!-- Checkbox for Energy Indirect (Scope 2) -->
+          <label class="flex items-center gap-2 text-base text-black">
+            <input type="checkbox" name="ghg_types_included[]" value="energy_indirect_scope2" class="w-5 h-5 border border-gray-300 rounded">
+            Energy Indirect (Scope 2)
+          </label>
+
+          <!-- Checkbox for Other Indirect (Scope 3) -->
+          <label class="flex items-center gap-2 text-base text-black">
+            <input type="checkbox" name="ghg_types_included[]" value="other_indirect_scope3" class="w-5 h-5 border border-gray-300 rounded">
+            Other Indirect (Scope 3)
+          </label>
+        </div>
+        <p class="mt-2 text-gray-500 text-sm">Select the types of GHG emissions included in the intensity ratio calculation.</p>
+      </div>
+
+      <!-- Total Summary Section -->
+      <div class="mt-10 pr-8 md:pr-12 lg:pr-16">
+        <h4 class="text-2xl font-semibold text-teal-700">Total Summary (automatic)</h4>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 mt-4">
+          <div>
+            <div class="text-gray-500">Total Gross Market-Based GHG Emissions Intensity (tCO₂e/unit)</div>
+            <div class="text-3xl text-teal-700 font-semibold" id="total_ghg_intensity">0</div>
           </div>
         </div>
-
-        <!-- Catatan -->
-        <div class="w-full mt-6">
-          <label class="block pb-2 text-base font-medium">Catatan metode perhitungan</label>
-          <textarea name="intensity[0][notes]" rows="4"
-            placeholder="Tuliskan asumsi, sumber faktor emisi, batasan sistem, dll."
-            class="intensity-notes w-full px-8 py-4 text-base text-black rounded-2xl border border-gray-300 bg-slate-50 resize-y"></textarea>
-        </div>
-
-        <!-- Tombol hapus -->
-        <div class="mt-4 flex justify-end">
-          <button type="button"
-            class="intensity-remove hidden px-4 py-2 rounded-xl border border-gray-300 text-gray-700 hover:bg-gray-50 transition">
-            Hapus
-          </button>
-        </div>
-      </div>
-    </div>
-
-    <!-- Tombol Tambah item -->
-    <div class="mt-6 flex justify-end">
-      <button type="button" id="intensity_add_item"
-        class="inline-flex items-center gap-2 px-4 py-2 rounded-xl text-teal-700 text-sm font-medium transition">
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none"
-             viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
-          <path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4"/>
-        </svg>
-        Tambah
-      </button>
-    </div>
-
-    <!-- Buttons pojok kanan kotak putih -->
-    <div class="flex justify-end gap-4 mt-10 w-full">
-      <button type="button" onclick="window.history.back()"
-        class="px-8 py-2 text-base font-medium text-center text-teal-700 border-teal-700 border border-solid whitespace-nowrap bg-white rounded-xl hover:bg-teal-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 transition-colors">
-        Sebelumnya
-      </button>
-      <a href="/umkm/env-6"
-        class="px-8 py-2 text-base font-medium text-center text-white whitespace-nowrap bg-lime-500 rounded-xl hover:bg-lime-600 focus:outline-none focus:ring-2 focus:ring-lime-500 focus:ring-offset-2 transition-colors">
-        Simpan
-      </a>
-    </div>
-  </section>
-
-  <!-- Template item Intensitas -->
-  <template id="intensity_item_tpl">
-    <div class="intensity-item border border-gray-200 rounded-2xl p-4">
-      <label class="block pb-2 text-base font-medium">Jenis indikator intensitas yang digunakan</label>
-      <select name=""
-        class="intensity-indicator w-full px-8 py-4 mt-2 text-base text-black rounded-2xl border border-gray-300 bg-slate-50 outline-none hover:ring focus:ring-2 focus:ring-teal-600 transition">
-        <option value="">Pilih indikator</option>
-        <option value="per_unit">tCO₂e per unit produk</option>
-        <option value="per_omzet">tCO₂e per Rp omzet</option>
-        <option value="per_luas">tCO₂e per m² gedung</option>
-        <option value="lainnya">Lainnya</option>
-      </select>
-      <input type="text" name="" placeholder="Sebutkan indikator lain"
-        class="intensity-indicator-other w-full px-8 py-4 mt-3 text-base text-black rounded-2xl border border-gray-300 bg-slate-50 hidden" disabled />
-
-      <div class="flex gap-5 mt-6 max-md:flex-col">
-        <div class="w-6/12 max-md:w-full">
-          <label class="block pb-2 text-base font-medium">Total emisi (Scope 1+2) per indikator</label>
-          <input type="number" min="0" step="0.0001" name=""
-            placeholder="Masukkan nilai (tCO₂e)"
-            class="intensity-total w-full px-8 py-4 mt-2 text-base text-black rounded-2xl border border-gray-300 bg-slate-50" />
-        </div>
-        <div class="w-6/12 max-md:w-full">
-          <label class="block pb-2 text-base font-medium">Jumlah output bisnis terkait</label>
-          <input type="number" min="0" step="0.0001" name=""
-            placeholder="Masukkan jumlah output"
-            class="intensity-output w-full px-8 py-4 mt-2 text-base text-black rounded-2xl border border-gray-300 bg-slate-50" />
-        </div>
+        <p class="mt-3 text-sm text-gray-500">
+          Total emissions intensity formula: <span class="font-medium">Intensity Calculation</span>
+        </p>
       </div>
 
-      <div class="w-full mt-6">
-        <label class="block pb-2 text-base font-medium">Catatan metode perhitungan</label>
-        <textarea rows="4" name=""
-          placeholder="Tuliskan asumsi, sumber faktor emisi, batasan sistem, dll."
-          class="intensity-notes w-full px-8 py-4 text-base text-black rounded-2xl border border-gray-300 bg-slate-50 resize-y"></textarea>
-      </div>
-
-      <div class="mt-4 flex justify-end">
-        <button type="button"
-          class="intensity-remove px-4 py-2 rounded-xl border border-gray-300 text-gray-700 hover:bg-gray-50 transition">
-          Hapus
+      <!-- Right corner buttons -->
+      <div class="flex justify-end gap-4 mt-10 w-full">
+        <button type="button" onclick="window.history.back()"
+          class="px-8 py-2 text-base font-medium text-center text-teal-700 border-teal-700 border border-solid whitespace-nowrap bg-white rounded-xl hover:bg-teal-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 transition-colors">
+          Previous
+        </button>
+        <button type="submit"
+          class="px-8 py-2 text-base font-medium text-center text-white whitespace-nowrap bg-lime-500 rounded-xl hover:bg-lime-600 focus:outline-none focus:ring-2 focus:ring-lime-500 focus:ring-offset-2 transition-colors">
+          Save
         </button>
       </div>
-    </div>
-  </template>
+    </section>
+  </form>
 </main>
 
 <script>
-  // Helper show/hide + (opsional) disable
-  function toggleEl(el, show, disable = true) {
-    if (!el) return;
-    el.classList.toggle('hidden', !show);
-    if (disable) el.disabled = !show;
-    if (!show && (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA')) el.value = '';
-  }
+// Handle adding gases entries dynamically
+document.querySelector('#scope4_add_item').addEventListener('click', function() {
+  addGasesEntry();
+});
 
-  document.addEventListener('DOMContentLoaded', () => {
-    const list  = document.getElementById('intensity_list');
-    const add   = document.getElementById('intensity_add_item');
-    const tpl   = document.getElementById('intensity_item_tpl');
+// Function to add a new gases entry
+function addGasesEntry() {
+  const gasesList = document.getElementById('gases_included_list');
+  const newItem = document.createElement('div');
+  newItem.classList.add('gases-item', 'flex', 'gap-4', 'items-center');
+  newItem.innerHTML = `
+    <select name="gases_included[]" class="w-3/5 px-8 py-4 mt-2 text-base text-black rounded-2xl border border-gray-300 bg-slate-50 outline-none hover:ring focus:ring-2 focus:ring-teal-600 transition">
+      <option value="">Select gases included</option>
+      <option value="CO2">CO₂ (Carbon Dioxide)</option>
+      <option value="CH4">CH₄ (Methane)</option>
+      <option value="N2O">N₂O (Nitrous Oxide)</option>
+      <option value="HFCs">HFCs (Hydrofluorocarbons)</option>
+      <option value="PFCs">PFCs (Perfluorocarbons)</option>
+      <option value="SF6">SF₆ (Sulfur Hexafluoride)</option>
+      <option value="NF3">NF₃ (Nitrogen Trifluoride)</option>
+    </select>
+    <input type="number" min="0" step="1" name="gases_quantity[]" placeholder="0" class="w-1/4 px-8 py-4 mt-2 text-base text-black rounded-2xl border border-gray-300 bg-slate-50 outline-none hover:ring focus:ring-2 focus:ring-teal-600 transition" />
+    <button type="button" class="remove-gases-entry p-2 rounded-xl border border-red-500 text-red-500 hover:bg-red-500 hover:text-white transition">
+      Remove
+    </button>
+  `;
 
-    if (!list || !add || !tpl) return;
+  // Append the new item to the gases list
+  gasesList.appendChild(newItem);
 
-    function reindex() {
-      const items = list.querySelectorAll('.intensity-item');
-      items.forEach((item, idx) => {
-        item.querySelectorAll('input, select, textarea').forEach(el => {
-          if (el.classList.contains('intensity-indicator'))       el.name = `intensity[${idx}][indicator]`;
-          else if (el.classList.contains('intensity-indicator-other')) el.name = `intensity[${idx}][indicator_other]`;
-          else if (el.classList.contains('intensity-total'))      el.name = `intensity[${idx}][total]`;
-          else if (el.classList.contains('intensity-output'))     el.name = `intensity[${idx}][output]`;
-          else if (el.classList.contains('intensity-notes'))      el.name = `intensity[${idx}][notes]`;
-        });
-
-        const rm = item.querySelector('.intensity-remove');
-        if (rm) rm.classList.toggle('hidden', items.length <= 1);
-      });
-    }
-
-    function attachHandlers(item) {
-      const sel   = item.querySelector('.intensity-indicator');
-      const other = item.querySelector('.intensity-indicator-other');
-
-      function syncOther() {
-        const isOther = sel && sel.value === 'lainnya';
-        toggleEl(other, isOther);
-      }
-
-      if (sel) {
-        sel.addEventListener('change', syncOther);
-        syncOther();
-      }
-
-      const rm = item.querySelector('.intensity-remove');
-      if (rm) {
-        rm.addEventListener('click', () => {
-          const items = list.querySelectorAll('.intensity-item');
-          if (items.length > 1) {
-            item.remove();
-            reindex();
-          }
-        });
-      }
-    }
-
-    // Inisialisasi item pertama
-    const first = list.querySelector('.intensity-item');
-    if (first) attachHandlers(first);
-    reindex();
-
-    // Tambah item baru
-    add.addEventListener('click', () => {
-      const clone = tpl.content.firstElementChild.cloneNode(true);
-      list.appendChild(clone);
-      attachHandlers(clone);
-      reindex();
-    });
+  // Handle remove button click for this new entry
+  newItem.querySelector('.remove-gases-entry').addEventListener('click', function() {
+    newItem.remove();
+    updateGasesCount();
   });
+
+  // Update gases count after adding a new entry
+  updateGasesCount();
+}
+
+// Update the gases count dynamically
+function updateGasesCount() {
+  const gasesCount = document.querySelectorAll('[name="gases_included[]"]').length;
+  document.getElementById('gases_count').innerText = gasesCount;
+}
+
+// Update Total GHG Emissions Intensity summary
+const intensityInput = document.getElementById('gross_market_based_emissions');
+function updateTotalIntensity() {
+  const emissionsIntensity = parseFloat(intensityInput.value) || 0;
+  document.getElementById('total_ghg_intensity').innerText = emissionsIntensity.toFixed(4);
+}
+
+intensityInput.addEventListener('input', updateTotalIntensity);
 </script>

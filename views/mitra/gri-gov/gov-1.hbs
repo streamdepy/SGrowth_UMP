@@ -1,8 +1,8 @@
-<main class="flex flex-col ml-48 self-center mb-16 mt-16 w-full max-w-[1256px] max-md:mt-10 max-md:max-w-full">
+<main class="flex flex-col self-center mb-16 mt-16 w-full max-w-[1256px] ml-48 max-md:ml-0 max-md:mt-10 max-md:max-w-full">
   <header class="flex gap-3.5 self-start">
     <img
       src="https://api.builder.io/api/v1/image/assets/TEMP/c44af07e3c930c7fea223a8eb981ce2b2a5a5a8c?width=462"
-      alt="GRI Environment icon"
+      alt="GRI Governance icon"
       class="object-contain shrink-0 my-auto rounded-full aspect-[1.04] w-[78px]"
     />
     <div class="flex flex-col">
@@ -13,233 +13,277 @@
     </div>
   </header>
 
-  <section class="flex flex-col items-start px-20 py-14 mt-4 w-full bg-white rounded-2xl shadow-2xl max-w-[1168px] max-md:px-5 max-md:mt-10">
-    <h3 class="text-3xl font-semibold text-center text-teal-700">
-      Informasi Dasar
+  <!-- GRI 205-1 — Operasi dengan Risiko Terkait Korupsi -->
+  <section class="flex flex-col items-start py-14 px-16 mt-10 w-full bg-white rounded-2xl shadow-2xl max-w-[981px] max-md:px-5">
+    <h3 class="text-3xl font-semibold text-teal-700">
+      GRI 205-1 — Operations with Risks Related to Corruption
     </h3>
-    <p class="mt-6 text-xl leading-none text-gray-500 max-md:max-w-full">
-      Lengkapi field yang diperlukan untuk melanjutkan ke step berikutnya
+    <p class="mt-3 text-gray-500">
+      Fill in information related to corruption risk assessment, high-risk operations, and mitigation measures.
     </p>
 
-    <form id="gov-basic-form" class="z-10 mt-14 max-w-full w-[1000px] max-md:mt-10">
-      <!-- Row 1: Nama Entitas + Periode Pelaporan -->
-      <div class="flex gap-5 max-md:flex-col">
-        <!-- Nama entitas -->
-        <div class="w-6/12 max-md:w-full px-4 py-3">
-          <label for="entity_name" class="block pb-2 text-base font-medium">Nama entitas / unit bisnis</label>
+    <form id="gov-basic-form" class="w-full mt-8 space-y-6">
+      <!-- Row 1: Total operations & business units/branches assessed -->
+      <div class="grid grid-cols-2 gap-5 max-md:grid-cols-1">
+        <div>
+          <label class="block pb-2 text-base font-medium">
+            Total number of operations assessed
+            <span class="text-xs text-gray-400 ml-1">(GRI 205-1(a))</span>
+          </label>
           <input
-            type="text"
-            id="entity_name"
-            name="entity_name"
-            value="operational"
-            class="w-full px-8 py-4 mt-2 text-base text-black rounded-2xl border border-gray-300 bg-slate-50 placeholder-black/50 outline-none hover:ring focus:ring-2 focus:ring-teal-600 transition"
-            required
+            type="number"
+            min="0"
+            placeholder="e.g., 25"
+            class="w-full px-8 py-4 rounded-2xl border border-gray-300 bg-slate-50 outline-none
+            hover:ring focus:ring-2 focus:ring-teal-600 transition"
           />
+          <p class="mt-1 text-xs text-gray-400">
+            Enter the total number of operations assessed for corruption risk.
+          </p>
         </div>
 
-        <!-- Periode pelaporan (Mode Tahun / Triwulan) -->
-        <div class="w-6/12 max-md:w-full px-4 py-3">
-        <label class="block pb-2 text-base font-medium">Periode pelaporan</label>
-
-        <!-- Row FLEX supaya sejajar -->
-        <div class="flex flex-wrap items-end gap-3 mt-2">
-            <!-- Mode -->
-            <div class="min-w-[180px]">
-            <select id="period_mode_gov"
-                class="w-full px-4 py-3 text-base text-black rounded-2xl border border-gray-300 bg-slate-50 outline-none hover:ring focus:ring-2 focus:ring-teal-600 transition" required>
-                <option value="">Pilih</option>
-                <option value="tahun">Tahun</option>
-                <option value="triwulan">Triwulan</option>
-            </select>
-            </div>
-
-            <!-- Tahun (muncul saat pilih "Tahun") -->
-            <div id="year_wrap_gov" class="min-w-[180px] hidden">
-            <select id="period_year_gov"
-                class="w-full px-4 py-3 text-base text-black rounded-2xl border border-gray-300 bg-slate-50 outline-none hover:ring focus:ring-2 focus:ring-teal-600 transition">
-            </select>
-            </div>
-
-            <!-- Triwulan tahun berjalan (muncul saat pilih "Triwulan") -->
-            <div id="quarter_wrap_gov" class="min-w-[220px] hidden">
-            <select id="period_quarter_gov"
-                class="w-full px-4 py-3 text-base text-black rounded-2xl border border-gray-300 bg-slate-50 outline-none hover:ring focus:ring-2 focus:ring-teal-600 transition">
-            </select>
-            </div>
+        <div>
+          <label class="block pb-2 text-base font-medium">
+            Business units/branches assessed
+          </label>
+          <textarea
+            rows="3"
+            placeholder="e.g., Head Office, Jakarta Branch, Surabaya Branch"
+            class="w-full px-8 py-4 rounded-2xl border border-gray-300 bg-slate-50 placeholder-black/50 outline-none resize-y
+            hover:ring focus:ring-2 focus:ring-teal-600 transition"
+          ></textarea>
+          <p class="mt-1 text-xs text-gray-400">
+            Specify the business unit/branch or location of operations that have been assessed.
+          </p>
         </div>
-        </div>
-
       </div>
 
-      <!-- Row 2: Lokasi Operasional + Metode Emisi -->
-      <div class="flex gap-5 max-md:flex-col">
-        <div class="w-6/12 max-md:w-full px-4 py-3">
-          <label for="operation_location" class="block pb-2 text-base font-medium">Lokasi operasional</label>
-          <select
-            id="operation_location"
-            name="operation_location"
-            class="w-full px-8 py-4 mt-2 text-base text-black rounded-2xl border border-gray-300 bg-slate-50 outline-none hover:ring focus:ring-2 focus:ring-teal-600 transition"
-            required
-          >
-            <option value="">Pilih lokasi</option>
-            <option value="kantor_pusat" selected>Kantor Pusat</option>
-            <option value="pabrik">Pabrik</option>
-            <option value="gudang">Gudang</option>
-            <option value="lainnya">Lainnya</option>
-          </select>
+      <!-- Row 2: High-risk operations & percentage -->
+      <div class="grid grid-cols-2 gap-5 max-md:grid-cols-1">
+        <div>
+          <label class="block pb-2 text-base font-medium">
+            Number of high-risk operations
+            <span class="text-xs text-gray-400 ml-1">(GRI 205-1(b))</span>
+          </label>
           <input
-            type="text"
-            id="operation_location_other"
-            name="operation_location_other"
-            placeholder="Sebutkan lokasi operasional lainnya"
-            class="w-full px-8 py-4 mt-3 text-base text-black rounded-2xl border border-gray-300 bg-slate-50 placeholder-black/50 outline-none hover:ring focus:ring-2 focus:ring-teal-600 transition hidden"
-            disabled
+            type="number"
+            min="0"
+            id="high_risk_ops"
+            placeholder="e.g., 5"
+            class="w-full px-8 py-4 rounded-2xl border border-gray-300 bg-slate-50 outline-none
+            hover:ring focus:ring-2 focus:ring-teal-600 transition"
           />
+          <p class="mt-1 text-xs text-gray-400">
+            The number of operations categorized as high risk for corruption.
+          </p>
         </div>
 
+        <div>
+          <label class="block pb-2 text-base font-medium">
+            Percentage of high-risk operations
+          </label>
+          <div class="relative">
+            <input
+              type="number"
+              min="0"
+              max="100"
+              step="0.01"
+              id="high_risk_percentage"
+              placeholder="0"
+              class="w-full px-8 py-4 pr-12 rounded-2xl border border-gray-300 bg-slate-50 outline-none
+              hover:ring focus:ring-2 focus:ring-teal-600 transition"
+            />
+            <span class="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none">%</span>
+          </div>
+          <p class="mt-1 text-xs text-gray-400">
+            Formula: number of high-risk operations ÷ total operations × 100 (manual entry based on company calculation).
+          </p>
+        </div>
       </div>
 
-      <!-- Buttons -->
-      <div class="flex justify-end mt-7">
-        <a href="/umkm/gov-2"
-          class="px-8 py-2 text-base font-medium text-center text-white whitespace-nowrap bg-lime-500 rounded-xl hover:bg-lime-600 focus:outline-none focus:ring-2 focus:ring-lime-500 focus:ring-offset-2 transition-colors"
-        >
-          Submit
-        </a>
+      <!-- Row 3: Significant risk types found -->
+      <div>
+        <label class="block pb-2 text-base font-medium text-neutral-900">
+          Types of significant risks found
+          <span class="text-xs text-gray-400 ml-1">(GRI 205-1(c))</span>
+        </label>
+
+        <p class="mb-3 text-xs text-gray-500">
+          Check relevant risks and provide explanations.
+        </p>
+
+        <div class="space-y-6">
+          <!-- TEMPLATE RISK ITEM -->
+          <!-- Bribery -->
+          <div class="flex flex-col md:flex-row md:items-start gap-3">
+            <label class="flex items-center gap-2 md:w-3/12 cursor-pointer">
+              <input
+                type="checkbox"
+                id="risk_suap"
+                class="w-4 h-4 rounded border-gray-400 text-teal-600 focus:ring-teal-600"
+              />
+              <span class="text-base text-neutral-900">Bribery</span>
+            </label>
+
+            <textarea
+              id="risk_suap_desc"
+              rows="2"
+              placeholder="Describe an example of bribery risk..."
+              class="hidden md:w-9/12 w-full px-8 py-4 rounded-2xl border border-gray-300 bg-slate-50 placeholder-black/50 outline-none
+                    hover:ring focus:ring-2 focus:ring-teal-600 transition"
+            ></textarea>
+          </div>
+
+          <!-- Gratification -->
+          <div class="flex flex-col md:flex-row md:items-start gap-3">
+            <label class="flex items-center gap-2 md:w-3/12 cursor-pointer">
+              <input
+                type="checkbox"
+                id="risk_gratifikasi"
+                class="w-4 h-4 rounded border-gray-400 text-teal-600 focus:ring-teal-600"
+              />
+              <span class="text-base text-neutral-900">Gratification</span>
+            </label>
+
+            <textarea
+              id="risk_gratifikasi_desc"
+              rows="2"
+              placeholder="Describe an example of gratification risk..."
+              class="hidden md:w-9/12 w-full px-8 py-4 rounded-2xl border border-gray-300 bg-slate-50 placeholder-black/50 outline-none
+                    hover:ring focus:ring-2 focus:ring-teal-600 transition"
+            ></textarea>
+          </div>
+
+          <!-- Conflict of Interest -->
+          <div class="flex flex-col md:flex-row md:items-start gap-3">
+            <label class="flex items-center gap-2 md:w-3/12 cursor-pointer">
+              <input
+                type="checkbox"
+                id="risk_konflik"
+                class="w-4 h-4 rounded border-gray-400 text-teal-600 focus:ring-teal-600"
+              />
+              <span class="text-base text-neutral-900">Conflict of Interest</span>
+            </label>
+
+            <textarea
+              id="risk_konflik_desc"
+              rows="2"
+              placeholder="Describe an example of conflict of interest risk..."
+              class="hidden md:w-9/12 w-full px-8 py-4 rounded-2xl border border-gray-300 bg-slate-50 placeholder-black/50 outline-none
+                    hover:ring focus:ring-2 focus:ring-teal-600 transition"
+            ></textarea>
+          </div>
+
+          <!-- Tender Collusion -->
+          <div class="flex flex-col md:flex-row md:items-start gap-3">
+            <label class="flex items-center gap-2 md:w-3/12 cursor-pointer">
+              <input
+                type="checkbox"
+                id="risk_kolusi"
+                class="w-4 h-4 rounded border-gray-400 text-teal-600 focus:ring-teal-600"
+              />
+              <span class="text-base text-neutral-900">Tender Collusion</span>
+            </label>
+
+            <textarea
+              id="risk_kolusi_desc"
+              rows="2"
+              placeholder="Describe an example of tender collusion risk..."
+              class="hidden md:w-9/12 w-full px-8 py-4 rounded-2xl border border-gray-300 bg-slate-50 placeholder-black/50 outline-none
+                    hover:ring focus:ring-2 focus:ring-teal-600 transition"
+            ></textarea>
+          </div>
+
+          <!-- Others -->
+          <div class="flex flex-col md:flex-row md:items-start gap-3">
+            <label class="flex items-center gap-2 md:w-3/12 cursor-pointer">
+              <input
+                type="checkbox"
+                id="risk_lainnya"
+                class="w-4 h-4 rounded border-gray-400 text-teal-600 focus:ring-teal-600"
+              />
+              <span class="text-base text-neutral-900">Others</span>
+            </label>
+
+            <textarea
+              id="risk_lainnya_desc"
+              rows="2"
+              placeholder="Specify other risks..."
+              class="hidden md:w-9/12 w-full px-8 py-4 rounded-2xl border border-gray-300 bg-slate-50 placeholder-black/50 outline-none
+                    hover:ring focus:ring-2 focus:ring-teal-600 transition"
+            ></textarea>
+          </div>
+        </div>
+      </div>
+
+      <!-- Row 4: Mitigation actions & follow-up -->
+      <div>
+        <label class="block pb-2 text-base font-medium">
+          Follow-up and mitigation actions
+        </label>
+        <textarea
+          rows="5"
+          placeholder="Describe prevention steps, internal controls, additional training, or new policies implemented."
+          class="w-full px-8 py-4 rounded-2xl border border-gray-300 bg-slate-50 placeholder-black/50 outline-none resize-y
+          hover:ring focus:ring-2 focus:ring-teal-600 transition"
+        ></textarea>
+        <p class="mt-1 text-xs text-gray-400">
+          Explain how the company responds to and reduces identified corruption risks.
+        </p>
+      </div>
+
+      <!-- Buttons (optional, customize for your flow) -->
+      <div class="flex justify-end gap-4 mt-8 w-full">
+        <button
+          type="submit"
+          class="px-8 py-2 text-base font-medium text-center text-white bg-lime-500 rounded-xl hover:bg-lime-600 transition">
+          Next
+        </button>
       </div>
     </form>
   </section>
 </main>
 
 <script>
-    /* ===== Helpers ===== */
-    function toggleEl(el, show, alsoDisable = false) {
-        if (!el) return;
-        el.classList.toggle('hidden', !show);
-        if (alsoDisable) el.disabled = !show;
-        if (!show && (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA')) el.value = '';
-        if (!show && el.tagName === 'SELECT') el.value = '';
+  // Opsional: auto-highlight persentase kalau >100 atau <0 (validasi ringan)
+  document.addEventListener('DOMContentLoaded', () => {
+    const perc = document.getElementById('high_risk_percentage');
+
+    if (perc) {
+      perc.addEventListener('input', () => {
+        const v = parseFloat(perc.value);
+        const invalid = isNaN(v) || v < 0 || v > 100;
+        perc.classList.toggle('ring-2', invalid);
+        perc.classList.toggle('ring-red-500', invalid);
+      });
     }
+  });
+</script>
 
-    function fillYears(sel) {
-        const now = new Date();
-        const thisYear = now.getFullYear();
-        const isDec31 = (now.getMonth() === 11 && now.getDate() === 31);
-        const start = isDec31 ? thisYear : thisYear - 1; 
-        sel.innerHTML = '<option value="">Pilih Tahun</option>';
-        // Pastikan 2024 ada dalam list jika belum ada
-        const yearsToFill = new Set();
-        for (let i = 0; i < 3; i++) {
-            yearsToFill.add(start - i);
-        }
-        yearsToFill.add(2024); // Menjamin 2024 selalu ada
-        
-        // Sortir tahun dari terbaru ke terlama
-        Array.from(yearsToFill).sort((a, b) => b - a).forEach(y => {
-            const o = document.createElement('option');
-            o.value = String(y);
-            o.textContent = y;
-            sel.appendChild(o);
-        });
-    }
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const riskPairs = [
+    { checkId: 'risk_suap', textId: 'risk_suap_desc' },
+    { checkId: 'risk_gratifikasi', textId: 'risk_gratifikasi_desc' },
+    { checkId: 'risk_konflik', textId: 'risk_konflik_desc' },
+    { checkId: 'risk_kolusi', textId: 'risk_kolusi_desc' },
+    { checkId: 'risk_lainnya', textId: 'risk_lainnya_desc' },
+  ];
 
-    function fillCurrentYearQuarters(sel) {
-        const now = new Date();
-        const y = now.getFullYear();
-        const m = now.getMonth(); // 0..11
-        const isDec31 = (m === 11 && now.getDate() === 31);
-        let maxQ = Math.floor(m / 3) + 1;
-        if (isDec31) maxQ = 4;
-        if (maxQ > 4) maxQ = 4;
-        const labels = {
-            1: 'Triwulan 1 (Jan–Mar)',
-            2: 'Triwulan 2 (Apr–Jun)',
-            3: 'Triwulan 3 (Jul–Sep)',
-            4: 'Triwulan 4 (Okt–Des)'
-        };
-        sel.innerHTML = '<option value="">Pilih Triwulan</option>';
-        for (let q = 1; q <= maxQ; q++) {
-            const o = document.createElement('option');
-            o.value = `${y}-Q${q}`;
-            o.textContent = `${labels[q]} ${y}`;
-            sel.appendChild(o);
-        }
-    }
+  riskPairs.forEach(p => {
+    const cb = document.getElementById(p.checkId);
+    const tx = document.getElementById(p.textId);
+    if (!cb || !tx) return;
 
-    document.addEventListener('DOMContentLoaded', function() {
-        const form = document.querySelector('form'); // Disesuaikan selector form-nya
-        const submitButton = form?.querySelector('button[type="submit"]');
+    const sync = () => {
+      const show = cb.checked;
+      tx.classList.toggle("hidden", !show);
+      if (!show) tx.value = "";
+    };
 
-        /* ===== Periode Pelaporan (Tahun / Triwulan) ===== */
-        const modeSel = document.getElementById('period_mode_gov');
-        const yearWrap = document.getElementById('year_wrap_gov');
-        const yearSel = document.getElementById('period_year_gov');
-        const qWrap = document.getElementById('quarter_wrap_gov');
-        const qSel = document.getElementById('period_quarter_gov');
-
-        fillYears(yearSel);
-        fillCurrentYearQuarters(qSel);
-
-        function syncMode() {
-            if (modeSel.value === 'tahun') {
-                toggleEl(yearWrap, true);
-                toggleEl(qWrap, false);
-            } else if (modeSel.value === 'triwulan') {
-                toggleEl(yearWrap, false);
-                toggleEl(qWrap, true);
-            } else {
-                toggleEl(yearWrap, false);
-                toggleEl(qWrap, false);
-            }
-        }
-
-        modeSel.addEventListener('change', syncMode);
-
-        // ===== MODIFIKASI: Atur Nilai Default di sini =====
-        modeSel.value = 'tahun'; // Atur default mode ke 'tahun'
-        yearSel.value = '2024';  // Atur default tahun ke '2024'
-
-        // Panggil syncMode() SETELAH mengatur default untuk menampilkan field yang benar
-        syncMode();
-
-        /* ===== Submit & Validasi (opsional) ===== */
-        if (form) {
-            form.addEventListener('submit', function(e) {
-                e.preventDefault();
-                if (!modeSel.value) {
-                    alert('Pilih mode Periode Pelaporan (Tahun/Triwulan).');
-                    return;
-                }
-                if (modeSel.value === 'tahun') {
-                    if (!yearSel.value) {
-                        alert('Pilih Tahun.');
-                        return;
-                    }
-                } else { // triwulan tahun berjalan
-                    if (!qSel.value) {
-                        alert('Pilih Triwulan tahun berjalan.');
-                        return;
-                    }
-                }
-                // Simulasi submit
-                submitButton.textContent = 'Memproses...';
-                submitButton.disabled = true;
-                const payload = {
-                    period_mode: modeSel.value,
-                    period_value: modeSel.value === 'tahun' ? {
-                        year: yearSel.value
-                    } : {
-                        quarter: qSel.value
-                    }
-                };
-                console.log('Payload submit:', payload);
-                setTimeout(() => {
-                    alert('Form berhasil disubmit!');
-                    submitButton.textContent = 'Submit';
-                    submitButton.disabled = false;
-                }, 1000);
-            });
-        }
-    });
+    cb.addEventListener("change", sync);
+    sync();
+  });
+});
 </script>
 

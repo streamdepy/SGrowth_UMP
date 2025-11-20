@@ -1,271 +1,208 @@
-<main class="flex flex-col ml-48 self-center mb-16 mt-16 w-full max-w-[1256px] max-md:mt-10 max-md:max-w-full">
-    <header class="flex gap-3.5 self-start">
-        <img
-            src="https://api.builder.io/api/v1/image/assets/TEMP/07073f8526333ac3749a4d99615ea0579a831ebe?placeholderIfAbsent=true&apiKey=ac04cd396e1f47f18955cd19640f183d"
-            alt="GRI Economic icon"
-            class="object-contain shrink-0 my-auto rounded-full aspect-[1.04] w-[58px]"
-        />
-        <div class="flex flex-col">
-            <h2 class="text-4xl font-semibold text-black">
-                GRI Social
-            </h2>
-            <p class="self-center text-xl font-medium leading-none text-center text-gray-500">
-                Social Performance
-            </p>
+<main class="flex flex-col items-start self-center ml-48 mt-16 w-full max-w-[1168px] max-md:mt-10 max-md:max-w-full">
+  <header class="flex gap-3.5 self-start">
+    <img
+      src="https://api.builder.io/api/v1/image/assets/TEMP/07073f8526333ac3749a4d99615ea0579a831ebe?placeholderIfAbsent=true&apiKey=ac04cd396e1f47f18955cd19640f183d"
+      alt="GRI Social icon"
+      class="object-contain shrink-0 my-auto rounded-full aspect-[1.04] w-[58px]"
+    />
+    <div class="flex flex-col">
+      <h2 class="text-4xl font-semibold text-black">GRI Social</h2>
+      <p class="self-center text-xl font-medium leading-none text-center text-gray-500">
+        Social Performance
+      </p>
+    </div>
+  </header>
+
+  <!-- GRI 404-1: Average Training Hours per Year per Employee -->
+  <section class="self-stretch pt-12 pb-20 pl-16 mb-16 mt-10 bg-white rounded-2xl shadow-2xl max-md:pl-5 max-md:max-w-full">
+    <h3 class="text-3xl font-semibold text-teal-700">
+      404-1 • Average Training Hours per Year per Employee
+    </h3>
+    <p class="mt-3 text-gray-500">
+      Please fill in the total training hours for all employees during the reporting period. Breakdown by gender, employee category, and position level.
+    </p>
+
+    <!-- Reporting Period & Other Meta -->
+    <div class="mt-6 grid grid-cols-1 md:grid-cols-3 gap-4 pr-8 md:pr-12 lg:pr-16">
+      <div>
+        <label class="block pb-2 text-base font-medium">Reporting Period</label>
+        <input type="text" name="reporting_period" value="2025-Q3" 
+          class="w-full px-8 py-4 text-base rounded-2xl border border-gray-300 bg-slate-50 outline-none hover:ring focus:ring-2 focus:ring-teal-600 transition">
+      </div>
+    </div>
+
+    <!-- Training Hours Sections -->
+    <div id="training_list" class="space-y-8 mt-8 pr-8 md:pr-12 lg:pr-16">
+      <!-- Entry 1 -->
+      <div class="training-item border border-gray-200 rounded-2xl p-4">
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-5">
+          <!-- Gender -->
+          <div>
+            <label class="block pb-2 text-base font-medium">Gender</label>
+            <select class="hi-gender w-full px-8 py-4 text-base rounded-2xl border border-gray-300 bg-slate-50 outline-none hover:ring focus:ring-2 focus:ring-teal-600 transition">
+              <option value="">Select</option>
+              <option value="Female">Female</option>
+              <option value="Male">Male</option>
+              <option value="Non-binary">Non-binary</option>
+              <option value="Prefer not to say">Prefer not to say</option>
+            </select>
+          </div>
+
+          <!-- Employee Category -->
+          <div>
+            <label class="block pb-2 text-base font-medium">Employee Category</label>
+            <select class="hi-category w-full px-8 py-4 text-base rounded-2xl border border-gray-300 bg-slate-50 outline-none hover:ring focus:ring-2 focus:ring-teal-600 transition">
+              <option value="">Select</option>
+              <option value="Full-time">Full-time</option>
+              <option value="Part-time">Part-time</option>
+              <option value="Temporary">Temporary</option>
+              <option value="Contractor">Contractor</option>
+            </select>
+          </div>
+
+          <!-- Training Hours -->
+          <div>
+            <label class="block pb-2 text-base font-medium">Training Hours</label>
+            <input type="number" min="0" class="hi-hours w-full px-8 py-4 text-base rounded-2xl border border-gray-300 bg-slate-50 outline-none hover:ring focus:ring-2 focus:ring-teal-600 transition" placeholder="Training hours per employee">
+          </div>
+                <div>
+        <label class="block pb-2 text-base font-medium">Total Employees</label>
+        <input type="number" min="0" id="total_employees" value="0"
+          class="w-full px-8 py-4 text-base rounded-2xl border border-gray-300 bg-slate-50 outline-none hover:ring focus:ring-2 focus:ring-teal-600 transition" placeholder="Total number of employees">
+      </div>
         </div>
-    </header>
+      </div>
+    </div>
 
-<!-- GRI 403-10: Penyakit Akibat Kerja -->
-<section class="flex flex-col items-start py-14 px-16 mt-10 w-full bg-white rounded-2xl shadow-2xl max-w-[981px] max-md:px-5 max-md:mt-10">
-  <h3 class="text-3xl font-semibold text-teal-700">Catatan & Konteks</h3>
-  <p class="mt-3 text-gray-500">Tuliskan tantangan dan rencana perbaikan terkait penerapan K3.</p>
+    <!-- Add Entry Button -->
+    <div class="mt-6 flex justify-end pr-8 md:pr-12 lg:pr-16">
+      <button type="button" id="training_add_item"
+              class="inline-flex items-center gap-2 px-4 py-2 rounded-xl text-teal-700 text-sm font-medium transition hover:bg-teal-50">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none"
+             viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4"/>
+        </svg>
+        Add Entry
+      </button>
+    </div>
 
-  <!-- Tantangan dalam penerapan K3 -->
-  <div class="w-full mt-8">
-    <label for="k3_challenges" class="block pb-2 text-base font-medium">Tantangan dalam penerapan K3</label>
-    <textarea id="k3_challenges" name="k3_challenges" rows="5"
-      class="w-full px-8 py-4 text-base text-black rounded-2xl border border-gray-300 bg-slate-50 placeholder-black/50 outline-none hover:ring focus:ring-2 focus:ring-teal-600 transition resize-y">Rendahnya minat dan kesadaran dari karyawan</textarea>
-  </div>
+    <!-- Automatic Summary -->
+    <div class="mt-10 pr-8 md:pr-12 lg:pr-16">
+      <h4 class="text-2xl font-semibold text-teal-700">Total Summary (Automatic)</h4>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-5 mt-4">
+        <div>
+          <div class="text-gray-500">Total Training Hours</div>
+          <div class="text-3xl text-teal-700 font-semibold" id="sum_training_hours">0</div>
+        </div>
+        <div>
+          <div class="text-gray-500">Total Employees</div>
+          <div class="text-3xl text-teal-700 font-semibold" id="sum_employees">0</div>
+        </div>
+        <div>
+          <div class="text-gray-500">Average Training Hours per Employee</div>
+          <div class="text-3xl text-teal-700 font-semibold">
+            <span id="sum_avg_hours">0.00</span><span class="text-xl"> hrs</span>
+          </div>
+        </div>
+      </div>
+    </div>
 
-  <!-- Rencana perbaikan sistem K3 ke depan -->
-  <div class="w-full mt-8">
-    <label for="k3_improvements" class="block pb-2 text-base font-medium">Rencana perbaikan sistem K3 ke depan</label>
-    <textarea id="k3_improvements" name="k3_improvements" rows="5"
-      class="w-full px-8 py-4 text-base text-black rounded-2xl border border-gray-300 bg-slate-50 placeholder-black/50 outline-none hover:ring focus:ring-2 focus:ring-teal-600 transition resize-y">Memperkuat peraturan dan regulasi terkait K3</textarea>
-  </div>
-
-  <!-- Buttons pojok kanan kotak putih -->
-  <div class="flex justify-end gap-4 mt-10 w-full">
-    <button type="button" onclick="window.history.back()"
-      class="px-8 py-2 text-base font-medium text-center text-teal-700 border-teal-700 border border-solid whitespace-nowrap bg-white rounded-xl hover:bg-teal-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 transition-colors">
-      Sebelumnya
-    </button>
-    <a href="/umkm/social-6"
-      class="px-8 py-2 text-base font-medium text-center text-white whitespace-nowrap bg-lime-500 rounded-xl hover:bg-lime-600 focus:outline-none focus:ring-2 focus:ring-lime-500 focus:ring-offset-2 transition-colors">
-      Simpan
-    </a>
-  </div>
-</section>
-
-<script>
-  // Helper
-  function toggleEl(el, show, disable = true) {
-    if (!el) return;
-    el.classList.toggle('hidden', !show);
-    if (disable) el.disabled = !show;
-  }
-
-  document.addEventListener('DOMContentLoaded', function () {
-    // ====== Toggle detail OD Ya/Tidak ======
-    const odReport  = document.getElementById('od_report');
-    const odDetails = document.getElementById('od_details');
-
-    function syncOdReport() {
-      const yes = odReport && odReport.value === 'ya';
-      toggleEl(odDetails, yes, false);
-      if (odDetails) {
-        odDetails.querySelectorAll('input, select, textarea').forEach(el => {
-          el.disabled = !yes;
-        });
-      }
-    }
-    if (odReport) {
-      odReport.addEventListener('change', syncOdReport);
-      syncOdReport();
-    }
-
-    // ====== Dinamis list OD ======
-    const list = document.getElementById('od_list');
-    const add  = document.getElementById('od_add_item');
-    const tpl  = document.getElementById('od_item_tpl');
-
-    if (!list || !add || !tpl) return;
-
-    // Re-index name fields
-    function reindexOd() {
-      const items = list.querySelectorAll('.od-item');
-      items.forEach((item, idx) => {
-        item.querySelectorAll('input, select, textarea').forEach(el => {
-          if (el.classList.contains('od-cases'))         el.name = `od[${idx}][cases]`;
-          else if (el.classList.contains('od-disease'))  el.name = `od[${idx}][disease]`;
-          else if (el.classList.contains('od-disease-other')) el.name = `od[${idx}][disease_other]`;
-          else if (el.classList.contains('od-unit'))     el.name = `od[${idx}][unit]`;
-          else if (el.classList.contains('od-unit-other'))    el.name = `od[${idx}][unit_other]`;
-          else if (el.classList.contains('od-actions'))  el.name = `od[${idx}][actions]`;
-        });
-
-        const rm = item.querySelector('.od-remove');
-        if (rm) rm.classList.toggle('hidden', items.length <= 1);
-      });
-    }
-
-    function attachOtherHandlers(item) {
-      const diseaseSel  = item.querySelector('.od-disease');
-      const diseaseOther= item.querySelector('.od-disease-other');
-      const unitSel     = item.querySelector('.od-unit');
-      const unitOther   = item.querySelector('.od-unit-other');
-
-      function sync(selectEl, otherEl) {
-        const isOther = selectEl && selectEl.value === 'lainnya';
-        toggleEl(otherEl, isOther);
-        if (!isOther && otherEl) otherEl.value = '';
-      }
-
-      if (diseaseSel) {
-        diseaseSel.addEventListener('change', () => sync(diseaseSel, diseaseOther));
-        sync(diseaseSel, diseaseOther);
-      }
-      if (unitSel) {
-        unitSel.addEventListener('change', () => sync(unitSel, unitOther));
-        sync(unitSel, unitOther);
-      }
-    }
-
-    function attachRemove(item) {
-      const btn = item.querySelector('.od-remove');
-      if (!btn) return;
-      btn.addEventListener('click', () => {
-        const items = list.querySelectorAll('.od-item');
-        if (items.length > 1) {
-          item.remove();
-          reindexOd();
-        }
-      });
-    }
-
-    // Item awal
-    const first = list.querySelector('.od-item');
-    if (first) {
-      attachOtherHandlers(first);
-      attachRemove(first);
-    }
-    reindexOd();
-
-    // Tambah
-    add.addEventListener('click', () => {
-      const clone = tpl.content.firstElementChild.cloneNode(true);
-      list.appendChild(clone);
-      attachOtherHandlers(clone);
-      attachRemove(clone);
-      reindexOd();
-    });
-  });
-</script>
-
-
-
-
+    <!-- Navigation Buttons -->
+    <div class="flex justify-end gap-4 mt-10 w-full pr-8 md:pr-12 lg:pr-16">
+      <button type="button" onclick="window.history.back()"
+        class="px-8 py-2 text-base font-medium text-center text-teal-700 border-teal-700 border border-solid whitespace-nowrap bg-white rounded-xl hover:bg-teal-700 hover:text-white transition-colors">
+        Previous
+      </button>
+      <a href="/umkm/social-404-1-next"
+        class="px-8 py-2 text-base font-medium text-center text-white whitespace-nowrap bg-lime-500 rounded-xl hover:bg-lime-600 transition-colors">
+        Save
+      </a>
+    </div>
+  </section>
 </main>
 
+<!-- Template entry for Training Hours -->
+<template id="training_item_tpl">
+  <div class="training-item border border-gray-200 rounded-2xl p-4">
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-5">
+      <div>
+        <label class="block pb-2 text-base font-medium">Gender</label>
+        <select class="hi-gender w-full px-8 py-4 text-base rounded-2xl border border-gray-300 bg-slate-50 outline-none hover:ring focus:ring-2 focus:ring-teal-600 transition">
+          <option value="">Select</option>
+          <option value="Female">Female</option>
+          <option value="Male">Male</option>
+          <option value="Non-binary">Non-binary</option>
+          <option value="Prefer not to say">Prefer not to say</option>
+        </select>
+      </div>
+
+      <div>
+        <label class="block pb-2 text-base font-medium">Employee Category</label>
+        <select class="hi-category w-full px-8 py-4 text-base rounded-2xl border border-gray-300 bg-slate-50 outline-none hover:ring focus:ring-2 focus:ring-teal-600 transition">
+          <option value="">Select</option>
+          <option value="Full-time">Full-time</option>
+          <option value="Part-time">Part-time</option>
+          <option value="Temporary">Temporary</option>
+          <option value="Contractor">Contractor</option>
+        </select>
+      </div>
+
+      <div>
+        <label class="block pb-2 text-base font-medium">Training Hours</label>
+        <input type="number" min="0" class="hi-hours w-full px-8 py-4 text-base rounded-2xl border border-gray-300 bg-slate-50 outline-none hover:ring focus:ring-2 focus:ring-teal-600 transition" placeholder="Training hours per employee">
+      </div>
+      <div>
+        <label class="block pb-2 text-base font-medium">Total Employees</label>
+        <input type="number" min="0" id="total_employees" value="0"
+          class="w-full px-8 py-4 text-base rounded-2xl border border-gray-300 bg-slate-50 outline-none hover:ring focus:ring-2 focus:ring-teal-600 transition" placeholder="Total number of employees">
+      </div>
+    </div>
+
+
+    <div class="mt-4 flex justify-end">
+      <button type="button" class="remove-btn px-4 py-2 border rounded-xl text-gray-700 hover:bg-gray-50">
+        Remove Entry
+      </button>
+    </div>
+  </div>
+</template>
+
 <script>
-  // Helper: show/hide element + (opsional) disable
-  function toggleEl(el, show, disable = true) {
-    if (!el) return;
-    el.classList.toggle('hidden', !show);
-    if (disable) el.disabled = !show;
-  }
+  document.addEventListener('DOMContentLoaded', function() {
+    const addBtn = document.getElementById('training_add_item');
+    const list = document.getElementById('training_list');
+    const tpl = document.getElementById('training_item_tpl');
 
-  document.addEventListener('DOMContentLoaded', function () {
-    // ====== Toggle detail K3 saat Ya/Tidak ======
-    const incidentSel = document.getElementById('k3_incident');
-    const detailsBox  = document.getElementById('k3_details');
-
-    function syncIncident() {
-      const yes = incidentSel && incidentSel.value === 'ya';
-      toggleEl(detailsBox, yes, false);
-      // enable/disable semua field di dalam details
-      if (detailsBox) {
-        detailsBox.querySelectorAll('input, select, textarea').forEach(el => {
-          el.disabled = !yes;
-        });
-      }
-    }
-
-    if (incidentSel) {
-      incidentSel.addEventListener('change', syncIncident);
-      syncIncident();
-    }
-
-    // ====== Dinamis: daftar insiden K3 ======
-    const list   = document.getElementById('k3_list');
-    const addBtn = document.getElementById('k3_add_item');
-    const tpl    = document.getElementById('k3_item_tpl');
-
-    if (!list || !addBtn || !tpl) return; // kalau elemen belum ada, hentikan
-
-    // Re-index name attribute semua field dalam setiap item
-    function reindex() {
-      const items = list.querySelectorAll('.k3-item');
-      items.forEach((item, idx) => {
-        item.querySelectorAll('input, select, textarea').forEach(el => {
-          if (el.classList.contains('k3-injuries'))        el.name = `k3[${idx}][injuries]`;
-          else if (el.classList.contains('k3-fatalities')) el.name = `k3[${idx}][fatalities]`;
-          else if (el.classList.contains('k3-type'))       el.name = `k3[${idx}][type]`;
-          else if (el.classList.contains('k3-type-other')) el.name = `k3[${idx}][type_other]`;
-          else if (el.classList.contains('k3-location'))   el.name = `k3[${idx}][location]`;
-          else if (el.classList.contains('k3-location-other')) el.name = `k3[${idx}][location_other]`;
-          else if (el.classList.contains('k3-cause'))      el.name = `k3[${idx}][cause]`;
-          else if (el.classList.contains('k3-cause-other'))el.name = `k3[${idx}][cause_other]`;
-          else if (el.classList.contains('k3-lost'))       el.name = `k3[${idx}][lost_workdays]`;
-          else if (el.classList.contains('k3-actions'))    el.name = `k3[${idx}][actions]`;
-        });
-
-        // Tombol hapus hanya muncul jika item > 1
-        const rm = item.querySelector('.k3-remove');
-        if (rm) rm.classList.toggle('hidden', items.length <= 1);
-      });
-    }
-
-    // Tanggapi opsi "Lainnya" pada select untuk 1 item
-    function attachOtherHandlers(item) {
-      const typeSel   = item.querySelector('.k3-type');
-      const typeOther = item.querySelector('.k3-type-other');
-      const locSel    = item.querySelector('.k3-location');
-      const locOther  = item.querySelector('.k3-location-other');
-      const causeSel  = item.querySelector('.k3-cause');
-      const causeOther= item.querySelector('.k3-cause-other');
-
-      function sync(selectEl, otherEl) {
-        const on = selectEl && selectEl.value === 'lainnya';
-        toggleEl(otherEl, on);
-        if (!on && otherEl) otherEl.value = '';
-      }
-
-      if (typeSel)  { typeSel.addEventListener('change', () => sync(typeSel, typeOther));   sync(typeSel, typeOther); }
-      if (locSel)   { locSel.addEventListener('change',  () => sync(locSel,  locOther));    sync(locSel,  locOther); }
-      if (causeSel) { causeSel.addEventListener('change',() => sync(causeSel, causeOther)); sync(causeSel, causeOther); }
-    }
-
-    // Tautkan tombol hapus pada 1 item
-    function attachRemove(item) {
-      const btn = item.querySelector('.k3-remove');
-      if (!btn) return;
-      btn.addEventListener('click', () => {
-        const items = list.querySelectorAll('.k3-item');
-        if (items.length > 1) {
-          item.remove();
-          reindex();
-        }
-      });
-    }
-
-    // Item awal (sudah ada di HTML)
-    const firstItem = list.querySelector('.k3-item');
-    if (firstItem) {
-      attachOtherHandlers(firstItem);
-      attachRemove(firstItem);
-    }
-    reindex();
-
-    // Tambah item baru dari template
-    addBtn.addEventListener('click', () => {
+    addBtn.addEventListener('click', function() {
       const clone = tpl.content.firstElementChild.cloneNode(true);
       list.appendChild(clone);
-      attachOtherHandlers(clone);
-      attachRemove(clone);
-      reindex();
+      const removeBtn = clone.querySelector('.remove-btn');
+      removeBtn.addEventListener('click', function() {
+        clone.remove();
+        recomputeAll(); // Recompute after removal
+      });
+      recomputeAll(); // Recompute when new item is added
     });
+
+    // Automatic summary calculation
+    function recomputeAll() {
+      let totalTrainingHours = 0;
+      let totalEmployees = 0;
+
+      list.querySelectorAll('.training-item').forEach(item => {
+        const trainingHours = parseFloat(item.querySelector('.hi-hours').value || 0);
+        totalTrainingHours += trainingHours;
+        totalEmployees += 1; // Counting each entry as an employee
+      });
+
+      const avgTrainingHours = totalEmployees > 0 ? (totalTrainingHours / totalEmployees).toFixed(2) : 0;
+
+      document.getElementById('sum_training_hours').textContent = totalTrainingHours.toString();
+      document.getElementById('sum_employees').textContent = totalEmployees.toString();
+      document.getElementById('sum_avg_hours').textContent = avgTrainingHours;
+    }
+
+    // Initial computation
+    recomputeAll();
   });
 </script>
-
-

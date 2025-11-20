@@ -13,108 +13,414 @@
     </div>
   </header>
 
+<!-- GRI 205-2 — Anti-Corruption Communication & Training -->
   <section class="flex flex-col items-start py-14 px-16 mt-10 w-full bg-white rounded-2xl shadow-2xl max-w-[981px] max-md:px-5">
-    <h3 class="text-3xl font-semibold text-teal-700">Daftar Kebijakan Perusahaan </h3>
-    <p class="mt-3 text-gray-500">Tujuan: Mengidentifikasi kebijakan yang sudah dimiliki perusahaan.</p>
+    <h3 class="text-3xl font-semibold text-teal-700">
+      GRI 205-2 — Anti-Corruption Communication & Training
+    </h3>
+    <p class="mt-3 text-gray-500">
+      Fill in the information related to anti-corruption training, policy communication, and the stakeholders reached.
+    </p>
 
-    <div class="w-full mt-8 space-y-6">
-      <div class="grid grid-cols-2 gap-5 max-md:grid-cols-1">
-        <div>
-          <label class="block pb-2 text-base font-medium">Code of Conduct (Kode Etik)</label>
-          <select class="w-full px-8 py-4 rounded-2xl border border-gray-300 bg-slate-50">
-            <option value="">Pilih</option>
-            <option selected>Ya</option> <option>Tidak</option>
-            <option>Sedang disusun</option>
-          </select>
+    <form id="gri-205-2-form" class="w-full mt-8 space-y-8">
+      <!-- 1. Board Members / Governance -->
+      <div class="space-y-3">
+        <div class="flex items-center justify-between gap-2">
+          <label class="block font-medium text-neutral-900">
+            Board Members / Governance trained
+          </label>
+          <span class="text-xs text-gray-400">
+            GRI 205-2(a)
+          </span>
         </div>
-        <div>
-          <label class="block pb-2 text-base font-medium">Anti-Corruption Policy</label>
-          <select class="w-full px-8 py-4 rounded-2xl border border-gray-300 bg-slate-50">
-            <option value="">Pilih</option>
-            <option selected>Ya</option> <option>Tidak</option>
-            <option>Sedang disusun</option>
-          </select>
-        </div>
-        <div>
-          <label class="block pb-2 text-base font-medium">Whistleblowing Policy</label>
-          <select class="w-full px-8 py-4 rounded-2xl border border-gray-300 bg-slate-50">
-            <option value="">Pilih</option>
-            <option selected>Ya</option> <option>Tidak</option>
-            <option>Sedang disusun</option>
-          </select>
-        </div>
-        <div>
-          <label class="block pb-2 text-base font-medium">Health and Safety Policy (K3)</label>
-          <select class="w-full px-8 py-4 rounded-2xl border border-gray-300 bg-slate-50">
-            <option value="">Pilih</option>
-            <option selected>Ya</option> <option>Tidak</option>
-            <option>Sedang disusun</option>
-          </select>
-        </div>
-      </div>
+        <p class="text-xs text-gray-500">
+          Enter the number & percentage of board members (directors/commissioners) who have received anti-corruption training.
+        </p>
 
-      <div>
-        <label class="block pb-2 text-base font-medium">Kebijakan lain terkait keberlanjutan</label>
-        <textarea rows="4" placeholder="Contoh: Diversity, Data Privacy, Human Rights"
-          class="w-full px-8 py-4 rounded-2xl border border-gray-300 bg-slate-50 placeholder-black/50 outline-none">Corporate Social Responsibility</textarea>
-      </div>
-
-      <div>
-        <label class="block pb-2 text-base font-medium">Tahun penerapan / pembaruan terakhir kebijakan</label>
-        <input type="number" placeholder="Misal: 2022" value="2024"
-          class="policy-year w-full px-8 py-4 rounded-2xl border border-gray-300 bg-slate-50 outline-none">
-      </div>
-
-      <div class="w-full mt-6">
-        <label class="block pb-2 text-base font-medium">Link atau dokumen kebijakan (opsional)</label>
-        <div class="flex gap-5 max-md:flex-col">
-          <div class="w-6/12 max-md:w-full">
-            <input type="file" name="policy[file]" class="w-full px-4 py-3 border rounded-2xl bg-slate-50">
+        <div class="grid grid-cols-2 gap-5 max-md:grid-cols-1">
+          <div>
+            <label class="block pb-2 font-medium text-neutral-900">
+              Number of board members trained
+            </label>
+            <input
+              type="number"
+              min="0"
+              placeholder="e.g., 8"
+              class="w-full px-8 py-4 mt-2 text-base text-black rounded-2xl border-gray-300 border border-solid bg-slate-50 placeholder-black/50 outline-none hover:ring focus:ring-2 focus:ring-teal-600 transition"
+            />
           </div>
-          <div class="w-6/12 max-md:w-full">
-            <input type="url" name="policy[link]" placeholder="Atau tautan dokumen" class="w-full px-8 py-4 border rounded-2xl bg-slate-50">
+          <div>
+            <label class="block pb-2 font-medium text-neutral-900">
+              Percentage of total board members
+            </label>
+            <div class="relative">
+              <input
+                type="number"
+                min="0"
+                max="100"
+                step="0.01"
+                placeholder="0"
+                class="w-full px-8 py-4 mt-2 pr-12 text-base text-black rounded-2xl border-gray-300 border border-solid bg-slate-50 placeholder-black/50 outline-none hover:ring focus:ring-2 focus:ring-teal-600 transition"
+              />
+              <span class="absolute right-6 top-[52%] -translate-y-1/2 text-gray-400 pointer-events-none">%</span>
+            </div>
           </div>
         </div>
+
+        <div>
+          <label class="block pb-2 font-medium text-neutral-900">
+            Breakdown by region (optional)
+          </label>
+          <textarea
+            rows="3"
+            placeholder="Example: 100% at Head Office, 80% in Java Region, 60% in Sumatra Region"
+            class="w-full px-8 py-4 mt-2 text-base text-black rounded-2xl border-gray-300 border border-solid bg-slate-50 placeholder-black/50 outline-none hover:ring focus:ring-2 focus:ring-teal-600 transition resize-y"
+          ></textarea>
+        </div>
       </div>
 
+      <!-- 2. Employees Trained -->
+      <div class="space-y-3">
+        <div class="flex items-center justify-between gap-2">
+          <label class="block font-medium text-neutral-900">
+            Employees trained
+          </label>
+          <span class="text-xs text-gray-400">
+            GRI 205-2(b)
+          </span>
+        </div>
+        <p class="text-xs text-gray-500">
+          Number & percentage of employees who have received training, with breakdowns by job category and region.
+        </p>
+
+        <div class="grid grid-cols-2 gap-5 max-md:grid-cols-1">
+          <div>
+            <label class="block pb-2 font-medium text-neutral-900">
+              Number of employees trained
+            </label>
+            <input
+              type="number"
+              min="0"
+              placeholder="e.g., 200"
+              class="w-full px-8 py-4 mt-2 text-base text-black rounded-2xl border-gray-300 border border-solid bg-slate-50 placeholder-black/50 outline-none hover:ring focus:ring-2 focus:ring-teal-600 transition"
+            />
+          </div>
+          <div>
+            <label class="block pb-2 font-medium text-neutral-900">
+              Percentage of total employees
+            </label>
+            <div class="relative">
+              <input
+                type="number"
+                min="0"
+                max="100"
+                step="0.01"
+                placeholder="0"
+                class="w-full px-8 py-4 mt-2 pr-12 text-base text-black rounded-2xl border-gray-300 border border-solid bg-slate-50 placeholder-black/50 outline-none hover:ring focus:ring-2 focus:ring-teal-600 transition"
+              />
+              <span class="absolute right-6 top-[52%] -translate-y-1/2 text-gray-400 pointer-events-none">%</span>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <label class="block pb-2 font-medium text-neutral-900">
+            Breakdown by job category & region
+          </label>
+          <textarea
+            rows="3"
+            placeholder="Example: Managers 90% (national), Staff 75% (Java), Operations 60% (Sumatra)"
+            class="w-full px-8 py-4 mt-2 text-base text-black rounded-2xl border-gray-300 border border-solid bg-slate-50 placeholder-black/50 outline-none hover:ring focus:ring-2 focus:ring-teal-600 transition resize-y"
+          ></textarea>
+        </div>
+      </div>
+
+      <!-- 3. Business partners who received policy communication -->
+      <div class="space-y-3">
+        <div class="flex items-center justify-between gap-2">
+          <label class="block font-medium text-neutral-900">
+            Business partners who received policy communication
+          </label>
+          <span class="text-xs text-gray-400">
+            GRI 205-2(c)
+          </span>
+        </div>
+        <p class="text-xs text-gray-500">
+          Number & percentage of partners (suppliers, contractors, distributors) who were informed of the anti-corruption policy.
+        </p>
+
+        <div class="grid grid-cols-2 gap-5 max-md:grid-cols-1">
+          <div>
+            <label class="block pb-2 font-medium text-neutral-900">
+              Number of partners who received communication
+            </label>
+            <input
+              type="number"
+              min="0"
+              placeholder="e.g., 50"
+              class="w-full px-8 py-4 mt-2 text-base text-black rounded-2xl border-gray-300 border border-solid bg-slate-50 placeholder-black/50 outline-none hover:ring focus:ring-2 focus:ring-teal-600 transition"
+            />
+          </div>
+          <div>
+            <label class="block pb-2 font-medium text-neutral-900">
+              Percentage of total partners
+            </label>
+            <div class="relative">
+              <input
+                type="number"
+                min="0"
+                max="100"
+                step="0.01"
+                placeholder="0"
+                class="w-full px-8 py-4 mt-2 pr-12 text-base text-black rounded-2xl border-gray-300 border border-solid bg-slate-50 placeholder-black/50 outline-none hover:ring focus:ring-2 focus:ring-teal-600 transition"
+              />
+              <span class="absolute right-6 top-[52%] -translate-y-1/2 text-gray-400 pointer-events-none">%</span>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <label class="block pb-2 font-medium text-neutral-900">
+            Breakdown by partner type (suppliers, contractors, distributors)
+          </label>
+          <textarea
+            rows="3"
+            placeholder="Example: 100% of main suppliers, 80% of project contractors, 60% of regional distributors"
+            class="w-full px-8 py-4 mt-2 text-base text-black rounded-2xl border-gray-300 border border-solid bg-slate-50 placeholder-black/50 outline-none hover:ring focus:ring-2 focus:ring-teal-600 transition resize-y"
+          ></textarea>
+        </div>
+      </div>
+
+      <!-- 4. Is the policy communicated to other external parties -->
+      <div class="space-y-3">
+        <div class="flex items-center justify-between gap-2">
+          <label class="block font-medium text-neutral-900">
+            Is the policy communicated to other external parties?
+          </label>
+          <span class="text-xs text-gray-400">
+            GRI 205-2(d)
+          </span>
+        </div>
+
+        <div class="grid grid-cols-2 gap-5 max-md:grid-cols-1">
+          <div>
+            <label class="block pb-2 font-medium text-neutral-900">
+              Policy communication to external parties
+            </label>
+            <select
+              id="external_policy_shared"
+              class="w-full px-8 py-4 mt-2 text-base text-black rounded-2xl border-gray-300 border border-solid bg-slate-50 outline-none hover:ring focus:ring-2 focus:ring-teal-600 transition"
+            >
+              <option value="">Select</option>
+              <option value="yes">Yes</option>
+              <option value="no">No</option>
+            </select>
+          </div>
+
+          <div id="external_policy_detail_wrap" class="hidden">
+            <label class="block pb-2 font-medium text-neutral-900">
+              External parties communicated
+            </label>
+            <textarea
+              id="external_policy_detail"
+              rows="3"
+              placeholder="Example: public via sustainability report, industry associations, government agencies, NGOs, etc."
+              class="w-full px-8 py-4 mt-2 text-base text-black rounded-2xl border-gray-300 border border-solid bg-slate-50 placeholder-black/50 outline-none hover:ring focus:ring-2 focus:ring-teal-600 transition resize-y"
+            ></textarea>
+          </div>
+        </div>
+      </div>
+
+      <!-- 5. Communication media details -->
+      <div class="space-y-3">
+        <div class="flex items-center justify-between gap-2">
+          <label class="block font-medium text-neutral-900">
+            Communication media details for the anti-corruption policy
+          </label>
+          <span class="text-xs text-gray-400">
+            ASEDG-G4.2 / IFRS S1 §26
+          </span>
+        </div>
+        <p class="text-xs text-gray-500">
+          Select the communication media used and provide a brief description.
+        </p>
+
+        <div class="space-y-4">
+          <!-- Intranet -->
+          <div class="flex flex-col md:flex-row md:items-start gap-3">
+            <label class="flex items-center gap-2 md:w-3/12 cursor-pointer">
+              <input
+                type="checkbox"
+                id="media_intranet"
+                class="w-4 h-4 rounded border-gray-400 text-teal-600 focus:ring-teal-600"
+              />
+              <span class="text-base text-neutral-900">Intranet / Internal Portal</span>
+            </label>
+            <input
+              type="text"
+              id="media_intranet_desc"
+              placeholder="Example: dedicated anti-corruption policy page on intranet"
+              class="hidden md:w-9/12 w-full px-8 py-4 mt-2 text-base text-black rounded-2xl border-gray-300 border border-solid bg-slate-50 placeholder-black/50 outline-none hover:ring focus:ring-2 focus:ring-teal-600 transition"
+            />
+          </div>
+
+          <!-- E-learning -->
+          <div class="flex flex-col md:flex-row md:items-start gap-3">
+            <label class="flex items-center gap-2 md:w-3/12 cursor-pointer">
+              <input
+                type="checkbox"
+                id="media_elearning"
+                class="w-4 h-4 rounded border-gray-400 text-teal-600 focus:ring-teal-600"
+              />
+              <span class="text-base text-neutral-900">E-learning</span>
+            </label>
+            <input
+              type="text"
+              id="media_elearning_desc"
+              placeholder="Example: mandatory annual e-learning module"
+              class="hidden md:w-9/12 w-full px-8 py-4 mt-2 text-base text-black rounded-2xl border-gray-300 border border-solid bg-slate-50 placeholder-black/50 outline-none hover:ring focus:ring-2 focus:ring-teal-600 transition"
+            />
+          </div>
+
+          <!-- Seminar / Workshop -->
+          <div class="flex flex-col md:flex-row md:items-start gap-3">
+            <label class="flex items-center gap-2 md:w-3/12 cursor-pointer">
+              <input
+                type="checkbox"
+                id="media_seminar"
+                class="w-4 h-4 rounded border-gray-400 text-teal-600 focus:ring-teal-600"
+              />
+              <span class="text-base text-neutral-900">Seminars / Workshops</span>
+            </label>
+            <input
+              type="text"
+              id="media_seminar_desc"
+              placeholder="Example: annual anti-corruption seminar for management"
+              class="hidden md:w-9/12 w-full px-8 py-4 mt-2 text-base text-black rounded-2xl border-gray-300 border border-solid bg-slate-50 placeholder-black/50 outline-none hover:ring focus:ring-2 focus:ring-teal-600 transition"
+            />
+          </div>
+
+          <!-- Email / Internal Campaign -->
+          <div class="flex flex-col md:flex-row md:items-start gap-3">
+            <label class="flex items-center gap-2 md:w-3/12 cursor-pointer">
+              <input
+                type="checkbox"
+                id="media_email"
+                class="w-4 h-4 rounded border-gray-400 text-teal-600 focus:ring-teal-600"
+              />
+              <span class="text-base text-neutral-900">Email / Internal Campaign</span>
+            </label>
+            <input
+              type="text"
+              id="media_email_desc"
+              placeholder="Example: monthly newsletter on compliance"
+              class="hidden md:w-9/12 w-full px-8 py-4 mt-2 text-base text-black rounded-2xl border-gray-300 border border-solid bg-slate-50 placeholder-black/50 outline-none hover:ring focus:ring-2 focus:ring-teal-600 transition"
+            />
+          </div>
+
+          <!-- Poster / Physical Media -->
+          <div class="flex flex-col md:flex-row md:items-start gap-3">
+            <label class="flex items-center gap-2 md:w-3/12 cursor-pointer">
+              <input
+                type="checkbox"
+                id="media_poster"
+                class="w-4 h-4 rounded border-gray-400 text-teal-600 focus:ring-teal-600"
+              />
+              <span class="text-base text-neutral-900">Posters / Physical Media</span>
+            </label>
+            <input
+              type="text"
+              id="media_poster_desc"
+              placeholder="Example: posters in work areas & common rooms"
+              class="hidden md:w-9/12 w-full px-8 py-4 mt-2 text-base text-black rounded-2xl border-gray-300 border border-solid bg-slate-50 placeholder-black/50 outline-none hover:ring focus:ring-2 focus:ring-teal-600 transition"
+            />
+          </div>
+
+          <!-- Others -->
+          <div class="flex flex-col md:flex-row md:items-start gap-3">
+            <label class="flex items-center gap-2 md:w-3/12 cursor-pointer">
+              <input
+                type="checkbox"
+                id="media_lainnya"
+                class="w-4 h-4 rounded border-gray-400 text-teal-600 focus:ring-teal-600"
+              />
+              <span class="text-base text-neutral-900">Others</span>
+            </label>
+            <input
+              type="text"
+              id="media_lainnya_desc"
+              placeholder="Example: social media campaigns, internal videos, etc."
+              class="hidden md:w-9/12 w-full px-8 py-4 mt-2 text-base text-black rounded-2xl border-gray-300 border border-solid bg-slate-50 placeholder-black/50 outline-none hover:ring focus:ring-2 focus:ring-teal-600 transition"
+            />
+          </div>
+        </div>
+      </div>
+
+
+      <!-- Navigation Buttons (customize route) -->
       <div class="flex justify-end gap-4 mt-8 w-full">
-        <a href="/umkm/gov-1" type="button"
+        <button
+          type="button"
           onclick="window.history.back()"
-          class="px-8 py-2 text-base font-medium text-center text-teal-700 border border-teal-700 bg-white rounded-xl hover:bg-teal-700 hover:text-white transition">
-          Sebelumnya
-        </a>
-        <a href="/umkm/gov-3" type="submit"
-          class="px-8 py-2 text-base font-medium text-center text-white bg-lime-500 rounded-xl hover:bg-lime-600 transition">
-          Simpan
-        </a>
+          class="px-8 py-2 text-base font-medium text-center text-teal-700 border-teal-700 border border-solid whitespace-nowrap bg-white rounded-xl hover:bg-teal-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 transition-colors"
+        >
+          Previous
+        </button>
+        
+        <button
+          type="submit"
+          class="px-8 py-2 text-base font-medium text-center text-white bg-lime-500 rounded-xl hover:bg-lime-600 transition"
+        >
+          Next
+        </button>
       </div>
-    </div>
+    </form>
   </section>
+
 </main>
 
 <script>
-  // opsional: kecilkan risiko typo tahun & highlight input link/file kalau terisi
-  document.addEventListener('DOMContentLoaded', () => {
-    const year = document.querySelector('.policy-year');
-    if (year) {
-      year.addEventListener('input', () => {
-        const v = parseInt(year.value, 10);
-        year.classList.toggle('ring-2', isNaN(v) || v < 1900 || v > 2100);
-        year.classList.toggle('ring-red-500', isNaN(v) || v < 1900 || v > 2100);
-      });
-    }
+document.addEventListener('DOMContentLoaded', () => {
+  // toggle pihak eksternal lain
+  const externalSel = document.getElementById('external_policy_shared');
+  const externalWrap = document.getElementById('external_policy_detail_wrap');
+  const externalDetail = document.getElementById('external_policy_detail');
 
-    const link = document.querySelector('input[name="policy[link]"]');
-    const file = document.querySelector('input[name="policy[file]"]');
-    [link, file].forEach(el => {
-      if (!el) return;
-      el.addEventListener('input', () => {
-        el.classList.toggle('border-teal-500', !!el.value);
-      });
-      el.addEventListener('change', () => {
-        // untuk file input
-        el.classList.toggle('border-teal-500', !!el.files?.length);
-      });
-    });
+  function syncExternal() {
+    const show = externalSel && externalSel.value === 'ya';
+    if (!externalWrap) return;
+    externalWrap.classList.toggle('hidden', !show);
+    if (!show && externalDetail) externalDetail.value = '';
+  }
+
+  if (externalSel) {
+    externalSel.addEventListener('change', syncExternal);
+    syncExternal();
+  }
+
+  // toggle media desc berdasarkan checkbox
+  const mediaPairs = [
+    { checkId: 'media_intranet',   textId: 'media_intranet_desc' },
+    { checkId: 'media_elearning',  textId: 'media_elearning_desc' },
+    { checkId: 'media_seminar',    textId: 'media_seminar_desc' },
+    { checkId: 'media_email',      textId: 'media_email_desc' },
+    { checkId: 'media_poster',     textId: 'media_poster_desc' },
+    { checkId: 'media_lainnya',    textId: 'media_lainnya_desc' },
+  ];
+
+  mediaPairs.forEach(p => {
+    const cb = document.getElementById(p.checkId);
+    const inp = document.getElementById(p.textId);
+    if (!cb || !inp) return;
+
+    const sync = () => {
+      const show = cb.checked;
+      inp.classList.toggle('hidden', !show);
+      if (!show) inp.value = '';
+    };
+
+    cb.addEventListener('change', sync);
+    sync();
   });
+});
 </script>

@@ -1,198 +1,305 @@
-<main class="flex flex-col ml-48 self-center mb-16 mt-16 w-full max-w-[1256px] max-md:mt-10 max-md:max-w-full">
+<main class="flex flex-col items-start self-center ml-48 mt-16 w-full max-w-[1168px] max-md:mt-10 max-md:max-w-full">
   <header class="flex gap-3.5 self-start">
     <img
       src="https://api.builder.io/api/v1/image/assets/TEMP/07073f8526333ac3749a4d99615ea0579a831ebe?placeholderIfAbsent=true&apiKey=ac04cd396e1f47f18955cd19640f183d"
-      alt="GRI Economic icon"
+      alt="GRI Social icon"
       class="object-contain shrink-0 my-auto rounded-full aspect-[1.04] w-[58px]"
     />
     <div class="flex flex-col">
-      <h2 class="text-4xl font-semibold text-black">
-        GRI Social
-      </h2>
+      <h2 class="text-4xl font-semibold text-black">GRI Social</h2>
       <p class="self-center text-xl font-medium leading-none text-center text-gray-500">
         Social Performance
       </p>
     </div>
   </header>
 
-  <section class="flex flex-col items-start self-end px-20 py-14 mt-16 w-full bg-white rounded-2xl shadow-2xl max-w-[1168px] max-md:px-5 max-md:mt-10 max-md:max-w-full">
-    <h3 class="text-3xl font-semibold text-center text-teal-700">
-      Informasi Umum Usaha
+  <!-- 401-1: New Employee Hires -->
+  <section class="self-stretch pt-12 pb-20 pl-16 mb-16 mt-10 bg-white rounded-2xl shadow-2xl max-md:pl-5 max-md:max-w-full">
+    <h3 class="text-3xl font-semibold text-teal-700">
+      401-1 • New Employee Hires (by segment)
     </h3>
-    <p class="mt-6 text-xl leading-none text-gray-500 max-md:max-w-full">
-      Lengkapi field yang diperlukan untuk melanjutkan ke step berikutnya
+    <p class="mt-3 text-gray-500">
+      Enter the total number and hiring rate for the reporting period, broken down by <span class="font-medium">age group</span>, <span class="font-medium">gender</span>, and <span class="font-medium">region</span>.
     </p>
 
-    <form action="/umkm/social-1" method="POST" class="z-10 mt-14 max-w-full w-[1700px] max-md:mt-10">
-      <div class="flex gap-5 max-md:flex-col">
-        <!-- Left side input fields -->
-        <div class="w-[89%] max-md:ml-0 max-md:w-full">
-          <div class="w-full text-base max-md:mt-10 max-md:max-w-full">
-            <!-- Organization Name and Responsible Person -->
-            <div class="flex z-10 flex-wrap gap-4 items-center px-4 py-3 min-h-[110px] max-md:mr-1">
-              <div class="flex-1 shrink self-stretch my-auto w-full basis-0 min-w-40 max-md:max-w-full">
-                <label class="block pb-2 w-full font-medium text-neutral-900 max-md:max-w-full">
-                  Nama entitas / unit bisnis
-                </label>
-                <input
-                  type="text"
-                  id="unit_name"
-                  name="unit_name"
-                  value="Marketing"
-                  class="w-full px-8 py-4 mt-2 text-base text-black rounded-2xl border-gray-300 border border-solid bg-slate-50 placeholder-black/50 outline-none hover:ring focus:ring-2 focus:ring-teal-600 transition"
-                />
-              </div>
-              <div class="flex-1 shrink self-stretch my-auto w-full basis-0 min-w-40 max-md:max-w-full">
-                <label class="block pb-2 w-full font-medium text-neutral-900 max-md:max-w-full">
-                  Lokasi operasional
-                </label>
-                <input
-                  type="text"
-                  id="operational_location"
-                  name="operational_location"
-                  value="Jl. Piai Tangah, Cupak Tangah, Kec. Pauh, Kota Padang, Sumatera Barat 25158"
-                  class="w-full px-8 py-4 mt-2 text-base text-black rounded-2xl border-gray-300 border border-solid bg-slate-50 placeholder-black/50 outline-none hover:ring focus:ring-2 focus:ring-teal-600 transition"
-                />
-              </div>
-              <div class="flex-1 shrink self-stretch my-auto w-full basis-0 min-w-40 max-md:max-w-full">
-                <label class="block pb-2 w-full font-medium text-neutral-900 max-md:max-w-full">
-                  Nama Penanggung Jawab
-                </label>
-                <input
-                id="responsible_person"
-                name="responsible_person"
-                  type="text"
-                  value="Natasya"
-                  class="w-full px-8 py-4 mt-2 text-base text-black rounded-2xl border-gray-300 border border-solid bg-slate-50 placeholder-black/50 outline-none hover:ring focus:ring-2 focus:ring-teal-600 transition"
-                />
-              </div>
+    <!-- Meta period (optional, remove if already provided elsewhere) -->
+    <div class="mt-6 grid grid-cols-1 md:grid-cols-3 gap-4 pr-8 md:pr-12 lg:pr-16">
+      <div>
+        <label class="block pb-2 text-base font-medium">Reporting Period</label>
+        <input type="text" name="reporting_period" value="2025-Q3" 
+          class="w-full px-8 py-4 text-base rounded-2xl border border-gray-300 bg-slate-50 outline-none hover:ring focus:ring-2 focus:ring-teal-600 transition">
+      </div>
+      <div>
+        <label class="block pb-2 text-base font-medium">Region Level (optional)</label>
+        <select name="region_level"
+          class="w-full px-8 py-4 text-base rounded-2xl border border-gray-300 bg-slate-50 outline-none hover:ring focus:ring-2 focus:ring-teal-600 transition">
+          <option value="">Select</option>
+          <option value="kota">City/Regency</option>
+          <option value="provinsi">Province/State</option>
+          <option value="negara">Country</option>
+          <option value="site">Site/Plant</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- Entry list -->
+    <div id="hire_list" class="space-y-8 mt-8 pr-8 md:pr-12 lg:pr-16">
+      <!-- Entry #0 (initial) -->
+      <div class="hire-item border border-gray-200 rounded-2xl p-4">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+          <!-- Age group -->
+          <div>
+            <label class="block pb-2 text-base font-medium">Age Group</label>
+            <select class="hi-age w-full px-8 py-4 text-base rounded-2xl border border-gray-300 bg-slate-50 outline-none hover:ring focus:ring-2 focus:ring-teal-600 transition">
+              <option value="">Select</option>
+              <option value="<30">&lt; 30</option>
+              <option value="30-50">30–50</option>
+              <option value=">50">&gt; 50</option>
+              <option value="lainnya">Other</option>
+            </select>
+            <input type="text" class="hi-age-other w-full px-4 py-3 mt-3 border rounded-lg bg-slate-50 hidden" placeholder="Specify other age group">
+          </div>
+
+          <!-- Gender -->
+          <div>
+            <label class="block pb-2 text-base font-medium">Gender</label>
+            <select class="hi-gender w-full px-8 py-4 text-base rounded-2xl border border-gray-300 bg-slate-50 outline-none hover:ring focus:ring-2 focus:ring-teal-600 transition">
+              <option value="">Select</option>
+              <option value="Perempuan">Female</option>
+              <option value="Laki-laki">Male</option>
+              <option value="Tidak menyebutkan">Not specified</option>
+              <option value="lainnya">Other</option>
+            </select>
+            <input type="text" class="hi-gender-other w-full px-4 py-3 mt-3 border rounded-lg bg-slate-50 hidden" placeholder="Specify other gender">
+          </div>
+
+          <!-- Region -->
+          <div>
+            <label class="block pb-2 text-base font-medium">Region</label>
+            <input type="text" class="hi-region w-full px-8 py-4 text-base rounded-2xl border border-gray-300 bg-slate-50 outline-none hover:ring focus:ring-2 focus:ring-teal-600 transition" placeholder="e.g., Jakarta, East Java, West Kalimantan">
+          </div>
+        </div>
+
+        <!-- Hires & segment totals -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-5 mt-6">
+          <div>
+            <label class="block pb-2 text-base font-medium">Number of New Hires</label>
+            <input type="number" min="0" value="0"
+              class="hi-hired w-full px-8 py-4 text-base rounded-2xl border border-gray-300 bg-slate-50 outline-none hover:ring focus:ring-2 focus:ring-teal-600 transition">
+          </div>
+          <div>
+            <label class="block pb-2 text-base font-medium">Total Employees in Segment</label>
+            <input type="number" min="0" value="0"
+              class="hi-headcount w-full px-8 py-4 text-base rounded-2xl border border-gray-300 bg-slate-50 outline-none hover:ring focus:ring-2 focus:ring-teal-600 transition" placeholder="Average/End of period">
+          </div>
+          <div>
+            <label class="block pb-2 text-base font-medium">Hiring Rate (%)</label>
+            <div class="relative">
+              <input type="text" readonly class="hi-rate w-full px-8 py-4 pr-16 text-base rounded-2xl border border-gray-200 bg-gray-50"
+                     placeholder="0.00">
+              <span class="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400">%</span>
             </div>
+          </div>
+        </div>
 
-            <!-- Periode Pelaporan -->
-            <div class="flex flex-wrap gap-4 items-start px-4 py-3">
-              <div class="grow shrink min-w-40 w-[220px]">
-                <label for="reporting_period" class="block pb-2 font-medium text-neutral-900">Periode Pelaporan</label>
-                <select id="reporting_period" name="reporting_period" class="w-full px-8 py-4 mt-2 text-base text-black rounded-2xl border border-gray-300 bg-slate-50 outline-none hover:ring focus:ring-2 focus:ring-teal-600 transition">
-                  <option value="tahun">Tahun</option>
-                  
-                  <option value="triwulan">Triwulan</option>
-                </select>
-              </div>
+        <!-- Notes (optional) & Delete -->
+        <div class="mt-6 grid grid-cols-1 md:grid-cols-[1fr_auto] gap-4">
+          <input type="text" class="hi-notes w-full px-8 py-4 text-base rounded-2xl border border-gray-300 bg-slate-50"
+                 placeholder="Notes (optional)">
+          <button type="button"
+                  class="hire-remove hidden px-4 py-2 border rounded-xl text-gray-700 hover:bg-gray-50">
+            Delete entry
+          </button>
+        </div>
+      </div>
+    </div>
 
-              <!-- Tahun (muncul jika mode: Tahun) -->
-              <div id="year_wrap" class="grow shrink min-w-40 w-[200px] hidden">
-                <label for="period_year" class="block pb-2 font-medium text-neutral-900">Pilih Tahun</label>
-                <select id="period_year" name="period_year" class="w-full px-8 py-4 mt-2 text-base text-black rounded-2xl border border-gray-300 bg-slate-50 outline-none hover:ring focus:ring-2 focus:ring-teal-600 transition">
-                  <!-- diisi via JS -->
-                </select>
-              </div>
+    <!-- Add entry button -->
+    <div class="mt-6 flex justify-end pr-8 md:pr-12 lg:pr-16">
+      <button type="button" id="hire_add_item"
+              class="inline-flex items-center gap-2 px-4 py-2 rounded-xl text-teal-700 text-sm font-medium transition hover:bg-teal-50">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none"
+             viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4"/>
+        </svg>
+        Add entry
+      </button>
+    </div>
 
-              <!-- Triwulan tahun berjalan (muncul jika mode: Triwulan) -->
-              <div id="quarter_wrap" class="grow shrink min-w-40 w-[260px] hidden">
-                <label for="period_quarter" class="block pb-2 font-medium text-neutral-900">Pilih Triwulan (Tahun Berjalan)</label>
-                <select id="period_quarter" name="quarter" class="w-full px-8 py-4 mt-2 text-base text-black rounded-2xl border border-gray-300 bg-slate-50 outline-none hover:ring focus:ring-2 focus:ring-teal-600 transition">
-                  <!-- diisi via JS -->
-                </select>
-              </div>
-            </div>
-
+    <!-- Total summary -->
+    <div class="mt-10 pr-8 md:pr-12 lg:pr-16">
+      <h4 class="text-2xl font-semibold text-teal-700">Total Summary (automatic)</h4>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-5 mt-4">
+        <div>
+          <div class="text-gray-500">Total New Hires</div>
+          <div class="text-3xl text-teal-700 font-semibold" id="sum_hired">0</div>
+        </div>
+        <div>
+          <div class="text-gray-500">Total Employees (All Segments)</div>
+          <div class="text-3xl text-teal-700 font-semibold" id="sum_headcount">0</div>
+        </div>
+        <div>
+          <div class="text-gray-500">Overall Hiring Rate</div>
+          <div class="text-3xl text-teal-700 font-semibold">
+            <span id="sum_rate">0.00</span><span class="text-xl">%</span>
           </div>
         </div>
       </div>
+      <p class="mt-3 text-sm text-gray-500">
+        Segment & overall hiring rate formula: <span class="font-medium">(Number of New Hires ÷ Total Employees in Segment) × 100%</span>
+      </p>
+    </div>
 
-      <!-- Submit Button -->
-      <div class="flex justify-end mt-7">
-        <button
-          type="submit"
-          class="px-8 py-2 text-base font-medium text-center text-white whitespace-nowrap bg-lime-500 rounded-xl hover:bg-lime-600 focus:outline-none focus:ring-2 focus:ring-lime-500 focus:ring-offset-2 transition-colors"
-        >
-          Submit
-        </button>
-      </div>
-    </form>
+    <!-- Navigation -->
+    <div class="flex justify-end gap-4 mt-10 w-full pr-8 md:pr-12 lg:pr-16">
+
+      <a href="/umkm/social-2"
+        class="px-8 py-2 text-base font-medium text-center text-white whitespace-nowrap bg-lime-500 rounded-xl hover:bg-lime-600 transition-colors">
+        Next
+      </a>
+    </div>
   </section>
 </main>
 
+<!-- Entry template -->
+<template id="hire_item_tpl">
+  <div class="hire-item border border-gray-200 rounded-2xl p-4">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+      <div>
+        <label class="block pb-2 text-base font-medium">Age Group</label>
+        <select class="hi-age w-full px-8 py-4 text-base rounded-2xl border border-gray-300 bg-slate-50 outline-none hover:ring focus:ring-2 focus:ring-teal-600 transition">
+          <option value="">Select</option>
+          <option value="<30">&lt; 30</option>
+          <option value="30-50">30–50</option>
+          <option value=">50">&gt; 50</option>
+          <option value="lainnya">Other</option>
+        </select>
+        <input type="text" class="hi-age-other w-full px-4 py-3 mt-3 border rounded-lg bg-slate-50 hidden" placeholder="Specify other age group">
+      </div>
+      <div>
+        <label class="block pb-2 text-base font-medium">Gender</label>
+        <select class="hi-gender w-full px-8 py-4 text-base rounded-2xl border border-gray-300 bg-slate-50 outline-none hover:ring focus:ring-2 focus:ring-teal-600 transition">
+          <option value="">Select</option>
+          <option value="Perempuan">Female</option>
+          <option value="Laki-laki">Male</option>
+          <option value="Tidak menyebutkan">Not specified</option>
+          <option value="lainnya">Other</option>
+        </select>
+        <input type="text" class="hi-gender-other w-full px-4 py-3 mt-3 border rounded-lg bg-slate-50 hidden" placeholder="Specify other gender">
+      </div>
+      <div>
+        <label class="block pb-2 text-base font-medium">Region</label>
+        <input type="text" class="hi-region w-full px-8 py-4 text-base rounded-2xl border border-gray-300 bg-slate-50 outline-none hover:ring focus:ring-2 focus:ring-teal-600 transition" placeholder="e.g., Jakarta, East Java, West Kalimantan">
+      </div>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-5 mt-6">
+      <div>
+        <label class="block pb-2 text-base font-medium">Number of New Hires</label>
+        <input type="number" min="0" value="0"
+          class="hi-hired w-full px-8 py-4 text-base rounded-2xl border border-gray-300 bg-slate-50 outline-none hover:ring focus:ring-2 focus:ring-teal-600 transition">
+      </div>
+      <div>
+        <label class="block pb-2 text-base font-medium">Total Employees in Segment</label>
+        <input type="number" min="0" value="0"
+          class="hi-headcount w-full px-8 py-4 text-base rounded-2xl border border-gray-300 bg-slate-50 outline-none hover:ring focus:ring-2 focus:ring-teal-600 transition" placeholder="Average/End of period">
+      </div>
+      <div>
+        <label class="block pb-2 text-base font-medium">Hiring Rate (%)</label>
+        <div class="relative">
+          <input type="text" readonly class="hi-rate w-full px-8 py-4 pr-16 text-base rounded-2xl border border-gray-200 bg-gray-50" placeholder="0.00">
+          <span class="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400">%</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="mt-6 grid grid-cols-1 md:grid-cols-[1fr_auto] gap-4">
+      <input type="text" class="hi-notes w-full px-8 py-4 text-base rounded-2xl border border-gray-300 bg-slate-50"
+             placeholder="Notes (optional)">
+      <button type="button" class="hire-remove px-4 py-2 border rounded-xl text-gray-700 hover:bg-gray-50">
+        Delete entry
+      </button>
+    </div>
+  </div>
+</template>
+
 <script>
-  function toggle(el, show){ if(!el) return; el.classList.toggle('hidden', !show); }
-
-  // Isi dropdown tahun: 3 tahun ke belakang; kalau belum 31 Des, tahun berjalan tidak ditampilkan
-  function fillYears(sel){
-    const now=new Date(); const thisYear=now.getFullYear();
-    const isDec31=(now.getMonth()===11 && now.getDate()===31);
-    sel.innerHTML='<option value="">Pilih Tahun</option>';
-    const start = isDec31 ? thisYear : thisYear-1;
-    for(let i=0;i<3;i++){
-      const y=start-i;
-      const o=document.createElement('option');
-      o.value=String(y);
-      o.textContent=y;
-      sel.appendChild(o);
-    }
-  }
-
-  // Isi triwulan tahun berjalan (hanya sampai triwulan terakhir yang sudah berjalan)
-  function fillCurrentYearQuarters(sel){
-    const now=new Date(); const y=now.getFullYear(); const m=now.getMonth();
-    const isDec31=(m===11 && now.getDate()===31);
-    let maxQ=Math.floor(m/3)+1; if(isDec31) maxQ=4; if(maxQ>4) maxQ=4;
-    const labels={1:'Triwulan 1 (Jan–Mar)',2:'Triwulan 2 (Apr–Jun)',3:'Triwulan 3 (Jul–Sep)',4:'Triwulan 4 (Okt–Des)'};
-    sel.innerHTML='<option value="">Pilih Triwulan</option>';
-    for(let q=1;q<=maxQ;q++){
-      const o=document.createElement('option');
-      o.value=`${y}-Q${q}`;
-      o.textContent=`${labels[q]} ${y}`;
-      sel.appendChild(o);
-    }
-  }
+  // util
+  function toggleEl(el, show){ if(!el) return; el.classList.toggle('hidden', !show); }
 
   document.addEventListener('DOMContentLoaded', function(){
-    const form   = document.getElementById('eco-form');       // pastikan id form ini ada
-    const mode   = document.getElementById('reporting_period');
+    const list   = document.getElementById('hire_list');
+    const addBtn = document.getElementById('hire_add_item');
+    const tpl    = document.getElementById('hire_item_tpl');
 
-    const yearWrap  = document.getElementById('year_wrap');
-    const yearSel   = document.getElementById('period_year');
+    // Calculate per-item rate & overall summary
+    function recomputeAll(){
+      let sumHired = 0, sumHead = 0;
 
-    const qWrap     = document.getElementById('quarter_wrap');
-    const qSel      = document.getElementById('period_quarter');
+      list.querySelectorAll('.hire-item').forEach(item => {
+        const hired = parseFloat(item.querySelector('.hi-hired')?.value || '0');
+        const head  = parseFloat(item.querySelector('.hi-headcount')?.value || '0');
+        const rate  = head > 0 ? (hired / head) * 100 : 0;
+        const rateEl = item.querySelector('.hi-rate');
+        if (rateEl) rateEl.value = rate.toFixed(2);
+        sumHired += isNaN(hired)?0:hired;
+        sumHead  += isNaN(head)?0:head;
+      });
 
-    // init data
-    fillYears(yearSel);
-    fillCurrentYearQuarters(qSel);
+      const sumRate = sumHead > 0 ? (sumHired / sumHead) * 100 : 0;
+      document.getElementById('sum_hired').textContent = sumHired.toString();
+      document.getElementById('sum_headcount').textContent = sumHead.toString();
+      document.getElementById('sum_rate').textContent = sumRate.toFixed(2);
+    }
 
-    function syncMode(){
-      if(mode.value==='tahun'){
-        toggle(yearWrap, true);
-        toggle(qWrap, false);
-      } else if(mode.value==='triwulan'){
-        toggle(yearWrap, false);
-        toggle(qWrap, true);
-      } else {
-        toggle(yearWrap, false);
-        toggle(qWrap, false);
+    function attachHandlers(item){
+      // show "Other" inputs
+      const ageSel = item.querySelector('.hi-age');
+      const ageOther = item.querySelector('.hi-age-other');
+      const genSel = item.querySelector('.hi-gender');
+      const genOther = item.querySelector('.hi-gender-other');
+
+      function syncOther(sel, other){
+        const isOther = sel && sel.value === 'lainnya';
+        toggleEl(other, isOther);
+        if (!isOther && other) other.value = '';
+      }
+      if (ageSel){ ageSel.addEventListener('change', () => syncOther(ageSel, ageOther)); syncOther(ageSel, ageOther); }
+      if (genSel){ genSel.addEventListener('change', () => syncOther(genSel, genOther)); syncOther(genSel, genOther); }
+
+      // auto compute
+      ['.hi-hired','.hi-headcount'].forEach(cls=>{
+        const el = item.querySelector(cls);
+        if (el) el.addEventListener('input', recomputeAll);
+      });
+
+      // delete entry
+      const rm = item.querySelector('.hire-remove');
+      if (rm){
+        rm.addEventListener('click', () => {
+          if (list.querySelectorAll('.hire-item').length > 1){
+            item.remove();
+            recomputeAll();
+          }
+        });
       }
     }
 
-    mode.addEventListener('change', syncMode);
-    syncMode();
+    // initial item
+    const first = list.querySelector('.hire-item');
+    if (first) attachHandlers(first);
+    recomputeAll();
 
-    // contoh validasi submit ringkas
-    if (form){
-      form.addEventListener('submit', function(e){
-        e.preventDefault();
-
-        if(!mode.value){ alert('Pilih Periode Pelaporan.'); return; }
-
-        let period='';
-        if(mode.value==='tahun'){
-          if(!yearSel.value){ alert('Pilih Tahun.'); return; }
-          period = `Tahun ${yearSel.value}`;
-        } else {
-          if(!qSel.value){ alert('Pilih Triwulan tahun berjalan.'); return; }
-          period = `Triwulan ${qSel.value}`;
-        }
-
-        alert(`OK! Periode: ${period}`);
+    // add item
+    if (addBtn){
+      addBtn.addEventListener('click', ()=>{
+        const clone = tpl.content.firstElementChild.cloneNode(true);
+        list.appendChild(clone);
+        attachHandlers(clone);
+        // show delete for added items
+        const rm = clone.querySelector('.hire-remove');
+        if (rm) rm.classList.remove('hidden');
+        recomputeAll();
       });
     }
   });

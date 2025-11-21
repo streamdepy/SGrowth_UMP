@@ -13,43 +13,88 @@
     </div>
   </header>
 
-<!-- Catatan Tambahan -->
-<section class="flex flex-col items-start py-14 px-16 mt-10 w-full bg-white rounded-2xl shadow-2xl max-w-[981px] max-md:px-5">
-  <h3 class="text-3xl font-semibold text-teal-700">Catatan Tambahan</h3>
-  <p class="mt-3 text-gray-500">Isi catatan tambahan terkait pengelolaan emisi.</p>
+  <form action="/umkm/env-2" method="POST">
+    <!-- Ozone-Depleting Substances (ODS) Emissions (305-6) -->
+    <section class="flex flex-col items-start py-14 px-16 mt-10 w-full bg-white rounded-2xl shadow-2xl max-w-[981px] max-md:px-5">
+      <h3 class="text-3xl font-semibold text-teal-700">Emissions of Ozone-Depleting Substances (ODS) (305-6)</h3>
+      <p class="mt-3 text-gray-500">Fill in the emissions data for ozone-depleting substances (ODS) for this reporting period.</p>
 
-  <!-- Kendala -->
-  <div class="w-full mt-8">
-    <label for="note_issues" class="block pb-2 text-base font-medium">
-      Kendala yang dihadapi dalam pengumpulan data
-    </label>
-    <textarea id="note_issues" name="note_issues" rows="4"
-      placeholder="Contoh: data tidak konsisten antar unit, kurangnya perangkat ukur, dll."
-      class="w-full px-8 py-4 text-base text-black rounded-2xl border border-gray-300 bg-slate-50 resize-y">Kurangnya alat pengukuran emisi</textarea>
-  </div>
+      <!-- ODS Production, Imports, and Exports -->
+      <div class="w-full mt-8">
+        <label for="ods_emissions" class="block pb-2 text-base font-medium">Production, imports, and exports of ODS in metric tons of CFC-11 equivalent</label>
+        <input type="number" min="0" name="ods_emissions" id="ods_emissions" placeholder="Enter ODS emissions in metric tons of CFC-11 equivalent"
+          class="w-full px-8 py-4 mt-2 text-base text-black rounded-2xl border border-gray-300 bg-slate-50 outline-none hover:ring focus:ring-2 focus:ring-teal-600 transition" />
+        <p class="mt-2 text-gray-500 text-sm">Provide the total emissions in metric tons of CFC-11 equivalent.</p>
+      </div>
 
-  <!-- Rencana -->
-  <div class="w-full mt-6">
-    <label for="note_plans" class="block pb-2 text-base font-medium">
-      Rencana peningkatan pengelolaan emisi ke depan
-    </label>
-    <textarea id="note_plans" name="note_plans" rows="4"
-      placeholder="Contoh: pelatihan staf, digitalisasi pencatatan, audit faktor emisi, dll."
-      class="w-full px-8 py-4 text-base text-black rounded-2xl border border-gray-300 bg-slate-50 resize-y">Audit faktor emisi</textarea>
-  </div>
+      <!-- Substances Included in the Calculation -->
+      <div class="w-full mt-8">
+        <label for="substances_included" class="block pb-2 text-base font-medium">Substances included in the calculation</label>
+        <textarea name="substances_included" id="substances_included" rows="3" placeholder="List the substances included in the ODS calculation (e.g., CFC-12, CFC-113, etc.)"
+          class="w-full px-8 py-4 mt-2 text-base text-black rounded-2xl border border-gray-300 bg-slate-50 outline-none hover:ring focus:ring-2 focus:ring-teal-600 transition"></textarea>
+        <p class="mt-2 text-gray-500 text-sm">List the substances included in the ODS calculation.</p>
+      </div>
 
-  <!-- Buttons -->
-  <div class="flex justify-end gap-4 mt-10 w-full">
-    <button type="button" onclick="window.history.back()"
-      class="px-8 py-2 text-base font-medium text-center text-teal-700 border-teal-700 border border-solid whitespace-nowrap bg-white rounded-xl hover:bg-teal-700 hover:text-white transition-colors">
-      Sebelumnya
-    </button>
-    <a href="/umkm/form-gri"
-      class="px-8 py-2 text-base font-medium text-center text-white whitespace-nowrap bg-lime-500 rounded-xl hover:bg-lime-600 transition-colors">
-      Simpan
-    </a>
-  </div>
-</section>
+      <!-- Source of Emission Factors -->
+      <div class="w-full mt-8">
+        <label for="emission_factors_ods" class="block pb-2 text-base font-medium">Source of the emission factors used</label>
+        <textarea name="emission_factors_ods" id="emission_factors_ods" rows="3" placeholder="Provide the source(s) of the emission factors used"
+          class="w-full px-8 py-4 mt-2 text-base text-black rounded-2xl border border-gray-300 bg-slate-50 outline-none hover:ring focus:ring-2 focus:ring-teal-600 transition"></textarea>
+        <p class="mt-2 text-gray-500 text-sm">Provide the source(s) of the emission factors used in the calculation.</p>
+      </div>
 
+      <!-- Standards, Methodologies, Assumptions, and Calculation Tools -->
+      <div class="w-full mt-8">
+        <label for="standards_tools_ods" class="block pb-2 text-base font-medium">Standards, methodologies, assumptions, and/or calculation tools used</label>
+        <textarea name="standards_tools_ods" id="standards_tools_ods" rows="3" placeholder="Provide the standards, methodologies, assumptions, and calculation tools used for calculating ODS emissions"
+          class="w-full px-8 py-4 mt-2 text-base text-black rounded-2xl border border-gray-300 bg-slate-50 outline-none hover:ring focus:ring-2 focus:ring-teal-600 transition"></textarea>
+        <p class="mt-2 text-gray-500 text-sm">Provide the standards, methodologies, assumptions, and calculation tools used for calculating ODS emissions.</p>
+      </div>
+
+      <!-- Disclosure 305-7: Nitrogen Oxides (NOx), Sulfur Oxides (SOx), and Other Significant Air Emissions -->
+      <div class="w-full mt-8">
+        <label for="air_emissions_305_7" class="block pb-2 text-base font-medium">Disclosure 305-7: Nitrogen oxides (NOx), sulfur oxides (SOx), and other significant air emissions</label>
+        <textarea name="air_emissions_305_7" id="air_emissions_305_7" rows="3" placeholder="Provide data on NOx, SOx, and other significant air emissions"
+          class="w-full px-8 py-4 mt-2 text-base text-black rounded-2xl border border-gray-300 bg-slate-50 outline-none hover:ring focus:ring-2 focus:ring-teal-600 transition"></textarea>
+        <p class="mt-2 text-gray-500 text-sm">Provide data on NOx, SOx, and other significant air emissions.</p>
+      </div>
+
+      <!-- Total Summary Section -->
+      <div class="mt-10 pr-8 md:pr-12 lg:pr-16">
+        <h4 class="text-2xl font-semibold text-teal-700">Total Summary (automatic)</h4>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 mt-4">
+          <div>
+            <div class="text-gray-500">Total ODS Emissions (CFC-11 equivalent)</div>
+            <div class="text-3xl text-teal-700 font-semibold" id="total_ods_emissions">0</div>
+          </div>
+        </div>
+        <p class="mt-3 text-sm text-gray-500">
+          Total emissions formula: <span class="font-medium">ODS Emissions</span>
+        </p>
+      </div>
+
+      <!-- Right corner buttons -->
+      <div class="flex justify-end gap-4 mt-10 w-full">
+        <button type="button" onclick="window.history.back()"
+          class="px-8 py-2 text-base font-medium text-center text-teal-700 border-teal-700 border border-solid whitespace-nowrap bg-white rounded-xl hover:bg-teal-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 transition-colors">
+          Previous
+        </button>
+        <button type="submit"
+          class="px-8 py-2 text-base font-medium text-center text-white whitespace-nowrap bg-lime-500 rounded-xl hover:bg-lime-600 focus:outline-none focus:ring-2 focus:ring-lime-500 focus:ring-offset-2 transition-colors">
+          Save
+        </button>
+      </div>
+    </section>
+  </form>
 </main>
 
+<script>
+// Update the total ODS emissions summary
+const odsEmissionsInput = document.getElementById('ods_emissions');
+function updateOdsTotal() {
+  const odsEmissions = parseFloat(odsEmissionsInput.value) || 0;
+  document.getElementById('total_ods_emissions').innerText = odsEmissions.toFixed(4);
+}
+
+odsEmissionsInput.addEventListener('input', updateOdsTotal);
+</script>

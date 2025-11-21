@@ -13,220 +13,279 @@
     </div>
   </header>
 
-  <section class="flex flex-col items-start px-20 py-14 mt-16 w-full bg-white rounded-2xl shadow-2xl max-w-[1168px] max-md:px-5 max-md:mt-10">
-    <h3 class="text-3xl font-semibold text-center text-teal-700">
-      Informasi Dasar Pelaporan Emisi
-    </h3>
-    <p class="mt-6 text-xl leading-none text-gray-500 max-md:max-w-full">
-      Lengkapi field yang diperlukan untuk melanjutkan ke step berikutnya
-    </p>
+  <form action="/umkm/env-2" method="POST">
+    <!-- Scope 1 (Direct) -->
+    <section class="flex flex-col items-start py-14 px-16 mt-10 w-full bg-white rounded-2xl shadow-2xl max-w-[981px] max-md:px-5">
+      <h3 class="text-3xl font-semibold text-teal-700">
+        Direct (Scope 1) GHG Emissions (305-1)
+      </h3>
+      <p class="mt-3 text-gray-500">
+        Fill in the direct (Scope 1) greenhouse gas emissions data for this reporting period.
+      </p>
 
-    <form action="/umkm/env-1" method="POST" class="z-10 mt-14 max-w-full w-[1000px] max-md:mt-10">
-      <!-- Row 1: Nama Entitas + Periode Pelaporan -->
-      <div class="flex gap-5 max-md:flex-col">
-        <!-- Nama entitas -->
-        <div class="w-6/12 max-md:w-full px-4 py-3">
-          <label for="entity_name" class="block pb-2 text-base font-medium">Nama entitas / unit bisnis</label>
-          <input
-            type="text"
-            id="unit_name"
-            name="unit_name"
-            value="Produksi"
-            class="w-full px-8 py-4 mt-2 text-base text-black rounded-2xl border border-gray-300 bg-slate-50 placeholder-black/50 outline-none hover:ring focus:ring-2 focus:ring-teal-600 transition"
-            required
-          />
+      <!-- Q1: Does Scope 1 apply? -->
+      <div class="w-full mt-8">
+        <label for="scope1_has" class="block pb-2 text-base font-medium">
+          Does the company have direct (Scope 1) GHG emission sources?
+        </label>
+        <select
+          id="scope1_has"
+          name="scope1_has"
+          class="w-full px-8 py-4 mt-2 text-base text-black rounded-2xl border border-gray-300 bg-slate-50 outline-none hover:ring focus:ring-2 focus:ring-teal-600 transition"
+        >
+          <option value="">Select</option>
+          <option value="yes">Yes</option>
+          <option value="no">No</option>
+        </select>
+      </div>
+
+      <!-- Scope 1 Details (display if Yes) -->
+      <div id="scope1_details" class="w-full mt-6 hidden">
+        <!-- Scope 1 entries list -->
+        <div id="scope1_list" class="space-y-8">
+          <!-- Item #0 (start) -->
+          <div class="s1-item border border-gray-200 rounded-2xl p-4">
+
+      <!-- Gases Included in the Calculation Section -->
+      <div id="gases_included_section" class="w-full mt-8">
+        <label for="gases_included" class="block pb-2 text-base font-medium">Gases included in the calculation</label>
+        <div id="gases_included_list" class="space-y-4">
+          <div class="gases-item flex gap-4 items-center">
+            <!-- Gas Dropdown -->
+            <select name="gases_included[]" class="w-3/5 px-8 py-4 mt-2 text-base text-black rounded-2xl border border-gray-300 bg-slate-50 outline-none hover:ring focus:ring-2 focus:ring-teal-600 transition">
+              <option value="">Select gases included</option>
+              <option value="CO2">CO₂ (Carbon Dioxide)</option>
+              <option value="CH4">CH₄ (Methane)</option>
+              <option value="N2O">N₂O (Nitrous Oxide)</option>
+              <option value="HFCs">HFCs (Hydrofluorocarbons)</option>
+              <option value="PFCs">PFCs (Perfluorocarbons)</option>
+              <option value="SF6">SF₆ (Sulfur Hexafluoride)</option>
+              <option value="NF3">NF₃ (Nitrogen Trifluoride)</option>
+            </select>
+
+            <!-- Quantity Input Field -->
+            <input type="number" min="0" step="1" name="gases_quantity[]" placeholder="0" class="w-1/4 px-8 py-4 mt-2 text-base text-black rounded-2xl border border-gray-300 bg-slate-50 outline-none hover:ring focus:ring-2 focus:ring-teal-600 transition" />
+            <button
+              type="button"
+              id="scope1_add_item"
+              class="inline-flex items-center gap-2 px-4 py-2 rounded-xl text-teal-700 text-sm font-medium transition"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="h-5 w-5"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                stroke-width="2"
+                aria-hidden="true"
+              >
+                <path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4" />
+              </svg>
+              Add
+            </button>
+      
+          </div>
         </div>
 
-        <!-- Periode Pelaporan -->
-            <div class="flex flex-wrap gap-4 items-start px-4 py-3">
-              <div class="grow shrink min-w-40 w-[220px]">
-                <label for="reporting_period" class="block pb-2 font-medium text-neutral-900">Periode Pelaporan</label>
-                <select id="reporting_period" name="reporting_period" class="w-full px-8 py-4 mt-2 text-base text-black rounded-2xl border border-gray-300 bg-slate-50 outline-none hover:ring focus:ring-2 focus:ring-teal-600 transition">
-                  <option value="">Pilih</option>
-                  <option value="tahun">Tahun</option>
-                  <option value="triwulan">Triwulan</option>
-                </select>
+        <!-- Total Gases Count Section -->
+        <div id="total_gases_count" class="mt-4 text-gray-500 text-lg font-semibold">
+          Total gases selected: <span id="gases_count">0</span>
+        </div>
+      </div>
+
+
+            <!-- Base year info -->
+            <div class="w-full mt-6">
+              <label class="block pb-2 text-base font-medium">
+                Base year information (if applicable)
+              </label>
+              <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <div>
+                  <span class="block text-sm font-medium text-gray-700">Base year</span>
+                  <input
+                    type="number"
+                    min="1900"
+                    max="2100"
+                    name="s1[0][base_year]"
+                    placeholder="e.g., 2020"
+                    class="w-full px-4 py-3 mt-2 text-base text-black rounded-2xl border border-gray-300 bg-slate-50 outline-none hover:ring focus:ring-2 focus:ring-teal-600 transition"
+                  />
+                </div>
+                <div>
+                  <span class="block text-sm font-medium text-gray-700">
+                    Emissions in base year (tCO₂e)
+                  </span>
+                  <input
+                    type="number"
+                    min="0"
+                    step="0.0001"
+                    name="s1[0][base_emissions]"
+                    placeholder="0.0000"
+                    class="w-full px-4 py-3 mt-2 text-base text-black rounded-2xl border border-gray-300 bg-slate-50 outline-none hover:ring focus:ring-2 focus:ring-teal-600 transition"
+                  />
+                </div>
+                <div>
+                  <span class="block text-sm font-medium text-gray-700">
+                    Is base year still valid?
+                  </span>
+                  <select
+                    name="s1[0][base_still_valid]"
+                    class="w-full px-4 py-3 mt-2 text-base text-black rounded-2xl border border-gray-300 bg-slate-50 outline-none hover:ring focus:ring-2 focus:ring-teal-600 transition"
+                  >
+                    <option value="">Select</option>
+                    <option value="yes">Yes</option>
+                    <option value="recalculated">Recalculated</option>
+                    <option value="not_applicable">Not applicable</option>
+                  </select>
+                </div>
               </div>
 
-              <!-- Tahun (muncul jika mode: Tahun) -->
-              <div id="year_wrap" class="grow shrink min-w-40 w-[200px] hidden">
-                <label for="period_year" class="block pb-2 font-medium text-neutral-900">Pilih Tahun</label>
-                <select id="period_year" name="period_year" class="w-full px-8 py-4 mt-2 text-base text-black rounded-2xl border border-gray-300 bg-slate-50 outline-none hover:ring focus:ring-2 focus:ring-teal-600 transition">
-                  <!-- diisi via JS -->
-                </select>
-              </div>
-
-              <!-- Triwulan tahun berjalan (muncul jika mode: Triwulan) -->
-              <div id="quarter_wrap" class="grow shrink min-w-40 w-[260px] hidden">
-                <label for="period_quarter" class="block pb-2 font-medium text-neutral-900">Pilih Triwulan (Tahun Berjalan)</label>
-                <select id="period_quarter" name="quarter" class="w-full px-8 py-4 mt-2 text-base text-black rounded-2xl border border-gray-300 bg-slate-50 outline-none hover:ring focus:ring-2 focus:ring-teal-600 transition">
-                  <!-- diisi via JS -->
-                </select>
-              </div>
+              <textarea
+                name="s1[0][base_context]"
+                rows="3"
+                placeholder="Explain the rationale for choosing the base year and any significant changes in emissions that triggered recalculations of base year emissions."
+                class="w-full px-4 py-3 mt-4 text-base text-black rounded-2xl border border-gray-300 bg-slate-50 outline-none hover:ring focus:ring-2 focus:ring-teal-600 transition"
+              ></textarea>
             </div>
+            
+      <!-- Emission Factors and GWP Rates -->
+      <div class="w-full mt-8">
+        <label for="emission_factors_scope1" class="block pb-2 text-base font-medium">Source of emission factors and GWP rates used</label>
+        <textarea name="emission_factors_scope1" id="emission_factors_scope1" rows="3"
+          class="w-full px-8 py-4 mt-2 text-base text-black rounded-2xl border border-gray-300 bg-slate-50 outline-none hover:ring focus:ring-2 focus:ring-teal-600 transition"></textarea>
+        <p class="mt-2 text-gray-500 text-sm">Provide details of the sources used for emission factors and GWP rates.</p>
+      </div>
 
+
+      <!-- Standards, Methodologies, Assumptions, and Calculation Tools -->
+      <div class="w-full mt-8">
+        <label for="standards_tools_scope1" class="block pb-2 text-base font-medium">Standards, methodologies, assumptions, and/or calculation tools used</label>
+        <textarea name="standards_tools_scope1" id="standards_tools_scope1" rows="3"
+          class="w-full px-8 py-4 mt-2 text-base text-black rounded-2xl border border-gray-300 bg-slate-50 outline-none hover:ring focus:ring-2 focus:ring-teal-600 transition"></textarea>
+        <p class="mt-2 text-gray-500 text-sm">Provide details of the standards, methodologies, assumptions, and calculation tools used for Scope 1 emissions.</p>
+      </div>
+
+            <!-- Remove item button -->
+            <div class="mt-4 flex justify-end">
+              <button
+                type="button"
+                class="s1-remove hidden px-4 py-2 rounded-xl border border-gray-300 text-gray-700 hover:bg-gray-50 transition"
+              >
+                Remove entry
+              </button>
+            </div>
+          </div>
+        </div>
 
       </div>
 
-      <!-- Row 2: Lokasi Operasional + Metode Emisi -->
-      <div class="flex gap-5 max-md:flex-col">
-        <div class="w-4/12 max-md:w-full px-4 py-3">
-          <label for="operation_location" class="block pb-2 text-base font-medium">Lokasi operasional</label>
-          <select
-            id="operational_location"
-            name="operational_location"
-            class="w-full px-8 py-4 mt-2 text-base text-black rounded-2xl border border-gray-300 bg-slate-50 outline-none hover:ring focus:ring-2 focus:ring-teal-600 transition"
-            required
-          >
-            <option value="">Pilih lokasi</option>
-            <option value="kantor_pusat">Kantor Pusat</option>
-            <option value="pabrik">Pabrik</option>
-            <option value="gudang">Gudang</option>
-            <option value="lainnya">Lainnya</option>
-          </select>
-          <input
-            type="text"
-            id="operational_location"
-            name="operational_location"
-            placeholder="Sebutkan lokasi operasional lainnya"
-            class="w-full px-8 py-4 mt-3 text-base text-black rounded-2xl border border-gray-300 bg-slate-50 placeholder-black/50 outline-none hover:ring focus:ring-2 focus:ring-teal-600 transition hidden"
-            disabled
-          />
+            <!-- Total Summary Section -->
+      <div class="mt-10 pr-8 md:pr-12 lg:pr-16">
+        <h4 class="text-2xl font-semibold text-teal-700">Total Summary (automatic)</h4>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 mt-4">
+          <div>
+            <div class="text-gray-500">Total Gross Direct GHG Emissions (tCO₂e)</div>
+            <div class="text-3xl text-teal-700 font-semibold" id="total_gross_emissions">0</div>
+          </div>
+          <div>
+            <div class="text-gray-500">Total Biogenic CO₂ Emissions (tCO₂e)</div>
+            <div class="text-3xl text-teal-700 font-semibold" id="total_biogenic_emissions">0</div>
+          </div>
+          <div>
+            <div class="text-gray-500">Total Emissions (Scope 1)</div>
+            <div class="text-3xl text-teal-700 font-semibold">
+              <span id="total_emissions">0.00</span><span class="text-xl">tCO₂e</span>
+            </div>
+          </div>
         </div>
-
-        <div class="w-4/12 max-md:w-full px-4 py-3">
-          <label for="emission_method" class="block pb-2 text-base font-medium">Metode perhitungan emisi yg digunakan</label>
-          <select
-            id="emission_method"
-            name="calculation_method"
-            class="w-full px-8 py-4 mt-2 text-base text-black rounded-2xl border border-gray-300 bg-slate-50 outline-none hover:ring focus:ring-2 focus:ring-teal-600 transition"
-            required
-          >
-            <option value="">Pilih metode</option>
-            <option value="ipcc">IPCC</option>
-            <option value="ghg_protocol">GHG Protocol</option>
-            <option value="faktor_nasional">Faktor Emisi Nasional</option>
-            <option value="lainnya">Lainnya</option>
-          </select>
-          <input
-            type="text"
-            id="emission_method_other"
-            name="calculation_method"
-            placeholder="Sebutkan metode lain yang digunakan"
-            class="w-full px-8 py-4 mt-3 text-base text-black rounded-2xl border border-gray-300 bg-slate-50 placeholder-black/50 outline-none hover:ring focus:ring-2 focus:ring-teal-600 transition hidden"
-            disabled
-          />
-        </div>
-
-        <div class="flex-1 shrink self-stretch my-auto w-full basis-0 min-w-40 max-md:max-w-full">
-                <label class="block pb-2 w-full font-medium text-neutral-900 max-md:max-w-full">
-                  Nama Penanggung Jawab
-                </label>
-                <input
-                id="responsible_person"
-                name="responsible_person"
-                  type="text"
-                  value="Hartono"
-                  class="w-full px-8 py-4 mt-2 text-base text-black rounded-2xl border-gray-300 border border-solid bg-slate-50 placeholder-black/50 outline-none hover:ring focus:ring-2 focus:ring-teal-600 transition"
-                />
-              </div>
+        <p class="mt-3 text-sm text-gray-500">
+          Total emissions formula: <span class="font-medium">Gross Emissions + Biogenic CO₂ Emissions</span>
+        </p>
       </div>
 
-      <!-- Buttons -->
-      <div class="flex justify-end mt-7">
+      <!-- Right corner buttons -->
+      <div class="flex justify-end gap-4 mt-10 w-full">
+        <button
+          type="button"
+          onclick="window.history.back()"
+          class="px-8 py-2 text-base font-medium text-center text-teal-700 border-teal-700 border border-solid whitespace-nowrap bg-white rounded-xl hover:bg-teal-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 transition-colors"
+        >
+          Previous
+        </button>
         <button
           type="submit"
           class="px-8 py-2 text-base font-medium text-center text-white whitespace-nowrap bg-lime-500 rounded-xl hover:bg-lime-600 focus:outline-none focus:ring-2 focus:ring-lime-500 focus:ring-offset-2 transition-colors"
         >
-          Submit
+          Save
         </button>
       </div>
-    </form>
-  </section>
+    </section>
+
+  </form>
 </main>
 
 <script>
-  function toggle(el, show){ if(!el) return; el.classList.toggle('hidden', !show); }
+  // Toggle detail Scope 1
+  const scope1Select = document.getElementById("scope1_has");
+  const scope1Details = document.getElementById("scope1_details");
 
-  // Isi dropdown tahun: 3 tahun ke belakang; kalau belum 31 Des, tahun berjalan tidak ditampilkan
-  function fillYears(sel){
-    const now=new Date(); const thisYear=now.getFullYear();
-    const isDec31=(now.getMonth()===11 && now.getDate()===31);
-    sel.innerHTML='<option value="">Pilih Tahun</option>';
-    const start = isDec31 ? thisYear : thisYear-1;
-    for(let i=0;i<3;i++){
-      const y=start-i;
-      const o=document.createElement('option');
-      o.value=String(y);
-      o.textContent=y;
-      sel.appendChild(o);
-    }
-  }
-
-  // Isi triwulan tahun berjalan (hanya sampai triwulan terakhir yang sudah berjalan)
-  function fillCurrentYearQuarters(sel){
-    const now=new Date(); const y=now.getFullYear(); const m=now.getMonth();
-    const isDec31=(m===11 && now.getDate()===31);
-    let maxQ=Math.floor(m/3)+1; if(isDec31) maxQ=4; if(maxQ>4) maxQ=4;
-    const labels={1:'Triwulan 1 (Jan–Mar)',2:'Triwulan 2 (Apr–Jun)',3:'Triwulan 3 (Jul–Sep)',4:'Triwulan 4 (Okt–Des)'};
-    sel.innerHTML='<option value="">Pilih Triwulan</option>';
-    for(let q=1;q<=maxQ;q++){
-      const o=document.createElement('option');
-      o.value=`${y}-Q${q}`;
-      o.textContent=`${labels[q]} ${y}`;
-      sel.appendChild(o);
-    }
-  }
-
-  document.addEventListener('DOMContentLoaded', function(){
-    const form   = document.getElementById('eco-form');       // pastikan id form ini ada
-    const mode   = document.getElementById('reporting_period');
-
-    const yearWrap  = document.getElementById('year_wrap');
-    const yearSel   = document.getElementById('period_year');
-
-    const qWrap     = document.getElementById('quarter_wrap');
-    const qSel      = document.getElementById('period_quarter');
-
-    // init data
-    fillYears(yearSel);
-    fillCurrentYearQuarters(qSel);
-
-    function syncMode(){
-      if(mode.value==='tahun'){
-        toggle(yearWrap, true);
-        toggle(qWrap, false);
-      } else if(mode.value==='triwulan'){
-        toggle(yearWrap, false);
-        toggle(qWrap, true);
-      } else {
-        toggle(yearWrap, false);
-        toggle(qWrap, false);
-      }
-    }
-
-    mode.addEventListener('change', syncMode);
-    syncMode();
-
-    // contoh validasi submit ringkas
-    if (form){
-      form.addEventListener('submit', function(e){
-        e.preventDefault();
-
-        if(!mode.value){ alert('Pilih Periode Pelaporan.'); return; }
-
-        let period='';
-        if(mode.value==='tahun'){
-          if(!yearSel.value){ alert('Pilih Tahun.'); return; }
-          period = `Tahun ${yearSel.value}`;
-        } else {
-          if(!qSel.value){ alert('Pilih Triwulan tahun berjalan.'); return; }
-          period = `Triwulan ${qSel.value}`;
-        }
-
-        alert(`OK! Periode: ${period}`);
-      });
-    }
+  scope1Select.addEventListener("change", () => {
+    scope1Details.classList.toggle("hidden", scope1Select.value !== "yes");
   });
-</script>
 
+// Handle adding gases entries dynamically
+document.querySelector('#scope1_add_item').addEventListener('click', function() {
+  addGasesEntry();
+});
+
+// Function to add a new gases entry
+function addGasesEntry() {
+  const gasesList = document.getElementById('gases_included_list');
+  const newItem = document.createElement('div');
+  newItem.classList.add('gases-item', 'flex', 'gap-4', 'items-center');
+  newItem.innerHTML = `
+    <select name="gases_included[]" class="w-3/5 px-8 py-4 mt-2 text-base text-black rounded-2xl border border-gray-300 bg-slate-50 outline-none hover:ring focus:ring-2 focus:ring-teal-600 transition">
+      <option value="">Select gases included</option>
+      <option value="CO2">CO₂ (Carbon Dioxide)</option>
+      <option value="CH4">CH₄ (Methane)</option>
+      <option value="N2O">N₂O (Nitrous Oxide)</option>
+      <option value="HFCs">HFCs (Hydrofluorocarbons)</option>
+      <option value="PFCs">PFCs (Perfluorocarbons)</option>
+      <option value="SF6">SF₆ (Sulfur Hexafluoride)</option>
+      <option value="NF3">NF₃ (Nitrogen Trifluoride)</option>
+    </select>
+    <input type="number" min="0" step="1" name="gases_quantity[]" placeholder="0" class="w-1/4 px-8 py-4 mt-2 text-base text-black rounded-2xl border border-gray-300 bg-slate-50 outline-none hover:ring focus:ring-2 focus:ring-teal-600 transition" />
+    <button type="button" class="remove-gases-entry p-2 rounded-xl border border-red-500 text-red-500 hover:bg-red-500 hover:text-white transition">
+      Remove
+    </button>
+  `;
+
+  // Append the new item to the gases list
+  gasesList.appendChild(newItem);
+
+  // Handle remove button click for this new entry
+  newItem.querySelector('.remove-gases-entry').addEventListener('click', function() {
+    newItem.remove();
+    updateGasesCount();
+  });
+
+  // Update gases count after adding a new entry
+  updateGasesCount();
+}
+
+// Update the gases count dynamically
+function updateGasesCount() {
+  const gasesCount = document.querySelectorAll('[name="gases_included[]"]').length;
+  document.getElementById('gases_count').innerText = gasesCount;
+}
+
+// Update Total Emissions summary
+const marketBasedEmissionsInput = document.getElementById('gross_market_based_emissions');
+function updateTotalEmissions() {
+  const marketBasedEmissions = parseFloat(marketBasedEmissionsInput.value) || 0;
+  document.getElementById('total_market_based_emissions').innerText = marketBasedEmissions.toFixed(4);
+}
+
+marketBasedEmissionsInput.addEventListener('input', updateTotalEmissions);
+
+</script>

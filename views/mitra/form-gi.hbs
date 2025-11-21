@@ -1,141 +1,381 @@
 <main class="flex flex-col items-end mt-10 ml-20 w-full max-w-[1211px] max-md:mt-10 max-md:max-w-full">
-    <h2 class="self-start text-3xl font-semibold text-neutral-900">GI ( General Information)</h2>
+    <h2 class="self-start text-3xl font-semibold text-neutral-900">General Disclosure</h2>
 
 <form action="/umkm/form-gi" method="POST">
 <!-- General Business Information Section -->
-<section class="flex flex-col items-start py-14 pl-16 pr-16 mt-10 w-full bg-white rounded-2xl shadow-2xl max-w-[981px] max-md:pl-5 max-md:mt-10 max-md:max-w-full">
-  <h3 class="text-3xl font-semibold text-center text-teal-700">Informasi Umum Usaha</h3>
-  <p class="mt-7 text-xl leading-none text-gray-500 max-md:max-w-full">
-    Lengkapi field yang diperlukan untuk melanjutkan ke step berikutnya
-  </p>
+<section class="flex flex-col items-start py-14 px-16 mt-10 w-full bg-white rounded-2xl shadow-2xl max-w-[981px] max-md:px-5 max-md:mt-10">
+  <h3 class="text-3xl font-semibold text-teal-700">Organization Profile</h3>
 
-  <!-- Organization Name + Business License Row -->
-  <div class="mt-14 mr-0 w-full max-md:mt-10 max-md:max-w-full">
+  <!-- Row 1: Official Name and Business License Number -->
+  <div class="w-full mt-6">
     <div class="flex gap-5 max-md:flex-col">
-      <!-- Nama Perusahaan -->
-      <div class="w-6/12 max-md:ml-0 max-md:w-full">
-        <div class="px-4 py-3">
-          <label for="business_name" class="block pb-2 text-base font-medium">Nama Perusahaan</label>
-          <input 
-            type="text"
-            id="business_name"
-            name="business_name"
-            placeholder="Masukkan Nama Perusahaan"
-            class="w-full px-8 py-4 mt-2 text-base text-black rounded-2xl border border-gray-300 bg-slate-50 placeholder-black/50 outline-none hover:ring focus:ring-2 focus:ring-teal-600 transition"
-          >
+      <!-- Official Name -->
+      <div class="w-6/12 max-md:w-full">
+        <label for="organization_name" class="block pb-2 text-base font-medium">Official Name</label>
+        <input type="text" id="organization_name" name="organization_name" placeholder="Enter Official Organization Name"
+          class="w-full px-8 py-4 mt-2 text-base text-black rounded-2xl border border-gray-300 bg-slate-50 placeholder-black/50 outline-none hover:ring focus:ring-2 focus:ring-teal-600 transition">
+      </div>
+
+      <!-- Business License Number -->
+      <div class="w-6/12 max-md:w-full">
+        <label for="business_license_number" class="block pb-2 text-base font-medium">Business License Number</label>
+        <input type="text" id="business_license_number" name="business_license_number" placeholder="Enter Business License Number"
+          class="w-full px-8 py-4 mt-2 text-base text-black rounded-2xl border border-gray-300 bg-slate-50 placeholder-black/50 outline-none hover:ring focus:ring-2 focus:ring-teal-600 transition">
+      </div>
+    </div>
+  </div>
+
+  <!-- Row 2: Ownership Type and Legal Form -->
+  <div class="w-full mt-6">
+    <div class="flex gap-5 max-md:flex-col">
+      <!-- Ownership Type -->
+      <div class="w-6/12 max-md:w-full">
+        <label for="ownership_type" class="block pb-2 text-base font-medium">Ownership Type</label>
+        <select id="ownership_type" name="ownership_type"
+          class="w-full px-8 py-4 mt-2 text-base text-black rounded-2xl border border-gray-300 bg-slate-50 placeholder-black/50 outline-none hover:ring focus:ring-2 focus:ring-teal-600 transition">
+          <option value="">Select</option>
+          <option value="public">Public</option>
+          <option value="private">Private</option>
+        </select>
+      </div>
+
+      <!-- Legal Form -->
+      <div class="w-6/12 max-md:w-full">
+        <label for="legal_form" class="block pb-2 text-base font-medium">Legal Form</label>
+        <select id="legal_form" name="legal_form"
+          class="w-full px-8 py-4 mt-2 text-base text-black rounded-2xl border border-gray-300 bg-slate-50 placeholder-black/50 outline-none hover:ring focus:ring-2 focus:ring-teal-600 transition">
+          <option value="">Select</option>
+          <option value="legal_entity">Legal Entity</option>
+          <option value="partnership">Partnership</option>
+          <option value="sole_proprietorship">Sole Proprietorship</option>
+          <option value="non_profit">Non-Profit</option>
+          <option value="association">Association</option>
+          <option value="charity">Charity</option>
+          <option value="other">Other</option>
+        </select>
+            <!-- Additional Input if "Other" is selected -->
+        <!-- Additional Input if "Other" is selected -->
+        <input
+          type="text"
+          id="legal_form_other"
+          name="legal_form_other"
+          placeholder="Other (please specify)"
+          class="w-full px-8 py-4 mt-3 text-base text-black rounded-2xl border-2 border-gray-400 bg-white placeholder-black/50 outline-none hover:ring focus:ring-2 focus:ring-teal-600 transition hidden"
+          disabled
+        >
+
+      </div>
+    </div>
+  </div>
+
+  <!-- Row 3: Headquarters Location and Country of Operation -->
+  <div class="w-full mt-6">
+    <div class="flex gap-5 max-md:flex-col">
+      <!-- Headquarters Location -->
+      <div class="w-6/12 max-md:w-full">
+        <label for="headquarters" class="block pb-2 text-base font-medium">Headquarters Location</label>
+        <input type="text" id="headquarters" name="headquarters" placeholder="Enter Headquarters Address"
+          class="w-full px-8 py-4 mt-2 text-base text-black rounded-2xl border border-gray-300 bg-slate-50 placeholder-black/50 outline-none hover:ring focus:ring-2 focus:ring-teal-600 transition">
+      </div>
+
+    <!-- Country of Operation (Multiple Selection with Chips) -->
+    <div class="w-6/12 max-md:w-full">
+     <label for="headquarters" class="block pb-2 text-base font-medium">Headquarters Location</label>
+  <button type="button" id="dropdownToggle"
+    class="w-full px-8 py-4 mt-2 text-base text-black rounded-2xl border border-gray-300 bg-slate-50 placeholder-black/50 outline-none hover:ring focus:ring-2 focus:ring-teal-600 transition">
+    Country List
+    <svg xmlns="http://www.w3.org/2000/svg" class="w-3 fill-slate-900 inline items-end" viewBox="0 0 24 24">
+      <path fill-rule="evenodd"
+        d="M11.99997 18.1669a2.38 2.38 0 0 1-1.68266-.69733l-9.52-9.52a2.38 2.38 0 1 1 3.36532-3.36532l7.83734 7.83734 7.83734-7.83734a2.38 2.38 0 1 1 3.36532 3.36532l-9.52 9.52a2.38 2.38 0 0 1-1.68266.69734z"
+        clip-rule="evenodd" data-original="#000000" />
+    </svg>
+  </button>
+
+  <ul id="dropdownMenu" class="absolute block shadow-lg bg-white py-2 px-2 z-[1000] min-w-full w-max rounded max-h-96 overflow-auto hidden">
+    <li class="mb-2">
+      <input placeholder="Search..."
+        class="px-4 py-2.5 w-full rounded text-slate-900 text-sm border border-slate-100 outline-0 bg-slate-50 focus:bg-transparent focus:border-slate-900" />
+    </li>
+    <!-- Country Items List -->
+    <li class="dropdown-item py-2.5 px-4 hover:bg-slate-50 rounded text-black text-sm cursor-pointer" data-country="USA">
+      <div class="flex items-center">
+        <img src="https://readymadeui.com/usa_flag.webp" class="w-6 mr-3" />
+        USA
+      </div>
+    </li>
+    <li class="dropdown-item py-2.5 px-4 hover:bg-slate-50 rounded text-black text-sm cursor-pointer" data-country="England">
+      <div class="flex items-center">
+        <img src="https://readymadeui.com/uk_flag.webp" class="w-6 mr-3" />
+        England
+      </div>
+    </li>
+    <li class="dropdown-item py-2.5 px-4 hover:bg-slate-50 rounded text-black text-sm cursor-pointer" data-country="India">
+      <div class="flex items-center">
+        <img src="https://readymadeui.com/india_flag.webp" class="w-6 mr-3" />
+        India
+      </div>
+    </li>
+    <li class="dropdown-item py-2.5 px-4 hover:bg-slate-50 rounded text-black text-sm cursor-pointer" data-country="Singapore">
+      <div class="flex items-center">
+        <img src="https://readymadeui.com/singapore_flag.webp" class="w-6 mr-3" />
+        Singapore
+      </div>
+    </li>
+  </ul>
+
+  <!-- Display selected countries -->
+  <div id="selectedCountries" class="mt-4 text-sm text-slate-900">
+    <!-- Selected countries will appear here -->
+  </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/js/select2.min.js"></script>
+
+    <script>
+document.addEventListener('DOMContentLoaded', () => {
+    let dropdownToggle = document.getElementById('dropdownToggle');
+    let dropdownMenu = document.getElementById('dropdownMenu');
+    let selectedCountriesContainer = document.getElementById('selectedCountries');
+
+    // Function to toggle the dropdown menu visibility
+    function toggleDropdown() {
+        dropdownMenu.classList.toggle('hidden');
+        dropdownMenu.classList.toggle('block');
+    }
+
+    // Function to hide the dropdown when clicking outside
+    function hideDropdown() {
+        dropdownMenu.classList.add('hidden');
+        dropdownMenu.classList.remove('block');
+    }
+
+    // Open dropdown when button is clicked
+    dropdownToggle.addEventListener('click', (event) => {
+        event.stopPropagation(); // Prevent document click from closing the dropdown
+        toggleDropdown();
+    });
+
+    // Hide dropdown when clicking outside
+    document.addEventListener('click', (event) => {
+        if (!dropdownMenu.contains(event.target) && event.target !== dropdownToggle) {
+            hideDropdown();
+        }
+    });
+
+    // Handle country selection
+    const countryItems = dropdownMenu.querySelectorAll('.dropdown-item');
+    countryItems.forEach((item) => {
+        item.addEventListener('click', () => {
+            let countryName = item.textContent.trim();
+            let countryFlag = item.querySelector('img').src;
+
+            // Create chip element for selected country
+            let selectedCountryChip = document.createElement('div');
+            selectedCountryChip.classList.add('inline-flex', 'items-center', 'px-3', 'py-1', 'mr-2', 'mb-2', 'bg-teal-700', 'text-white', 'rounded-full', 'text-xs', 'cursor-pointer');
+            selectedCountryChip.innerHTML = `<img src="${countryFlag}" class="w-4 h-4 mr-2 rounded-full" /> ${countryName} <span class="ml-2 text-white" style="font-size: 12px;">&times;</span>`;
+
+            // Add the chip to the selected countries container
+            selectedCountriesContainer.appendChild(selectedCountryChip);
+
+            // Remove country chip when clicked
+            selectedCountryChip.addEventListener('click', () => {
+                selectedCountryChip.remove();
+            });
+
+            // Close the dropdown after selection
+            hideDropdown();
+        });
+    });
+
+    // Search countries in the dropdown
+    const searchInput = dropdownMenu.querySelector('input');
+    searchInput.addEventListener('input', () => {
+        let filter = searchInput.value.toLowerCase();
+        countryItems.forEach((item) => {
+            let countryName = item.textContent.trim().toLowerCase();
+            item.style.display = countryName.includes(filter) ? '' : 'none';
+        });
+    });
+});
+
+</script>
+
+    </div>
+  </div>
+
+  <!-- Row 4: Controlled Entities and Reporting Period -->
+  <div class="w-full mt-6">
+    <div class="flex gap-5 max-md:flex-col">
+      <!-- Controlled Entities -->
+      <div class="w-6/12 max-md:w-full">
+        <label for="controlled_entities" class="block pb-2 text-base font-medium">Controlled Entities</label>
+        <div class="flex flex-col gap-2">
+          <label class="flex items-center gap-2 cursor-pointer">
+            <input type="checkbox" name="controlled_entities[]" value="anak_perusahaan" class="text-teal-700">
+            Anak Perusahaan
+          </label>
+          <label class="flex items-center gap-2 cursor-pointer">
+            <input type="checkbox" name="controlled_entities[]" value="usaha_bersama" class="text-teal-700">
+            Usaha Bersama
+          </label>
+          <label class="flex items-center gap-2 cursor-pointer">
+            <input type="checkbox" name="controlled_entities[]" value="afiliasi" class="text-teal-700">
+            Afiliasi
+          </label>
         </div>
       </div>
 
-      <!-- Nomor Izin Usaha -->
-      <div class="w-6/12 max-md:ml-0 max-md:w-full">
-        <div class="px-4 py-3">
-          <label for="business_license" class="block pb-2 text-base font-medium">Nomor Izin Usaha</label>
-          <input 
-            type="text"
-            id="business_id"
-            name="business_id"
-            placeholder="Masukkan Nomor Izin Usaha"
-            class="w-full px-8 py-4 mt-2 text-base text-black rounded-2xl border border-gray-300 bg-slate-50 placeholder-black/50 outline-none hover:ring focus:ring-2 focus:ring-teal-600 transition"
-          >
+
+      <!-- Reporting Period -->
+      <div class="w-6/12 max-md:w-full">
+        <label for="reporting_period" class="block pb-2 text-base font-medium">Reporting Period (year)</label>
+        <!-- Row FLEX supaya sejajar -->
+        <div class="flex flex-wrap items-end gap-3 mt-2">
+            <!-- Mode -->
+            <div class="min-w-[180px]">
+            <select id="period_mode_gov"
+                class="w-full px-4 py-3 text-base text-black rounded-2xl border border-gray-300 bg-slate-50 outline-none hover:ring focus:ring-2 focus:ring-teal-600 transition" required>
+                <option value="">Pilih</option>
+                <option value="tahun">Tahun</option>
+                <option value="triwulan">Triwulan</option>
+            </select>
+            </div>
+
+            <!-- Tahun (muncul saat pilih "Tahun") -->
+            <div id="year_wrap_gov" class="min-w-[180px] hidden">
+            <select id="period_year_gov"
+                class="w-full px-4 py-3 text-base text-black rounded-2xl border border-gray-300 bg-slate-50 outline-none hover:ring focus:ring-2 focus:ring-teal-600 transition">
+            </select>
+            </div>
+
+            <!-- Triwulan tahun berjalan (muncul saat pilih "Triwulan") -->
+            <div id="quarter_wrap_gov" class="min-w-[220px] hidden">
+            <select id="period_quarter_gov"
+                class="w-full px-4 py-3 text-base text-black rounded-2xl border border-gray-300 bg-slate-50 outline-none hover:ring focus:ring-2 focus:ring-teal-600 transition">
+            </select>
+            </div>
         </div>
       </div>
     </div>
   </div>
 
-
-<!-- Legal Form & Tahun Berdiri -->
-<!-- Legal Form & Tahun Berdiri -->
-  <div class="mr-0 w-full max-md:mt-10 max-md:max-w-full">
-    <div class="flex gap-5 max-md:flex-col">
-      <!-- Legal Form -->
-      <div class="w-6/12 max-md:ml-0 max-md:w-full">
-        <div class="px-4 py-3">
-          <label for="legal_form" class="block pb-2 text-base font-medium">
-            Legal Form/Status Kepemilikan
-          </label>
-          <select
-            id="legal_form"
-            name="legal_form"
-            class="w-full px-8 py-4 mt-2 text-base text-black rounded-2xl border border-gray-300 bg-slate-50 outline-none hover:ring focus:ring-2 focus:ring-teal-600 transition"
-          >
-            <option value="">Pilih</option>
-            <option value="PT">PT (Perseroan Terbatas)</option>
-            <option value="CV">CV</option>
-            <option value="Koperasi">Koperasi</option>
-            <option value="UMKM">UMKM</option>
-            <option value="Yayasan">Yayasan</option>
-            <option value="lainnya">Lainnya</option>
-          </select>
-
-          <!-- Input tambahan jika pilih "Lainnya" -->
-          <input
-            type="text"
-            id="status-kepemilikan-lainnya"
-            name="status_kepemilikan_lainnya"
-            placeholder="Lainnya (sebutkan)"
-            class="w-full px-8 py-4 mt-3 text-base text-black rounded-2xl border border-gray-300 bg-slate-50 placeholder-black/50 outline-none hover:ring focus:ring-2 focus:ring-teal-600 transition hidden"
-          >
-        </div>
-      </div>
-
-  <!-- Tahun Berdiri -->
-      <div class="w-6/12 max-md:ml-0 max-md:w-full">
-        <div class="px-4 py-3">
-          <label for="established_year" class="block pb-2 text-base font-medium">
-            Tahun Berdiri
-          </label>
-          <input
-            type="date"
-            id="established_year"
-            name="established_year"
-            placeholder="Pilih tanggal"
-            class="w-full px-8 py-4 mt-2 text-base text-black rounded-2xl border border-gray-300 bg-slate-50 placeholder-black/50 outline-none hover:ring focus:ring-2 focus:ring-teal-600 transition"
-          />
-        </div>
+  <div class="w-full mt-6">
+    <label for="reporting_changes" class="block pb-2 text-base font-medium">Re-presentation of Information</label>
+    <select id="reporting_changes" name="reporting_changes"
+      class="w-full px-8 py-4 mt-2 text-base text-black rounded-2xl border border-gray-300 bg-slate-50 placeholder-black/50 outline-none hover:ring focus:ring-2 focus:ring-teal-600 transition">
+      <option value="">Select Re-presentation Type</option>
+      <option value="change_reporting_period">Change in Reporting Period</option>
+      <option value="business_type">Business Type</option>
+      <option value="measurement_method_and_asset_disposal">Measurement Method and Asset Disposal</option>
+      <option value="merger_or_acquisition">Merger or Acquisition</option>
+    </select>
   </div>
+  <!-- Row 5: External Assurance -->
+  <div class="w-full mt-6">
+    <label for="external_assurance" class="block pb-2 text-base font-medium">External Assurance (Profile and Expertise Level of the Assurer)</label>
+    <table class="w-full table-auto border-separate border-spacing-2">
+      <thead>
+        <tr class="bg-teal-700 text-white">
+          <th class="px-4 py-2">Assurer Name</th>
+          <th class="px-4 py-2">Id Assurer</th>
+          <th class="px-4 py-2">Expertise Level (%)</th>
+          <th class="px-4 py-2">Action</th>
+        </tr>
+      </thead>
+      <tbody id="assurers-table">
+        <tr>
+          <td class="border px-4 py-2">
+            <input type="text" name="assurers[0][name]" placeholder="Assurer Name"
+              class="w-full px-4 py-2 rounded-lg border border-gray-300" />
+          </td>
+          <td class="border px-4 py-2 relative">
+            <input type="number" name="assurers[0][id]" placeholder="ID Assurer"
+              class="w-full px-4 py-2 rounded-lg border border-gray-300" />
+          </td>
+          <td class="border px-4 py-2 relative">
+            <input type="number" name="assurers[0][expertise_percentage]" placeholder="0 - 100" min="0" max="100" step="0.01"
+              class="w-full px-4 py-2 pr-8 rounded-lg border border-gray-300" />
+            <span class="absolute right-6 top-1/2 -translate-y-1/2 text-gray-400">%</span>
+          </td>
+          <td class="border px-4 py-2 text-center">
+            <button type="button" class="text-red-600 remove-row">Remove</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <button type="button" id="add-assurer" class="mt-3 text-sm text-teal-700 hover:underline">+ Add Assurer</button>
   </div>
-</div>
 
+  <script>
+    document.getElementById("add-assurer").addEventListener("click", () => {
+      const table = document.getElementById("assurers-table");
+      const index = table.rows.length;
+      const row = `
+        <tr>
+          <td class="border px-4 py-2">
+            <input type="text" name="assurers[${index}][name]" placeholder="Assurer Name"
+              class="w-full px-4 py-2 rounded-lg border border-gray-300" />
+          </td>
+          <td class="border px-4 py-2 relative">
+            <input type="number" name="assurers[${index}][id]" placeholder="ID Assurer"
+              class="w-full px-4 py-2 rounded-lg border border-gray-300" />
+          </td>
+          <td class="border px-4 py-2 relative">
+            <input type="number" name="assurers[${index}][expertise_percentage]" placeholder="0 - 100" min="0" max="100" step="0.01"
+              class="w-full px-4 py-2 pr-8 rounded-lg border border-gray-300" />
+            <span class="absolute right-6 top-1/2 -translate-y-1/2 text-gray-400">%</span>
+          </td>
+          <td class="border px-4 py-2 text-center">
+            <button type="button" class="text-red-600 remove-row">Remove</button>
+          </td>
+        </tr>`;
+      table.insertAdjacentHTML("beforeend", row);
+    });
 
-
+    document.addEventListener("click", (e) => {
+      if (e.target.classList.contains("remove-row")) {
+        e.target.closest("tr").remove();
+      }
+    });
+  </script>
 
 </section>
 
 
+
 <!-- Informasi Industri & Produk -->
 <section class="flex flex-col items-start py-14 px-16 mt-10 w-full bg-white rounded-2xl shadow-2xl max-w-[981px] max-md:px-5 max-md:mt-10">
-  <h3 class="text-3xl font-semibold text-teal-700">Informasi Industri & Produk</h3>
+  <h3 class="text-3xl font-semibold text-teal-700">Industry & Product Information</h3>
 
 <!-- Jenis Kegiatan/Industri Utama (Single Choice - Radio Button) -->
 <div class="w-full mt-8">
-  <label class="block pb-2 text-base font-medium">Jenis Kegiatan/Industri Utama</label>
+  <label class="block pb-2 text-base font-medium">Business Relationship with Suppliers</label>
   <div class="flex flex-col gap-2">
 
     <!-- Radio options -->
     <label class="flex items-center gap-2 cursor-pointer">
-      <input type="radio" name="industry_type" class="industry_type" value="Manufaktur"> Manufaktur
+      <input type="radio" name="industry_type" class="industry_type" value="Manufaktur"> Manufacturering
     </label>
 
     <label class="flex items-center gap-2 cursor-pointer">
-      <input type="radio" name="industry_type" class="industry_type" value="Jasa"> Jasa
+      <input type="radio" name="industry_type" class="industry_type" value="Jasa"> Services
     </label>
 
     <label class="flex items-center gap-2 cursor-pointer">
-      <input type="radio" name="industry_type" class="industry_type" value="Perdagangan"> Perdagangan
+      <input type="radio" name="industry_type" class="industry_type" value="Perdagangan"> Trading
     </label>
 
     <label class="flex items-center gap-2 cursor-pointer">
-      <input type="radio" name="industry_type" class="industry_type" value="Pertanian/Perikanan"> Pertanian/Perikanan
+      <input type="radio" name="industry_type" class="industry_type" value="Pertanian/Perikanan"> Agriculture/Fisheries
     </label>
 
     <label class="flex items-center gap-2 cursor-pointer">
-      <input type="radio" name="industry_type" class="industry_type" value="Teknologi"> Teknologi
+      <input type="radio" name="industry_type" class="industry_type" value="Teknologi"> Technology
     </label>
 
     <!-- Lainnya dengan input text -->
     <label class="flex flex-col gap-1 cursor-pointer">
       <div class="flex items-center gap-2">
-        <input type="radio" name="industry_type" class="industry_type" value="Lainnya" id="industry-other-radio"> Lainnya
+        <input type="radio" name="industry_type" class="industry_type" value="Lainnya" id="industry-other-radio"> Others
       </div>
       <input
         type="text"
@@ -150,250 +390,220 @@
 </div>
 
 <script>
-  const otherRadio = document.getElementById('industry-other-radio');
-  const otherInput = document.getElementById('industry-other-input');
+  // Listen for changes to the "Legal Form" dropdown
+  const legalFormSelect = document.getElementById('legal_form');
+  const otherInput = document.getElementById('status-kepemilikan-lainnya');
+  
+  // Check when the dropdown value changes
+  legalFormSelect.addEventListener('change', function() {
+    if (this.value === 'other') {
+      // Show the input field if "Other" is selected
+      otherInput.classList.remove('hidden');
+    } else {
+      // Hide the input field if anything else is selected
+      otherInput.classList.add('hidden');
+      otherInput.value = ''; // Clear the input field if hidden
+    }
+  });
+</script>
 
-  // Tampilkan input text hanya saat "Lainnya" dipilih
-  document.querySelectorAll('input[name="industri_utama"]').forEach(radio => {
-    radio.addEventListener('change', () => {
-      if (otherRadio.checked) {
-        otherInput.classList.remove('hidden');
-      } else {
-        otherInput.classList.add('hidden');
-        otherInput.value = ''; // bersihkan input jika tidak dipilih
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    // === LEGAL FORM: tampilkan input "Other" saat dipilih ===
+    const legalFormSelect      = document.getElementById('legal_form');
+    const legalFormOtherInput  = document.getElementById('legal_form_other');
+
+    function syncLegalFormOther() {
+      const show = legalFormSelect && legalFormSelect.value === 'other';
+      if (!legalFormOtherInput) return;
+      legalFormOtherInput.classList.toggle('hidden', !show);
+      legalFormOtherInput.toggleAttribute('disabled', !show);
+      if (!show) legalFormOtherInput.value = '';
+    }
+
+    if (legalFormSelect) {
+      // set state awal (misal data lama sudah "other")
+      syncLegalFormOther();
+      legalFormSelect.addEventListener('change', syncLegalFormOther);
+    }
+
+    // === INDUSTRI: input "Lainnya" hanya muncul saat radio 'Lainnya' dipilih ===
+    // perbaiki selector yang salah (sebelumnya .industry-tag tidak ada)
+    const industryOtherRadio = document.getElementById('industry-other-radio');
+    const industryOtherInput = document.getElementById('industry-other-input');
+    const industryRadios     = document.querySelectorAll('input.industry_type');
+
+    function syncIndustryOther() {
+      if (!industryOtherRadio || !industryOtherInput) return;
+      const show = industryOtherRadio.checked;
+      industryOtherInput.classList.toggle('hidden', !show);
+      industryOtherInput.toggleAttribute('disabled', !show);
+      if (!show) industryOtherInput.value = '';
+    }
+
+    if (industryRadios.length) {
+      industryRadios.forEach(r => r.addEventListener('change', syncIndustryOther));
+      // set state awal
+      syncIndustryOther();
+    }
+  });
+</script>
+
+<!-- Supplier Types and Number of Suppliers in one row -->
+<div class="w-full mt-8">
+  <div class="flex gap-5 max-md:flex-col">
+    <!-- Supplier Types (Multiple Choice) -->
+    <div class="w-6/12 max-md:w-full">
+    <label class="block pb-2 text-base font-medium">Organization Activities</label>
+    <textarea
+      id="organization_activities"
+      name="organization_activities"
+      rows="4"
+      placeholder="Describe the activities the organization engages in"
+      class="w-full px-8 py-4 text-base text-black rounded-2xl border border-gray-300 bg-slate-50 placeholder-black/50 outline-none hover:ring focus:ring-2 focus:ring-teal-600 transition resize-y"
+    ></textarea>
+      
+    </div>
+
+    <div class="w-6/12 max-md:w-full">
+      <label for="quantity_of_product" class="block pb-2 text-base font-medium">Quantity of Product</label>
+      <input
+        type="number"
+        id="quantity_of_product"
+        name="quantity_of_product"
+        placeholder="Enter the quantity of product"
+        class="w-full px-8 py-4 text-base text-black rounded-2xl border border-gray-300 bg-slate-50 placeholder-black/50 outline-none hover:ring focus:ring-2 focus:ring-teal-600 transition"
+      />
+    </div>
+  </div>
+</div>
+
+
+
+
+  <!-- Geographical Locations where Products/Services are Offered (Table) -->
+  <div class="w-full mt-8">
+    <label class="block pb-2 text-base font-medium">Geographical Locations where Products/Services are Offered</label>
+    <table class="w-full mt-4 table-auto border-separate border-spacing-2">
+      <thead>
+        <tr class="bg-teal-700 text-white">
+          <th class="px-4 py-2">Street</th>
+          <th class="px-4 py-2">City</th>
+          <th class="px-4 py-2">Country</th>
+          <th class="px-4 py-2">Action</th>
+        </tr>
+      </thead>
+      <tbody id="geo-locations-table">
+        <tr>
+          <td class="border px-4 py-2">
+            <input type="text" name="geo_locations[0][street]" placeholder="Enter Street" class="w-full px-4 py-2 rounded-lg border border-gray-300" />
+          </td>
+          <td class="border px-4 py-2">
+            <input type="text" name="geo_locations[0][city]" placeholder="Enter City" class="w-full px-4 py-2 rounded-lg border border-gray-300" />
+          </td>
+          <td class="border px-4 py-2">
+            <input type="text" name="geo_locations[0][country]" placeholder="Enter Country" class="w-full px-4 py-2 rounded-lg border border-gray-300" />
+          </td>
+          <td class="border px-4 py-2 text-center">
+            <button type="button" class="text-red-600 remove-location-row">Remove</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <button type="button" id="add-geo-location" class="mt-3 text-sm text-teal-700 hover:underline">+ Add Location</button>
+  </div>
+  <script>
+    // Add new location row
+    document.getElementById("add-geo-location").addEventListener("click", () => {
+      const table = document.getElementById("geo-locations-table");
+      const index = table.rows.length;
+      const row = `
+        <tr>
+          <td class="border px-4 py-2">
+            <input type="text" name="geo_locations[${index}][street]" placeholder="Enter Street" class="w-full px-4 py-2 rounded-lg border border-gray-300" />
+          </td>
+          <td class="border px-4 py-2">
+            <input type="text" name="geo_locations[${index}][city]" placeholder="Enter City" class="w-full px-4 py-2 rounded-lg border border-gray-300" />
+          </td>
+          <td class="border px-4 py-2">
+            <input type="text" name="geo_locations[${index}][country]" placeholder="Enter Country" class="w-full px-4 py-2 rounded-lg border border-gray-300" />
+          </td>
+          <td class="border px-4 py-2 text-center">
+            <button type="button" class="text-red-600 remove-location-row">Remove</button>
+          </td>
+        </tr>`;
+      table.insertAdjacentHTML("beforeend", row);
+    });
+
+    // Remove location row
+    document.addEventListener("click", (e) => {
+      if (e.target.classList.contains("remove-location-row")) {
+        e.target.closest("tr").remove();
       }
     });
-  });
-</script>
+  </script>
 
-
-<script>
-  // Tampilkan input Lainnya jika dicentang
-  const otherCheckbox = document.querySelector('input.industry-tag[value="Lainnya"]');
-  const otherInput = document.getElementById('industry-other-input');
-
-  otherCheckbox.addEventListener('change', function() {
-    if (this.checked) {
-      otherInput.classList.remove('hidden');
-      otherInput.focus();
-    } else {
-      otherInput.classList.add('hidden');
-      otherInput.value = '';
-    }
-  });
-</script>
-
-
-<div class="w-full mt-6">
-  {{!-- <label for="brands" class="block pb-2 text-base font-medium">Daftar Merek/Brand yang Dimiliki</label>
-    <div class="flex gap-4 max-md:flex-col">
-    <textarea
-      id="brands"
-      name="brands"
-      rows="4"
-      placeholder="Contoh: Brand A, Brand B, Brand C…"
-      class="w-full px-8 py-4 text-base text-black rounded-2xl border border-gray-300 bg-slate-50 placeholder-black/50 outline-none hover:ring focus:ring-2 focus:ring-teal-600 transition resize-y"
-    ></textarea> --}}
-
-      <!-- Provinsi (dropdown) -->
-      <div class="w-1/2 max-md:w-full">
-      <label for="produk" class="block pb-2 text-base font-medium">Produk/Jasa yang Ditawarkan</label>
-        <textarea
-          id="products_offered"
-          name="products_offered"
-          rows="4"
-          placeholder="Jelaskan singkat produk/jasa utama yang ditawarkan…"
-          class="w-full px-8 py-4 text-base text-black rounded-2xl border border-gray-300 bg-slate-50 placeholder-black/50 outline-none hover:ring focus:ring-2 focus:ring-teal-600 transition resize-y"
-        ></textarea>
-    </div>
-  </div>
-  <!-- Daftar Merek/Brand yang Dimiliki (Long text) -->
-
-  <!-- Lokasi Kantor Pusat -->
-  <div class="w-full mt-6">
-    <label for="hq" class="block pb-2 text-base font-medium">Lokasi Kantor Pusat (Headquarters)</label>
-    <input
-      type="text"
-      id="headquarters"
-      name="headquarters"
-      placeholder="Contoh: Jl. Piai Tangah, Cupak Tangah, Kec. Pauh, Kota Padang, Sumatera Barat 25158"
-      class="w-full px-8 py-4 text-base text-black rounded-2xl border border-gray-300 bg-slate-50 placeholder-black/50 outline-none hover:ring focus:ring-2 focus:ring-teal-600 transition"
-    />
-  </div>
-
-  <!-- Lokasi Operasional -->
-  <div class="w-full mt-6">
-    <label class="block pb-2 text-base font-medium">Lokasi Operasional</label>
-    <div class="flex gap-4 max-md:flex-col">
-      <!-- Kota/Region (short text) -->
-      <input
-        type="text"
-        id="city"
-        name="city"
-        placeholder="Contoh: Jl. Piai Tangah, Cupak Tangah, Kec. Pauh, Kota Padang, Sumatera Barat 25158)"
-        class="w-full px-8 py-4 text-base text-black rounded-2xl border border-gray-300 bg-slate-50 placeholder-black/50 outline-none hover:ring focus:ring-2 focus:ring-teal-600 transition max-md:w-full"
-      />
-
-      <!-- Provinsi (dropdown) -->
-      <div class="w-1/2 max-md:w-full">
-        <select
-          id="province"
-          name="province"
-          class="w-full px-8 py-4 text-base text-black rounded-2xl border border-gray-300 bg-slate-50 outline-none hover:ring focus:ring-2 focus:ring-teal-600 transition"
-        >
-          <option value="">Pilih Provinsi</option>
-          <option>DKI Jakarta</option>
-          <option>Jawa Barat</option>
-          <option>Jawa Tengah</option>
-          <option>Jawa Timur</option>
-          <option>Sumatera Barat</option>
-          <option value="lainnya">Lainnya</option>
-        </select>
-
-        <!-- Input provinsi lainnya (muncul jika pilih Lainnya) -->
-        <input
-          type="text"
-          id="province"
-          name="province"
-          placeholder="Provinsi lainnya"
-          class="w-full px-8 py-4 mt-3 text-base text-black rounded-2xl border border-gray-300 bg-slate-50 placeholder-black/50 outline-none hover:ring focus:ring-2 focus:ring-teal-600 transition hidden"
-        />
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- Informasi Kepemilikan -->
-<section class="flex flex-col items-start py-14 px-16 mt-10 w-full bg-white rounded-2xl shadow-2xl max-w-[981px] max-md:px-5">
-  <h3 class="text-3xl font-semibold text-teal-700">Informasi Kepemilikan</h3>
-
+  <!-- Supplier Types, Number of Suppliers, and Supplier Relationship in one row -->
   <div class="w-full mt-8">
     <div class="flex gap-5 max-md:flex-col">
-      <!-- Pemilik/Shareholders Utama -->
-      <div class="mt-8 w-full">
-  <h4 class="text-xl font-semibold text-teal-700">Pemilik / Shareholders</h4>
-  <table class="w-full mt-4 table-auto border-separate border-spacing-2">
-    <thead>
-      <tr class="bg-teal-700 text-white">
-        <th class="px-4 py-2">Nama Pemilik</th>
-        <th class="px-4 py-2">Persentase Kepemilikan (%)</th>
-        <th class="px-4 py-2">Aksi</th>
-      </tr>
-    </thead>
-    <tbody id="shareholders-table">
-      <tr>
-        <td class="border px-4 py-2">
-          <input type="text" name="shareholders[0][name]" placeholder="Nama Pemilik"
-            class="w-full px-4 py-2 rounded-lg border border-gray-300" />
-        </td>
-        <td class="border px-4 py-2 relative">
-          <input type="number" name="shareholders[0][ownership_percentage]" placeholder="0 - 100" min="0" max="100" step="0.01"
-            class="w-full px-4 py-2 pr-8 rounded-lg border border-gray-300" />
-          <span class="absolute right-6 top-1/2 -translate-y-1/2 text-gray-400">%</span>
-        </td>
-        <td class="border px-4 py-2 text-center">
-          <button type="button" class="text-red-600 remove-row">Hapus</button>
-        </td>
-      </tr>
-    </tbody>
-  </table>
-  <button type="button" id="add-shareholder" class="mt-3 text-sm text-teal-700 hover:underline">+ Tambah Pemilik</button>
-</div>
-
-<script>
-  document.getElementById("add-shareholder").addEventListener("click", () => {
-    const table = document.getElementById("shareholders-table");
-    const index = table.rows.length;
-    const row = `
-      <tr>
-        <td class="border px-4 py-2">
-          <input type="text" name="shareholders[${index}][name]" placeholder="Nama Pemilik"
-            class="w-full px-4 py-2 rounded-lg border border-gray-300" />
-        </td>
-        <td class="border px-4 py-2 relative">
-          <input type="number" name="shareholders[${index}][ownership_percentage]" placeholder="0 - 100" min="0" max="100" step="0.01"
-            class="w-full px-4 py-2 pr-8 rounded-lg border border-gray-300" />
-          <span class="absolute right-6 top-1/2 -translate-y-1/2 text-gray-400">%</span>
-        </td>
-        <td class="border px-4 py-2 text-center">
-          <button type="button" class="text-red-600 remove-row">Hapus</button>
-        </td>
-      </tr>`;
-    table.insertAdjacentHTML("beforeend", row);
-  });
-
-  document.addEventListener("click", (e) => {
-    if (e.target.classList.contains("remove-row")) {
-      e.target.closest("tr").remove();
-    }
-  });
-</script>
-
-    </div>
-  </div>
-</section>
-
-<!-- Pasar yang Dilayani Section -->
-<section class="flex flex-col items-start py-14 px-16 mt-10 w-full bg-white rounded-2xl shadow-2xl max-w-[981px] max-md:px-5 max-md:mt-10">
-  <h3 class="text-3xl font-semibold text-teal-700">Pasar yang Dilayani</h3>
-
-  <!-- Wilayah Operasi and Target Market Row -->
-<div class="mt-10 w-full">
-  <div class="flex gap-5 max-md:flex-col">
-    <!-- Wilayah Operasi (Multiple choice) -->
-    <div class="w-6/12 max-md:w-full">
-      <label class="block pb-2 text-base font-medium">Wilayah Operasi</label>
-      <div class="flex flex-col gap-2">
-        <label class="flex items-center gap-2 cursor-pointer">
-          <input type="checkbox" name="market_scope[]" value="lokal"> Lokal
-        </label>
-        <label class="flex items-center gap-2 cursor-pointer">
-          <input type="checkbox" name="market_scope[]" value="nasional"> Nasional
-        </label>
-        <label class="flex items-center gap-2 cursor-pointer">
-          <input type="checkbox" name="market_scope[]" value="regional"> Regional (ASEAN)
-        </label>
-        <label class="flex items-center gap-2 cursor-pointer">
-          <input type="checkbox" name="market_scope[]" value="global"> Global
-        </label>
+      <!-- Supplier Types (Multiple Choice) -->
+      <div class="w-4/12 max-md:w-full">
+        <label class="block pb-2 text-base font-medium">Supplier Types</label>
+        <div class="flex flex-col gap-2">
+          <label class="flex items-center gap-2 cursor-pointer">
+            <input type="checkbox" name="supplier_type[]" value="Broker"> Broker
+          </label>
+          <label class="flex items-center gap-2 cursor-pointer">
+            <input type="checkbox" name="supplier_type[]" value="Contractor"> Contractor
+          </label>
+          <label class="flex items-center gap-2 cursor-pointer">
+            <input type="checkbox" name="supplier_type[]" value="Wholesaler"> Wholesaler
+          </label>
+          <label class="flex items-center gap-2 cursor-pointer">
+            <input type="checkbox" name="supplier_type[]" value="Other"> Other
+          </label>
+        </div>
       </div>
-    </div>
 
-    <!-- Target Market (Multiple choice) -->
-    <div class="w-6/12 max-md:w-full">
-      <label class="block pb-2 text-base font-medium">Target Market</label>
-      <div class="flex flex-col gap-2">
-        <label class="flex items-center gap-2 cursor-pointer">
-          <input type="checkbox" name="target_market[]" value="b2b"> B2B
-        </label>
-        <label class="flex items-center gap-2 cursor-pointer">
-          <input type="checkbox" name="target_market[]" value="b2c"> B2C
-        </label>
-        <label class="flex items-center gap-2 cursor-pointer">
-          <input type="checkbox" name="target_market[]" value="pemerintah"> Pemerintah
-        </label>
-        <!-- Lainnya dengan input text -->
-        <label class="flex flex-col gap-1 cursor-pointer">
-          <div class="flex items-center gap-2">
-            <input type="checkbox" id="target-market-other-check"> Lainnya
-          </div>
-          <input type="text" id="target-market-other-input" name="target_market_other"
-            placeholder="Sebutkan"
-            class="w-full mt-1 px-3 py-2 rounded-lg border border-gray-300 text-teal-700 hidden" />
-        </label>
+      <!-- Number of Suppliers -->
+      <div class="w-4/12 max-md:w-full">
+        <label for="number_of_suppliers" class="block pb-2 text-base font-medium">Number of Suppliers</label>
+        <input
+          type="number"
+          id="number_of_suppliers"
+          name="number_of_suppliers"
+          placeholder="Enter the number of suppliers"
+          class="px-8 py-4 text-base text-black rounded-2xl border border-gray-300 bg-slate-50 placeholder-black/50 outline-none hover:ring focus:ring-2 focus:ring-teal-600 transition"
+        />
+      </div>
+
+      <!-- Supplier Relationship Types -->
+      <div class="w-4/12 max-md:w-full">
+        <label class="block pb-2 text-base font-medium">Supplier Relationship</label>
+        <div class="flex flex-col gap-2">
+          <label class="flex items-center gap-2 cursor-pointer">
+            <input type="checkbox" name="supplier_relationship[]" value="Long-Term"> Long-Term
+          </label>
+          <label class="flex items-center gap-2 cursor-pointer">
+            <input type="checkbox" name="supplier_relationship[]" value="Short-Term"> Short-Term
+          </label>
+          <label class="flex items-center gap-2 cursor-pointer">
+            <input type="checkbox" name="supplier_relationship[]" value="Contract"> Contract
+          </label>
+          <label class="flex items-center gap-2 cursor-pointer">
+            <input type="checkbox" name="supplier_relationship[]" value="Non-Contract"> Non-Contract
+          </label>
+          <label class="flex items-center gap-2 cursor-pointer">
+            <input type="checkbox" name="supplier_relationship[]" value="Project-Based"> Project-Based
+          </label>
+          <label class="flex items-center gap-2 cursor-pointer">
+            <input type="checkbox" name="supplier_relationship[]" value="Event-Based"> Event-Based
+          </label>
+        </div>
       </div>
     </div>
   </div>
-</div>
-
-<script>
-  // toggle input lainnya
-  const otherCheck = document.getElementById("target-market-other-check");
-  const otherInput = document.getElementById("target-market-other-input");
-  otherCheck.addEventListener("change", () => {
-    otherInput.classList.toggle("hidden", !otherCheck.checked);
-  });
-</script>
 
 
 
@@ -401,27 +611,17 @@
 
 <!-- Informasi Karyawan & Pekerja Section -->
 <section class="flex flex-col items-start py-14 px-16 mt-10 w-full bg-white rounded-2xl shadow-2xl max-w-[981px] max-md:px-5 max-md:mt-10 max-md:max-w-full">
-  <h3 class="text-3xl font-semibold text-center text-teal-700">Informasi Karyawan & Pekerja</h3>
+  <h3 class="text-3xl font-semibold text-center text-teal-700">Employee & Worker Information</h3>
 
-  <!-- Total Jumlah Karyawan & Pekerja Row -->
+  <!-- Total Workforce -->
   <div class="mt-10 w-full">
     <div class="flex gap-5 max-md:flex-col">
-      <!-- Total Karyawan (Full-Time) -->
+      <!-- Total Workforce -->
       <div class="w-6/12 max-md:w-full">
-        <label class="block pb-2 text-base font-medium">Total Jumlah Karyawan (Full-Time)</label>
-        <input type="number" placeholder="Masukkan Jumlah Karyawan Full-Time" 
-          id="total_employees_fulltime"
-          name="total_employees_fulltime"
-          class="w-full px-8 py-4 mt-2 text-base text-black rounded-2xl border-gray-300 border border-solid bg-slate-50 placeholder-black/50 outline-none hover:ring focus:ring-2 focus:ring-teal-600 transition">
-      </div>
-
-      <!-- Total Pekerja Paruh Waktu/Outsourcing -->
-      <div class="w-6/12 max-md:w-full">
-        <label class="block pb-2 text-base font-medium">Total Jumlah Pekerja Paruh Waktu/Outsourcing</label>
-        <input type="number" 
-          id="total_employees_parttime"
-          name="total_employees_parttime" 
-          placeholder="Masukkan Jumlah Pekerja Paruh Waktu"
+        <label class="block pb-2 text-base font-medium">Total Workforce (End of Reporting Period)</label>
+        <input type="number" placeholder="Enter Total Workforce" 
+          id="total_workforce"
+          name="total_workforce"
           class="w-full px-8 py-4 mt-2 text-base text-black rounded-2xl border-gray-300 border border-solid bg-slate-50 placeholder-black/50 outline-none hover:ring focus:ring-2 focus:ring-teal-600 transition">
       </div>
     </div>
@@ -430,19 +630,19 @@
   <!-- Komposisi Gender Row -->
   <div class="mt-10 w-full">
     <div class="flex gap-5 max-md:flex-col">
-      <!-- % Laki-laki -->
+      <!-- % Male -->
       <div class="w-6/12 max-md:w-full">
-        <label class="block pb-2 text-base font-medium">% Laki-laki</label>
-        <input type="number" placeholder="Masukkan Persentase Laki-laki"
+        <label class="block pb-2 text-base font-medium">% Male</label>
+        <input type="number" placeholder="Enter Male Percentage"
           id="male_percentage"
           name="male_percentage"
           class="w-full px-8 py-4 mt-2 text-base text-black rounded-2xl border-gray-300 border border-solid bg-slate-50 placeholder-black/50 outline-none hover:ring focus:ring-2 focus:ring-teal-600 transition">
       </div>
 
-      <!-- % Perempuan -->
+      <!-- % Women -->
       <div class="w-6/12 max-md:w-full">
-        <label class="block pb-2 text-base font-medium">% Perempuan</label>
-        <input type="number" placeholder="Masukkan Persentase Perempuan"
+        <label class="block pb-2 text-base font-medium">% Women</label>
+        <input type="number" placeholder="Enter Women Percentage"
           id="female_percentage"
           name="female_percentage"
           class="w-full px-8 py-4 mt-2 text-base text-black rounded-2xl border-gray-300 border border-solid bg-slate-50 placeholder-black/50 outline-none hover:ring focus:ring-2 focus:ring-teal-600 transition">
@@ -450,290 +650,253 @@
     </div>
   </div>
 
-  <!-- Jumlah Karyawan per Departemen (Table) -->
+  <!-- Total Workforce Details (Table) -->
   <div class="mt-10 w-full">
-  <h4 class="text-2xl font-semibold text-teal-700">Jumlah Karyawan per Departemen</h4>
-  <table class="w-full mt-4 table-auto border-separate border-spacing-2">
-    <thead>
-      <tr class="bg-teal-700 text-white">
-        <th class="px-4 py-2">Departemen</th>
-        <th class="px-4 py-2">Jumlah Karyawan</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td class="border px-4 py-2">
-          <input type="hidden" name="departments[0][department_name]" value="HR">
-          HR
-        </td>
-        <td class="border px-4 py-2">
-          <input type="number" name="departments[0][employee_count]" class="w-full px-4 py-2 rounded-lg border border-gray-300" placeholder="Jumlah Karyawan HR">
-        </td>
-      </tr>
-      <tr>
-        <td class="border px-4 py-2">
-          <input type="hidden" name="departments[1][department_name]" value="Marketing">
-          Marketing
-        </td>
-        <td class="border px-4 py-2">
-          <input type="number" name="departments[1][employee_count]" class="w-full px-4 py-2 rounded-lg border border-gray-300" placeholder="Jumlah Karyawan Marketing">
-        </td>
-      </tr>
-      <tr>
-        <td class="border px-4 py-2">
-          <input type="hidden" name="departments[2][department_name]" value="IT">
-          IT
-        </td>
-        <td class="border px-4 py-2">
-          <input type="number" name="departments[2][employee_count]" class="w-full px-4 py-2 rounded-lg border border-gray-300" placeholder="Jumlah Karyawan IT">
-        </td>
-      </tr>
-      <tr>
-        <td class="border px-4 py-2">
-          <input type="hidden" name="departments[3][department_name]" value="Finance">
-          Finance
-        </td>
-        <td class="border px-4 py-2">
-          <input type="number" name="departments[3][employee_count]" class="w-full px-4 py-2 rounded-lg border border-gray-300" placeholder="Jumlah Karyawan Finance">
-        </td>
-      </tr>
-    </tbody>
-  </table>
-</div>
+    <h4 class="text-2xl font-semibold text-teal-700">Workforce Breakdown</h4>
+    <table class="w-full mt-4 table-auto border-separate border-spacing-2">
+      <thead>
+        <tr class="bg-teal-700 text-white">
+          <th class="px-4 py-2">Workforce Type</th>
+          <th class="px-4 py-2">Number of Workers</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- Full-time Employees -->
+        <tr>
+          <td class="border px-4 py-2">Full-time Employees</td>
+          <td class="border px-4 py-2">
+            <input type="number" name="fulltime_employees" placeholder="Enter Number of Full-time Employees"
+              class="w-full px-4 py-2 rounded-lg border border-gray-300" />
+          </td>
+        </tr>
+
+        <!-- Part-time Employees -->
+        <tr>
+          <td class="border px-4 py-2">Part-time Employees</td>
+          <td class="border px-4 py-2">
+            <input type="number" name="parttime_employees" placeholder="Enter Number of Part-time Employees"
+              class="w-full px-4 py-2 rounded-lg border border-gray-300" />
+          </td>
+        </tr>
+
+        <!-- Employees with Flexible Working Hours -->
+        <tr>
+          <td class="border px-4 py-2">Employees with Flexible Working Hours</td>
+          <td class="border px-4 py-2">
+            <input type="number" name="flexible_hour_employees" placeholder="Enter Number of Employees with Flexible Hours"
+              class="w-full px-4 py-2 rounded-lg border border-gray-300" />
+          </td>
+        </tr>
+
+        <!-- Temporary Employees -->
+        <tr>
+          <td class="border px-4 py-2">Temporary Employees</td>
+          <td class="border px-4 py-2">
+            <input type="number" name="temporary_employees" placeholder="Enter Number of Temporary Employees"
+              class="w-full px-4 py-2 rounded-lg border border-gray-300" />
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Temporary Employment Context -->
+  <div class="mt-10 w-full">
+    <label class="block pb-2 text-base font-medium">Contextual Information on Temporary Employment</label>
+    <textarea placeholder="Provide the reasons for temporary employment (e.g., project-based, seasonal work)"
+      id="temporary_employment_context"
+      name="temporary_employment_context"
+      class="w-full px-8 py-4 mt-2 text-base text-black rounded-2xl border-gray-300 border border-solid bg-slate-50 placeholder-black/50 outline-none hover:ring focus:ring-2 focus:ring-teal-600 transition resize-y"></textarea>
+  </div>
+
 
 
 </section>
 
-<!-- Nilai, Prinsip, dan Standar Section -->
+<!-- Non-Direct Workers Section -->
 <section class="flex flex-col items-start py-14 px-16 mt-10 w-full bg-white rounded-2xl shadow-2xl max-w-[981px] max-md:px-5 max-md:mt-10 max-md:max-w-full">
-  <h3 class="text-3xl font-semibold text-center text-teal-700">Nilai, Prinsip, dan Standar</h3>
+  <h3 class="text-3xl font-semibold text-center text-teal-700">Non-Direct Workers</h3>
 
-  <!-- Core Values Perusahaan -->
+  <!-- Types of Non-Direct Workers and Contract Relationships (Table) -->
   <div class="mt-10 w-full">
-    <label class="block pb-2 text-base font-medium">Core Values Perusahaan</label>
-    <textarea placeholder="Masukkan Core Values Perusahaan"
-      id="core_values"
-      name="core_values"
-      class="w-full px-8 py-4 mt-2 text-base text-black rounded-2xl border-gray-300 border border-solid bg-slate-50 placeholder-black/50 outline-none hover:ring focus:ring-2 focus:ring-teal-600 transition"></textarea>
+    <h4 class="text-2xl font-semibold text-teal-700">Non-Direct Worker Types and Contract Relationships</h4>
+    <table class="w-full mt-4 table-auto border-separate border-spacing-2">
+      <thead>
+        <tr class="bg-teal-700 text-white">
+          <th class="px-4 py-2">Worker Type</th>
+          <th class="px-4 py-2">Contract Type</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- Agency Workers -->
+        <tr>
+          <td class="border px-4 py-2">Agency Workers</td>
+          <td class="border px-4 py-2">
+            <select name="agency_workers_contract_type"
+              class="w-full px-4 py-2 rounded-lg border border-gray-300">
+              <option value="">Select Contract Type</option>
+              <option value="fixed-term">Fixed-Term</option>
+              <option value="temporary">Temporary</option>
+              <option value="long-term">Long-Term</option>
+            </select>
+          </td>
+        </tr>
+
+        <!-- Long-term Interns -->
+        <tr>
+          <td class="border px-4 py-2">Long-term Interns</td>
+          <td class="border px-4 py-2">
+            <select name="long_term_interns_contract_type"
+              class="w-full px-4 py-2 rounded-lg border border-gray-300">
+              <option value="">Select Contract Type</option>
+              <option value="fixed-term">Fixed-Term</option>
+              <option value="temporary">Temporary</option>
+              <option value="long-term">Long-Term</option>
+            </select>
+          </td>
+        </tr>
+
+        <!-- Contractors -->
+        <tr>
+          <td class="border px-4 py-2">Contractors</td>
+          <td class="border px-4 py-2">
+            <select name="contractors_contract_type"
+              class="w-full px-4 py-2 rounded-lg border border-gray-300">
+              <option value="">Select Contract Type</option>
+              <option value="project-based">Project-Based</option>
+              <option value="temporary">Temporary</option>
+            </select>
+          </td>
+        </tr>
+
+        <!-- Domestic Workers -->
+        <tr>
+          <td class="border px-4 py-2">Domestic Workers</td>
+          <td class="border px-4 py-2">
+            <select name="domestic_workers_contract_type"
+              class="w-full px-4 py-2 rounded-lg border border-gray-300">
+              <option value="">Select Contract Type</option>
+              <option value="permanent">Permanent</option>
+              <option value="temporary">Temporary</option>
+            </select>
+          </td>
+        </tr>
+
+        <!-- Short-term Interns -->
+        <tr>
+          <td class="border px-4 py-2">Short-term Interns</td>
+          <td class="border px-4 py-2">
+            <select name="short_term_interns_contract_type"
+              class="w-full px-4 py-2 rounded-lg border border-gray-300">
+              <option value="">Select Contract Type</option>
+              <option value="fixed-term">Fixed-Term</option>
+              <option value="temporary">Temporary</option>
+            </select>
+          </td>
+        </tr>
+
+        <!-- Entrepreneurs -->
+        <tr>
+          <td class="border px-4 py-2">Entrepreneurs</td>
+          <td class="border px-4 py-2">
+            <select name="entrepreneurs_contract_type"
+              class="w-full px-4 py-2 rounded-lg border border-gray-300">
+              <option value="">Select Contract Type</option>
+              <option value="independent">Independent</option>
+              <option value="project-based">Project-Based</option>
+            </select>
+          </td>
+        </tr>
+
+        <!-- Subcontractors -->
+        <tr>
+          <td class="border px-4 py-2">Subcontractors</td>
+          <td class="border px-4 py-2">
+            <select name="subcontractors_contract_type"
+              class="w-full px-4 py-2 rounded-lg border border-gray-300">
+              <option value="">Select Contract Type</option>
+              <option value="fixed-term">Fixed-Term</option>
+              <option value="project-based">Project-Based</option>
+            </select>
+          </td>
+        </tr>
+
+        <!-- Volunteers -->
+        <tr>
+          <td class="border px-4 py-2">Volunteers</td>
+          <td class="border px-4 py-2">
+            <select name="volunteers_contract_type"
+              class="w-full px-4 py-2 rounded-lg border border-gray-300">
+              <option value="">Select Contract Type</option>
+              <option value="unpaid">Unpaid</option>
+              <option value="temporary">Temporary</option>
+            </select>
+          </td>
+        </tr>
+      </tbody>
+    </table>
   </div>
 
-  <!-- Prinsip atau Kode Etik yang Diterapkan -->
+  <!-- Job Types Performed (Text Area) -->
   <div class="mt-10 w-full">
-    <label class="block pb-2 text-base font-medium">Prinsip atau Kode Etik yang Diterapkan</label>
-    <textarea placeholder="Masukkan Prinsip atau Kode Etik yang Diterapkan"
-      id="ethics_principles"
-      name="ethics_principles"
-      class="w-full px-8 py-4 mt-2 text-base text-black rounded-2xl border-gray-300 border border-solid bg-slate-50 placeholder-black/50 outline-none hover:ring focus:ring-2 focus:ring-teal-600 transition"></textarea>
+    <label class="block pb-2 text-base font-medium">Types of Jobs Performed</label>
+    <textarea placeholder="List the types of jobs performed by non-direct workers"
+      id="job_types_non_direct_workers"
+      name="job_types_non_direct_workers"
+      class="w-full px-8 py-4 mt-2 text-base text-black rounded-2xl border-gray-300 border border-solid bg-slate-50 placeholder-black/50 outline-none hover:ring focus:ring-2 focus:ring-teal-600 transition resize-y"></textarea>
   </div>
-
-  <!-- Sertifikasi/Standar yang Dimiliki -->
-  <div class="mt-10 w-full">
-  <label class="block pb-2 text-base font-medium">Sertifikasi/Standar yang Dimiliki</label>
-  <div class="flex flex-wrap gap-4 max-md:flex-col">
-
-    <!-- Checkbox group -->
-    <label class="flex items-center gap-2">
-      <input type="checkbox" name="certifications[]" value="ISO 9001" class="text-teal-700">
-      ISO 9001 (Quality Management)
-    </label>
-
-    <label class="flex items-center gap-2">
-      <input type="checkbox" name="certifications[]" value="ISO 14001" class="text-teal-700">
-      ISO 14001 (Environmental Management)
-    </label>
-
-    <label class="flex items-center gap-2">
-      <input type="checkbox" name="certifications[]" value="ISO 45001" class="text-teal-700">
-      ISO 45001 (Occupational Health and Safety)
-    </label>
-
-    <!-- Lainnya -->
-    <div class="flex items-center gap-2">
-      <input type="checkbox" id="cert-other-checkbox" class="text-teal-700">
-      <label for="cert-other-checkbox">Lainnya:</label>
-      <input
-        type="text"
-        id="cert-other-input"
-        name="cert_other"
-        placeholder="Sertifikasi lainnya"
-        class="w-full px-4 py-2 rounded-lg border border-gray-300 text-black placeholder-black/50 outline-none hover:ring focus:ring-2 focus:ring-teal-600 transition hidden"
-      />
-    </div>
-  </div>
-</div>
-
-<script>
-  // JS kecil supaya input text muncul kalau "lainnya" dicentang
-  document.getElementById('cert-other-checkbox').addEventListener('change', function () {
-    document.getElementById('cert-other-input').classList.toggle('hidden', !this.checked);
-  });
-</script>
-
 </section>
-
-<!-- Pemangku Kepentingan (Stakeholders) Section -->
-<section class="flex flex-col items-start py-14 px-16 mt-10 w-full bg-white rounded-2xl shadow-2xl max-w-[981px] max-md:px-5 max-md:mt-10 max-md:max-w-full">
-  <h3 class="text-3xl font-semibold text-center text-teal-700">Pemangku Kepentingan (Stakeholders)</h3>
-
-  <!-- Daftar Kelompok Pemangku Kepentingan (Vertikal) -->
-  <div class="mt-10 w-full">
-    <label class="block pb-2 text-base font-medium">Daftar Kelompok Pemangku Kepentingan</label>
-    <div class="flex flex-col gap-4">
-
-      <!-- Row: Pelanggan -->
-      <div class="flex items-start gap-4" data-stakeholder-row>
-        <label class="flex items-center gap-2 w-1/3">
-          <input type="checkbox" name="stakeholders[0][type]" value="Pelanggan" class="text-teal-700">
-          Pelanggan
-        </label>
-        <div class="w-2/3">
-          <input type="text" name="stakeholders[0][relationship]" placeholder="Hubungan dengan pelanggan"
-            class="rel-input w-full px-4 py-2 rounded-lg border border-gray-300 hidden" disabled>
-        </div>
-      </div>
-
-      <!-- Row: Karyawan -->
-      <div class="flex items-start gap-4" data-stakeholder-row>
-        <label class="flex items-center gap-2 w-1/3">
-          <input type="checkbox" name="stakeholders[1][type]" value="Karyawan" class="text-teal-700">
-          Karyawan
-        </label>
-        <div class="w-2/3">
-          <input type="text" name="stakeholders[1][relationship]" placeholder="Hubungan dengan karyawan"
-            class="rel-input w-full px-4 py-2 rounded-lg border border-gray-300 hidden" disabled>
-        </div>
-      </div>
-
-      <!-- Row: Pemasok -->
-      <div class="flex items-start gap-4" data-stakeholder-row>
-        <label class="flex items-center gap-2 w-1/3">
-          <input type="checkbox" name="stakeholders[2][type]" value="Pemasok" class="text-teal-700">
-          Pemasok
-        </label>
-        <div class="w-2/3">
-          <input type="text" name="stakeholders[2][relationship]" placeholder="Hubungan dengan pemasok"
-            class="rel-input w-full px-4 py-2 rounded-lg border border-gray-300 hidden" disabled>
-        </div>
-      </div>
-
-      <!-- Row: Pemerintah/Regulator -->
-      <div class="flex items-start gap-4" data-stakeholder-row>
-        <label class="flex items-center gap-2 w-1/3">
-          <input type="checkbox" name="stakeholders[3][type]" value="Pemerintah/Regulator" class="text-teal-700">
-          Pemerintah/Regulator
-        </label>
-        <div class="w-2/3">
-          <input type="text" name="stakeholders[3][relationship]" placeholder="Hubungan dengan pemerintah/regulator"
-            class="rel-input w-full px-4 py-2 rounded-lg border border-gray-300 hidden" disabled>
-        </div>
-      </div>
-
-      <!-- Row: Investor/Shareholder -->
-      <div class="flex items-start gap-4" data-stakeholder-row>
-        <label class="flex items-center gap-2 w-1/3">
-          <input type="checkbox" name="stakeholders[4][type]" value="Investor/Shareholder" class="text-teal-700">
-          Investor/Shareholder
-        </label>
-        <div class="w-2/3">
-          <input type="text" name="stakeholders[4][relationship]" placeholder="Hubungan dengan investor/shareholder"
-            class="rel-input w-full px-4 py-2 rounded-lg border border-gray-300 hidden" disabled>
-        </div>
-      </div>
-
-      <!-- Row: Masyarakat Lokal -->
-      <div class="flex items-start gap-4" data-stakeholder-row>
-        <label class="flex items-center gap-2 w-1/3">
-          <input type="checkbox" name="stakeholders[5][type]" value="Masyarakat Lokal" class="text-teal-700">
-          Masyarakat Lokal
-        </label>
-        <div class="w-2/3">
-          <input type="text" name="stakeholders[5][relationship]" placeholder="Hubungan dengan masyarakat lokal"
-            class="rel-input w-full px-4 py-2 rounded-lg border border-gray-300 hidden" disabled>
-        </div>
-      </div>
-
-      <!-- Row: LSM/Komunitas -->
-      <div class="flex items-start gap-4" data-stakeholder-row>
-        <label class="flex items-center gap-2 w-1/3">
-          <input type="checkbox" name="stakeholders[6][type]" value="LSM/Komunitas" class="text-teal-700">
-          LSM/Komunitas
-        </label>
-        <div class="w-2/3">
-          <input type="text" name="stakeholders[6][relationship]" placeholder="Hubungan dengan LSM/komunitas"
-            class="rel-input w-full px-4 py-2 rounded-lg border border-gray-300 hidden" disabled>
-        </div>
-      </div>
-
-      <!-- Row: Lainnya -->
-      <div class="flex items-start gap-4" data-stakeholder-row>
-        <label class="flex items-center gap-2 w-1/3">
-          <input type="checkbox" name="stakeholders[7][type]" value="Lainnya" class="text-teal-700">
-          Lainnya
-        </label>
-        <div class="w-2/3 flex gap-4 max-md:flex-col">
-          <input type="text" name="stakeholders[7][stakeholder_other]" placeholder="Kelompok lainnya"
-            class="other-input w-1/2 px-4 py-2 rounded-lg border border-gray-300 hidden max-md:w-full" disabled>
-          <input type="text" name="stakeholders[7][relationship]" placeholder="Hubungan dengan stakeholder lain"
-            class="rel-input w-1/2 px-4 py-2 rounded-lg border border-gray-300 hidden max-md:w-full" disabled>
-        </div>
-      </div>
-
-    </div>
-  </div>
-
-</section>
-
 
 <section class="px-12 pt-12 pb-5 mt-14 w-full bg-white rounded-2xl shadow-2xl max-w-[981px] max-md:px-5 max-md:mt-10 max-md:mr-1.5 max-md:max-w-full">
   <div class="flex flex-col gap-10 max-md:gap-8">
     <!-- Header -->
     <div>
-      <h3 class="text-3xl font-semibold text-teal-700">Kontak & Dokumen Pendukung</h3>
+      <h3 class="text-3xl font-semibold text-teal-700">Contact & Supporting Documents</h3>
     </div>
 
-    <!-- Baris 1: Nama Kontak & Posisi/Jabatan -->
+    <!-- Row 1: Contact Name & Position -->
     <div class="flex gap-5 max-md:flex-col">
       <div class="w-6/12 max-md:w-full">
-        <label class="block pb-2 text-base font-medium">Nama Kontak Utama</label>
-        <input type="text" placeholder="Nama Kontak Utama"
+        <label class="block pb-2 text-base font-medium">Primary Contact Name</label>
+        <input type="text" placeholder="Primary Contact Name"
         id="pic_name"
-      name="pic_name"
-          class="w-full px-8 py-4 text-base text-black rounded-2xl border border-gray-300 bg-slate-50 placeholder-black/50 outline-none hover:ring focus:ring-2 focus:ring-teal-600 transition">
+        name="pic_name"
+        class="w-full px-8 py-4 text-base text-black rounded-2xl border border-gray-300 bg-slate-50 placeholder-black/50 outline-none hover:ring focus:ring-2 focus:ring-teal-600 transition">
       </div>
 
       <div class="w-6/12 max-md:w-full">
-        <label class="block pb-2 text-base font-medium">Posisi/Jabatan</label>
-        <input type="text" placeholder="Posisi atau Jabatan"
+        <label class="block pb-2 text-base font-medium">Position/Job Title</label>
+        <input type="text" placeholder="Position or Job Title"
         id="pic_position"
-      name="pic_position"
-          class="w-full px-8 py-4 text-base text-black rounded-2xl border border-gray-300 bg-slate-50 placeholder-black/50 outline-none hover:ring focus:ring-2 focus:ring-teal-600 transition">
+        name="pic_position"
+        class="w-full px-8 py-4 text-base text-black rounded-2xl border border-gray-300 bg-slate-50 placeholder-black/50 outline-none hover:ring focus:ring-2 focus:ring-teal-600 transition">
       </div>
     </div>
 
-    <!-- Baris 2: Email & Telepon + Unggah Dokumen -->
+    <!-- Row 2: Email & Phone + Upload Documents -->
     <div class="flex gap-5 max-md:flex-col">
       <div class="w-6/12 max-md:w-full">
         <label class="block pb-2 text-base font-medium">Email</label>
         <input type="text" placeholder="Email"
         id="pic_email"
-      name="pic_email"
-          class="w-full px-8 py-4 text-base text-black rounded-2xl border border-gray-300 bg-slate-50 placeholder-black/50 outline-none hover:ring focus:ring-2 focus:ring-teal-600 transition">
+        name="pic_email"
+        class="w-full px-8 py-4 text-base text-black rounded-2xl border border-gray-300 bg-slate-50 placeholder-black/50 outline-none hover:ring focus:ring-2 focus:ring-teal-600 transition">
       </div>
 
       <div class="w-6/12 max-md:w-full">
-        <label class="block pb-2 text-base font-medium">Nomor Telepon</label>
-        <input type="number" placeholder="Nomor Telepon"
+        <label class="block pb-2 text-base font-medium">Phone Number</label>
+        <input type="number" placeholder="Phone Number"
         id="pic_phone"
-      name="pic_phone"
-          class="w-full px-8 py-4 text-base text-black rounded-2xl border border-gray-300 bg-slate-50 placeholder-black/50 outline-none hover:ring focus:ring-2 focus:ring-teal-600 transition">
+        name="pic_phone"
+        class="w-full px-8 py-4 text-base text-black rounded-2xl border border-gray-300 bg-slate-50 placeholder-black/50 outline-none hover:ring focus:ring-2 focus:ring-teal-600 transition">
       </div>
 
       <div class="w-6/12 max-md:w-full">
-        <label class="block pb-2 text-base font-medium">Unggah Dokumen Pendukung (opsional)</label>
+        <label class="block pb-2 text-base font-medium">Upload Supporting Documents (optional)</label>
         <input type="file"
         id="supporting_documents"
-      name="supporting_documents"
-          class="w-full px-4 py-3 text-base text-black rounded-2xl border border-gray-300 bg-slate-50 placeholder-black/50 outline-none hover:ring focus:ring-2 focus:ring-teal-600 transition">
+        name="supporting_documents"
+        class="w-full px-4 py-3 text-base text-black rounded-2xl border border-gray-300 bg-slate-50 placeholder-black/50 outline-none hover:ring focus:ring-2 focus:ring-teal-600 transition">
       </div>
     </div>
   </div>
@@ -743,7 +906,7 @@
 <!-- Save Button Container -->
 <div class="w-full flex justify-end">
   <button class="flex overflow-hidden gap-2.5 items-start px-10 py-3 mt-10 mb-40 text-base font-medium text-center text-white whitespace-nowrap bg-orange-500 rounded-xl max-md:px-5 max-md:mt-10 hover:bg-orange-600 transition-colors">
-    Simpan
+    Submit
   </button>
 </div>
 
@@ -968,4 +1131,96 @@
   });
 </script>
 
+<script>
+    /* ===== Helpers ===== */
+    function toggleEl(el, show, alsoDisable = false) {
+        if (!el) return;
+        el.classList.toggle('hidden', !show);
+        if (alsoDisable) el.disabled = !show;
+        if (!show && (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA')) el.value = '';
+        if (!show && el.tagName === 'SELECT') el.value = '';
+    }
 
+    function fillYears(sel) {
+        const now = new Date();
+        const thisYear = now.getFullYear();
+        const isDec31 = (now.getMonth() === 11 && now.getDate() === 31);
+        const start = isDec31 ? thisYear : thisYear - 1; 
+        sel.innerHTML = '<option value="">Pilih Tahun</option>';
+        // Pastikan 2024 ada dalam list jika belum ada
+        const yearsToFill = new Set();
+        for (let i = 0; i < 3; i++) {
+            yearsToFill.add(start - i);
+        }
+        yearsToFill.add(2024); // Menjamin 2024 selalu ada
+        
+        // Sortir tahun dari terbaru ke terlama
+        Array.from(yearsToFill).sort((a, b) => b - a).forEach(y => {
+            const o = document.createElement('option');
+            o.value = String(y);
+            o.textContent = y;
+            sel.appendChild(o);
+        });
+    }
+
+    function fillCurrentYearQuarters(sel) {
+        const now = new Date();
+        const y = now.getFullYear();
+        const m = now.getMonth(); // 0..11
+        const isDec31 = (m === 11 && now.getDate() === 31);
+        let maxQ = Math.floor(m / 3) + 1;
+        if (isDec31) maxQ = 4;
+        if (maxQ > 4) maxQ = 4;
+        const labels = {
+            1: 'Triwulan 1 (Jan–Mar)',
+            2: 'Triwulan 2 (Apr–Jun)',
+            3: 'Triwulan 3 (Jul–Sep)',
+            4: 'Triwulan 4 (Okt–Des)'
+        };
+        sel.innerHTML = '<option value="">Pilih Triwulan</option>';
+        for (let q = 1; q <= maxQ; q++) {
+            const o = document.createElement('option');
+            o.value = `${y}-Q${q}`;
+            o.textContent = `${labels[q]} ${y}`;
+            sel.appendChild(o);
+        }
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+        const form = document.querySelector('form'); // Disesuaikan selector form-nya
+        const submitButton = form?.querySelector('button[type="submit"]');
+
+        /* ===== Periode Pelaporan (Tahun / Triwulan) ===== */
+        const modeSel = document.getElementById('period_mode_gov');
+        const yearWrap = document.getElementById('year_wrap_gov');
+        const yearSel = document.getElementById('period_year_gov');
+        const qWrap = document.getElementById('quarter_wrap_gov');
+        const qSel = document.getElementById('period_quarter_gov');
+
+        fillYears(yearSel);
+        fillCurrentYearQuarters(qSel);
+
+        function syncMode() {
+            if (modeSel.value === 'tahun') {
+                toggleEl(yearWrap, true);
+                toggleEl(qWrap, false);
+            } else if (modeSel.value === 'triwulan') {
+                toggleEl(yearWrap, false);
+                toggleEl(qWrap, true);
+            } else {
+                toggleEl(yearWrap, false);
+                toggleEl(qWrap, false);
+            }
+        }
+
+        modeSel.addEventListener('change', syncMode);
+
+        // ===== MODIFIKASI: Atur Nilai Default di sini =====
+        modeSel.value = 'tahun'; // Atur default mode ke 'tahun'
+        yearSel.value = '2024';  // Atur default tahun ke '2024'
+
+        // Panggil syncMode() SETELAH mengatur default untuk menampilkan field yang benar
+        syncMode();
+        
+    });
+</script>

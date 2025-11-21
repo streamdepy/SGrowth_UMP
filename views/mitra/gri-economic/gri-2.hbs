@@ -1,4 +1,4 @@
-<main class="flex flex-col ml-48 self-center mt-16 w-full max-w-[1256px] max-md:mt-10 max-md:max-w-full">
+<main class="flex flex-col items-start self-center ml-48 mt-16 w-full max-w-[1168px] max-md:mt-10 max-md:max-w-full">
   <header class="flex gap-3.5 self-start">
     <img
       src="https://api.builder.io/api/v1/image/assets/TEMP/a2c214fc5ad90d019c67cc350eaa8b5e4005560c?placeholderIfAbsent=true&apiKey=ac04cd396e1f47f18955cd19640f183d"
@@ -10,381 +10,254 @@
         GRI Economic
       </h2>
       <p class="self-center text-xl font-medium leading-none text-center text-gray-500">
-        Economic Performance - Pendapatan & Pengeluaran
+        Economic Performance - Summary
       </p>
     </div>
   </header>
 
-  <section class="flex flex-col items-start self-end px-20 py-14 mt-16 w-full bg-white rounded-2xl shadow-2xl max-w-[1168px] max-md:px-5 max-md:mt-10 max-md:max-w-full">
-    <h3 class="text-3xl font-semibold text-center text-teal-700">
-      Bagian 2: Data Pendapatan dan Pengeluaran
-    </h3>
-    <p class="mt-6 text-xl leading-none text-gray-500 max-md:max-w-full">
-      Lengkapi data berikut untuk laporan pendapatan dan pengeluaran {{reporting_period}}.
-    </p>
+  <section class="self-stretch pt-12 pb-20 pl-16 mb-16 mt-10 bg-white rounded-2xl shadow-2xl max-md:pl-5 max-md:max-w-full">
+    <div class="flex gap-5 max-md:flex-col">
+      <aside class="w-[31%] max-md:ml-0 max-md:w-full">
+        <div class="flex flex-col items-start text-xl font-semibold leading-none text-gray-500 max-md:mt-10">
+          <h2 class="self-stretch text-3xl text-teal-700">
+            Automatic Summary
+          </h2>
 
-    <form action="/umkm/gri-2" method="POST" class="z-10 mt-14 max-w-full w-[1057px] max-md:mt-10">
-      <input type="hidden" name="gri_id" value="{{gri_id}}" />
-      <!-- Pendapatan Section -->
-      <div class="w-full text-base max-md:mt-10 max-md:max-w-full">
-  <h4 class="text-2xl font-semibold text-teal-700">
-    A. Pendapatan
-  </h4>
-
-  <div class="flex gap-4 items-center px-4 py-3 mt-6">
-    <div class="w-3/4">
-            <label class="block pb-2 w-full font-medium text-neutral-900 max-md:max-w-full">
-              Total pendapatan/revenue selama periode ini
-            </label>
-            <input
-              type="number"
-      id="revenue"
-      name="revenue"
-      value="{{#if record}}{{record.revenue}}{{/if}}"
-              placeholder="Masukkan jumlah biaya umum"
-              class="w-full px-8 py-4 mt-2 text-base text-black rounded-2xl border-gray-300 border border-solid bg-slate-50 placeholder-black/50 outline-none hover:ring focus:ring-2 focus:ring-teal-600 transition"
-            />
+          <div class="mt-16 font-medium text-gray-500 max-md:mt-10">
+            Total Revenue
           </div>
-          <div class="w-1/4">
-            <label class="block pb-2 w-full font-medium text-neutral-900 max-md:max-w-full">
-              Keterangan (opsional)
-            </label>
-            <input
-              type="text"
-              id="revenue_notes"
-              name="revenue_notes"
-              value="{{#if record}}{{record.revenue_notes}}{{/if}}"
-              placeholder="Keterangan"
-              class="w-full px-8 py-4 mt-2 text-base text-black rounded-2xl border-gray-300 border border-solid bg-slate-50 placeholder-black/50 outline-none hover:ring focus:ring-2 focus:ring-teal-600 transition"
-            />
+          <div class="mt-7 text-4xl leading-none text-teal-700">
+            Rp.
+            {{#if summary}}{{summary.revenue}}{{else}}{{record.revenue}}{{/if}}
           </div>
-          <div class="w-4/4">
-            <label class="block pb-2 w-full font-medium text-neutral-900 max-md:max-w-full">
-              Masukkan Dokumen
-            </label>
-            <input
-              type="file"
-              id="revenue_files"
-              name="revenue_files"
-              placeholder="Keterangan"
-              class="w-full px-8 py-4 mt-2 text-base text-black rounded-2xl border-gray-300 border border-solid bg-slate-50 placeholder-black/50 outline-none hover:ring focus:ring-2 focus:ring-teal-600 transition"
-            />
+
+          <div class="mt-8 font-medium text-gray-500">
+            Total Operational Costs
           </div>
-  </div>
-</div>
+          <div class="mt-7 text-4xl leading-none text-teal-700">
+            Rp.
+            {{#if summary}}{{summary.operational}}{{else}}{{totalOps}}{{/if}}
+          </div>
+
+          <div class="mt-6 font-medium text-gray-500">
+            Total Non-Operating Costs
+          </div>
+          <div class="mt-7 text-4xl leading-none text-teal-700">
+            Rp.
+            {{#if summary}}{{summary.non_operating_expenses}}{{else}}{{record.non_operating_expenses}}{{/if}}
+          </div>
+          <div class="mt-6 font-medium text-gray-500">
+            Profit/Loss
+          </div>
+          <div class="mt-7 text-4xl leading-none text-teal-700">
+            Rp.
+            {{#if summary}}{{summary.untung}}{{else}}{{untung}}{{/if}}
+          </div>
+        </div>
+      </aside>
+
+      <article class="ml-5 w-[59%] max-md:ml-0 max-md:w-full">
+        <!-- Summary Table -->
+        <div class="overflow-x-auto mt-10 max-md:max-w-full">
+          <table class="min-w-full table-auto">
+            <thead class="bg-teal-700 text-white">
+              <tr>
+                <th class="px-4 py-2">Category</th>
+                <th class="px-4 py-2">Amount (Rp)</th>
+                <th class="px-4 py-2">Notes</th>
+              </tr>
+            </thead>
+            <tbody>
+      <!-- Net Sales -->
+            <tr>
+              <td class="border px-4 py-2">Net Sales </td>
+              <td class="border px-4 py-2">Rp. {{#if summary}}{{summary.net_sales}}{{else}}{{record.net_sales}}{{/if}}</td>
+              <td class="border px-4 py-2">{{record.net_sales_notes}}</td>
+            </tr>
+
+            <!-- Sales -->
+            <tr>
+              <td class="border px-4 py-2">Sales </td>
+              <td class="border px-4 py-2">Rp. {{#if summary}}{{summary.sales}}{{else}}{{record.sales}}{{/if}}</td>
+              <td class="border px-4 py-2">{{record.sales_notes}}</td>
+            </tr>
+
+            <!-- Financial Investment Income -->
+            <tr>
+              <td class="border px-4 py-2">Financial Investment Income </td>
+              <td class="border px-4 py-2">Rp. {{#if summary}}{{summary.financial_investment_income}}{{else}}{{record.financial_investment_income}}{{/if}}</td>
+              <td class="border px-4 py-2">{{record.financial_investment_income_notes}}</td>
+            </tr>
+
+            <!-- Income from Asset Sales -->
+            <tr>
+              <td class="border px-4 py-2">Income from Asset Sales</td>
+              <td class="border px-4 py-2">Rp. {{#if summary}}{{summary.asset_sales_income}}{{else}}{{record.asset_sales_income}}{{/if}}</td>
+              <td class="border px-4 py-2">{{record.asset_sales_income_notes}}</td>
+            </tr>
+              <!-- Salary Expenses -->
+              <tr>
+                <td class="border px-4 py-2">Salary Expenses (Wages and Salaries)</td>
+                <td class="border px-4 py-2">Rp. {{#if summary}}{{summary.salary_expenses}}{{else}}{{record.salary_expenses}}{{/if}}</td>
+                <td class="border px-4 py-2">{{record.salary_employee_notes}}</td>
+              </tr>
+
+              <!-- Transportation Expenses -->
+              <tr>
+                <td class="border px-4 py-2">Transportation Expenses</td>
+                <td class="border px-4 py-2">Rp. {{#if summary}}{{summary.transport_expenses}}{{else}}{{record.transport_expenses}}{{/if}}</td>
+                <td class="border px-4 py-2">{{record.transport_notes}}</td>
+              </tr>
+
+              <!-- Fuel Expenses -->
+              <tr>
+                <td class="border px-4 py-2">Fuel Expenses</td>
+                <td class="border px-4 py-2">Rp. {{#if summary}}{{summary.fuel_expenses}}{{else}}{{record.fuel_expenses}}{{/if}}</td>
+                <td class="border px-4 py-2">{{record.fuel_notes}}</td>
+              </tr>
+
+              <!-- Electricity Expenses -->
+              <tr>
+                <td class="border px-4 py-2">Electricity Expenses</td>
+                <td class="border px-4 py-2">Rp. {{#if summary}}{{summary.electricity_expenses}}{{else}}{{record.electricity_expenses}}{{/if}}</td>
+                <td class="border px-4 py-2">{{record.electricity_notes}}</td>
+              </tr>
+
+              <!-- Internet Expenses -->
+              <tr>
+                <td class="border px-4 py-2">Internet Expenses</td>
+                <td class="border px-4 py-2">Rp. {{#if summary}}{{summary.internet_expenses}}{{else}}{{record.internet_expenses}}{{/if}}</td>
+                <td class="border px-4 py-2">{{record.internet_notes}}</td>
+              </tr>
+
+              <!-- Telephone Expenses -->
+              <tr>
+                <td class="border px-4 py-2">Telephone Expenses</td>
+                <td class="border px-4 py-2">Rp. {{#if summary}}{{summary.telephone_expenses}}{{else}}{{record.telephone_expenses}}{{/if}}</td>
+                <td class="border px-4 py-2">{{record.telephone_notes}}</td>
+              </tr>
+
+              <!-- Water Expenses -->
+              <tr>
+                <td class="border px-4 py-2">Water Expenses</td>
+                <td class="border px-4 py-2">Rp. {{#if summary}}{{summary.water_expenses}}{{else}}{{record.water_expenses}}{{/if}}</td>
+                <td class="border px-4 py-2">{{record.water_notes}}</td>
+              </tr>
+
+              <!-- Non-Operating Expenses -->
+              <tr>
+                <td class="border px-4 py-2">Non-Operating Expenses</td>
+                <td class="border px-4 py-2">Rp. {{#if summary}}{{summary.non_operating_expenses}}{{else}}{{record.non_operating_expenses}}{{/if}}</td>
+                <td class="border px-4 py-2">{{record.non_operating_notes}}</td>
+              </tr>
+
+              <!-- Property Rental Expenses -->
+              <tr>
+                <td class="border px-4 py-2">Property Rental Expenses</td>
+                <td class="border px-4 py-2">Rp. {{#if summary}}{{summary.property_rental_expenses}}{{else}}{{record.property_rental_expenses}}{{/if}}</td>
+                <td class="border px-4 py-2">{{record.property_rental_notes}}</td>
+              </tr>
+
+              <!-- License Fees -->
+              <tr>
+                <td class="border px-4 py-2">License Fees</td>
+                <td class="border px-4 py-2">Rp. {{#if summary}}{{summary.license_fees}}{{else}}{{record.license_fees}}{{/if}}</td>
+                <td class="border px-4 py-2">{{record.license_fees_notes}}</td>
+              </tr>
+
+              <!-- Facility Payments -->
+              <tr>
+                <td class="border px-4 py-2">Facility Payments</td>
+                <td class="border px-4 py-2">Rp. {{#if summary}}{{summary.facility_payments}}{{else}}{{record.facility_payments}}{{/if}}</td>
+                <td class="border px-4 py-2">{{record.facility_payments_notes}}</td>
+              </tr>
+
+              <!-- Royalties -->
+              <tr>
+                <td class="border px-4 py-2">Royalties</td>
+                <td class="border px-4 py-2">Rp. {{#if summary}}{{summary.royalties}}{{else}}{{record.royalties}}{{/if}}</td>
+                <td class="border px-4 py-2">{{record.royalties_notes}}</td>
+              </tr>
+
+              <!-- Contract Worker Payments -->
+              <tr>
+                <td class="border px-4 py-2">Contract Worker Payments</td>
+                <td class="border px-4 py-2">Rp. {{#if summary}}{{summary.contract_worker_payments}}{{else}}{{record.contract_worker_payments}}{{/if}}</td>
+                <td class="border px-4 py-2">{{record.contract_worker_notes}}</td>
+              </tr>
+
+              <!-- Training Costs -->
+              <tr>
+                <td class="border px-4 py-2">Training Costs</td>
+                <td class="border px-4 py-2">Rp. {{#if summary}}{{summary.training_costs}}{{else}}{{record.training_costs}}{{/if}}</td>
+                <td class="border px-4 py-2">{{record.training_costs_notes}}</td>
+              </tr>
+
+              <!-- Protective Clothing Costs -->
+              <tr>
+                <td class="border px-4 py-2">Protective Clothing Costs</td>
+                <td class="border px-4 py-2">Rp. {{#if summary}}{{summary.protective_clothing_costs}}{{else}}{{record.protective_clothing_costs}}{{/if}}</td>
+                <td class="border px-4 py-2">{{record.protective_clothing_notes}}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
 
 
-      <!-- Pengeluaran Section -->
-      <div class="w-full text-base max-md:mt-10 max-md:max-w-full">
-        <h4 class="text-2xl font-semibold text-teal-700 mt-10">
-          B. Pengeluaran
-        </h4>
+        <!-- Largest Expense Percentage -->
+        <div class="mt-10">
+          <h3 class="text-2xl font-semibold text-teal-700">Largest Expense Percentage</h3>
+          {{#if biggestExpense.category}}
+            <p class="text-lg text-gray-500 mt-4">
+              {{biggestExpense.category}}
+              is the largest expense, reaching
+              {{biggestExpense.percentage}}% of total operational costs.
+            </p>
+          {{else}}
+            <p class="text-lg text-gray-500 mt-4">No operational cost data entered yet.</p>
+          {{/if}}
+        </div>
 
-        <!-- General & Administrative Expenses -->
-        <div class="flex gap-4 items-center px-4 py-3 mt-6">
-          <div class="w-3/4">
-            <label class="block pb-2 w-full font-medium text-neutral-900 max-md:max-w-full">
-              1. General & Administrative Expenses (Biaya Umum dan Administrasi)
-            </label>
-            <input
-              type="number"
-              id="general_admin_expenses"
-              name="general_admin_expenses"
-              value="{{#if record}}{{record.general_admin_expenses}}{{/if}}"
-              placeholder="Masukkan jumlah biaya umum"
-              class="w-full px-8 py-4 mt-2 text-base text-black rounded-2xl border-gray-300 border border-solid bg-slate-50 placeholder-black/50 outline-none hover:ring focus:ring-2 focus:ring-teal-600 transition"
+        <!-- Document Completeness -->
+        <div class="mt-10">
+          <h3 class="text-2xl font-semibold text-teal-700">Document Completeness</h3>
+          <div class="flex gap-3 items-start py-3 mt-5">
+            <img
+              src="https://api.builder.io/api/v1/image/assets/TEMP/07f51810f5a8ec72f99a964de708e535be5afefe?placeholderIfAbsent=true&apiKey=ac04cd396e1f47f18955cd19640f183d"
+              alt="Checkmark"
+              class="object-contain shrink-0 w-5 rounded aspect-square"
             />
+            <span>Financial Report</span>
           </div>
-          <div class="w-1/4">
-            <label class="block pb-2 w-full font-medium text-neutral-900 max-md:max-w-full">
-              Keterangan (opsional)
-            </label>
-            <input
-              type="text"
-              id="general_admin_notes"
-              name="general_admin_notes"
-              value="{{#if record}}{{record.general_admin_notes}}{{/if}}"
-              placeholder="Keterangan"
-              class="w-full px-8 py-4 mt-2 text-base text-black rounded-2xl border-gray-300 border border-solid bg-slate-50 placeholder-black/50 outline-none hover:ring focus:ring-2 focus:ring-teal-600 transition"
+          <div class="flex gap-3 items-start py-3 mt-2">
+            <img
+              src="https://api.builder.io/api/v1/image/assets/TEMP/887a221a718e07029faaf64255641f813cfbf431?placeholderIfAbsent=true&apiKey=ac04cd396e1f47f18955cd19640f183d"
+              alt="Checkmark"
+              class="object-contain shrink-0 w-5 rounded aspect-square"
             />
+            <span>Sales Record</span>
+          </div>
+          <div class="flex gap-3 items-start py-3 mt-2">
+            <img
+              src="https://api.builder.io/api/v1/image/assets/TEMP/4809160e8bf8862d1b2b4c7165060c1229b7004f?placeholderIfAbsent=true&apiKey=ac04cd396e1f47f18955cd19640f183d"
+              alt="Checkmark"
+              class="object-contain shrink-0 w-5 rounded aspect-square"
+            />
+            <span>Expense Record</span>
           </div>
         </div>
 
-        <!-- Salary Expenses -->
-        <div class="flex gap-4 items-center px-4 py-3 mt-6">
-          <div class="w-3/4">
-            <label class="block pb-2 w-full font-medium text-neutral-900 max-md:max-w-full">
-              2. Salary Expenses (Gaji & Upah)
-            </label>
-            <input
-              type="number"
-              id="salary_expenses"
-              name="salary_expenses"
-              value="{{#if record}}{{record.salary_expenses}}{{/if}}"
-              placeholder="Masukkan jumlah gaji dan upah"
-              class="w-full px-8 py-4 mt-2 text-base text-black rounded-2xl border-gray-300 border border-solid bg-slate-50 placeholder-black/50 outline-none hover:ring focus:ring-2 focus:ring-teal-600 transition"
-            />
-          </div>
-          <div class="w-1/4">
-            <label class="block pb-2 w-full font-medium text-neutral-900 max-md:max-w-full">
-              Keterangan (opsional)
-            </label>
-            <input
-              type="text"
-              id="salary_employee_notes"
-              name="salary_employee_notes"
-              value="{{#if record}}{{record.salary_employee_notes}}{{/if}}"
-              placeholder="Keterangan"
-              class="w-full px-8 py-4 mt-2 text-base text-black rounded-2xl border-gray-300 border border-solid bg-slate-50 placeholder-black/50 outline-none hover:ring focus:ring-2 focus:ring-teal-600 transition"
-            />
-          </div>
-        </div>
+        <!-- Navigation -->
+        <nav class="flex gap-5 justify-between self-center mt-20 ml-72 max-w-full text-base font-medium text-center w-[323px]">
+          <a href="/mitra/gri-1?gri_id={{gri_id}}&period={{reporting_period}}" class="px-10 py-3 text-teal-700 bg-white rounded-xl border border-teal-700 hover:bg-teal-50 transition">
+            Previous
+          </a>
+          <a href="/mitra/dashboard" class="px-10 py-3 text-white bg-lime-500 rounded-xl hover:bg-lime-600 transition">
+            Submit
+          </a>
+        </nav>
 
-        <!-- Transportation Expenses -->
-        <div class="flex gap-4 items-center px-4 py-3 mt-6">
-          <div class="w-3/4">
-            <label class="block pb-2 w-full font-medium text-neutral-900 max-md:max-w-full">
-              3. Transportation Expenses (Biaya Transportasi)
-            </label>
-            <input
-              type="number"
-              id="transport_expenses"
-              name="transport_expenses"
-              value="{{#if record}}{{record.transport_expenses}}{{/if}}"
-              placeholder="Masukkan jumlah biaya transportasi"
-              class="w-full px-8 py-4 mt-2 text-base text-black rounded-2xl border-gray-300 border border-solid bg-slate-50 placeholder-black/50 outline-none hover:ring focus:ring-2 focus:ring-teal-600 transition"
-            />
-          </div>
-          <div class="w-1/4">
-            <label class="block pb-2 w-full font-medium text-neutral-900 max-md:max-w-full">
-              Keterangan (opsional)
-            </label>
-            <input
-              type="text"
-              id="transport_notes"
-              name="transport_notes"
-              value="{{#if record}}{{record.transport_notes}}{{/if}}"
-              placeholder="Keterangan"
-              class="w-full px-8 py-4 mt-2 text-base text-black rounded-2xl border-gray-300 border border-solid bg-slate-50 placeholder-black/50 outline-none hover:ring focus:ring-2 focus:ring-teal-600 transition"
-            />
-          </div>
-        </div>
-
-        <!-- Fuel & Electricity Expenses -->
-        <div class="flex gap-4 items-center px-4 py-3 mt-6">
-          <div class="w-1/2">
-            <label class="block pb-2 w-full font-medium text-neutral-900 max-md:max-w-full">
-              4. Fuel & Electricity Expenses (Bahan Bakar & Listrik)
-            </label>
-            <input
-              type="number"
-              id="fuel_expenses"
-              name="fuel_expenses"
-              value="{{#if record}}{{record.fuel_expenses}}{{/if}}"
-              placeholder="Masukkan biaya bahan bakar"
-              class="w-full px-8 py-4 mt-2 text-base text-black rounded-2xl border-gray-300 border border-solid bg-slate-50 placeholder-black/50 outline-none hover:ring focus:ring-2 focus:ring-teal-600 transition"
-            />
-          
-            <input
-              type="text"
-              id="fuel_notes"
-              name="fuel_notes"
-              value="{{#if record}}{{record.fuel_notes}}{{/if}}"
-              placeholder="Masukkan Keterangan bahan bakar"
-              class="w-full px-8 py-4 mt-2 text-base text-black rounded-2xl border-gray-300 border border-solid bg-slate-50 placeholder-black/50 outline-none hover:ring focus:ring-2 focus:ring-teal-600 transition"
-            />
-          </div>
-          <div class="w-1/2 mt-8">
-            <input
-              type="number"
-              id="electricity_expenses"
-              name="electricity_expenses"
-              value="{{#if record}}{{record.electricity_expenses}}{{/if}}"
-              placeholder="Masukkan biaya listrik"
-              class="w-full px-8 py-4 mt-2 text-base text-black rounded-2xl border-gray-300 border border-solid bg-slate-50 placeholder-black/50 outline-none hover:ring focus:ring-2 focus:ring-teal-600 transition"
-            />
-           
-            <input
-              type="text"
-              id="electricity_notes"
-              name="electricity_notes"
-              value="{{#if record}}{{record.electricity_notes}}{{/if}}"
-              placeholder="Masukkan Keterangan listrik"
-              class="w-full px-8 py-4 mt-2 text-base text-black rounded-2xl border-gray-300 border border-solid bg-slate-50 placeholder-black/50 outline-none hover:ring focus:ring-2 focus:ring-teal-600 transition"
-            />
-          </div>
-        </div>
-
-        <!-- Internet, Telephone & Water Expenses -->
-        <div class="flex gap-4 items-center px-4 py-3 mt-6">
-          <!-- Internet Expense -->
-          <div class="flex-1">
-            <label class="block pb-2 w-full font-medium text-neutral-900 max-md:max-w-full">
-              5. Internet, Telephone & Water Expenses (Internet)
-            </label>
-            <input
-              type="number"
-              id="internet_expenses"
-              name="internet_expenses"
-              value="{{#if record}}{{record.internet_expenses}}{{/if}}"
-              placeholder="Masukkan biaya internet"
-              class="w-full px-8 py-4 mt-2 text-base text-black rounded-2xl border-gray-300 border border-solid bg-slate-50 placeholder-black/50 outline-none hover:ring focus:ring-2 focus:ring-teal-600 transition"
-            />
-            <input
-              type="text"
-              id="internet_notes"
-              name="internet_notes"
-              value="{{#if record}}{{record.internet_notes}}{{/if}}"
-              placeholder="Masukkan Keterangan internet"
-              class="w-full px-8 py-4 mt-2 text-base text-black rounded-2xl border-gray-300 border border-solid bg-slate-50 placeholder-black/50 outline-none hover:ring focus:ring-2 focus:ring-teal-600 transition"
-            />
-          </div>
-          <!-- Telephone Expense -->
-          <div class="flex-1 mt-6">
-            <label class="block pb-2 w-full font-medium text-neutral-900 max-md:max-w-full">
-              (Telepon)
-            </label>
-            <input
-              type="text"
-              id="telephone_expenses"
-              name="telephone_expenses"
-              value="{{#if record}}{{record.telephone_expenses}}{{/if}}"
-              placeholder="Masukkan biaya telepon"
-              class="w-full px-8 py-4 mt-2 text-base text-black rounded-2xl border-gray-300 border border-solid bg-slate-50 placeholder-black/50 outline-none hover:ring focus:ring-2 focus:ring-teal-600 transition"
-            />
-            <input
-              type="text"
-              id="telephone_notes"
-              name="telephone_notes"
-              value="{{#if record}}{{record.telephone_notes}}{{/if}}"
-              placeholder="Masukkan Keterangan telepon"
-              class="w-full px-8 py-4 mt-2 text-base text-black rounded-2xl border-gray-300 border border-solid bg-slate-50 placeholder-black/50 outline-none hover:ring focus:ring-2 focus:ring-teal-600 transition"
-            />
-          </div>
-          <!-- Water Expense -->
-          <div class="flex-1 mt-6">
-            <label class="block pb-2 w-full font-medium text-neutral-900 max-md:max-w-full">
-              (Air)
-            </label>
-            <input
-              type="number"
-              id="water_expenses"
-              name="water_expenses"
-              value="{{#if record}}{{record.water_expenses}}{{/if}}"
-              placeholder="Masukkan biaya air"
-              class="w-full px-8 py-4 mt-2 text-base text-black rounded-2xl border-gray-300 border border-solid bg-slate-50 placeholder-black/50 outline-none hover:ring focus:ring-2 focus:ring-teal-600 transition"
-            />
-            <input
-              type="text"
-              id="water_notes"
-              name="water_notes"
-              value="{{#if record}}{{record.water_notes}}{{/if}}"
-              placeholder="Masukkan Keterangan air"
-              class="w-full px-8 py-4 mt-2 text-base text-black rounded-2xl border-gray-300 border border-solid bg-slate-50 placeholder-black/50 outline-none hover:ring focus:ring-2 focus:ring-teal-600 transition"
-            />
-          </div>
-        </div>
-
-        <!-- Other Operating Expenses -->
-        <div class="flex gap-4 items-center px-4 py-3 mt-6">
-          <div class="w-3/4">
-            <label class="block pb-2 w-full font-medium text-neutral-900 max-md:max-w-full">
-              6. Other Operating Expenses (Biaya Operasional Lainnya)
-            </label>
-            <input
-              type="number"
-              id="other_operating_expenses"
-              name="other_operating_expenses"
-              value="{{#if record}}{{record.other_operating_expenses}}{{/if}}"
-              placeholder="Masukkan jumlah biaya operasional lainnya"
-              class="w-full px-8 py-4 mt-2 text-base text-black rounded-2xl border-gray-300 border border-solid bg-slate-50 placeholder-black/50 outline-none hover:ring focus:ring-2 focus:ring-teal-600 transition"
-            />
-          </div>
-          <div class="w-1/4">
-            <label class="block pb-2 w-full font-medium text-neutral-900 max-md:max-w-full">
-              Deskripsi singkat (opsional)
-            </label>
-            <input
-              type="text"
-              id="other_operating_notes"
-              name="other_operating_notes"
-              value="{{#if record}}{{record.other_operating_notes}}{{/if}}"
-              placeholder="Masukkan deskripsi"
-              class="w-full px-8 py-4 mt-2 text-base text-black rounded-2xl border-gray-300 border border-solid bg-slate-50 placeholder-black/50 outline-none hover:ring focus:ring-2 focus:ring-teal-600 transition"
-            />
-          </div>
-        </div>
-
-        <!-- Non-Operating Expenses -->
-        <div class="flex gap-4 items-center px-4 py-3 mt-6">
-          <div class="w-3/4">
-            <label class="block pb-2 w-full font-medium text-neutral-900 max-md:max-w-full">
-              7. Non-Operating Expenses (Biaya Non-Operasional)
-            </label>
-            <input
-              type="number"
-              id="non_operating_expenses"
-              name="non_operating_expenses"
-              value="{{#if record}}{{record.non_operating_expenses}}{{/if}}"
-              placeholder="Masukkan biaya non-operasional"
-              class="w-full px-8 py-4 mt-2 text-base text-black rounded-2xl border-gray-300 border border-solid bg-slate-50 placeholder-black/50 outline-none hover:ring focus:ring-2 focus:ring-teal-600 transition"
-            />
-          </div>
-          <div class="w-1/4">
-            <label class="block pb-2 w-full font-medium text-neutral-900 max-md:max-w-full">
-              Deskripsi singkat (opsional)
-            </label>
-            <input
-              type="text"
-              id="non_operating_notes"
-              name="non_operating_notes"
-              value="{{#if record}}{{record.non_operating_notes}}{{/if}}"
-              placeholder="Masukkan deskripsi"
-              class="w-full px-8 py-4 mt-2 text-base text-black rounded-2xl border-gray-300 border border-solid bg-slate-50 placeholder-black/50 outline-none hover:ring focus:ring-2 focus:ring-teal-600 transition"
-            />
-          </div>
-        </div>
-        <div class="flex gap-4 items-center px-4 py-3 mt-2">
-          <div class="w-4/4">
-            <label class="block pb-2 w-full font-medium text-neutral-900 max-md:max-w-full">
-              8. Masukkan Dokumen Pengeluaran
-            </label>
-            <input
-              type="file"
-              id="expenses_files"
-              name="expenses_files"
-              placeholder="Keterangan"
-              class="w-full px-8 py-4 mt-2 text-base text-black rounded-2xl border-gray-300 border border-solid bg-slate-50 placeholder-black/50 outline-none hover:ring focus:ring-2 focus:ring-teal-600 transition"
-            />
-          </div>
-        </div>
-        
-      </div>
-
-      <!-- Button Section -->
-      <div class="flex justify-end gap-4 mt-7">
-        <!-- Previous Button -->
-        <button
-          type="button"
-          onclick="window.history.back()"
-          class="px-8 py-2 text-base font-medium text-center text-teal-700 border-teal-700 border border-solid whitespace-nowrap bg-white rounded-xl hover:bg-teal-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 transition-colors"
-        >
-          Sebelumnya
-        </button>
-
-        <!-- Submit Button -->
-        <button
-          type="submit"
-          class="px-8 py-2 text-base font-medium text-center text-white whitespace-nowrap bg-lime-500 rounded-xl hover:bg-lime-600 focus:outline-none focus:ring-2 focus:ring-lime-500 focus:ring-offset-2 transition-colors"
-        >
-          Simpan
-        </button>
-      </div>
-
-    </form>
+      </article>
+    </div>
   </section>
 </main>
-
-<style>
-  /* Custom input styles */ input[type="number"]:focus, select:focus { border-color: #0f766e; outline-color: #0f766e; }
-</style>

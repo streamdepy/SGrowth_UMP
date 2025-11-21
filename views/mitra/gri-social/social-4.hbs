@@ -1,280 +1,270 @@
-<main class="flex flex-col ml-48 self-center mb-16 mt-16 w-full max-w-[1256px] max-md:mt-10 max-md:max-w-full">
-    <header class="flex gap-3.5 self-start">
-        <img
-            src="https://api.builder.io/api/v1/image/assets/TEMP/07073f8526333ac3749a4d99615ea0579a831ebe?placeholderIfAbsent=true&apiKey=ac04cd396e1f47f18955cd19640f183d"
-            alt="GRI Economic icon"
-            class="object-contain shrink-0 my-auto rounded-full aspect-[1.04] w-[58px]"
-        />
-        <div class="flex flex-col">
-            <h2 class="text-4xl font-semibold text-black">
-                GRI Social
-            </h2>
-            <p class="self-center text-xl font-medium leading-none text-center text-gray-500">
-                Social Performance
-            </p>
-        </div>
-    </header>
+<main class="flex flex-col items-start self-center ml-48 mt-16 w-full max-w-[1168px] max-md:mt-10 max-md:max-w-full">
+  <header class="flex gap-3.5 self-start">
+    <img
+      src="https://api.builder.io/api/v1/image/assets/TEMP/07073f8526333ac3749a4d99615ea0579a831ebe?placeholderIfAbsent=true&apiKey=ac04cd396e1f47f18955cd19640f183d"
+      alt="GRI Social icon"
+      class="object-contain shrink-0 my-auto rounded-full aspect-[1.04] w-[58px]"
+    />
+    <div class="flex flex-col">
+      <h2 class="text-4xl font-semibold text-black">GRI Social</h2>
+      <p class="self-center text-xl font-medium leading-none text-center text-gray-500">
+        Social Performance
+      </p>
+    </div>
+  </header>
 
-<!-- Pelatihan Kesehatan & Keselamatan (ASEDG-S4.2) -->
-<section class="flex flex-col items-start py-14 px-16 mt-10 w-full bg-white rounded-2xl shadow-2xl max-w-[981px] max-md:px-5 max-md:mt-10">
-  <h3 class="text-3xl font-semibold text-teal-700">Pelatihan Kesehatan & Keselamatan (ASEDG-S4.2)</h3>
-  <p class="mt-3 text-gray-500">Isi data pelatihan K3 pada periode pelaporan ini.</p>
+  <!-- 404-2: Programs for Improving Employee Skills & Transition Assistance -->
+  <section class="self-stretch pt-12 pb-20 pl-16 mb-16 mt-10 bg-white rounded-2xl shadow-2xl max-md:pl-5 max-md:max-w-full">
+    <h3 class="text-3xl font-semibold text-teal-700">
+      404-2 • Programs for Improving Employee Skills and Transition Assistance
+    </h3>
+    <p class="mt-3 text-gray-500">
+      Please provide details on the programs and support offered to improve employee skills and facilitate transition assistance for continuous employability and career management, including from retirement or involuntary termination.
+    </p>
 
-  <!-- Ada pelatihan? -->
-  <div class="w-full mt-8">
-    <label class="block pb-2 text-base font-medium">Apakah ada pelatihan K3 pada periode ini?</label>
-    <select id="train_has" name="train_has"
-      class="w-full px-8 py-4 mt-2 text-base text-black rounded-2xl border border-gray-300 bg-slate-50 outline-none hover:ring focus:ring-2 focus:ring-teal-600 transition">
-      <option value="ya">Ya</option>
-      <option value="tidak">Tidak</option>
-    </select>
-  </div>
+    <!-- Meta period (optional) -->
+    <div class="mt-6 grid grid-cols-1 md:grid-cols-3 gap-4 pr-8 md:pr-12 lg:pr-16">
+      <div>
+        <label class="block pb-2 text-base font-medium">Reporting Period</label>
+        <input type="text" name="reporting_period" value="2025-Q3" 
+          class="w-full px-8 py-4 text-base rounded-2xl border border-gray-300 bg-slate-50 outline-none hover:ring focus:ring-2 focus:ring-teal-600 transition">
+      </div>
+      <div>
+        <label class="block pb-2 text-base font-medium">Program Location</label>
+        <select name="program_location"
+          class="w-full px-8 py-4 text-base rounded-2xl border border-gray-300 bg-slate-50 outline-none hover:ring focus:ring-2 focus:ring-teal-600 transition">
+          <option value="">Select Location</option>
+          <option value="global">Global</option>
+          <option value="regional">Regional</option>
+          <option value="local">Local</option>
+        </select>
+      </div>
+    </div>
 
-  <!-- Detail (muncul jika Ya) -->
-  <div id="train_details" class="w-full mt-6 hidden">
-    <div id="train_list" class="space-y-8">
-      <!-- Entri pelatihan pertama -->
-      <div class="train-item border border-gray-200 rounded-2xl p-4">
-        <div class="flex gap-5 max-md:flex-col">
-          <div class="w-6/12 max-md:w-full">
-            <label class="block pb-2 text-base font-medium">Jumlah karyawan mengikuti</label>
-            <input type="number" value="95" min="0" class="train-attended w-full px-8 py-4 mt-2 border rounded-2xl bg-slate-50">
-          </div>
-          <div class="w-6/12 max-md:w-full">
-            <label class="block pb-2 text-base font-medium">Total karyawan seharusnya</label>
-            <input type="number" value="100" min="0" class="train-required w-full px-8 py-4 mt-2 border rounded-2xl bg-slate-50">
-          </div>
-        </div>
-
-        <!-- Persentase -->
-        <div class="w-full mt-6">
-          <label class="block pb-2 text-base font-medium">Persentase karyawan terlatih (otomatis)</label>
-          <div class="relative">
-            <input type="text" readonly class="train-percent w-full px-8 py-4 pr-16 mt-2 border rounded-2xl bg-gray-50" placeholder="0%">
-            <span class="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400">%</span>
-          </div>
-        </div>
-
-        <!-- Jenis & Frekuensi -->
-        <div class="flex gap-5 mt-6 max-md:flex-col">
-          <div class="w-6/12 max-md:w-full">
-            <label class="block pb-2 text-base font-medium">Jenis pelatihan</label>
-            <select class="train-type w-full px-8 py-4 mt-2 border rounded-2xl bg-slate-50">
-              <option value="Dasar K3">Dasar K3</option>
-              <option>Tanggap Darurat</option>
-              <option>Penanganan Bahan Berbahaya</option>
-              <option>Ergonomi</option>
-              <option value="lainnya">Lainnya</option>
+    <!-- Skills Improvement Programs -->
+    <div id="skills_program_list" class="space-y-8 mt-8 pr-8 md:pr-12 lg:pr-16">
+      <!-- Entry #0 (initial) -->
+      <div class="skills-item border border-gray-200 rounded-2xl p-4">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+          <!-- Program Type -->
+          <div>
+            <label class="block pb-2 text-base font-medium">Program Type</label>
+            <select class="hi-program-type w-full px-8 py-4 text-base rounded-2xl border border-gray-300 bg-slate-50 outline-none hover:ring focus:ring-2 focus:ring-teal-600 transition">
+              <option value="">Select</option>
+              <option value="On-the-job training">On-the-job Training</option>
+              <option value="Job Rotation">Job Rotation</option>
+              <option value="Classroom training">Classroom Training</option>
+              <option value="Online Training">Online Training</option>
+              <option value="Mentorship">Mentorship</option>
+              <option value="Other">Other</option>
             </select>
-            <input type="text" class="train-type-other w-full px-4 py-3 mt-3 border rounded-lg bg-slate-50 hidden" placeholder="Sebutkan jenis lain">
+            <input type="text" class="hi-program-other w-full px-4 py-3 mt-3 border rounded-lg bg-slate-50 hidden" placeholder="Specify other program">
           </div>
 
-          <div class="w-6/12 max-md:w-full">
-            <label class="block pb-2 text-base font-medium">Frekuensi pelatihan</label>
-            <select class="train-freq w-full px-8 py-4 mt-2 border rounded-2xl bg-slate-50">
-              <option value="Tahunan">Tahunan</option>
-              <option>Triwulanan</option>
-              <option>Tahunan</option>
-              <option value="lainnya">Lainnya</option>
-            </select>
-            <input type="text" class="train-freq-other w-full px-4 py-3 mt-3 border rounded-lg bg-slate-50 hidden" placeholder="Sebutkan frekuensi lain">
+          <!-- Program Duration -->
+          <div>
+            <label class="block pb-2 text-base font-medium">Program Duration (months)</label>
+            <input type="number" class="hi-program-duration w-full px-8 py-4 text-base rounded-2xl border border-gray-300 bg-slate-50 outline-none hover:ring focus:ring-2 focus:ring-teal-600 transition" min="1" placeholder="Months">
           </div>
-        </div>
 
-        <!-- Bukti -->
-        <div class="w-full mt-6">
-          <label class="block pb-2 text-base font-medium">Bukti dokumentasi (opsional)</label>
-          <div class="flex gap-5 max-md:flex-col">
-            <div class="w-6/12 max-md:w-full">
-              <input type="file" class="train-proof-file w-full px-4 py-3 border rounded-2xl bg-slate-50">
-            </div>
-            <div class="w-6/12 max-md:w-full">
-              <input type="url" value="http://umkm/pelatihan_11_Maret_2025" class="train-proof-link w-full px-8 py-4 border rounded-2xl bg-slate-50" placeholder="Atau tautan dokumen">
-            </div>
+          <!-- Program Participants -->
+          <div>
+            <label class="block pb-2 text-base font-medium">Number of Participants</label>
+            <input type="number" class="hi-participants w-full px-8 py-4 text-base rounded-2xl border border-gray-300 bg-slate-50 outline-none hover:ring focus:ring-2 focus:ring-teal-600 transition" min="1" placeholder="Number of Participants">
           </div>
-        </div>
-
-        <!-- Tombol hapus -->
-        <div class="mt-4 flex justify-end">
-          <button type="button" class="train-remove hidden px-4 py-2 border rounded-xl text-gray-700 hover:bg-gray-50">Hapus pelatihan</button>
         </div>
       </div>
     </div>
 
-    <!-- Tombol tambah -->
-    <div class="mt-6 flex justify-end">
-      <button type="button" id="train_add_item"
-        class="inline-flex items-center gap-2 px-4 py-2 rounded-xl text-teal-700 text-sm font-medium transition">
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+    <!-- Add entry buttons -->
+    <div class="mt-6 flex justify-end pr-8 md:pr-12 lg:pr-16">
+      <button type="button" id="skills_add_item"
+              class="inline-flex items-center gap-2 px-4 py-2 rounded-xl text-teal-700 text-sm font-medium transition hover:bg-teal-50">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none"
+             viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
           <path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4"/>
         </svg>
-        Tambah
+        Add Skills Program
       </button>
     </div>
-  </div>
 
-    <!-- Buttons pojok kanan kotak putih -->
-  <div class="flex justify-end gap-4 mt-10 w-full">
-    <button type="button" onclick="window.history.back()"
-      class="px-8 py-2 text-base font-medium text-center text-teal-700 border-teal-700 border border-solid whitespace-nowrap bg-white rounded-xl hover:bg-teal-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 transition-colors">
-      Sebelumnya
-    </button>
-    <a href="/umkm/social-5"
-      class="px-8 py-2 text-base font-medium text-center text-white whitespace-nowrap bg-lime-500 rounded-xl hover:bg-lime-600 focus:outline-none focus:ring-2 focus:ring-lime-500 focus:ring-offset-2 transition-colors">
-      Simpan
-    </a>
-  </div>
-</section>
+    <!-- Transition Assistance Programs -->
+    <div id="transition_program_list" class="space-y-8 mt-8 pr-8 md:pr-12 lg:pr-16">
+      <!-- Entry #1 (initial) -->
+      <div class="transition-item border border-gray-200 rounded-2xl p-4">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+          <!-- Program Type -->
+          <div>
+            <label class="block pb-2 text-base font-medium">Transition Assistance Type</label>
+            <select class="hi-transition-type w-full px-8 py-4 text-base rounded-2xl border border-gray-300 bg-slate-50 outline-none hover:ring focus:ring-2 focus:ring-teal-600 transition">
+              <option value="">Select</option>
+              <option value="Career Counseling">Career Counseling</option>
+              <option value="Severance Support">Severance Support</option>
+              <option value="Job Placement Support">Job Placement Support</option>
+              <option value="Retirement Planning">Retirement Planning</option>
+              <option value="Other">Other</option>
+            </select>
+            <input type="text" class="hi-transition-other w-full px-4 py-3 mt-3 border rounded-lg bg-slate-50 hidden" placeholder="Specify other assistance">
+          </div>
 
-<!-- Template item pelatihan -->
-<template id="train_item_tpl">
-  <div class="train-item border border-gray-200 rounded-2xl p-4">
-    <div class="flex gap-5 max-md:flex-col">
-      <div class="w-6/12 max-md:w-full">
-        <label class="block pb-2 text-base font-medium">Jumlah karyawan mengikuti</label>
-        <input type="number" min="0" value="80" class="train-attended w-full px-8 py-4 mt-2 border rounded-2xl bg-slate-50">
-      </div>
-      <div class="w-6/12 max-md:w-full">
-        <label class="block pb-2 text-base font-medium">Total karyawan seharusnya</label>
-        <input type="number" min="0" value="120" class="train-required w-full px-8 py-4 mt-2 border rounded-2xl bg-slate-50">
-      </div>
-    </div>
+          <!-- Assistance Duration -->
+          <div>
+            <label class="block pb-2 text-base font-medium">Assistance Duration (months)</label>
+            <input type="number" class="hi-transition-duration w-full px-8 py-4 text-base rounded-2xl border border-gray-300 bg-slate-50 outline-none hover:ring focus:ring-2 focus:ring-teal-600 transition" min="1" placeholder="Months">
+          </div>
 
-    <!-- Persentase -->
-    <div class="w-full mt-6">
-      <label class="block pb-2 text-base font-medium">Persentase karyawan terlatih (otomatis)</label>
-      <div class="relative">
-        <input type="text" readonly class="train-percent w-full px-8 py-4 pr-16 mt-2 border rounded-2xl bg-gray-50" placeholder="0%">
-        <span class="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400">%</span>
-      </div>
-    </div>
-
-    <!-- Jenis & Frekuensi -->
-    <div class="flex gap-5 mt-6 max-md:flex-col">
-      <div class="w-6/12 max-md:w-full">
-        <label class="block pb-2 text-base font-medium">Jenis pelatihan</label>
-        <select class="train-type w-full px-8 py-4 mt-2 border rounded-2xl bg-slate-50">
-          <option value="Tanggap Darurat">Tanggap Darurat</option>
-          <option>Dasar K3</option>
-          <option>Penanganan Bahan Berbahaya</option>
-          <option>Ergonomi</option>
-          <option value="lainnya">Lainnya</option>
-        </select>
-        <input type="text" class="train-type-other w-full px-4 py-3 mt-3 border rounded-lg bg-slate-50 hidden" placeholder="Sebutkan jenis lain">
-      </div>
-
-      <div class="w-6/12 max-md:w-full">
-        <label class="block pb-2 text-base font-medium">Frekuensi pelatihan</label>
-        <select class="train-freq w-full px-8 py-4 mt-2 border rounded-2xl bg-slate-50">
-          <option value="Triwulanan">Triwulanan</option>
-          <option>Bulanan</option>
-          <option>Tahunan</option>
-          <option value="lainnya">Lainnya</option>
-        </select>
-        <input type="text" class="train-freq-other w-full px-4 py-3 mt-3 border rounded-lg bg-slate-50 hidden" placeholder="Sebutkan frekuensi lain">
-      </div>
-    </div>
-
-    <!-- Bukti -->
-    <div class="w-full mt-6">
-      <label class="block pb-2 text-base font-medium">Bukti dokumentasi (opsional)</label>
-      <div class="flex gap-5 max-md:flex-col">
-        <div class="w-6/12 max-md:w-full">
-          <input type="file" class="train-proof-file w-full px-4 py-3 border rounded-2xl bg-slate-50">
-        </div>
-        <div class="w-6/12 max-md:w-full">
-          <input type="url" value="http://umkm/pelatihan_12_Maret_2025" class="train-proof-link w-full px-8 py-4 border rounded-2xl bg-slate-50" placeholder="Atau tautan dokumen">
+          <!-- Number of Beneficiaries -->
+          <div>
+            <label class="block pb-2 text-base font-medium">Number of Beneficiaries</label>
+            <input type="number" class="hi-beneficiaries w-full px-8 py-4 text-base rounded-2xl border border-gray-300 bg-slate-50 outline-none hover:ring focus:ring-2 focus:ring-teal-600 transition" min="1" placeholder="Number of Beneficiaries">
+          </div>
         </div>
       </div>
     </div>
 
-    <!-- Tombol hapus -->
+    <!-- Add Transition Assistance Button -->
+    <div class="mt-6 flex justify-end pr-8 md:pr-12 lg:pr-16">
+      <button type="button" id="transition_add_item"
+              class="inline-flex items-center gap-2 px-4 py-2 rounded-xl text-teal-700 text-sm font-medium transition hover:bg-teal-50">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none"
+             viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4"/>
+        </svg>
+        Add Transition Assistance Program
+      </button>
+    </div>
+
+        <!-- Program Results Section -->
+    <div class="mt-8 pr-8 md:pr-12 lg:pr-16">
+      <h4 class="text-2xl font-semibold text-teal-700">Program Results</h4>
+      <p class="mt-3 text-gray-500">Please provide the impact of these programs on employee retention, internal promotions, and job satisfaction.</p>
+      <textarea class="w-full px-8 py-4 text-base rounded-2xl border border-gray-300 bg-slate-50 outline-none hover:ring focus:ring-2 focus:ring-teal-600 transition" rows="5" placeholder="Describe the impact of the program on employee retention, promotions, and job satisfaction..."></textarea>
+    </div>
+
+    <!-- Best Practices Section -->
+    <div class="mt-8 pr-8 md:pr-12 lg:pr-16">
+      <h4 class="text-2xl font-semibold text-teal-700">Best Practices</h4>
+      <p class="mt-3 text-gray-500">Provide a brief narrative about one successful skills improvement initiative.</p>
+      <textarea class="w-full px-8 py-4 text-base rounded-2xl border border-gray-300 bg-slate-50 outline-none hover:ring focus:ring-2 focus:ring-teal-600 transition" rows="5" placeholder="Provide details on a successful skills improvement initiative..."></textarea>
+    </div>
+
+    <!-- Navigation -->
+    <div class="flex justify-end gap-4 mt-10 w-full pr-8 md:pr-12 lg:pr-16">
+      <button type="button" onclick="window.history.back()"
+        class="px-8 py-2 text-base font-medium text-center text-teal-700 border-teal-700 border border-solid whitespace-nowrap bg-white rounded-xl hover:bg-teal-700 hover:text-white transition-colors">
+        Previous
+      </button>
+      <a href="/umkm/social-5"
+        class="px-8 py-2 text-base font-medium text-center text-white whitespace-nowrap bg-lime-500 rounded-xl hover:bg-lime-600 transition-colors">
+        Next
+      </a>
+    </div>
+  </section>
+</main>
+
+<!-- Template for adding new skills program -->
+<template id="skills_item_tpl">
+  <div class="skills-item border border-gray-200 rounded-2xl p-4">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+      <div>
+        <label class="block pb-2 text-base font-medium">Program Type</label>
+        <select class="hi-program-type w-full px-8 py-4 text-base rounded-2xl border border-gray-300 bg-slate-50 outline-none hover:ring focus:ring-2 focus:ring-teal-600 transition">
+          <option value="">Select</option>
+          <option value="On-the-job training">On-the-job Training</option>
+          <option value="Job Rotation">Job Rotation</option>
+          <option value="Classroom training">Classroom Training</option>
+          <option value="Online Training">Online Training</option>
+          <option value="Mentorship">Mentorship</option>
+          <option value="Other">Other</option>
+        </select>
+        <input type="text" class="hi-program-other w-full px-4 py-3 mt-3 border rounded-lg bg-slate-50 hidden" placeholder="Specify other program">
+      </div>
+
+      <div>
+        <label class="block pb-2 text-base font-medium">Program Duration (months)</label>
+        <input type="number" class="hi-program-duration w-full px-8 py-4 text-base rounded-2xl border border-gray-300 bg-slate-50 outline-none hover:ring focus:ring-2 focus:ring-teal-600 transition" min="1" placeholder="Months">
+      </div>
+
+      <div>
+        <label class="block pb-2 text-base font-medium">Number of Participants</label>
+        <input type="number" class="hi-participants w-full px-8 py-4 text-base rounded-2xl border border-gray-300 bg-slate-50 outline-none hover:ring focus:ring-2 focus:ring-teal-600 transition" min="1" placeholder="Number of Participants">
+      </div>
+    </div>
+
+    <!-- Remove button -->
     <div class="mt-4 flex justify-end">
-      <button type="button" class="train-remove px-4 py-2 border rounded-xl text-gray-700 hover:bg-gray-50">Hapus pelatihan</button>
+      <button type="button" class="remove-btn px-4 py-2 border rounded-xl text-gray-700 hover:bg-gray-50">
+        Remove Entry
+      </button>
     </div>
   </div>
 </template>
 
+<!-- Template for adding new transition assistance program -->
+<template id="transition_item_tpl">
+  <div class="transition-item border border-gray-200 rounded-2xl p-4">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+      <div>
+        <label class="block pb-2 text-base font-medium">Transition Assistance Type</label>
+        <select class="hi-transition-type w-full px-8 py-4 text-base rounded-2xl border border-gray-300 bg-slate-50 outline-none hover:ring focus:ring-2 focus:ring-teal-600 transition">
+          <option value="">Select</option>
+          <option value="Career Counseling">Career Counseling</option>
+          <option value="Severance Support">Severance Support</option>
+          <option value="Job Placement Support">Job Placement Support</option>
+          <option value="Retirement Planning">Retirement Planning</option>
+          <option value="Other">Other</option>
+        </select>
+        <input type="text" class="hi-transition-other w-full px-4 py-3 mt-3 border rounded-lg bg-slate-50 hidden" placeholder="Specify other assistance">
+      </div>
 
+      <div>
+        <label class="block pb-2 text-base font-medium">Assistance Duration (months)</label>
+        <input type="number" class="hi-transition-duration w-full px-8 py-4 text-base rounded-2xl border border-gray-300 bg-slate-50 outline-none hover:ring focus:ring-2 focus:ring-teal-600 transition" min="1" placeholder="Months">
+      </div>
 
+      <div>
+        <label class="block pb-2 text-base font-medium">Number of Beneficiaries</label>
+        <input type="number" class="hi-beneficiaries w-full px-8 py-4 text-base rounded-2xl border border-gray-300 bg-slate-50 outline-none hover:ring focus:ring-2 focus:ring-teal-600 transition" min="1" placeholder="Number of Beneficiaries">
+      </div>
+    </div>
 
-
-
-
-
-
-
-
-</main>
+    <!-- Remove button -->
+    <div class="mt-4 flex justify-end">
+      <button type="button" class="remove-btn px-4 py-2 border rounded-xl text-gray-700 hover:bg-gray-50">
+        Remove Entry
+      </button>
+    </div>
+  </div>
+</template>
 
 <script>
-document.addEventListener('DOMContentLoaded', function () {
-  const hasSel = document.getElementById('train_has');
-  const box    = document.getElementById('train_details');
-  const list   = document.getElementById('train_list');
-  const addBtn = document.getElementById('train_add_item');
-  const tpl    = document.getElementById('train_item_tpl');
+  document.addEventListener('DOMContentLoaded', function() {
+    // Skills program addition
+    const skillsAddBtn = document.getElementById('skills_add_item');
+    const skillsList = document.getElementById('skills_program_list');
+    const skillsTpl = document.getElementById('skills_item_tpl');
 
-  function toggleEl(el, show) {
-    if (!el) return;
-    el.classList.toggle('hidden', !show);
-  }
-
-  function syncHas() {
-    const yes = hasSel && hasSel.value === 'ya';
-    toggleEl(box, yes);
-    if (box) box.querySelectorAll('input,select,textarea').forEach(el => { el.disabled = !yes; });
-  }
-
-  function recompute(item) {
-    const att = parseFloat(item.querySelector('.train-attended')?.value || '0');
-    const req = parseFloat(item.querySelector('.train-required')?.value || '0');
-    const pct = req > 0 ? (att / req) * 100 : 0;
-    item.querySelector('.train-percent').value = pct.toFixed(2);
-  }
-
-  function attachHandlers(item) {
-    const attended = item.querySelector('.train-attended');
-    const required = item.querySelector('.train-required');
-    if (attended) attended.addEventListener('input', () => recompute(item));
-    if (required) required.addEventListener('input', () => recompute(item));
-
-    const typeSel = item.querySelector('.train-type');
-    const typeOther = item.querySelector('.train-type-other');
-    if (typeSel) typeSel.addEventListener('change', () => toggleEl(typeOther, typeSel.value === 'lainnya'));
-
-    const freqSel = item.querySelector('.train-freq');
-    const freqOther = item.querySelector('.train-freq-other');
-    if (freqSel) freqSel.addEventListener('change', () => toggleEl(freqOther, freqSel.value === 'lainnya'));
-
-    const removeBtn = item.querySelector('.train-remove');
-    if (removeBtn) {
-      removeBtn.addEventListener('click', () => {
-        if (list.querySelectorAll('.train-item').length > 1) item.remove();
+    skillsAddBtn.addEventListener('click', function() {
+      const clone = skillsTpl.content.firstElementChild.cloneNode(true);
+      skillsList.appendChild(clone);
+      const removeBtn = clone.querySelector('.remove-btn');
+      removeBtn.addEventListener('click', function() {
+        clone.remove();
       });
-    }
-    recompute(item);
-  }
-
-  if (hasSel) {
-    hasSel.addEventListener('change', syncHas);
-    syncHas();
-  }
-
-  const firstItem = list.querySelector('.train-item');
-  if (firstItem) attachHandlers(firstItem);
-
-  if (addBtn) {
-    addBtn.addEventListener('click', () => {
-      const clone = tpl.content.firstElementChild.cloneNode(true);
-      list.appendChild(clone);
-      attachHandlers(clone);
-      const removeBtn = clone.querySelector('.train-remove');
-      if (removeBtn) removeBtn.classList.remove('hidden');
     });
-  }
-});
+
+    // Transition assistance program addition
+    const transitionAddBtn = document.getElementById('transition_add_item');
+    const transitionList = document.getElementById('transition_program_list');
+    const transitionTpl = document.getElementById('transition_item_tpl');
+
+    transitionAddBtn.addEventListener('click', function() {
+      const clone = transitionTpl.content.firstElementChild.cloneNode(true);
+      transitionList.appendChild(clone);
+      const removeBtn = clone.querySelector('.remove-btn');
+      removeBtn.addEventListener('click', function() {
+        clone.remove();
+      });
+    });
+  });
 </script>
-
-
-

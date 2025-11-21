@@ -23,24 +23,25 @@
       Complete the following data for the revenue and expenses report for {{reporting_period}}.
     </p>
 
-    <form action="/umkm/gri-2" method="POST" class="z-10 mt-14 max-w-full w-[1057px] max-md:mt-10">
+    <form action="/mitra/gri-2" method="GET" class="z-10 mt-14 max-w-full w-[1057px] max-md:mt-10">
       <input type="hidden" name="gri_id" value="{{gri_id}}" />
+      
       <!-- Revenue Section -->
       <div class="w-full text-base max-md:mt-10 max-md:max-w-full">
-  <h4 class="text-2xl font-semibold text-teal-700">
-    A. Revenue
-  </h4>
+        <h4 class="text-2xl font-semibold text-teal-700">
+          A. Revenue
+        </h4>
 
-  <div class="flex gap-4 items-center px-4 py-3 mt-6">
-    <div class="w-3/4">
+        <div class="flex gap-4 items-center px-4 py-3 mt-6">
+          <div class="w-3/4">
             <label class="block pb-2 w-full font-medium text-neutral-900 max-md:max-w-full">
               Total revenue during this period
             </label>
             <input
               type="number"
-      id="revenue"
-      name="revenue"
-      value="{{#if record}}{{record.revenue}}{{/if}}"
+              id="revenue"
+              name="revenue"
+              value="{{#if record}}{{record.revenue}}{{/if}}"
               placeholder="Enter total revenue"
               class="w-full px-8 py-4 mt-2 text-base text-black rounded-2xl border-gray-300 border border-solid bg-slate-50 placeholder-black/50 outline-none hover:ring focus:ring-2 focus:ring-teal-600 transition"
             />
@@ -58,29 +59,16 @@
               class="w-full px-8 py-4 mt-2 text-base text-black rounded-2xl border-gray-300 border border-solid bg-slate-50 placeholder-black/50 outline-none hover:ring focus:ring-2 focus:ring-teal-600 transition"
             />
           </div>
-          <div class="w-4/4">
-            <label class="block pb-2 w-full font-medium text-neutral-900 max-md:max-w-full">
-              Upload Document
-            </label>
-            <input
-              type="file"
-              id="revenue_files"
-              name="revenue_files"
-              placeholder="Keterangan"
-              class="w-full px-8 py-4 mt-2 text-base text-black rounded-2xl border-gray-300 border border-solid bg-slate-50 placeholder-black/50 outline-none hover:ring focus:ring-2 focus:ring-teal-600 transition"
-            />
-          </div>
-  </div>
-</div>
+        </div>
+      </div>
 
+      <!-- Revenue Type Selection -->
+      <div class="w-full mt-6">
+        <label class="block pb-2 w-full font-medium text-neutral-900 max-md:max-w-full">
+          Type of Revenue
+        </label>
 
-<!-- Revenue Type Selection -->
-<div class="w-full mt-6">
-  <label class="block pb-2 w-full font-medium text-neutral-900 max-md:max-w-full">
-    Type of Revenue
-  </label>
-
-          <!-- General & Administrative Expenses -->
+        <!-- Net Sales -->
         <div class="flex gap-4 items-center px-4 py-3 mt-6">
           <div class="w-3/4">
             <label class="block pb-2 w-full font-medium text-neutral-900 max-md:max-w-full">
@@ -110,7 +98,7 @@
           </div>
         </div>
 
-        <!-- Salary Expenses -->
+        <!-- Sales -->
         <div class="flex gap-4 items-center px-4 py-3 mt-6">
           <div class="w-3/4">
             <label class="block pb-2 w-full font-medium text-neutral-900 max-md:max-w-full">
@@ -140,7 +128,7 @@
           </div>
         </div>
 
-        <!-- Transportation Expenses -->
+        <!-- Financial Investment Income -->
         <div class="flex gap-4 items-center px-4 py-3 mt-6">
           <div class="w-3/4">
             <label class="block pb-2 w-full font-medium text-neutral-900 max-md:max-w-full">
@@ -170,6 +158,7 @@
           </div>
         </div>
 
+        <!-- Income from Asset Sales -->
         <div class="flex gap-4 items-center px-4 py-3 mt-6">
           <div class="w-3/4">
             <label class="block pb-2 w-full font-medium text-neutral-900 max-md:max-w-full">
@@ -198,13 +187,9 @@
             />
           </div>
         </div>
+      </div>
 
-</div>
-
-
-
-
-      <!-- Pengeluaran Section -->
+      <!-- Expenses Section -->
       <div class="w-full text-base max-md:mt-10 max-md:max-w-full">
         <h4 class="text-2xl font-semibold text-teal-700 mt-10">
           B. Expenses
@@ -314,7 +299,6 @@
               placeholder="Input fuel expenses"
               class="w-full px-8 py-4 mt-2 text-base text-black rounded-2xl border-gray-300 border border-solid bg-slate-50 placeholder-black/50 outline-none hover:ring focus:ring-2 focus:ring-teal-600 transition"
             />
-          
             <input
               type="text"
               id="fuel_notes"
@@ -333,7 +317,6 @@
               placeholder="Input electricity expenses"
               class="w-full px-8 py-4 mt-2 text-base text-black rounded-2xl border-gray-300 border border-solid bg-slate-50 placeholder-black/50 outline-none hover:ring focus:ring-2 focus:ring-teal-600 transition"
             />
-           
             <input
               type="text"
               id="electricity_notes"
@@ -347,7 +330,6 @@
 
         <!-- Internet, Telephone & Water Expenses -->
         <div class="flex gap-4 items-center px-4 py-3 mt-6">
-          <!-- Internet Expense -->
           <div class="flex-1">
             <label class="block pb-2 w-full font-medium text-neutral-900 max-md:max-w-full">
               5. Internet, Telephone & Water Expenses (Internet)
@@ -369,13 +351,12 @@
               class="w-full px-8 py-4 mt-2 text-base text-black rounded-2xl border-gray-300 border border-solid bg-slate-50 placeholder-black/50 outline-none hover:ring focus:ring-2 focus:ring-teal-600 transition"
             />
           </div>
-          <!-- Telephone Expense -->
           <div class="flex-1 mt-6">
             <label class="block pb-2 w-full font-medium text-neutral-900 max-md:max-w-full">
-              (Telepon)
+              (Telephone)
             </label>
             <input
-              type="text"
+              type="number"
               id="telephone_expenses"
               name="telephone_expenses"
               value="{{#if record}}{{record.telephone_expenses}}{{/if}}"
@@ -391,10 +372,9 @@
               class="w-full px-8 py-4 mt-2 text-base text-black rounded-2xl border-gray-300 border border-solid bg-slate-50 placeholder-black/50 outline-none hover:ring focus:ring-2 focus:ring-teal-600 transition"
             />
           </div>
-          <!-- Water Expense -->
           <div class="flex-1 mt-6">
             <label class="block pb-2 w-full font-medium text-neutral-900 max-md:max-w-full">
-              (Air)
+              (Water)
             </label>
             <input
               type="number"
@@ -414,7 +394,6 @@
             />
           </div>
         </div>
-
 
         <!-- Property Rental Expenses -->
         <div class="flex gap-4 items-center px-4 py-3 mt-6">
@@ -626,37 +605,35 @@
           </div>
         </div>
 
-        <!-- Internet, Telephone & Water Expenses -->
+        <!-- Dividend, Taxes & Community Investment -->
         <div class="flex gap-4 items-center px-4 py-3 mt-2">
-          <!-- Internet Expense -->
           <div class="flex-1 mt-6">
             <label class="block pb-2 w-full font-medium text-neutral-900 max-md:max-w-full">
-              13. (Dividend and Interest Payments)
+              13. Dividend and Interest Payments
             </label>
             <input
               type="number"
               id="dividend_interest_expenses"
               name="dividend_interest_expenses"
-              value="{{#if record}}{{record.property_rental_expenses}}{{/if}}"
-              placeholder="Input property rental expenses"
+              value="{{#if record}}{{record.dividend_interest_expenses}}{{/if}}"
+              placeholder="Input dividend interest expenses"
               class="w-full px-8 py-4 mt-2 text-base text-black rounded-2xl border-gray-300 border border-solid bg-slate-50 placeholder-black/50 outline-none hover:ring focus:ring-2 focus:ring-teal-600 transition"
             />
             <input
               type="text"
-              id="property_rental_notes"
-              name="property_rental_notes"
-              value="{{#if record}}{{record.property_rental_notes}}{{/if}}"
-              placeholder="Input property rental notes"
+              id="dividend_interest_notes"
+              name="dividend_interest_notes"
+              value="{{#if record}}{{record.dividend_interest_notes}}{{/if}}"
+              placeholder="Input notes"
               class="w-full px-8 py-4 mt-2 text-base text-black rounded-2xl border-gray-300 border border-solid bg-slate-50 placeholder-black/50 outline-none hover:ring focus:ring-2 focus:ring-teal-600 transition"
             />
           </div>
-          <!-- Telephone Expense -->
           <div class="flex-1 mt-6">
             <label class="block pb-2 w-full font-medium text-neutral-900 max-md:max-w-full">
               (Taxes)
             </label>
             <input
-              type="text"
+              type="number"
               id="taxes"
               name="taxes"
               value="{{#if record}}{{record.taxes}}{{/if}}"
@@ -672,7 +649,6 @@
               class="w-full px-8 py-4 mt-2 text-base text-black rounded-2xl border-gray-300 border border-solid bg-slate-50 placeholder-black/50 outline-none hover:ring focus:ring-2 focus:ring-teal-600 transition"
             />
           </div>
-          <!-- Water Expense -->
           <div class="flex-1 mt-6">
             <label class="block pb-2 w-full font-medium text-neutral-900 max-md:max-w-full">
               (Community Investment)
@@ -695,8 +671,6 @@
             />
           </div>
         </div>
-
-
         <div class="flex gap-4 items-center px-4 py-3 mt-2">
           <div class="w-4/4">
             <label class="block pb-2 w-full font-medium text-neutral-900 max-md:max-w-full">
@@ -711,18 +685,16 @@
             />
           </div>
         </div>
-        
       </div>
 
       <!-- Button Section -->
-      <div class="flex justify-end gap-4 mt-7">
-
+      <div class="flex justify-end gap-4 mt-7 mb-10">
         <!-- Submit Button -->
         <button
           type="submit"
-          class="px-8 py-2 text-base font-medium text-center text-white whitespace-nowrap bg-lime-500 rounded-xl hover:bg-lime-600 focus:outline-none focus:ring-2 focus:ring-lime-500 focus:ring-offset-2 transition-colors"
+          class="px-8 py-2 text-base font-medium text-center text-white whitespace-nowrap bg-orange-500 rounded-xl hover:bg-orange-600 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-offset-2 transition-colors"
         >
-          Save
+          Submit
         </button>
       </div>
 
@@ -731,5 +703,9 @@
 </main>
 
 <style>
-  /* Custom input styles */ input[type="number"]:focus, select:focus { border-color: #0f766e; outline-color: #0f766e; }
+  input[type="number"]:focus, 
+  select:focus { 
+    border-color: #0f766e; 
+    outline-color: #0f766e; 
+  }
 </style>

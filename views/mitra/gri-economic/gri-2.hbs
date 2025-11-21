@@ -27,31 +27,28 @@
             Total Revenue
           </div>
           <div class="mt-7 text-4xl leading-none text-teal-700">
-            Rp.
-            {{#if summary}}{{summary.revenue}}{{else}}{{record.revenue}}{{/if}}
+            Rp. {{#if revenue}}{{revenue}}{{else}}0{{/if}}
           </div>
 
           <div class="mt-8 font-medium text-gray-500">
             Total Operational Costs
           </div>
           <div class="mt-7 text-4xl leading-none text-teal-700">
-            Rp.
-            {{#if summary}}{{summary.operational}}{{else}}{{totalOps}}{{/if}}
+            Rp. {{#if totalOperational}}{{totalOperational}}{{else}}0{{/if}}
           </div>
 
           <div class="mt-6 font-medium text-gray-500">
             Total Non-Operating Costs
           </div>
           <div class="mt-7 text-4xl leading-none text-teal-700">
-            Rp.
-            {{#if summary}}{{summary.non_operating_expenses}}{{else}}{{record.non_operating_expenses}}{{/if}}
+            Rp. {{#if totalNonOperating}}{{totalNonOperating}}{{else}}0{{/if}}
           </div>
+
           <div class="mt-6 font-medium text-gray-500">
             Profit/Loss
           </div>
-          <div class="mt-7 text-4xl leading-none text-teal-700">
-            Rp.
-            {{#if summary}}{{summary.untung}}{{else}}{{untung}}{{/if}}
+          <div class="mt-7 text-4xl leading-none {{profitLossColor}}">
+            Rp. {{#if profitLoss}}{{profitLoss}}{{else}}0{{/if}}
           </div>
         </div>
       </aside>
@@ -68,150 +65,190 @@
               </tr>
             </thead>
             <tbody>
-      <!-- Net Sales -->
-            <tr>
-              <td class="border px-4 py-2">Net Sales </td>
-              <td class="border px-4 py-2">Rp. {{#if summary}}{{summary.net_sales}}{{else}}{{record.net_sales}}{{/if}}</td>
-              <td class="border px-4 py-2">{{record.net_sales_notes}}</td>
-            </tr>
+              <!-- REVENUE SECTION -->
+              <tr class="bg-teal-50">
+                <td colspan="3" class="border px-4 py-2 font-semibold text-teal-700">REVENUE</td>
+              </tr>
 
-            <!-- Sales -->
-            <tr>
-              <td class="border px-4 py-2">Sales </td>
-              <td class="border px-4 py-2">Rp. {{#if summary}}{{summary.sales}}{{else}}{{record.sales}}{{/if}}</td>
-              <td class="border px-4 py-2">{{record.sales_notes}}</td>
-            </tr>
+              <!-- Net Sales -->
+              <tr>
+                <td class="border px-4 py-2">Net Sales</td>
+                <td class="border px-4 py-2">Rp. {{#if net_sales}}{{net_sales}}{{else}}0{{/if}}</td>
+                <td class="border px-4 py-2">{{#if net_sales_notes}}{{net_sales_notes}}{{else}}-{{/if}}</td>
+              </tr>
 
-            <!-- Financial Investment Income -->
-            <tr>
-              <td class="border px-4 py-2">Financial Investment Income </td>
-              <td class="border px-4 py-2">Rp. {{#if summary}}{{summary.financial_investment_income}}{{else}}{{record.financial_investment_income}}{{/if}}</td>
-              <td class="border px-4 py-2">{{record.financial_investment_income_notes}}</td>
-            </tr>
+              <!-- Sales -->
+              <tr>
+                <td class="border px-4 py-2">Sales</td>
+                <td class="border px-4 py-2">Rp. {{#if sales}}{{sales}}{{else}}0{{/if}}</td>
+                <td class="border px-4 py-2">{{#if sales_notes}}{{sales_notes}}{{else}}-{{/if}}</td>
+              </tr>
 
-            <!-- Income from Asset Sales -->
-            <tr>
-              <td class="border px-4 py-2">Income from Asset Sales</td>
-              <td class="border px-4 py-2">Rp. {{#if summary}}{{summary.asset_sales_income}}{{else}}{{record.asset_sales_income}}{{/if}}</td>
-              <td class="border px-4 py-2">{{record.asset_sales_income_notes}}</td>
-            </tr>
+              <!-- Financial Investment Income -->
+              <tr>
+                <td class="border px-4 py-2">Financial Investment Income</td>
+                <td class="border px-4 py-2">Rp. {{#if financial_investment_income}}{{financial_investment_income}}{{else}}0{{/if}}</td>
+                <td class="border px-4 py-2">{{#if financial_investment_income_notes}}{{financial_investment_income_notes}}{{else}}-{{/if}}</td>
+              </tr>
+
+              <!-- Income from Asset Sales -->
+              <tr>
+                <td class="border px-4 py-2">Income from Asset Sales</td>
+                <td class="border px-4 py-2">Rp. {{#if asset_sales_income}}{{asset_sales_income}}{{else}}0{{/if}}</td>
+                <td class="border px-4 py-2">{{#if asset_sales_income_notes}}{{asset_sales_income_notes}}{{else}}-{{/if}}</td>
+              </tr>
+
+              <!-- EXPENSES SECTION -->
+              <tr class="bg-orange-50">
+                <td colspan="3" class="border px-4 py-2 font-semibold text-orange-700">EXPENSES</td>
+              </tr>
+
+              <!-- General & Administrative Expenses -->
+              <tr>
+                <td class="border px-4 py-2">General & Administrative Expenses</td>
+                <td class="border px-4 py-2">Rp. {{#if general_admin_expenses}}{{general_admin_expenses}}{{else}}0{{/if}}</td>
+                <td class="border px-4 py-2">{{#if general_admin_notes}}{{general_admin_notes}}{{else}}-{{/if}}</td>
+              </tr>
+
               <!-- Salary Expenses -->
               <tr>
-                <td class="border px-4 py-2">Salary Expenses (Wages and Salaries)</td>
-                <td class="border px-4 py-2">Rp. {{#if summary}}{{summary.salary_expenses}}{{else}}{{record.salary_expenses}}{{/if}}</td>
-                <td class="border px-4 py-2">{{record.salary_employee_notes}}</td>
+                <td class="border px-4 py-2">Salary Expenses</td>
+                <td class="border px-4 py-2">Rp. {{#if salary_expenses}}{{salary_expenses}}{{else}}0{{/if}}</td>
+                <td class="border px-4 py-2">{{#if salary_employee_notes}}{{salary_employee_notes}}{{else}}-{{/if}}</td>
               </tr>
 
               <!-- Transportation Expenses -->
               <tr>
                 <td class="border px-4 py-2">Transportation Expenses</td>
-                <td class="border px-4 py-2">Rp. {{#if summary}}{{summary.transport_expenses}}{{else}}{{record.transport_expenses}}{{/if}}</td>
-                <td class="border px-4 py-2">{{record.transport_notes}}</td>
+                <td class="border px-4 py-2">Rp. {{#if transport_expenses}}{{transport_expenses}}{{else}}0{{/if}}</td>
+                <td class="border px-4 py-2">{{#if transport_notes}}{{transport_notes}}{{else}}-{{/if}}</td>
               </tr>
 
               <!-- Fuel Expenses -->
               <tr>
                 <td class="border px-4 py-2">Fuel Expenses</td>
-                <td class="border px-4 py-2">Rp. {{#if summary}}{{summary.fuel_expenses}}{{else}}{{record.fuel_expenses}}{{/if}}</td>
-                <td class="border px-4 py-2">{{record.fuel_notes}}</td>
+                <td class="border px-4 py-2">Rp. {{#if fuel_expenses}}{{fuel_expenses}}{{else}}0{{/if}}</td>
+                <td class="border px-4 py-2">{{#if fuel_notes}}{{fuel_notes}}{{else}}-{{/if}}</td>
               </tr>
 
               <!-- Electricity Expenses -->
               <tr>
                 <td class="border px-4 py-2">Electricity Expenses</td>
-                <td class="border px-4 py-2">Rp. {{#if summary}}{{summary.electricity_expenses}}{{else}}{{record.electricity_expenses}}{{/if}}</td>
-                <td class="border px-4 py-2">{{record.electricity_notes}}</td>
+                <td class="border px-4 py-2">Rp. {{#if electricity_expenses}}{{electricity_expenses}}{{else}}0{{/if}}</td>
+                <td class="border px-4 py-2">{{#if electricity_notes}}{{electricity_notes}}{{else}}-{{/if}}</td>
               </tr>
 
               <!-- Internet Expenses -->
               <tr>
                 <td class="border px-4 py-2">Internet Expenses</td>
-                <td class="border px-4 py-2">Rp. {{#if summary}}{{summary.internet_expenses}}{{else}}{{record.internet_expenses}}{{/if}}</td>
-                <td class="border px-4 py-2">{{record.internet_notes}}</td>
+                <td class="border px-4 py-2">Rp. {{#if internet_expenses}}{{internet_expenses}}{{else}}0{{/if}}</td>
+                <td class="border px-4 py-2">{{#if internet_notes}}{{internet_notes}}{{else}}-{{/if}}</td>
               </tr>
 
               <!-- Telephone Expenses -->
               <tr>
                 <td class="border px-4 py-2">Telephone Expenses</td>
-                <td class="border px-4 py-2">Rp. {{#if summary}}{{summary.telephone_expenses}}{{else}}{{record.telephone_expenses}}{{/if}}</td>
-                <td class="border px-4 py-2">{{record.telephone_notes}}</td>
+                <td class="border px-4 py-2">Rp. {{#if telephone_expenses}}{{telephone_expenses}}{{else}}0{{/if}}</td>
+                <td class="border px-4 py-2">{{#if telephone_notes}}{{telephone_notes}}{{else}}-{{/if}}</td>
               </tr>
 
               <!-- Water Expenses -->
               <tr>
                 <td class="border px-4 py-2">Water Expenses</td>
-                <td class="border px-4 py-2">Rp. {{#if summary}}{{summary.water_expenses}}{{else}}{{record.water_expenses}}{{/if}}</td>
-                <td class="border px-4 py-2">{{record.water_notes}}</td>
-              </tr>
-
-              <!-- Non-Operating Expenses -->
-              <tr>
-                <td class="border px-4 py-2">Non-Operating Expenses</td>
-                <td class="border px-4 py-2">Rp. {{#if summary}}{{summary.non_operating_expenses}}{{else}}{{record.non_operating_expenses}}{{/if}}</td>
-                <td class="border px-4 py-2">{{record.non_operating_notes}}</td>
+                <td class="border px-4 py-2">Rp. {{#if water_expenses}}{{water_expenses}}{{else}}0{{/if}}</td>
+                <td class="border px-4 py-2">{{#if water_notes}}{{water_notes}}{{else}}-{{/if}}</td>
               </tr>
 
               <!-- Property Rental Expenses -->
               <tr>
                 <td class="border px-4 py-2">Property Rental Expenses</td>
-                <td class="border px-4 py-2">Rp. {{#if summary}}{{summary.property_rental_expenses}}{{else}}{{record.property_rental_expenses}}{{/if}}</td>
-                <td class="border px-4 py-2">{{record.property_rental_notes}}</td>
+                <td class="border px-4 py-2">Rp. {{#if property_rental_expenses}}{{property_rental_expenses}}{{else}}0{{/if}}</td>
+                <td class="border px-4 py-2">{{#if property_rental_notes}}{{property_rental_notes}}{{else}}-{{/if}}</td>
               </tr>
 
               <!-- License Fees -->
               <tr>
                 <td class="border px-4 py-2">License Fees</td>
-                <td class="border px-4 py-2">Rp. {{#if summary}}{{summary.license_fees}}{{else}}{{record.license_fees}}{{/if}}</td>
-                <td class="border px-4 py-2">{{record.license_fees_notes}}</td>
+                <td class="border px-4 py-2">Rp. {{#if license_fees}}{{license_fees}}{{else}}0{{/if}}</td>
+                <td class="border px-4 py-2">{{#if license_fees_notes}}{{license_fees_notes}}{{else}}-{{/if}}</td>
               </tr>
 
               <!-- Facility Payments -->
               <tr>
                 <td class="border px-4 py-2">Facility Payments</td>
-                <td class="border px-4 py-2">Rp. {{#if summary}}{{summary.facility_payments}}{{else}}{{record.facility_payments}}{{/if}}</td>
-                <td class="border px-4 py-2">{{record.facility_payments_notes}}</td>
+                <td class="border px-4 py-2">Rp. {{#if facility_payments}}{{facility_payments}}{{else}}0{{/if}}</td>
+                <td class="border px-4 py-2">{{#if facility_payments_notes}}{{facility_payments_notes}}{{else}}-{{/if}}</td>
               </tr>
 
               <!-- Royalties -->
               <tr>
                 <td class="border px-4 py-2">Royalties</td>
-                <td class="border px-4 py-2">Rp. {{#if summary}}{{summary.royalties}}{{else}}{{record.royalties}}{{/if}}</td>
-                <td class="border px-4 py-2">{{record.royalties_notes}}</td>
+                <td class="border px-4 py-2">Rp. {{#if royalties}}{{royalties}}{{else}}0{{/if}}</td>
+                <td class="border px-4 py-2">{{#if royalties_notes}}{{royalties_notes}}{{else}}-{{/if}}</td>
               </tr>
 
               <!-- Contract Worker Payments -->
               <tr>
                 <td class="border px-4 py-2">Contract Worker Payments</td>
-                <td class="border px-4 py-2">Rp. {{#if summary}}{{summary.contract_worker_payments}}{{else}}{{record.contract_worker_payments}}{{/if}}</td>
-                <td class="border px-4 py-2">{{record.contract_worker_notes}}</td>
+                <td class="border px-4 py-2">Rp. {{#if contract_worker_payments}}{{contract_worker_payments}}{{else}}0{{/if}}</td>
+                <td class="border px-4 py-2">{{#if contract_worker_notes}}{{contract_worker_notes}}{{else}}-{{/if}}</td>
               </tr>
 
               <!-- Training Costs -->
               <tr>
                 <td class="border px-4 py-2">Training Costs</td>
-                <td class="border px-4 py-2">Rp. {{#if summary}}{{summary.training_costs}}{{else}}{{record.training_costs}}{{/if}}</td>
-                <td class="border px-4 py-2">{{record.training_costs_notes}}</td>
+                <td class="border px-4 py-2">Rp. {{#if training_costs}}{{training_costs}}{{else}}0{{/if}}</td>
+                <td class="border px-4 py-2">{{#if training_costs_notes}}{{training_costs_notes}}{{else}}-{{/if}}</td>
               </tr>
 
               <!-- Protective Clothing Costs -->
               <tr>
                 <td class="border px-4 py-2">Protective Clothing Costs</td>
-                <td class="border px-4 py-2">Rp. {{#if summary}}{{summary.protective_clothing_costs}}{{else}}{{record.protective_clothing_costs}}{{/if}}</td>
-                <td class="border px-4 py-2">{{record.protective_clothing_notes}}</td>
+                <td class="border px-4 py-2">Rp. {{#if protective_clothing_costs}}{{protective_clothing_costs}}{{else}}0{{/if}}</td>
+                <td class="border px-4 py-2">{{#if protective_clothing_notes}}{{protective_clothing_notes}}{{else}}-{{/if}}</td>
+              </tr>
+
+              <!-- Dividend & Interest Expenses -->
+              <tr>
+                <td class="border px-4 py-2">Dividend & Interest Payments</td>
+                <td class="border px-4 py-2">Rp. {{#if dividend_interest_expenses}}{{dividend_interest_expenses}}{{else}}0{{/if}}</td>
+                <td class="border px-4 py-2">{{#if dividend_interest_notes}}{{dividend_interest_notes}}{{else}}-{{/if}}</td>
+              </tr>
+
+              <!-- Taxes -->
+              <tr>
+                <td class="border px-4 py-2">Taxes</td>
+                <td class="border px-4 py-2">Rp. {{#if taxes}}{{taxes}}{{else}}0{{/if}}</td>
+                <td class="border px-4 py-2">{{#if taxes_notes}}{{taxes_notes}}{{else}}-{{/if}}</td>
+              </tr>
+
+              <!-- Community Investment -->
+              <tr>
+                <td class="border px-4 py-2">Community Investment</td>
+                <td class="border px-4 py-2">Rp. {{#if community_investment}}{{community_investment}}{{else}}0{{/if}}</td>
+                <td class="border px-4 py-2">{{#if community_investment_notes}}{{community_investment_notes}}{{else}}-{{/if}}</td>
+              </tr>
+
+              <!-- TOTAL ROW -->
+              <tr class="bg-gray-100 font-semibold">
+                <td class="border px-4 py-2">TOTAL EXPENSES</td>
+                <td class="border px-4 py-2">Rp. {{#if totalExpenses}}{{totalExpenses}}{{else}}0{{/if}}</td>
+                <td class="border px-4 py-2">-</td>
               </tr>
             </tbody>
           </table>
         </div>
 
-
         <!-- Largest Expense Percentage -->
         <div class="mt-10">
-          <h3 class="text-2xl font-semibold text-teal-700">Largest Expense Percentage</h3>
-          {{#if biggestExpense.category}}
+          <h3 class="text-2xl font-semibold text-teal-700">Largest Expense Analysis</h3>
+          {{#if biggestExpense}}
             <p class="text-lg text-gray-500 mt-4">
-              {{biggestExpense.category}}
-              is the largest expense, reaching
-              {{biggestExpense.percentage}}% of total operational costs.
+              <span class="font-semibold">{{biggestExpense.category}}</span> 
+              is the largest expense, reaching 
+              <span class="font-semibold text-teal-700">{{biggestExpense.percentage}}%</span> 
+              of total operational costs 
+              (Rp. {{biggestExpense.amount}}).
             </p>
           {{else}}
             <p class="text-lg text-gray-500 mt-4">No operational cost data entered yet.</p>
@@ -227,7 +264,7 @@
               alt="Checkmark"
               class="object-contain shrink-0 w-5 rounded aspect-square"
             />
-            <span>Financial Report</span>
+            <span>Financial Report {{#if revenue}}✓{{/if}}</span>
           </div>
           <div class="flex gap-3 items-start py-3 mt-2">
             <img
@@ -235,7 +272,7 @@
               alt="Checkmark"
               class="object-contain shrink-0 w-5 rounded aspect-square"
             />
-            <span>Sales Record</span>
+            <span>Sales Record {{#if sales}}✓{{/if}}</span>
           </div>
           <div class="flex gap-3 items-start py-3 mt-2">
             <img
@@ -243,16 +280,16 @@
               alt="Checkmark"
               class="object-contain shrink-0 w-5 rounded aspect-square"
             />
-            <span>Expense Record</span>
+            <span>Expense Record {{#if totalExpenses}}✓{{/if}}</span>
           </div>
         </div>
 
         <!-- Navigation -->
         <nav class="flex gap-5 justify-between self-center mt-20 ml-72 max-w-full text-base font-medium text-center w-[323px]">
-          <a href="/mitra/gri-1?gri_id={{gri_id}}&period={{reporting_period}}" class="px-10 py-3 text-teal-700 bg-white rounded-xl border border-teal-700 hover:bg-teal-50 transition">
+          <a href="/mitra/gri-1?gri_id={{gri_id}}" class="px-10 py-3 text-teal-700 bg-white rounded-xl border border-teal-700 hover:bg-teal-50 transition">
             Previous
           </a>
-          <a href="/mitra/dashboard" class="px-10 py-3 text-white bg-lime-500 rounded-xl hover:bg-lime-600 transition">
+          <a href="/mitra/dashboard" class="px-10 py-3 text-white bg-orange-500 rounded-xl hover:bg-orange-600 transition">
             Submit
           </a>
         </nav>
@@ -261,3 +298,21 @@
     </div>
   </section>
 </main>
+
+<style>
+  /* Responsive table */
+  @media (max-width: 768px) {
+    table {
+      font-size: 0.875rem;
+    }
+    
+    th, td {
+      padding: 0.5rem !important;
+    }
+  }
+  
+  /* Striped rows */
+  tbody tr:nth-child(even):not(.bg-teal-50):not(.bg-orange-50):not(.bg-gray-100) {
+    background-color: #f9fafb;
+  }
+</style>

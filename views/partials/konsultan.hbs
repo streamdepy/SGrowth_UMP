@@ -1,0 +1,52 @@
+<!-- Sidebar Navigation -->
+<aside class="w-[18%] max-md:ml-0 max-md:w-full">
+    <nav class="px-6 pt-6 pb-32 w-full rounded-xl border border-gray-200 bg-white shadow-sm max-md:pb-24 max-md:px-5 max-md:mt-7">
+        <a href="/mitra/konsultan" 
+           class="flex items-center justify-center gap-2.5 px-10 py-3 mt-2 text-base font-medium text-center text-black bg-white rounded-xl border border-gray-200 transition-all duration-300 hover:bg-orange-500 hover:text-white hover:border-orange-500 hover:shadow-md max-md:px-5 w-full">
+            <span>Cari</span>
+        </a>
+        <a href="/mitra/bookingTransaksi" 
+           class="flex items-center justify-center gap-2.5 px-10 py-3 mt-2 text-base font-medium text-center text-black bg-white rounded-xl border border-gray-200 transition-all duration-300 hover:bg-orange-500 hover:text-white hover:border-orange-500 hover:shadow-md max-md:px-5 w-full">
+            <span>Booking</span>
+        </a>
+        <a href="/mitra/pembayaran" 
+           class="flex items-center justify-center gap-2.5 px-10 py-3 mt-2 text-base font-medium text-center text-black bg-white rounded-xl border border-gray-200 transition-all duration-300 hover:bg-orange-500 hover:text-white hover:border-orange-500 hover:shadow-md max-md:px-5 w-full">
+            <span>Pembayaran</span>
+        </a>
+        <a href="/mitra/history" 
+           class="flex items-center justify-center gap-2.5 px-10 py-3 mt-2 text-base font-medium text-center text-black bg-white rounded-xl border border-gray-200 transition-all duration-300 hover:bg-orange-500 hover:text-white hover:border-orange-500 hover:shadow-md max-md:px-5 w-full">
+            <span>History</span>
+        </a>
+    </nav>
+</aside>
+
+<style>
+    /* Optional: Active state untuk halaman yang sedang dibuka */
+    nav a.active {
+        background-color: #f97316;
+        color: white;
+        border-color: #f97316;
+        box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+    }
+    
+    /* Smooth hover effect */
+    nav a {
+        position: relative;
+        overflow: hidden;
+    }
+    
+    nav a::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+        transition: left 0.5s;
+    }
+    
+    nav a:hover::before {
+        left: 100%;
+    }
+</style>

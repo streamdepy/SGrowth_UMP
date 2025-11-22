@@ -1,7 +1,7 @@
 <main class="flex flex-col items-end mt-10 ml-20 w-full max-w-[1211px] max-md:mt-10 max-md:max-w-full">
     <h2 class="self-start text-3xl font-semibold text-neutral-900">General Disclosure</h2>
 
-<form action="/umkm/form-gi" method="POST">
+<form action="/mitra/dashboard" method="GET">
 <!-- General Business Information Section -->
 <section class="flex flex-col items-start py-14 px-16 mt-10 w-full bg-white rounded-2xl shadow-2xl max-w-[981px] max-md:px-5 max-md:mt-10">
   <h3 class="text-3xl font-semibold text-teal-700">Organization Profile</h3>
@@ -211,15 +211,15 @@ document.addEventListener('DOMContentLoaded', () => {
         <div class="flex flex-col gap-2">
           <label class="flex items-center gap-2 cursor-pointer">
             <input type="checkbox" name="controlled_entities[]" value="anak_perusahaan" class="text-teal-700">
-            Anak Perusahaan
+            Subsidiary
           </label>
           <label class="flex items-center gap-2 cursor-pointer">
             <input type="checkbox" name="controlled_entities[]" value="usaha_bersama" class="text-teal-700">
-            Usaha Bersama
+            Joint venture
           </label>
           <label class="flex items-center gap-2 cursor-pointer">
-            <input type="checkbox" name="controlled_entities[]" value="afiliasi" class="text-teal-700">
-            Afiliasi
+            <input type="checkbox" name="controlled_entities[]" value="affiliate" class="text-teal-700">
+            affiliate
           </label>
         </div>
       </div>
@@ -234,20 +234,20 @@ document.addEventListener('DOMContentLoaded', () => {
             <div class="min-w-[180px]">
             <select id="period_mode_gov"
                 class="w-full px-4 py-3 text-base text-black rounded-2xl border border-gray-300 bg-slate-50 outline-none hover:ring focus:ring-2 focus:ring-teal-600 transition" required>
-                <option value="">Pilih</option>
-                <option value="tahun">Tahun</option>
-                <option value="triwulan">Triwulan</option>
+                <option value="">select</option>
+                <option value="Year">Year</option>
+                <option value="quarter">quarter</option>
             </select>
             </div>
 
-            <!-- Tahun (muncul saat pilih "Tahun") -->
+            <!-- Year (muncul saat select "Year") -->
             <div id="year_wrap_gov" class="min-w-[180px] hidden">
             <select id="period_year_gov"
                 class="w-full px-4 py-3 text-base text-black rounded-2xl border border-gray-300 bg-slate-50 outline-none hover:ring focus:ring-2 focus:ring-teal-600 transition">
             </select>
             </div>
 
-            <!-- Triwulan tahun berjalan (muncul saat pilih "Triwulan") -->
+            <!-- quarter Year berjalan (muncul saat select "quarter") -->
             <div id="quarter_wrap_gov" class="min-w-[220px] hidden">
             <select id="period_quarter_gov"
                 class="w-full px-4 py-3 text-base text-black rounded-2xl border border-gray-300 bg-slate-50 outline-none hover:ring focus:ring-2 focus:ring-teal-600 transition">
@@ -410,7 +410,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 <script>
   document.addEventListener('DOMContentLoaded', function () {
-    // === LEGAL FORM: tampilkan input "Other" saat dipilih ===
+    // === LEGAL FORM: tampilkan input "Other" saat diselect ===
     const legalFormSelect      = document.getElementById('legal_form');
     const legalFormOtherInput  = document.getElementById('legal_form_other');
 
@@ -428,7 +428,7 @@ document.addEventListener('DOMContentLoaded', () => {
       legalFormSelect.addEventListener('change', syncLegalFormOther);
     }
 
-    // === INDUSTRI: input "Lainnya" hanya muncul saat radio 'Lainnya' dipilih ===
+    // === INDUSTRI: input "Lainnya" hanya muncul saat radio 'Lainnya' diselect ===
     // perbaiki selector yang salah (sebelumnya .industry-tag tidak ada)
     const industryOtherRadio = document.getElementById('industry-other-radio');
     const industryOtherInput = document.getElementById('industry-other-input');
@@ -1072,7 +1072,7 @@ document.addEventListener('DOMContentLoaded', () => {
     updateTotalHint();
 
     // Validasi sebelum submit: konfirmasi bila total != 100
-    const form = document.querySelector('form[action="/umkm/form-gi"]') || container.closest('form');
+    const form = document.querySelector('form[action="/mitra/form-gi"]') || container.closest('form');
     if (form) {
       form.addEventListener('submit', (e) => {
         const sum = updateTotalHint();
@@ -1146,7 +1146,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const thisYear = now.getFullYear();
         const isDec31 = (now.getMonth() === 11 && now.getDate() === 31);
         const start = isDec31 ? thisYear : thisYear - 1; 
-        sel.innerHTML = '<option value="">Pilih Tahun</option>';
+        sel.innerHTML = '<option value="">select Year</option>';
         // Pastikan 2024 ada dalam list jika belum ada
         const yearsToFill = new Set();
         for (let i = 0; i < 3; i++) {
@@ -1154,7 +1154,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         yearsToFill.add(2024); // Menjamin 2024 selalu ada
         
-        // Sortir tahun dari terbaru ke terlama
+        // Sortir Year dari terbaru ke terlama
         Array.from(yearsToFill).sort((a, b) => b - a).forEach(y => {
             const o = document.createElement('option');
             o.value = String(y);
@@ -1172,12 +1172,12 @@ document.addEventListener('DOMContentLoaded', () => {
         if (isDec31) maxQ = 4;
         if (maxQ > 4) maxQ = 4;
         const labels = {
-            1: 'Triwulan 1 (Jan–Mar)',
-            2: 'Triwulan 2 (Apr–Jun)',
-            3: 'Triwulan 3 (Jul–Sep)',
-            4: 'Triwulan 4 (Okt–Des)'
+            1: 'quarter 1 (Jan–Mar)',
+            2: 'quarter 2 (Apr–Jun)',
+            3: 'quarter 3 (Jul–Sep)',
+            4: 'quarter 4 (Okt–Des)'
         };
-        sel.innerHTML = '<option value="">Pilih Triwulan</option>';
+        sel.innerHTML = '<option value="">select quarter</option>';
         for (let q = 1; q <= maxQ; q++) {
             const o = document.createElement('option');
             o.value = `${y}-Q${q}`;
@@ -1190,7 +1190,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const form = document.querySelector('form'); // Disesuaikan selector form-nya
         const submitButton = form?.querySelector('button[type="submit"]');
 
-        /* ===== Periode Pelaporan (Tahun / Triwulan) ===== */
+        /* ===== Periode Pelaporan (Year / quarter) ===== */
         const modeSel = document.getElementById('period_mode_gov');
         const yearWrap = document.getElementById('year_wrap_gov');
         const yearSel = document.getElementById('period_year_gov');
@@ -1201,10 +1201,10 @@ document.addEventListener('DOMContentLoaded', () => {
         fillCurrentYearQuarters(qSel);
 
         function syncMode() {
-            if (modeSel.value === 'tahun') {
+            if (modeSel.value === 'Year') {
                 toggleEl(yearWrap, true);
                 toggleEl(qWrap, false);
-            } else if (modeSel.value === 'triwulan') {
+            } else if (modeSel.value === 'quarter') {
                 toggleEl(yearWrap, false);
                 toggleEl(qWrap, true);
             } else {
@@ -1216,8 +1216,8 @@ document.addEventListener('DOMContentLoaded', () => {
         modeSel.addEventListener('change', syncMode);
 
         // ===== MODIFIKASI: Atur Nilai Default di sini =====
-        modeSel.value = 'tahun'; // Atur default mode ke 'tahun'
-        yearSel.value = '2024';  // Atur default tahun ke '2024'
+        modeSel.value = 'Year'; // Atur default mode ke 'Year'
+        yearSel.value = '2024';  // Atur default Year ke '2024'
 
         // Panggil syncMode() SETELAH mengatur default untuk menampilkan field yang benar
         syncMode();

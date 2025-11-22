@@ -445,5 +445,60 @@ router.get("/social-5", function (req, res, next) {
   });
 });
 
+router.get("/konsultan", function (req, res, next) {
+  res.render("mitra/konsultan/cari-konsultan", {
+    title: "Form GRI",
+    layout: "mitra",
+    currentPath: req.path,
+  });
+});
+
+router.get("/profilKonsultan", function (req, res, next) {
+  res.render("mitra/konsultan/profilKonsultan", {
+    title: "Form GRI",
+    layout: "mitra",
+    currentPath: req.path,
+  });
+});
+
+router.get("/chatKonsultan", function (req, res, next) {
+  res.render("mitra/konsultan/chatKonsultan", {
+    title: "Form GRI",
+    layout: "mitra",
+    currentPath: req.path,
+  });
+});
+
+router.get("/bookingTransaksi", function (req, res, next) {
+  res.render("mitra/konsultan/bookingTransaksi", {
+    title: "Form GRI",
+    layout: "mitra",
+    currentPath: req.path,
+  });
+});
+
+router.get("/bookingSesiKonsultan", function (req, res, next) {
+  res.render("mitra/konsultan/bookingSesiKonsultan", {
+    title: "Form GRI",
+    layout: "mitra",
+    currentPath: req.path,
+  });
+});
+
+router.get("/bookingSummary", function (req, res, next) {
+  res.render("mitra/konsultan/bookingSummary", {
+    title: "Form GRI",
+    layout: "mitra",
+    currentPath: req.path,
+  });
+});
+
+router.get("/komunitas", function (req, res, next) {
+  res.render("mitra/komunitas/komunitas", {
+    title: "Form GRI",
+    layout: "mitra",
+    currentPath: req.path,
+  });
+});
 
 module.exports = router;

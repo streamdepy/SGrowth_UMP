@@ -58,25 +58,100 @@
       </div>
 
       <!-- User -->
-      <div class="flex items-center gap-4 uppercase">
-        <div class="text-right leading-tight">
-          <div class="text-sm font-bold tracking-wide">{{user.name}}</div>
-          {{#if (eq user.role "mitra")}}
-            <div class="text-[10px] tracking-wide text-neutral-500">User</div>
-          {{else}}
-            <div class="text-[10px] tracking-wide text-neutral-500">{{user.role}}</div>
-          {{/if}}
-
-        </div>
-
-        <!-- Avatar dengan hover ring -->
-        <button type="button" class="shrink-0 rounded-full w-[54px] h-[54px] overflow-hidden ring-2 ring-transparent hover:ring-orange-300 transition duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-400">
-          <img loading="lazy" src="https://api.builder.io/api/v1/image/assets/TEMP/880531a01c86810a2330e5d2ff1ff5f0134415e1?placeholderIfAbsent=true&apiKey=ac04cd396e1f47f18955cd19640f183d" alt="Avatar" class="w-full h-full object-cover" />
-        </button>
+    <div class="flex items-center gap-4 uppercase">
+      <div class="text-right leading-tight">
+        <div class="text-sm font-bold tracking-wide">{{user.name}}</div>
+        <div class="text-[10px] tracking-wide text-neutral-500">{{user.role}}</div>
       </div>
+
+      <!-- Avatar dengan hover ring -->
+      <button 
+      id="avatarBtn"
+      type="button"
+      aria-haspopup="menu"
+      aria-expanded="false"
+      aria-controls="userMenu"
+        class="shrink-0 rounded-full w-[54px] h-[54px] overflow-hidden ring-2 ring-transparent hover:ring-orange-300 transition duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-400">
+        <img
+          loading="lazy"
+          src="https://api.builder.io/api/v1/image/assets/TEMP/880531a01c86810a2330e5d2ff1ff5f0134415e1?placeholderIfAbsent=true&apiKey=ac04cd396e1f47f18955cd19640f183d"
+          alt="Avatar"
+          class="w-full h-full object-cover" />
+      </button>
+     <!-- Dropdown Menu -->
+  <div
+    id="userMenu"
+    role="menu"
+    aria-labelledby="avatarBtn"
+    class="hidden absolute right-0 top-[72px] z-50 w-48 rounded-xl bg-white shadow-lg ring-1 ring-black/5 py-2"
+  >
+    <a
+      href="/mitra/profil"
+      role="menuitem"
+      class="block px-4 py-2 text-sm text-neutral-700 hover:bg-orange-50 focus:bg-orange-50 focus:outline-none focus-visible:ring-2 focus-visible:ring-orange-300 rounded-md mx-2"
+    >
+      Profile
+    </a>
+
+    <!-- Logout: prefer POST; siapkan CSRF jika perlu -->
+    <form action="/logout" method="POST" class="mt-1 mx-2">
+      <!-- <input type="hidden" name="_csrf" value="{{csrfToken}}"> -->
+      <button
+        id="menuLogout"
+        type="submit"
+        role="menuitem"
+        class="w-full text-left px-4 py-2 text-sm text-red-600 hover:bg-red-50 focus:bg-red-50 rounded-md focus:outline-none focus-visible:ring-2 focus-visible:ring-orange-300"
+      >
+        Logout
+      </button>
+    </form>
+  </div>
+</div>
     </div>
 
     {{{body}}}
     
   </body>
 </html>
+
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  // --- User menu toggle ---
+  const avatarBtn = document.getElementById('avatarBtn');
+  const userMenu  = document.getElementById('userMenu');
+
+  if (avatarBtn && userMenu) {                    // ← guard biar aman
+    function openMenu() {
+      userMenu.classList.remove('hidden');
+      avatarBtn.setAttribute('aria-expanded', 'true');
+      const firstItem = document.getElementById('menuLogout') || userMenu.querySelector('[role="menuitem"]');
+      firstItem && firstItem.focus({ preventScroll: true });
+    }
+
+    function closeMenu() {
+      if (!userMenu.classList.contains('hidden')) {
+        userMenu.classList.add('hidden');
+        avatarBtn.setAttribute('aria-expanded', 'false');
+        avatarBtn.focus({ preventScroll: true });
+      }
+    }
+
+    avatarBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const isOpen = !userMenu.classList.contains('hidden');
+      isOpen ? closeMenu() : openMenu();
+    });
+
+    document.addEventListener('click', (e) => {
+      if (!userMenu.classList.contains('hidden') && !userMenu.contains(e.target) && e.target !== avatarBtn) {
+        closeMenu();
+      }
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') closeMenu();
+    });
+  }
+});
+</script>

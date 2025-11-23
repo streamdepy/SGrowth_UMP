@@ -7,6 +7,103 @@ router.get("/dashboard", function (req, res, next) {
     layout: "mitra",
   });
 });
+router.get("/cari-konsultan", function (req, res, next) {
+  res.render("mitra/konsultan/cari-konsultan", {
+    title: "Cari Konsultan",
+    layout: "mitra",
+  });
+});
+
+router.get("/profilKonsultan", function (req, res, next) {
+  res.render("mitra/konsultan/profilKonsultan", {
+    title: "Form GRI",
+    layout: "mitra",
+    currentPath: req.path,
+  });
+});
+
+router.get("/bookingSesiKonsultan", function (req, res, next) {
+  res.render("mitra/konsultan/bookingSesiKonsultan", {
+    title: "Booking Consultant",
+    layout: "mitra",
+    currentPath: req.path,
+  });
+});
+
+router.get("/bookingSummary", function (req, res, next) {
+  res.render("mitra/konsultan/bookingSummary", {
+    title: "Booking Consultant",
+    layout: "mitra",
+    currentPath: req.path,
+  });
+});
+
+router.get("/bookingTransaksi", function (req, res, next) {
+  res.render("mitra/konsultan/bookingTransaksi", {
+    title: "Booking Consultant",
+    layout: "mitra",
+    currentPath: req.path,
+  });
+});
+
+router.get("/pembayaran", function (req, res, next) {
+  res.render("mitra/konsultan/pembayaran", {
+    title: "Booking Consultant",
+    layout: "mitra",
+    currentPath: req.path,
+  });
+});
+
+router.get("/history", function (req, res, next) {
+  res.render("mitra/konsultan/history", {
+    title: "Booking Consultant",
+    layout: "mitra",
+    currentPath: req.path,
+  });
+});
+
+router.get("/chatKonsultan", function (req, res, next) {
+  res.render("mitra/konsultan/chatKonsultan", {
+    title: "Booking Consultant",
+    layout: "mitra",
+    currentPath: req.path,
+  });
+});
+
+router.get("/komunitas", function (req, res, next) {
+  res.render("mitra/komunitas/komunitas", {
+    title: "Community",
+    layout: "mitra",
+    currentPath: req.path,
+  });
+});
+
+router.get("/createPost", function (req, res, next) {
+  res.render("mitra/komunitas/createPost", {
+    title: "Community",
+    layout: "mitra",
+    currentPath: req.path,
+  });
+});
+
+router.get("/laporan", function (req, res, next) {
+  res.render("mitra/laporan", {
+    title: "Report",
+    layout: "mitra",
+    currentPath: req.path
+  });
+});
+
+router.get("/lap", function (req, res, next) {
+  res.render("mitra/lap", {
+    title: "Reports",
+    layout: "mitra",
+    currentPath: req.path
+  });
+});
+
+
+
 
 router.get("/form-gi", function (req, res, next) {
   res.render("mitra/form-gi", {

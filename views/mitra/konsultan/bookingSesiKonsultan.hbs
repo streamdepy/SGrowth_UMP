@@ -1,11 +1,19 @@
-
-
-    <main class="flex flex-col items-start pt-10 mb-16 mx-auto my-0 max-w-[960px] w-[960px] max-md:max-w-[90%] max-md:w-[90%] max-sm:pt-5 max-sm:w-[95%]">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Session Booking with Budi Santoso, M.Si</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-white">
+    <main class="flex flex-col items-start pt-10 mb-16 mx-auto my-0 max-w-[960px] w-full px-4 max-sm:pt-5">
         <section class="flex flex-wrap gap-y-3 justify-between content-start items-start self-stretch p-4">
             <div class="flex flex-col items-start min-w-72">
                 <h2 class="self-stretch text-3xl font-bold leading-10 text-teal-700 max-sm:text-2xl max-sm:leading-8">
-                    Booking Sesi Bersama Budi Santoso, M.Si
+                    Session Booking with Budi Santoso, M.Si
                 </h2>
+                <p class="text-gray-600 mt-2">Select your preferred date and time for consultation</p>
             </div>
         </section>
 
@@ -15,455 +23,80 @@
             </h3>
         </section>
 
-        <section class="flex flex-wrap gap-6 justify-center content-center items-center self-stretch p-4 max-md:flex-col max-md:gap-4 max-sm:p-2">
-            <!-- July 2024 Calendar -->
-            <div class="flex flex-col gap-0.5 items-start flex-[1_0_0] max-w-[336px] min-w-72 max-md:max-w-full max-sm:min-w-full">
-                <div class="flex justify-between items-center self-stretch p-1">
-                    <button class="flex flex-col items-center" aria-label="Previous month">
-                        <div class="flex justify-center items-center w-10 flex-[1_0_0]">
-                            <svg width="18" height="18" viewBox="0 0 7 14" fill="none" xmlns="http://www.w3.org/2000/svg" class="nav-icon-left">
-                                <path fill-rule="evenodd" clip-rule="evenodd" d="M6.64797 12.227C6.86776 12.4468 6.86776 12.8032 6.64797 13.023C6.42818 13.2428 6.07182 13.2428 5.85203 13.023L0.227031 7.39797C0.121407 7.29246 0.0620575 7.14929 0.0620575 7C0.0620575 6.85071 0.121407 6.70754 0.227031 6.60203L5.85203 0.977031C6.07182 0.757239 6.42818 0.757239 6.64797 0.977031C6.86776 1.19682 6.86776 1.55318 6.64797 1.77297L1.42023 7L6.64797 12.227Z" fill="#121417"/>
-                            </svg>
-                        </div>
+        <section class="flex flex-wrap gap-6 justify-center content-center items-start self-stretch p-4 max-md:flex-col max-md:gap-4 max-sm:p-2">
+            <!-- July 2025 Calendar -->
+            <div class="flex flex-col gap-2 items-start flex-1 max-w-[400px] min-w-[280px] bg-white rounded-xl shadow-sm p-4">
+                <div class="flex justify-between items-center self-stretch mb-2">
+                    <button id="prevMonth" class="flex justify-center items-center w-10 h-10 rounded-full hover:bg-gray-100 transition-colors" aria-label="Previous month">
+                        <svg width="18" height="18" viewBox="0 0 7 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" clip-rule="evenodd" d="M6.64797 12.227C6.86776 12.4468 6.86776 12.8032 6.64797 13.023C6.42818 13.2428 6.07182 13.2428 5.85203 13.023L0.227031 7.39797C0.121407 7.29246 0.0620575 7.14929 0.0620575 7C0.0620575 6.85071 0.121407 6.70754 0.227031 6.60203L5.85203 0.977031C6.07182 0.757239 6.42818 0.757239 6.64797 0.977031C6.86776 1.19682 6.86776 1.55318 6.64797 1.77297L1.42023 7L6.64797 12.227Z" fill="#121417"/>
+                        </svg>
                     </button>
-                    <h4 class="flex flex-col items-center flex-[1_0_0]">
-                        <span class="self-stretch text-base font-bold leading-5 text-center text-neutral-900">July 2025</span>
-                    </h4>
-                </div>
-
-                <div class="flex flex-col items-start self-stretch">
-                    <!-- Days of week header -->
-                    <div class="flex items-start self-stretch flex-[1_0_0]">
-                        <div class="flex justify-center items-center pb-0.5 w-12 h-12">
-                            <span class="text-sm font-bold leading-5 text-neutral-900">S</span>
-                        </div>
-                        <div class="flex justify-center items-center pb-0.5 w-12 h-12">
-                            <span class="text-sm font-bold leading-5 text-neutral-900">M</span>
-                        </div>
-                        <div class="flex justify-center items-center pb-0.5 w-12 h-12">
-                            <span class="text-sm font-bold leading-5 text-neutral-900">T</span>
-                        </div>
-                        <div class="flex justify-center items-center pb-0.5 w-12 h-12">
-                            <span class="text-sm font-bold leading-5 text-neutral-900">W</span>
-                        </div>
-                        <div class="flex justify-center items-center pb-0.5 w-12 h-12">
-                            <span class="text-sm font-bold leading-5 text-neutral-900">T</span>
-                        </div>
-                        <div class="flex justify-center items-center pb-0.5 w-12 h-12">
-                            <span class="text-sm font-bold leading-5 text-neutral-900">F</span>
-                        </div>
-                        <div class="flex justify-center items-center pb-0.5 w-12 h-12">
-                            <span class="text-sm font-bold leading-5 text-neutral-900">S</span>
-                        </div>
-                    </div>
-
-                    <!-- Week 1 -->
-                    <div class="flex items-start self-stretch flex-[1_0_0]">
-                        <button class="flex flex-col items-center w-12 h-12">
-                            <div class="flex justify-center items-center self-stretch rounded-3xl cursor-pointer flex-[1_0_0] hover:bg-teal-100 transition-colors">
-                                <span class="text-sm leading-5 text-center text-neutral-900">1</span>
-                            </div>
-                        </button>
-                        <button class="flex flex-col items-center w-12 h-12">
-                            <div class="flex justify-center items-center self-stretch rounded-3xl cursor-pointer flex-[1_0_0] hover:bg-teal-100 transition-colors">
-                                <span class="text-sm leading-5 text-center text-neutral-900">2</span>
-                            </div>
-                        </button>
-                        <button class="flex flex-col items-center w-12 h-12">
-                            <div class="flex justify-center items-center self-stretch rounded-3xl cursor-pointer flex-[1_0_0] hover:bg-teal-100 transition-colors">
-                                <span class="text-sm leading-5 text-center text-neutral-900">3</span>
-                            </div>
-                        </button>
-                        <button class="flex flex-col items-center w-12 h-12">
-                            <div class="flex justify-center items-center self-stretch rounded-3xl cursor-pointer flex-[1_0_0] hover:bg-teal-100 transition-colors">
-                                <span class="text-sm leading-5 text-center text-neutral-900">4</span>
-                            </div>
-                        </button>
-                        <button class="flex flex-col items-center w-12 h-12">
-                            <div class="flex justify-center items-center self-stretch rounded-3xl cursor-pointer flex-[1_0_0] hover:bg-teal-100 transition-colors">
-                                <span class="text-sm leading-5 text-center text-neutral-900">5</span>
-                            </div>
-                        </button>
-                        <button class="flex flex-col items-center w-12 h-12">
-                            <div class="flex justify-center items-center self-stretch rounded-3xl cursor-pointer flex-[1_0_0] hover:bg-teal-100 transition-colors">
-                                <span class="text-sm leading-5 text-center text-neutral-900">6</span>
-                            </div>
-                        </button>
-                        <button class="flex flex-col items-center w-12 h-12">
-                            <div class="flex justify-center items-center self-stretch rounded-3xl cursor-pointer flex-[1_0_0] hover:bg-teal-100 transition-colors">
-                                <span class="text-sm leading-5 text-center text-neutral-900">7</span>
-                            </div>
-                        </button>
-                    </div>
-
-                    <!-- Week 2 -->
-                    <div class="flex items-start self-stretch flex-[1_0_0]">
-                        <button class="flex flex-col items-center w-12 h-12">
-                            <div class="flex justify-center items-center self-stretch rounded-3xl cursor-pointer flex-[1_0_0] hover:bg-teal-100 transition-colors">
-                                <span class="text-sm leading-5 text-center text-neutral-900">8</span>
-                            </div>
-                        </button>
-                        <button class="flex flex-col items-center w-12 h-12">
-                            <div class="flex justify-center items-center self-stretch rounded-3xl cursor-pointer flex-[1_0_0] hover:bg-teal-100 transition-colors">
-                                <span class="text-sm leading-5 text-center text-neutral-900">9</span>
-                            </div>
-                        </button>
-                        <button class="flex flex-col items-center w-12 h-12">
-                            <div class="flex justify-center items-center self-stretch rounded-3xl cursor-pointer flex-[1_0_0] hover:bg-teal-100 transition-colors">
-                                <span class="text-sm leading-5 text-center text-neutral-900">10</span>
-                            </div>
-                        </button>
-                        <button class="flex flex-col items-center w-12 h-12">
-                            <div class="flex justify-center items-center self-stretch rounded-3xl cursor-pointer flex-[1_0_0] hover:bg-teal-100 transition-colors">
-                                <span class="text-sm leading-5 text-center text-neutral-900">11</span>
-                            </div>
-                        </button>
-                        <button class="flex flex-col items-center w-12 h-12">
-                            <div class="flex justify-center items-center self-stretch rounded-3xl cursor-pointer flex-[1_0_0] hover:bg-teal-100 transition-colors">
-                                <span class="text-sm leading-5 text-center text-neutral-900">12</span>
-                            </div>
-                        </button>
-                        <button class="flex flex-col items-center w-12 h-12">
-                            <div class="flex justify-center items-center self-stretch rounded-3xl cursor-pointer flex-[1_0_0] hover:bg-teal-100 transition-colors">
-                                <span class="text-sm leading-5 text-center text-neutral-900">13</span>
-                            </div>
-                        </button>
-                        <button class="flex flex-col items-center w-12 h-12">
-                            <div class="flex justify-center items-center self-stretch rounded-3xl cursor-pointer flex-[1_0_0] hover:bg-teal-100 transition-colors">
-                                <span class="text-sm leading-5 text-center text-neutral-900">14</span>
-                            </div>
-                        </button>
-                    </div>
-
-                    <!-- Week 3 -->
-                    <div class="flex items-start self-stretch flex-[1_0_0]">
-                        <button class="flex flex-col items-center w-12 h-12">
-                            <div class="flex justify-center items-center self-stretch rounded-3xl cursor-pointer flex-[1_0_0] hover:bg-teal-100 transition-colors">
-                                <span class="text-sm leading-5 text-center text-neutral-900">15</span>
-                            </div>
-                        </button>
-                        <button class="flex flex-col items-center w-12 h-12">
-                            <div class="flex justify-center items-center self-stretch rounded-3xl cursor-pointer flex-[1_0_0] hover:bg-teal-100 transition-colors">
-                                <span class="text-sm leading-5 text-center text-neutral-900">16</span>
-                            </div>
-                        </button>
-                        <button class="flex flex-col items-center w-12 h-12">
-                            <div class="flex justify-center items-center self-stretch rounded-3xl cursor-pointer flex-[1_0_0] hover:bg-teal-100 transition-colors">
-                                <span class="text-sm leading-5 text-center text-neutral-900">17</span>
-                            </div>
-                        </button>
-                        <button class="flex flex-col items-center w-12 h-12">
-                            <div class="flex justify-center items-center self-stretch rounded-3xl cursor-pointer flex-[1_0_0] hover:bg-teal-100 transition-colors">
-                                <span class="text-sm leading-5 text-center text-neutral-900">18</span>
-                            </div>
-                        </button>
-                        <button class="flex flex-col items-center w-12 h-12">
-                            <div class="flex justify-center items-center self-stretch rounded-3xl cursor-pointer flex-[1_0_0] hover:bg-teal-100 transition-colors">
-                                <span class="text-sm leading-5 text-center text-neutral-900">19</span>
-                            </div>
-                        </button>
-                        <button class="flex flex-col items-center w-12 h-12">
-                            <div class="flex justify-center items-center self-stretch rounded-3xl cursor-pointer flex-[1_0_0] hover:bg-teal-100 transition-colors">
-                                <span class="text-sm leading-5 text-center text-neutral-900">20</span>
-                            </div>
-                        </button>
-                        <button class="flex flex-col items-center w-12 h-12">
-                            <div class="flex justify-center items-center self-stretch rounded-3xl cursor-pointer flex-[1_0_0] hover:bg-teal-100 transition-colors">
-                                <span class="text-sm leading-5 text-center text-neutral-900">21</span>
-                            </div>
-                        </button>
-                    </div>
-
-                    <!-- Week 4 -->
-                    <div class="flex items-start self-stretch flex-[1_0_0]">
-                        <button class="flex flex-col items-center w-12 h-12">
-                            <div class="flex justify-center items-center self-stretch rounded-3xl cursor-pointer flex-[1_0_0] hover:bg-teal-100 transition-colors">
-                                <span class="text-sm leading-5 text-center text-neutral-900">22</span>
-                            </div>
-                        </button>
-                        <button class="flex flex-col items-center w-12 h-12">
-                            <div class="flex justify-center items-center self-stretch rounded-3xl cursor-pointer flex-[1_0_0] hover:bg-teal-100 transition-colors">
-                                <span class="text-sm leading-5 text-center text-neutral-900">23</span>
-                            </div>
-                        </button>
-                        <button class="flex flex-col items-center w-12 h-12">
-                            <div class="flex justify-center items-center self-stretch rounded-3xl cursor-pointer flex-[1_0_0] hover:bg-teal-100 transition-colors">
-                                <span class="text-sm leading-5 text-center text-neutral-900">24</span>
-                            </div>
-                        </button>
-                        <button class="flex flex-col items-center w-12 h-12">
-                            <div class="flex justify-center items-center self-stretch rounded-3xl cursor-pointer flex-[1_0_0] hover:bg-teal-100 transition-colors">
-                                <span class="text-sm leading-5 text-center text-neutral-900">25</span>
-                            </div>
-                        </button>
-                        <button class="flex flex-col items-center w-12 h-12">
-                            <div class="flex justify-center items-center self-stretch rounded-3xl cursor-pointer flex-[1_0_0] hover:bg-teal-100 transition-colors">
-                                <span class="text-sm leading-5 text-center text-neutral-900">26</span>
-                            </div>
-                        </button>
-                        <button class="flex flex-col items-center w-12 h-12">
-                            <div class="flex justify-center items-center self-stretch rounded-3xl cursor-pointer flex-[1_0_0] hover:bg-teal-100 transition-colors">
-                                <span class="text-sm leading-5 text-center text-neutral-900">27</span>
-                            </div>
-                        </button>
-                        <button class="flex flex-col items-center w-12 h-12">
-                            <div class="flex justify-center items-center self-stretch rounded-3xl cursor-pointer flex-[1_0_0] hover:bg-teal-100 transition-colors">
-                                <span class="text-sm leading-5 text-center text-neutral-900">28</span>
-                            </div>
-                        </button>
-                    </div>
-
-                    <!-- Week 5 -->
-                    <div class="flex items-start self-stretch flex-[1_0_0]">
-                        <button class="flex flex-col items-center w-12 h-12">
-                            <div class="flex justify-center items-center self-stretch rounded-3xl cursor-pointer flex-[1_0_0] hover:bg-teal-100 transition-colors">
-                                <span class="text-sm leading-5 text-center text-neutral-900">29</span>
-                            </div>
-                        </button>
-                        <button class="flex flex-col items-center w-12 h-12">
-                            <div class="flex justify-center items-center self-stretch rounded-3xl cursor-pointer flex-[1_0_0] hover:bg-teal-100 transition-colors">
-                                <span class="text-sm leading-5 text-center text-neutral-900">30</span>
-                            </div>
-                        </button>
-                    </div>
-                </div>
-            </div>
-
-            <!-- August 2024 Calendar -->
-            <div class="flex flex-col gap-0.5 items-start flex-[1_0_0] max-w-[336px] min-w-72 max-md:max-w-full max-sm:min-w-full">
-                <div class="flex justify-between items-center self-stretch p-1">
-                    <h4 class="flex flex-col items-center flex-[1_0_0]">
-                        <span class="self-stretch text-base font-bold leading-5 text-center text-neutral-900">August 2025</span>
-                    </h4>
-                    <button class="flex flex-col items-center" aria-label="Next month">
-                        <div class="flex justify-center items-center w-10 flex-[1_0_0]">
-                            <svg width="18" height="18" viewBox="0 0 7 14" fill="none" xmlns="http://www.w3.org/2000/svg" class="nav-icon-right">
-                                <path fill-rule="evenodd" clip-rule="evenodd" d="M6.77297 7.39797L1.14797 13.023C0.928177 13.2428 0.571823 13.2428 0.352031 13.023C0.132239 12.8032 0.132239 12.4468 0.352031 12.227L5.57977 7L0.352031 1.77297C0.132239 1.55318 0.132239 1.19682 0.352031 0.977031C0.571823 0.757239 0.928177 0.757239 1.14797 0.977031L6.77297 6.60203C6.87859 6.70754 6.93794 6.85071 6.93794 7C6.93794 7.14929 6.87859 7.29246 6.77297 7.39797Z" fill="#121417"/>
-                            </svg>
-                        </div>
+                    <h4 id="currentMonth" class="text-base font-bold text-neutral-900">July 2025</h4>
+                    <button id="nextMonth" class="flex justify-center items-center w-10 h-10 rounded-full hover:bg-gray-100 transition-colors" aria-label="Next month">
+                        <svg width="18" height="18" viewBox="0 0 7 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" clip-rule="evenodd" d="M6.77297 7.39797L1.14797 13.023C0.928177 13.2428 0.571823 13.2428 0.352031 13.023C0.132239 12.8032 0.132239 12.4468 0.352031 12.227L5.57977 7L0.352031 1.77297C0.132239 1.55318 0.132239 1.19682 0.352031 0.977031C0.571823 0.757239 0.928177 0.757239 1.14797 0.977031L6.77297 6.60203C6.87859 6.70754 6.93794 6.85071 6.93794 7C6.93794 7.14929 6.87859 7.29246 6.77297 7.39797Z" fill="#121417"/>
+                        </svg>
                     </button>
                 </div>
 
                 <div class="flex flex-col items-start self-stretch">
                     <!-- Days of week header -->
-                    <div class="flex items-start self-stretch flex-[1_0_0]">
-                        <div class="flex justify-center items-center pb-0.5 w-12 h-12">
-                            <span class="text-sm font-bold leading-5 text-neutral-900">S</span>
+                    <div class="grid grid-cols-7 gap-1 w-full mb-1">
+                        <div class="flex justify-center items-center h-10">
+                            <span class="text-sm font-bold text-gray-500">Sun</span>
                         </div>
-                        <div class="flex justify-center items-center pb-0.5 w-12 h-12">
-                            <span class="text-sm font-bold leading-5 text-neutral-900">M</span>
+                        <div class="flex justify-center items-center h-10">
+                            <span class="text-sm font-bold text-gray-500">Mon</span>
                         </div>
-                        <div class="flex justify-center items-center pb-0.5 w-12 h-12">
-                            <span class="text-sm font-bold leading-5 text-neutral-900">T</span>
+                        <div class="flex justify-center items-center h-10">
+                            <span class="text-sm font-bold text-gray-500">Tue</span>
                         </div>
-                        <div class="flex justify-center items-center pb-0.5 w-12 h-12">
-                            <span class="text-sm font-bold leading-5 text-neutral-900">W</span>
+                        <div class="flex justify-center items-center h-10">
+                            <span class="text-sm font-bold text-gray-500">Wed</span>
                         </div>
-                        <div class="flex justify-center items-center pb-0.5 w-12 h-12">
-                            <span class="text-sm font-bold leading-5 text-neutral-900">T</span>
+                        <div class="flex justify-center items-center h-10">
+                            <span class="text-sm font-bold text-gray-500">Thu</span>
                         </div>
-                        <div class="flex justify-center items-center pb-0.5 w-12 h-12">
-                            <span class="text-sm font-bold leading-5 text-neutral-900">F</span>
+                        <div class="flex justify-center items-center h-10">
+                            <span class="text-sm font-bold text-gray-500">Fri</span>
                         </div>
-                        <div class="flex justify-center items-center pb-0.5 w-12 h-12">
-                            <span class="text-sm font-bold leading-5 text-neutral-900">S</span>
+                        <div class="flex justify-center items-center h-10">
+                            <span class="text-sm font-bold text-gray-500">Sat</span>
                         </div>
                     </div>
 
-                    <!-- Week 1 -->
-                    <div class="flex items-start self-stretch flex-[1_0_0]">
-                        <button class="flex flex-col items-center w-12 h-12">
-                            <div class="flex justify-center items-center self-stretch rounded-3xl cursor-pointer flex-[1_0_0] hover:bg-teal-100 transition-colors">
-                                <span class="text-sm leading-5 text-center text-neutral-900">1</span>
-                            </div>
-                        </button>
-                        <button class="flex flex-col items-center w-12 h-12">
-                            <div class="flex justify-center items-center self-stretch rounded-3xl cursor-pointer flex-[1_0_0] hover:bg-teal-100 transition-colors">
-                                <span class="text-sm leading-5 text-center text-neutral-900">2</span>
-                            </div>
-                        </button>
-                        <button class="flex flex-col items-center w-12 h-12">
-                            <div class="flex justify-center items-center self-stretch rounded-3xl cursor-pointer flex-[1_0_0] hover:bg-teal-100 transition-colors">
-                                <span class="text-sm leading-5 text-center text-neutral-900">3</span>
-                            </div>
-                        </button>
-                        <button class="flex flex-col items-center w-12 h-12">
-                            <div class="flex justify-center items-center self-stretch rounded-3xl cursor-pointer flex-[1_0_0] hover:bg-teal-100 transition-colors">
-                                <span class="text-sm leading-5 text-center text-neutral-900">4</span>
-                            </div>
-                        </button>
-                        <button class="flex flex-col items-center w-12 h-12">
-                            <div class="flex justify-center items-center self-stretch rounded-3xl cursor-pointer flex-[1_0_0] hover:bg-teal-100 transition-colors">
-                                <span class="text-sm leading-5 text-center text-neutral-900">5</span>
-                            </div>
-                        </button>
-                        <button class="flex flex-col items-center w-12 h-12">
-                            <div class="flex justify-center items-center self-stretch rounded-3xl cursor-pointer flex-[1_0_0] hover:bg-teal-100 transition-colors">
-                                <span class="text-sm leading-5 text-center text-neutral-900">6</span>
-                            </div>
-                        </button>
-                        <button class="flex flex-col items-center w-12 h-12">
-                            <div class="flex justify-center items-center self-stretch rounded-3xl cursor-pointer flex-[1_0_0] hover:bg-teal-100 transition-colors">
-                                <span class="text-sm leading-5 text-center text-neutral-900">7</span>
-                            </div>
-                        </button>
-                    </div>
-
-                    <!-- Week 2 -->
-                    <div class="flex items-start self-stretch flex-[1_0_0]">
-                        <button class="flex flex-col items-center w-12 h-12">
-                            <div class="flex justify-center items-center self-stretch rounded-3xl cursor-pointer flex-[1_0_0] hover:bg-teal-100 transition-colors">
-                                <span class="text-sm leading-5 text-center text-neutral-900">8</span>
-                            </div>
-                        </button>
-                        <button class="flex flex-col items-center w-12 h-12">
-                            <div class="flex justify-center items-center self-stretch rounded-3xl cursor-pointer flex-[1_0_0] hover:bg-teal-100 transition-colors">
-                                <span class="text-sm leading-5 text-center text-neutral-900">9</span>
-                            </div>
-                        </button>
-                        <button class="flex flex-col items-center w-12 h-12">
-                            <div class="flex justify-center items-center self-stretch rounded-3xl cursor-pointer flex-[1_0_0] hover:bg-teal-100 transition-colors">
-                                <span class="text-sm leading-5 text-center text-neutral-900">10</span>
-                            </div>
-                        </button>
-                        <button class="flex flex-col items-center w-12 h-12">
-                            <div class="flex justify-center items-center self-stretch rounded-3xl cursor-pointer flex-[1_0_0] hover:bg-teal-100 transition-colors">
-                                <span class="text-sm leading-5 text-center text-neutral-900">11</span>
-                            </div>
-                        </button>
-                        <button class="flex flex-col items-center w-12 h-12">
-                            <div class="flex justify-center items-center self-stretch rounded-3xl cursor-pointer flex-[1_0_0] hover:bg-teal-100 transition-colors">
-                                <span class="text-sm leading-5 text-center text-neutral-900">12</span>
-                            </div>
-                        </button>
-                        <button class="flex flex-col items-center w-12 h-12">
-                            <div class="flex justify-center items-center self-stretch rounded-3xl cursor-pointer flex-[1_0_0] hover:bg-teal-100 transition-colors">
-                                <span class="text-sm leading-5 text-center text-neutral-900">13</span>
-                            </div>
-                        </button>
-                        <button class="flex flex-col items-center w-12 h-12">
-                            <div class="flex justify-center items-center self-stretch rounded-3xl cursor-pointer flex-[1_0_0] hover:bg-teal-100 transition-colors">
-                                <span class="text-sm leading-5 text-center text-neutral-900">14</span>
-                            </div>
-                        </button>
-                    </div>
-
-                    <!-- Week 3 -->
-                    <div class="flex items-start self-stretch flex-[1_0_0]">
-                        <button class="flex flex-col items-center w-12 h-12">
-                            <div class="flex justify-center items-center self-stretch rounded-3xl cursor-pointer flex-[1_0_0] hover:bg-teal-100 transition-colors">
-                                <span class="text-sm leading-5 text-center text-neutral-900">15</span>
-                            </div>
-                        </button>
-                        <button class="flex flex-col items-center w-12 h-12">
-                            <div class="flex justify-center items-center self-stretch rounded-3xl cursor-pointer flex-[1_0_0] hover:bg-teal-100 transition-colors">
-                                <span class="text-sm leading-5 text-center text-neutral-900">16</span>
-                            </div>
-                        </button>
-                        <button class="flex flex-col items-center w-12 h-12">
-                            <div class="flex justify-center items-center self-stretch rounded-3xl cursor-pointer flex-[1_0_0] hover:bg-teal-100 transition-colors">
-                                <span class="text-sm leading-5 text-center text-neutral-900">17</span>
-                            </div>
-                        </button>
-                        <button class="flex flex-col items-center w-12 h-12">
-                            <div class="flex justify-center items-center self-stretch rounded-3xl cursor-pointer flex-[1_0_0] hover:bg-teal-100 transition-colors">
-                                <span class="text-sm leading-5 text-center text-neutral-900">18</span>
-                            </div>
-                        </button>
-                        <button class="flex flex-col items-center w-12 h-12">
-                            <div class="flex justify-center items-center self-stretch rounded-3xl cursor-pointer flex-[1_0_0] hover:bg-teal-100 transition-colors">
-                                <span class="text-sm leading-5 text-center text-neutral-900">19</span>
-                            </div>
-                        </button>
-                        <button class="flex flex-col items-center w-12 h-12">
-                            <div class="flex justify-center items-center self-stretch rounded-3xl cursor-pointer flex-[1_0_0] hover:bg-teal-100 transition-colors">
-                                <span class="text-sm leading-5 text-center text-neutral-900">20</span>
-                            </div>
-                        </button>
-                        <button class="flex flex-col items-center w-12 h-12">
-                            <div class="flex justify-center items-center self-stretch rounded-3xl cursor-pointer flex-[1_0_0] hover:bg-teal-100 transition-colors">
-                                <span class="text-sm leading-5 text-center text-neutral-900">21</span>
-                            </div>
-                        </button>
-                    </div>
-
-                    <!-- Week 4 -->
-                    <div class="flex items-start self-stretch flex-[1_0_0]">
-                        <button class="flex flex-col items-center w-12 h-12">
-                            <div class="flex justify-center items-center self-stretch rounded-3xl cursor-pointer flex-[1_0_0] hover:bg-teal-100 transition-colors">
-                                <span class="text-sm leading-5 text-center text-neutral-900">22</span>
-                            </div>
-                        </button>
-                        <button class="flex flex-col items-center w-12 h-12">
-                            <div class="flex justify-center items-center self-stretch rounded-3xl cursor-pointer flex-[1_0_0] hover:bg-teal-100 transition-colors">
-                                <span class="text-sm leading-5 text-center text-neutral-900">23</span>
-                            </div>
-                        </button>
-                        <button class="flex flex-col items-center w-12 h-12">
-                            <div class="flex justify-center items-center self-stretch rounded-3xl cursor-pointer flex-[1_0_0] hover:bg-teal-100 transition-colors">
-                                <span class="text-sm leading-5 text-center text-neutral-900">24</span>
-                            </div>
-                        </button>
-                        <button class="flex flex-col items-center w-12 h-12">
-                            <div class="flex justify-center items-center self-stretch rounded-3xl cursor-pointer flex-[1_0_0] hover:bg-teal-100 transition-colors">
-                                <span class="text-sm leading-5 text-center text-neutral-900">25</span>
-                            </div>
-                        </button>
-                        <button class="flex flex-col items-center w-12 h-12">
-                            <div class="flex justify-center items-center self-stretch rounded-3xl cursor-pointer flex-[1_0_0] hover:bg-teal-100 transition-colors">
-                                <span class="text-sm leading-5 text-center text-neutral-900">26</span>
-                            </div>
-                        </button>
-                        <button class="flex flex-col items-center w-12 h-12">
-                            <div class="flex justify-center items-center self-stretch rounded-3xl cursor-pointer flex-[1_0_0] hover:bg-teal-100 transition-colors">
-                                <span class="text-sm leading-5 text-center text-neutral-900">27</span>
-                            </div>
-                        </button>
-                        <button class="flex flex-col items-center w-12 h-12">
-                            <div class="flex justify-center items-center self-stretch rounded-3xl cursor-pointer flex-[1_0_0] hover:bg-teal-100 transition-colors">
-                                <span class="text-sm leading-5 text-center text-neutral-900">28</span>
-                            </div>
-                        </button>
-                    </div>
-
-                    <!-- Week 5 -->
-                    <div class="flex items-start self-stretch flex-[1_0_0]">
-                        <button class="flex flex-col items-center w-12 h-12">
-                            <div class="flex justify-center items-center self-stretch rounded-3xl cursor-pointer flex-[1_0_0] hover:bg-teal-100 transition-colors">
-                                <span class="text-sm leading-5 text-center text-neutral-900">29</span>
-                            </div>
-                        </button>
-                        <button class="flex flex-col items-center w-12 h-12">
-                            <div class="flex justify-center items-center self-stretch rounded-3xl cursor-pointer flex-[1_0_0] hover:bg-teal-100 transition-colors">
-                                <span class="text-sm leading-5 text-center text-neutral-900">30</span>
-                            </div>
-                        </button>
-                    </div>
+                    <!-- Calendar dates will be inserted here by JavaScript -->
+                    <div id="calendarDates" class="grid grid-cols-7 gap-1 w-full"></div>
                 </div>
             </div>
         </section>
 
         <section class="flex flex-col items-start self-stretch px-4 pt-4 pb-2">
             <h3 class="self-stretch text-lg font-bold leading-6 text-neutral-900 max-sm:text-base">
-                Pilih Waktu
+                Select Time
             </h3>
+            <p class="text-sm text-gray-500 mt-1">Please select a date first</p>
         </section>
 
         <section class="flex flex-wrap gap-3 content-start items-start self-stretch p-4 max-sm:p-2">
-            <button class="flex items-center p-4 h-10 border border-gray-300 border-solid cursor-pointer bg-slate-50 rounded-[30px] hover:bg-teal-50 hover:border-teal-300 transition-colors">
-                <span class="text-sm leading-6 text-teal-700">9:00 AM</span>
+            <button class="time-slot flex items-center px-6 py-2 border border-gray-300 cursor-pointer bg-slate-50 rounded-full hover:bg-teal-50 hover:border-teal-300 transition-all">
+                <span class="text-sm font-medium text-teal-700">9:00 AM</span>
             </button>
-            <button class="flex items-center p-4 h-10 border border-gray-300 border-solid cursor-pointer bg-slate-50 rounded-[30px] hover:bg-teal-50 hover:border-teal-300 transition-colors">
-                <span class="text-sm leading-6 text-teal-700">10:00 AM</span>
+            <button class="time-slot flex items-center px-6 py-2 border border-gray-300 cursor-pointer bg-slate-50 rounded-full hover:bg-teal-50 hover:border-teal-300 transition-all">
+                <span class="text-sm font-medium text-teal-700">10:00 AM</span>
             </button>
-            <button class="flex items-center p-4 h-10 border border-gray-300 border-solid cursor-pointer bg-slate-50 rounded-[30px] hover:bg-teal-50 hover:border-teal-300 transition-colors">
-                <span class="text-sm leading-6 text-teal-700">12:00 AM</span>
+            <button class="time-slot flex items-center px-6 py-2 border border-gray-300 cursor-pointer bg-slate-50 rounded-full hover:bg-teal-50 hover:border-teal-300 transition-all">
+                <span class="text-sm font-medium text-teal-700">11:00 AM</span>
             </button>
-            <button class="flex items-center p-4 h-10 border border-gray-300 border-solid cursor-pointer bg-slate-50 rounded-[30px] hover:bg-teal-50 hover:border-teal-300 transition-colors">
-                <span class="text-sm leading-6 text-teal-700">01:00 PM</span>
+            <button class="time-slot flex items-center px-6 py-2 border border-gray-300 cursor-pointer bg-slate-50 rounded-full hover:bg-teal-50 hover:border-teal-300 transition-all">
+                <span class="text-sm font-medium text-teal-700">1:00 PM</span>
             </button>
-            <button class="flex items-center p-4 h-10 border border-gray-300 border-solid cursor-pointer bg-slate-50 rounded-[30px] hover:bg-teal-50 hover:border-teal-300 transition-colors">
-                <span class="text-sm leading-6 text-teal-700">02:00 PM</span>
+            <button class="time-slot flex items-center px-6 py-2 border border-gray-300 cursor-pointer bg-slate-50 rounded-full hover:bg-teal-50 hover:border-teal-300 transition-all">
+                <span class="text-sm font-medium text-teal-700">2:00 PM</span>
+            </button>
+            <button class="time-slot flex items-center px-6 py-2 border border-gray-300 cursor-pointer bg-slate-50 rounded-full hover:bg-teal-50 hover:border-teal-300 transition-all">
+                <span class="text-sm font-medium text-teal-700">3:00 PM</span>
             </button>
         </section>
 
@@ -474,78 +107,148 @@
         </section>
 
         <section class="flex flex-col gap-6 items-start self-stretch p-4 max-sm:p-2">
-            <div class="flex gap-6 items-start self-stretch flex-[1_0_0]">
-                <div class="flex flex-col items-start self-stretch px-0 py-5 border-t border-solid border-t-gray-200">
-                    <div class="flex items-start self-stretch flex-[1_0_0]">
-                        <div class="flex flex-col items-start self-stretch">
-                            <span class="self-stretch text-sm leading-5 text-slate-500">Your Time Zone</span>
-                        </div>
-                    </div>
-                    <div class="flex items-start self-stretch flex-[1_0_0]">
-                        <div class="flex flex-col items-start self-stretch">
-                            <span class="self-stretch text-sm leading-5 text-neutral-900">(GMT+7) Jakarta</span>
-                        </div>
-                    </div>
+            <div class="flex gap-6 items-start self-stretch flex-wrap">
+                <div class="flex flex-col items-start flex-1 min-w-[200px] px-0 py-5 border-t border-solid border-t-gray-200">
+                    <span class="text-sm leading-5 text-slate-500 mb-1">Your Time Zone</span>
+                    <span class="text-sm font-medium leading-5 text-neutral-900">(GMT+7) Jakarta, Indonesia</span>
                 </div>
-                <div class="flex flex-col items-start self-stretch px-0 py-5 border-t border-solid border-t-gray-200">
-                    <div class="flex items-start self-stretch flex-[1_0_0]">
-                        <div class="flex flex-col items-start self-stretch">
-                            <span class="self-stretch text-sm leading-5 text-slate-500">Consultant's Time Zone</span>
-                        </div>
-                    </div>
-                    <div class="flex items-start self-stretch flex-[1_0_0]">
-                        <div class="flex flex-col items-start self-stretch">
-                            <span class="self-stretch text-sm leading-5 text-neutral-900">(GMT-4) New York</span>
-                        </div>
-                    </div>
+                <div class="flex flex-col items-start flex-1 min-w-[200px] px-0 py-5 border-t border-solid border-t-gray-200">
+                    <span class="text-sm leading-5 text-slate-500 mb-1">Consultant's Time Zone</span>
+                    <span class="text-sm font-medium leading-5 text-neutral-900">(GMT-4) New York, USA</span>
                 </div>
             </div>
         </section>
 
-        <section class="flex justify-end items-start self-stretch px-4 py-3 max-sm:p-2">
-            <a href="/umkm/bookingSummary" class="flex gap-2.5 justify-center items-center px-12 py-3.5 w-32 bg-orange-500 rounded-3xl cursor-pointer border-none h-[53px] max-sm:w-full hover:bg-orange-600 transition-colors">
-                <span class="shrink-0 h-7 text-base text-center text-white w-[82px]">Bayar</span>
-            </a>
+        <section class="flex justify-between items-center self-stretch px-4 py-4 max-sm:flex-col max-sm:gap-4">
+            <div id="selectedInfo" class="text-sm text-gray-600">
+                No date and time selected
+            </div>
+            <button id="confirmBtn" disabled class="flex gap-2.5 justify-center items-center px-12 py-3.5 bg-orange-500 rounded-full cursor-pointer border-none hover:bg-orange-600 transition-all disabled:bg-gray-300 disabled:cursor-not-allowed max-sm:w-full">
+                <span class="text-base font-semibold text-white">Proceed to Payment</span>
+            </button>
         </section>
     </main>
 
     <script>
-        // Add basic interactivity for calendar dates
-        document.querySelectorAll('button[class*="flex flex-col items-center w-12 h-12"]').forEach(button => {
-            button.addEventListener('click', function() {
-                // Remove selected state from all dates
-                document.querySelectorAll('.bg-teal-500').forEach(el => {
-                    el.classList.remove('bg-teal-500', 'text-white');
-                    el.classList.add('hover:bg-teal-100');
-                });
+        let currentMonth = 6; // July (0-indexed)
+        let currentYear = 2025;
+        let selectedDate = null;
+        let selectedTime = null;
 
-                // Add selected state to clicked date
-                const dateDiv = this.querySelector('div');
-                dateDiv.classList.add('bg-teal-500', 'text-white');
-                dateDiv.classList.remove('hover:bg-teal-100');
-            });
+        const monthNames = ["January", "February", "March", "April", "May", "June",
+            "July", "August", "September", "October", "November", "December"];
+
+        function generateCalendar(month, year) {
+            const firstDay = new Date(year, month, 1).getDay();
+            const daysInMonth = new Date(year, month + 1, 0).getDate();
+            const calendarDates = document.getElementById('calendarDates');
+            const monthDisplay = document.getElementById('currentMonth');
+            
+            calendarDates.innerHTML = '';
+            monthDisplay.textContent = `${monthNames[month]} ${year}`;
+
+            // Add empty cells for days before the first day of the month
+            for (let i = 0; i < firstDay; i++) {
+                const emptyCell = document.createElement('div');
+                emptyCell.className = 'h-10';
+                calendarDates.appendChild(emptyCell);
+            }
+
+            // Add days of the month
+            for (let day = 1; day <= daysInMonth; day++) {
+                const dateBtn = document.createElement('button');
+                dateBtn.className = 'date-btn flex justify-center items-center h-10 w-full rounded-full hover:bg-teal-100 transition-all';
+                dateBtn.innerHTML = `<span class="text-sm text-neutral-900">${day}</span>`;
+                dateBtn.dataset.date = `${year}-${month + 1}-${day}`;
+                
+                dateBtn.addEventListener('click', function() {
+                    document.querySelectorAll('.date-btn').forEach(btn => {
+                        btn.classList.remove('bg-teal-500', 'text-white');
+                        btn.querySelector('span').classList.remove('text-white');
+                        btn.querySelector('span').classList.add('text-neutral-900');
+                    });
+                    
+                    this.classList.add('bg-teal-500');
+                    this.querySelector('span').classList.remove('text-neutral-900');
+                    this.querySelector('span').classList.add('text-white');
+                    
+                    selectedDate = this.dataset.date;
+                    updateSelectedInfo();
+                });
+                
+                calendarDates.appendChild(dateBtn);
+            }
+        }
+
+        document.getElementById('prevMonth').addEventListener('click', () => {
+            currentMonth--;
+            if (currentMonth < 0) {
+                currentMonth = 11;
+                currentYear--;
+            }
+            generateCalendar(currentMonth, currentYear);
         });
 
-        // Add interactivity for time slots
-        document.querySelectorAll('button[class*="border border-gray-300"]').forEach(button => {
-            button.addEventListener('click', function() {
-                // Remove selected state from all time slots
-                document.querySelectorAll('.bg-teal-500').forEach(el => {
-                    if (el.parentElement.classList.contains('border-gray-300')) {
-                        el.parentElement.classList.remove('bg-teal-500', 'border-teal-500');
-                        el.parentElement.classList.add('bg-slate-50', 'border-gray-300');
-                        el.classList.remove('text-white');
-                        el.classList.add('text-teal-700');
-                    }
-                });
+        document.getElementById('nextMonth').addEventListener('click', () => {
+            currentMonth++;
+            if (currentMonth > 11) {
+                currentMonth = 0;
+                currentYear++;
+            }
+            generateCalendar(currentMonth, currentYear);
+        });
 
-                // Add selected state to clicked time slot
+        document.querySelectorAll('.time-slot').forEach(button => {
+            button.addEventListener('click', function() {
+                document.querySelectorAll('.time-slot').forEach(btn => {
+                    btn.classList.remove('bg-teal-500', 'border-teal-500');
+                    btn.classList.add('bg-slate-50', 'border-gray-300');
+                    btn.querySelector('span').classList.remove('text-white');
+                    btn.querySelector('span').classList.add('text-teal-700');
+                });
+                
                 this.classList.remove('bg-slate-50', 'border-gray-300');
                 this.classList.add('bg-teal-500', 'border-teal-500');
-                const span = this.querySelector('span');
-                span.classList.remove('text-teal-700');
-                span.classList.add('text-white');
+                this.querySelector('span').classList.remove('text-teal-700');
+                this.querySelector('span').classList.add('text-white');
+                
+                selectedTime = this.querySelector('span').textContent;
+                updateSelectedInfo();
             });
         });
-    </script>
 
+        function updateSelectedInfo() {
+            const infoDiv = document.getElementById('selectedInfo');
+            const confirmBtn = document.getElementById('confirmBtn');
+            
+            if (selectedDate && selectedTime) {
+                const date = new Date(selectedDate);
+                const formattedDate = date.toLocaleDateString('en-US', { 
+                    weekday: 'long', 
+                    year: 'numeric', 
+                    month: 'long', 
+                    day: 'numeric' 
+                });
+                infoDiv.innerHTML = `<strong>Selected:</strong> ${formattedDate} at ${selectedTime}`;
+                confirmBtn.disabled = false;
+            } else if (selectedDate) {
+                infoDiv.textContent = 'Please select a time slot';
+                confirmBtn.disabled = true;
+            } else {
+                infoDiv.textContent = 'No date and time selected';
+                confirmBtn.disabled = true;
+            }
+        }
+
+        document.getElementById('confirmBtn').addEventListener('click', () => {
+            if (selectedDate && selectedTime) {
+                alert(`Booking confirmed for ${selectedDate} at ${selectedTime}`);
+                window.location.href = '/mitra/bookingSummary';
+            }
+        });
+
+        // Initialize calendar
+        generateCalendar(currentMonth, currentYear);
+    </script>
+</body>
+</html>

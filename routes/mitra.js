@@ -501,4 +501,20 @@ router.get("/komunitas", function (req, res, next) {
   });
 });
 
+router.get("/pembayaran", function (req, res, next) {
+  res.render("mitra/konsultan/pembayaran", {
+    title: "Form GRI",
+    layout: "mitra",
+    currentPath: req.path,
+  });
+});
+
+router.get("/history", function (req, res, next) {
+  res.render("mitra/konsultan/history", {
+    title: "Form GRI",
+    layout: "mitra",
+    currentPath: req.path,
+  });
+});
+
 module.exports = router;

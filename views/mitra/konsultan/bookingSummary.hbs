@@ -1,152 +1,355 @@
-
-<body class="font-raleway bg-white">
-    <div class="relative w-full bg-white h-[862px]">
-
-
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Booking Summary</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Raleway', sans-serif;
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <div class="min-h-screen py-8">
         <!-- Main Content -->
-        <main class="flex absolute flex-col items-start px-0 py-5 h-[672px] left-[203px] max-w-[960px]  w-[960px] max-md:left-10 max-md:max-w-none max-md:w-[calc(100%_-_80px)] max-sm:left-5 max-sm:px-0 max-sm:py-2.5 max-sm:w-[calc(100%_-_40px)]">
-
+        <main class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
             <!-- Page Title -->
-            <section class="flex flex-wrap gap-y-3 justify-between content-start items-start self-stretch p-4">
-                <div class="flex flex-col items-start w-72 min-w-72">
-                    <h2 class="self-stretch text-3xl font-bold leading-10 text-neutral-900 max-sm:text-2xl max-sm:leading-8">Booking Summary</h2>
-                </div>
+            <section class="mb-6">
+                <h2 class="text-3xl font-bold text-neutral-900 max-sm:text-2xl">Booking Summary</h2>
+                <p class="text-gray-600 mt-2">Review your booking details before confirming</p>
             </section>
 
-            <!-- Consultant Section -->
-            <section class="flex flex-col items-start self-stretch px-4 pt-4 pb-2">
-                <h3 class="self-stretch text-lg font-bold leading-6 text-neutral-900">Consultant</h3>
-            </section>
-
-            <div class="flex gap-4 items-center self-stretch px-4 py-2 bg-white min-h-[72px] max-sm:flex-col max-sm:gap-3 max-sm:items-start max-sm:h-auto max-sm:min-h-[auto]">
-                <!-- Consultant Avatar -->
-                <div class="w-14 h-14 rounded-full bg-gray-300" style="background: url('https://api.builder.io/api/v1/image/assets/TEMP/consultant-avatar') lightgray 50% / cover no-repeat;">
-                
-                                                        <img
-                                                        src="https://api.builder.io/api/v1/image/assets/TEMP/011ba4f9948d0fc7d695602d721038f57224509a?placeholderIfAbsent=true&apiKey=ac04cd396e1f47f18955cd19640f183d"
-                                                        alt="Budi Santosa Profile"
-                                                        class="object-contain shrink-0 rounded-full aspect-square w-[83px] max-md:mt-4"
-                                                    /></div>
-
-                <!-- Consultant Info -->
-                <div class="flex flex-col justify-center items-start">
-                    <div class="flex flex-col items-start w-[142px]">
-                        <h4 class="text-base font-medium leading-6 text-neutral-900 w-[187px]">Budi Santosa, M.Si</h4>
-
-                    </div>
-                    <div class="flex flex-col items-start">
-                        <p class="self-stretch text-base leading-6 text-slate-500">Sustainability Analyst | UKM &amp; Agrikultur</p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Booking Details Section -->
-            <section class="flex flex-col items-start self-stretch px-4 pt-4 pb-2">
-                <h3 class="self-stretch text-lg font-bold leading-6 text-neutral-900">Booking Details</h3>
-            </section>
-
-            <div class="flex flex-col gap-6 items-start self-stretch p-4">
-                <!-- First Row: Date and Time -->
-                <div class="flex gap-6 items-start self-stretch flex-[1_0_0] max-sm:flex-col">
-                    <!-- Date -->
-                    <div class="flex flex-col items-start self-stretch px-0 py-5 border-t border-solid border-t-gray-200 w-[186px] max-sm:w-full">
-                        <div class="flex items-start self-stretch flex-[1_0_0]">
-                            <div class="flex flex-col items-start self-stretch w-[186px]">
-                                <span class="self-stretch text-sm leading-5 text-slate-500">Date</span>
-                            </div>
-                        </div>
-                        <div class="flex items-start self-stretch flex-[1_0_0]">
-                            <div class="flex flex-col items-start self-stretch w-[186px]">
-                                <span class="self-stretch text-sm font-medium leading-5 text-neutral-900">July 20, 2024</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Time -->
-                    <div class="flex flex-col items-start self-stretch px-0 py-5 border-t border-solid border-t-gray-200 w-[186px] max-sm:w-full">
-                        <div class="flex items-start self-stretch flex-[1_0_0]">
-                            <div class="flex flex-col items-start self-stretch w-[718px]">
-                                <span class="self-stretch text-sm leading-5 text-slate-500">Waktu</span>
-                            </div>
-                        </div>
-                        <div class="flex items-start self-stretch flex-[1_0_0]">
-                            <div class="flex flex-col items-start self-stretch w-[718px]">
-                                <span class="self-stretch text-sm font-medium leading-5 text-neutral-900">09:00 AM</span>
-                            </div>
+            <!-- Summary Card -->
+            <div class="bg-white rounded-2xl shadow-lg overflow-hidden">
+                <!-- Consultant Section -->
+                <div class="p-6 border-b border-gray-200">
+                    <h3 class="text-lg font-bold text-neutral-900 mb-4">Consultant</h3>
+                    <div class="flex gap-4 items-center">
+                        <img
+                            src="https://api.builder.io/api/v1/image/assets/TEMP/011ba4f9948d0fc7d695602d721038f57224509a?placeholderIfAbsent=true&apiKey=ac04cd396e1f47f18955cd19640f183d"
+                            alt="Budi Santosa Profile"
+                            class="w-16 h-16 rounded-full object-cover"
+                        />
+                        <div>
+                            <h4 class="text-lg font-semibold text-neutral-900">Budi Santosa, M.Si</h4>
+                            <p class="text-sm text-gray-500">Sustainability Analyst | SME & Agriculture</p>
                         </div>
                     </div>
                 </div>
 
-                <!-- Second Row: Duration and Price -->
-                <div class="flex gap-6 items-start self-stretch flex-[1_0_0] max-sm:flex-col">
-                    <!-- Duration -->
-                    <div class="flex flex-col items-start self-stretch px-0 py-5 border-t border-solid border-t-gray-200 w-[186px] max-sm:w-full">
-                        <div class="flex items-start self-stretch flex-[1_0_0]">
-                            <div class="flex flex-col items-start self-stretch w-[186px]">
-                                <span class="self-stretch text-sm leading-5 text-slate-500">Durasi</span>
-                            </div>
+                <!-- Booking Details Section -->
+                <div class="p-6 border-b border-gray-200">
+                    <h3 class="text-lg font-bold text-neutral-900 mb-4">Booking Details</h3>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                        <!-- Date -->
+                        <div class="border-t border-gray-200 pt-4">
+                            <span class="text-sm text-gray-500 block mb-1">Date</span>
+                            <span class="text-base font-semibold text-neutral-900">July 20, 2025</span>
                         </div>
-                        <div class="flex items-start self-stretch flex-[1_0_0]">
-                            <div class="flex flex-col items-start self-stretch w-[186px]">
-                                <span class="self-stretch text-sm font-medium leading-5 text-neutral-900">1 jam</span>
-                            </div>
+
+                        <!-- Time -->
+                        <div class="border-t border-gray-200 pt-4">
+                            <span class="text-sm text-gray-500 block mb-1">Time</span>
+                            <span class="text-base font-semibold text-neutral-900">09:00 AM</span>
                         </div>
-                    </div>
 
-                    <!-- Price -->
-                    <div class="flex flex-col items-start self-stretch px-0 py-5 border-t border-solid border-t-gray-200 w-[186px] max-sm:w-full">
-                        <div class="flex items-start self-stretch flex-[1_0_0]">
-                            <div class="flex flex-col items-start self-stretch w-[718px]">
-                                <span class="self-stretch text-sm leading-5 text-slate-500">Harga</span>
-                            </div>
+                        <!-- Duration -->
+                        <div class="border-t border-gray-200 pt-4">
+                            <span class="text-sm text-gray-500 block mb-1">Duration</span>
+                            <span class="text-base font-semibold text-neutral-900">1 hour</span>
                         </div>
-                        <div class="flex items-start self-stretch flex-[1_0_0]">
-                            <div class="flex flex-col items-start self-stretch w-[718px]">
-                                <span class="self-stretch text-sm font-medium leading-5 text-neutral-900">Rp. 350.000</span>
-                            </div>
+
+                        <!-- Price -->
+                        <div class="border-t border-gray-200 pt-4">
+                            <span class="text-sm text-gray-500 block mb-1">Price</span>
+                            <span class="text-xl font-bold text-teal-700">$45.00</span>
                         </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Payment Method Section -->
-            <section class="flex flex-col items-start self-stretch px-4 pt-4 pb-2">
-                <h3 class="self-stretch text-lg font-bold leading-6 text-neutral-900">Payment Method</h3>
-            </section>
-
-            <div class="flex gap-4 items-center self-stretch px-4 py-2 bg-white h-[72px] min-h-[72px] max-sm:flex-col max-sm:gap-3 max-sm:items-start max-sm:h-auto max-sm:min-h-[auto]">
-                <!-- Payment Icon -->
-                <div class="w-10 h-6 bg-white border border-gray-300 rounded flex items-center justify-center">
-                    <svg width="40" height="24" viewBox="0 0 40 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="payment-icon">
-                        <g clip-path="url(#clip0_336_5812)">
-                            <path d="M36 0.5H4C2.067 0.5 0.5 2.067 0.5 4V20C0.5 21.933 2.067 23.5 4 23.5H36C37.933 23.5 39.5 21.933 39.5 20V4C39.5 2.067 37.933 0.5 36 0.5Z" fill="white" stroke="#C4C4C4"/>
-                        </g>
-                        <defs>
-                            <clipPath id="clip0_336_5812">
-                                <rect width="40" height="24" fill="white"/>
-                            </clipPath>
-                        </defs>
-                    </svg>
-                </div>
-
-                <!-- Payment Info -->
-                <div class="flex flex-col justify-center items-start">
-                    <div class="flex flex-col items-start w-[100px]">
-                        <span class="self-stretch text-base font-semibold leading-6 text-neutral-900">Qris</span>
-                    </div>
-                    <div class="flex flex-col items-start">
-                        <span class="self-stretch text-sm leading-5 text-slate-500">Ending in 4242</span>
                     </div>
                 </div>
-            </div>
 
-            <!-- Confirmation Button -->
-            <div class="flex relative justify-end items-center self-stretch pt-0 pr-0 pb-6 pl-[832px] max-md:justify-center max-md:p-0">
-                <a href="/mitra/bookingTransaksi" class="flex gap-2.5 justify-center items-center px-12 py-3.5 w-32 bg-orange-500 rounded-3xl cursor-pointer h-[53px] max-md:static hover:bg-orange-600 transition-colors">
-                    <span class="h-7 text-base font-medium text-center text-white w-[82px]">Konfirmasi</span>
-                </a>
+                <!-- Payment Method Section -->
+                <div class="p-6 border-b border-gray-200">
+                    <h3 class="text-lg font-bold text-neutral-900 mb-4">Payment Method</h3>
+                    
+                    <!-- Selected Payment Method Display -->
+                    <div id="selectedPaymentDisplay" class="hidden">
+                        <div class="flex gap-4 items-center p-4 bg-teal-50 rounded-xl border border-teal-200">
+                            <div id="paymentIcon" class="w-12 h-12 flex items-center justify-center bg-white rounded-lg border border-gray-300">
+                                <!-- Icon will be inserted here -->
+                            </div>
+                            <div>
+                                <span id="paymentName" class="text-base font-semibold text-neutral-900 block"></span>
+                                <span id="paymentDetails" class="text-sm text-gray-600"></span>
+                            </div>
+                            <button onclick="openPaymentSelector()" class="ml-auto text-teal-600 hover:text-teal-700 font-medium text-sm">
+                                Change
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Select Payment Button -->
+                    <button id="selectPaymentBtn" onclick="openPaymentSelector()" class="w-full flex items-center justify-center gap-3 p-4 border-2 border-dashed border-gray-300 rounded-xl hover:border-teal-500 hover:bg-teal-50 transition-all">
+                        <svg class="w-6 h-6 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"/>
+                        </svg>
+                        <span class="text-gray-600 font-medium">Select Payment Method</span>
+                    </button>
+                </div>
+
+                <!-- Total Section -->
+                <div class="p-6 bg-gray-50">
+                    <div class="flex justify-between items-center mb-4">
+                        <span class="text-lg font-semibold text-neutral-900">Total Amount</span>
+                        <span class="text-2xl font-bold text-teal-700">$45.00</span>
+                    </div>
+                    <div class="text-sm text-gray-600">
+                        <p>✓ Includes all taxes and fees</p>
+                        <p>✓ Secure payment processing</p>
+                    </div>
+                </div>
+
+                <!-- Confirmation Button -->
+                <div class="p-6">
+                    <button id="confirmBtn" disabled onclick="confirmBooking()" class="w-full flex justify-center items-center px-12 py-4 bg-orange-500 rounded-xl text-white font-semibold text-lg hover:bg-orange-600 transition-colors shadow-md disabled:bg-gray-300 disabled:cursor-not-allowed">
+                        Confirm Booking
+                    </button>
+                    <p class="text-center text-sm text-gray-500 mt-3">Please select a payment method to continue</p>
+                </div>
             </div>
         </main>
     </div>
+
+    <!-- Payment Method Selector Modal -->
+    <div id="paymentModal" class="hidden fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center p-4">
+        <div class="bg-white rounded-2xl shadow-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto">
+            <!-- Modal Header -->
+            <div class="sticky top-0 bg-white border-b border-gray-200 px-6 py-4 flex justify-between items-center">
+                <h3 class="text-2xl font-bold text-neutral-900">Select Payment Method</h3>
+                <button onclick="closePaymentSelector()" class="text-gray-400 hover:text-gray-600 transition-colors">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+                    </svg>
+                </button>
+            </div>
+
+            <!-- Modal Content -->
+            <div class="p-6">
+                <div class="space-y-3">
+                    <!-- Credit/Debit Card -->
+                    <label class="payment-option flex items-center gap-4 p-4 border-2 border-gray-200 rounded-xl cursor-pointer hover:border-teal-500 hover:bg-teal-50 transition-all">
+                        <input type="radio" name="paymentMethod" value="card" class="w-5 h-5 text-teal-600">
+                        <div class="flex items-center gap-3 flex-1">
+                            <div class="w-12 h-12 flex items-center justify-center bg-blue-100 rounded-lg">
+                                <svg class="w-7 h-7 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"/>
+                                </svg>
+                            </div>
+                            <div>
+                                <div class="font-semibold text-gray-900">Credit / Debit Card</div>
+                                <div class="text-sm text-gray-500">Visa, Mastercard, Amex</div>
+                            </div>
+                        </div>
+                    </label>
+
+                    <!-- Bank Transfer -->
+                    <label class="payment-option flex items-center gap-4 p-4 border-2 border-gray-200 rounded-xl cursor-pointer hover:border-teal-500 hover:bg-teal-50 transition-all">
+                        <input type="radio" name="paymentMethod" value="bank" class="w-5 h-5 text-teal-600">
+                        <div class="flex items-center gap-3 flex-1">
+                            <div class="w-12 h-12 flex items-center justify-center bg-green-100 rounded-lg">
+                                <svg class="w-7 h-7 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 14v3m4-3v3m4-3v3M3 21h18M3 10h18M3 7l9-4 9 4M4 10h16v11H4V10z"/>
+                                </svg>
+                            </div>
+                            <div>
+                                <div class="font-semibold text-gray-900">Bank Transfer</div>
+                                <div class="text-sm text-gray-500">Direct bank transfer</div>
+                            </div>
+                        </div>
+                    </label>
+
+                    <!-- E-Wallet -->
+                    <label class="payment-option flex items-center gap-4 p-4 border-2 border-gray-200 rounded-xl cursor-pointer hover:border-teal-500 hover:bg-teal-50 transition-all">
+                        <input type="radio" name="paymentMethod" value="ewallet" class="w-5 h-5 text-teal-600">
+                        <div class="flex items-center gap-3 flex-1">
+                            <div class="w-12 h-12 flex items-center justify-center bg-purple-100 rounded-lg">
+                                <svg class="w-7 h-7 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                                </svg>
+                            </div>
+                            <div>
+                                <div class="font-semibold text-gray-900">E-Wallet</div>
+                                <div class="text-sm text-gray-500">PayPal, Apple Pay, Google Pay</div>
+                            </div>
+                        </div>
+                    </label>
+
+                    <!-- QRIS -->
+                    <label class="payment-option flex items-center gap-4 p-4 border-2 border-gray-200 rounded-xl cursor-pointer hover:border-teal-500 hover:bg-teal-50 transition-all">
+                        <input type="radio" name="paymentMethod" value="qris" class="w-5 h-5 text-teal-600">
+                        <div class="flex items-center gap-3 flex-1">
+                            <div class="w-12 h-12 flex items-center justify-center bg-red-100 rounded-lg">
+                                <svg class="w-7 h-7 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v1m6 11h2m-6 0h-2v4m0-11v3m0 0h.01M12 12h4.01M16 20h4M4 12h4m12 0h.01M5 8h2a1 1 0 001-1V5a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1zm12 0h2a1 1 0 001-1V5a1 1 0 00-1-1h-2a1 1 0 00-1 1v2a1 1 0 001 1zM5 20h2a1 1 0 001-1v-2a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1z"/>
+                                </svg>
+                            </div>
+                            <div>
+                                <div class="font-semibold text-gray-900">QRIS</div>
+                                <div class="text-sm text-gray-500">Scan QR code to pay</div>
+                            </div>
+                        </div>
+                    </label>
+
+                    <!-- Cryptocurrency -->
+                    <label class="payment-option flex items-center gap-4 p-4 border-2 border-gray-200 rounded-xl cursor-pointer hover:border-teal-500 hover:bg-teal-50 transition-all">
+                        <input type="radio" name="paymentMethod" value="crypto" class="w-5 h-5 text-teal-600">
+                        <div class="flex items-center gap-3 flex-1">
+                            <div class="w-12 h-12 flex items-center justify-center bg-orange-100 rounded-lg">
+                                <svg class="w-7 h-7 text-orange-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"/>
+                                </svg>
+                            </div>
+                            <div>
+                                <div class="font-semibold text-gray-900">Cryptocurrency</div>
+                                <div class="text-sm text-gray-500">Bitcoin, Ethereum, USDT</div>
+                            </div>
+                        </div>
+                    </label>
+                </div>
+
+                <!-- Action Buttons -->
+                <div class="flex gap-3 mt-6">
+                    <button onclick="closePaymentSelector()" class="flex-1 px-6 py-3 font-semibold text-gray-700 bg-gray-200 rounded-xl hover:bg-gray-300 transition-colors">
+                        Cancel
+                    </button>
+                    <button onclick="selectPaymentMethod()" class="flex-1 px-6 py-3 font-semibold text-white bg-teal-600 rounded-xl hover:bg-teal-700 transition-colors shadow-md">
+                        Confirm Selection
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const paymentMethods = {
+            card: {
+                name: 'Credit / Debit Card',
+                details: 'Visa, Mastercard, Amex',
+                icon: `<svg class="w-7 h-7 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"/>
+                </svg>`,
+                color: 'bg-blue-100'
+            },
+            bank: {
+                name: 'Bank Transfer',
+                details: 'Direct bank transfer',
+                icon: `<svg class="w-7 h-7 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 14v3m4-3v3m4-3v3M3 21h18M3 10h18M3 7l9-4 9 4M4 10h16v11H4V10z"/>
+                </svg>`,
+                color: 'bg-green-100'
+            },
+            ewallet: {
+                name: 'E-Wallet',
+                details: 'PayPal, Apple Pay, Google Pay',
+                icon: `<svg class="w-7 h-7 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                </svg>`,
+                color: 'bg-purple-100'
+            },
+            qris: {
+                name: 'QRIS',
+                details: 'Scan QR code to pay',
+                icon: `<svg class="w-7 h-7 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v1m6 11h2m-6 0h-2v4m0-11v3m0 0h.01M12 12h4.01M16 20h4M4 12h4m12 0h.01M5 8h2a1 1 0 001-1V5a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1zm12 0h2a1 1 0 001-1V5a1 1 0 00-1-1h-2a1 1 0 00-1 1v2a1 1 0 001 1zM5 20h2a1 1 0 001-1v-2a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1z"/>
+                </svg>`,
+                color: 'bg-red-100'
+            },
+            crypto: {
+                name: 'Cryptocurrency',
+                details: 'Bitcoin, Ethereum, USDT',
+                icon: `<svg class="w-7 h-7 text-orange-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"/>
+                </svg>`,
+                color: 'bg-orange-100'
+            }
+        };
+
+        let selectedPayment = null;
+
+        function openPaymentSelector() {
+            document.getElementById('paymentModal').classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closePaymentSelector() {
+            document.getElementById('paymentModal').classList.add('hidden');
+            document.body.style.overflow = 'auto';
+            
+            // Reset radio buttons if no payment selected
+            if (!selectedPayment) {
+                document.querySelectorAll('input[name="paymentMethod"]').forEach(radio => {
+                    radio.checked = false;
+                });
+            }
+        }
+
+        function selectPaymentMethod() {
+            const selected = document.querySelector('input[name="paymentMethod"]:checked');
+            
+            if (!selected) {
+                alert('Please select a payment method');
+                return;
+            }
+
+            selectedPayment = selected.value;
+            updatePaymentDisplay();
+            closePaymentSelector();
+        }
+
+        function updatePaymentDisplay() {
+            const method = paymentMethods[selectedPayment];
+            
+            document.getElementById('paymentIcon').innerHTML = method.icon;
+            document.getElementById('paymentIcon').className = `w-12 h-12 flex items-center justify-center ${method.color} rounded-lg`;
+            document.getElementById('paymentName').textContent = method.name;
+            document.getElementById('paymentDetails').textContent = method.details;
+            
+            document.getElementById('selectedPaymentDisplay').classList.remove('hidden');
+            document.getElementById('selectPaymentBtn').classList.add('hidden');
+            document.getElementById('confirmBtn').disabled = false;
+            
+            // Update button text
+            document.querySelector('#confirmBtn').nextElementSibling.textContent = 'You can now proceed with the booking';
+        }
+
+        function confirmBooking() {
+            if (!selectedPayment) {
+                alert('Please select a payment method first');
+                return;
+            }
+
+            alert(`Booking confirmed! Payment will be processed via ${paymentMethods[selectedPayment].name}`);
+            window.location.href = '/mitra/bookingTransaksi';
+        }
+
+        // Close modal when clicking outside
+        document.getElementById('paymentModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closePaymentSelector();
+            }
+        });
+
+        // Add active state to payment option selection
+        document.querySelectorAll('.payment-option').forEach(label => {
+            label.addEventListener('click', function() {
+                document.querySelectorAll('.payment-option').forEach(l => {
+                    l.classList.remove('border-teal-500', 'bg-teal-50');
+                });
+                this.classList.add('border-teal-500', 'bg-teal-50');
+            });
+        });
+    </script>
 </body>
 </html>

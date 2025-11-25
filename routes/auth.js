@@ -4,8 +4,12 @@ const authController = require("../controllers/authController");
 // const { middlewareValidation, isAdmin } = require("../middlewares/authMiddleware");
 
 router.get("/", function (req, res, next) {
-  res.redirect("login")
+  res.render("pages/home", {
+    title: "Landing Page", 
+  });
 });
+
+
 router.get("/login", function (req, res, next) {
   res.render("auth/login", {
     title: "Login",
@@ -22,6 +26,7 @@ router.get("/register", (req, res) => {
   });
   
 });
+
 
 // router.post("/register", authController.register);
 

@@ -11,7 +11,7 @@ exports.register = async (req, res) => {
       name,
       email,
       password: hashedPassword,
-      role: role || "umkm",
+      role: role || "mitra",
     });
 
     res.redirect("/login");
@@ -20,6 +20,7 @@ exports.register = async (req, res) => {
     res.status(500).send("Registration failed.");
   }
 };
+
 
 exports.login = async (req, res) => {
   try {

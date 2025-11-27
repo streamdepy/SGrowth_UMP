@@ -1,114 +1,236 @@
-        <main class="flex flex-col items-start self-center px-12 mt-16 w-full max-md:mt-10 max-md:max-w-full">
-            <h2 class="text-4xl font-semibold text-black max-md:max-w-full">
-                Pengisian GRI (
-                <span style="color: rgba(0, 0, 0, 1)">Global Reporting Initiative</span>
-                )
-            </h2>
+<main class="flex flex-col items-start self-center px-12 mt-16 w-full max-w-[1400px] max-md:px-5 max-md:mt-10 max-md:max-w-full">
+    <!-- Page Title -->
+    <div class="mb-12">
+        <h2 class="text-4xl font-bold text-gray-900 mb-2 max-md:text-3xl">
+            Global Reporting Initiative (GRI)
+        </h2>
+        <p class="text-xl text-gray-600 max-md:text-lg">
+            <span class="font-semibold text-teal-700">Global Reporting Initiative</span> - Choose your reporting category
+        </p>
+    </div>
 
-        
-
-            <section class="self-stretch mt-10 max-md:max-w-full" data-el="div-1">
-                <div class="flex gap-5 max-md:flex-col">
-                    <article class="w-[33%] max-md:ml-0 max-md:w-full">
-                        <div class="flex flex-col items-center px-20 pt-9 pb-5 mx-auto w-full text-center bg-white rounded-2xl shadow-2xl max-md:px-5 max-md:mt-10">
-                            <img
-                                src="https://api.builder.io/api/v1/image/assets/TEMP/15d5e1ec965f0a760f7f9efd1ff73c90b5a802fd?placeholderIfAbsent=true&apiKey=ac04cd396e1f47f18955cd19640f183d"
-                                alt="GRI Economy Icon"
-                                class="object-contain max-w-full rounded-full aspect-[1.04] w-[170px]"
-                            />
-                            <h3 class="text-3xl font-semibold text-teal-700">
-                                GRI Economi
-                            </h3>
-                            <a href="/mitra/gri-1" class="flex overflow-hidden gap-2.5 items-start self-start px-10 py-3 mt-7 text-base font-medium text-white bg-orange-500 rounded-xl hover:bg-orange-600 transition-colors max-md:px-5">
-                                Mulai Sekarang
-                            </a>
-                        </div>
-                    </article>
-
-                    <article class="ml-5 w-[33%] max-md:ml-0 max-md:w-full">
-                        <div class="flex flex-col px-20 pt-8 pb-5 mx-auto w-full text-base font-medium text-center text-white bg-white rounded-2xl shadow-2xl max-md:px-5 max-md:mt-10">
-                            <img
-                                src="https://api.builder.io/api/v1/image/assets/TEMP/11944f7e945ab76cd741cbfe8b739301f56ce0af?width=372" 
-                                alt="GRI Environment Icon"
-                                class="object-contain self-center max-w-full aspect-[1.04] w-[170px]"
-                            />
-                            <h3 class="text-3xl font-semibold text-teal-700">
-                                GRI Social
-                            </h3>
-                            <a href="/mitra/social-1" class="flex overflow-hidden gap-2.5 items-start self-start px-10 py-3 mt-9 bg-orange-500 rounded-xl hover:bg-orange-600 transition-colors max-md:px-5">
-                                Mulai Sekarang
-                            </a>
-                        </div>
-                    </article>
-
-                    <article class="ml-5 w-[33%] max-md:ml-0 max-md:w-full">
-                        <div class="flex flex-col px-20 pt-8 pb-5 mx-auto w-full text-base font-medium text-center text-white bg-white rounded-2xl shadow-2xl max-md:px-5 max-md:mt-10">
-                            <img
-                                src="https://api.builder.io/api/v1/image/assets/TEMP/1c71a2a9be3de365531c3991c3339c7e3c083b53?width=462"
-                                alt="GRI Environment Icon"
-                                class="object-contain self-center max-w-full aspect-[1.04] w-[170px]"
-                            />
-                            <h3 class="text-2xl font-semibold text-teal-700">
-                                GRI Environment
-                            </h3>
-                            <a href="/mitra/env-1" class="flex overflow-hidden gap-2.5 items-start self-start px-10 py-3 mt-8 ml-4 bg-orange-500 rounded-xl hover:bg-orange-600 transition-colors max-md:px-5 max-md:ml-2.5">
-                                Mulai Sekarang
-                            </a>
-                        </div>
-                    </article>
-
-                    <article class="ml-5 w-[33%] max-md:ml-0 max-md:w-full">
-                        <div class="flex flex-col px-20 pt-8 pb-5 mx-auto w-full text-base font-medium text-center text-white bg-white rounded-2xl shadow-2xl max-md:px-5 max-md:mt-10">
-                            <img
-                                src="https://api.builder.io/api/v1/image/assets/TEMP/c44af07e3c930c7fea223a8eb981ce2b2a5a5a8c?width=462"
-                                alt="GRI Environment Icon"
-                                class="object-contain self-center max-w-full aspect-[1.04] w-[170px]"
-                            />
-                            <h3 class="text-2xl font-semibold text-teal-700">
-                                GRI Governance
-                            </h3>
-                            <a href="/mitra/gov-1" class="flex overflow-hidden gap-2.5 items-start self-start px-10 py-3 mt-8 ml-4 bg-orange-500 rounded-xl hover:bg-orange-600 transition-colors max-md:px-5 max-md:ml-2.5">
-                                Mulai Sekarang
-                            </a>
-                        </div>
-                    </article>
+    <!-- GRI Cards Grid -->
+    <section class="self-stretch w-full">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 max-md:gap-5">
+            
+            <!-- GRI Economy Card -->
+            <article class="group">
+                <div class="relative flex flex-col items-center px-8 py-10 bg-white rounded-2xl shadow-lg transition-all duration-300 hover:shadow-2xl hover:-translate-y-2 border-2 border-transparent hover:border-teal-500 overflow-hidden">
+                    <!-- Background Gradient on Hover -->
+                    <div class="absolute inset-0 bg-gradient-to-br from-teal-50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                    
+                    <!-- Icon Container -->
+                    <div class="relative z-10 mb-6 transform transition-transform duration-300 group-hover:scale-110">
+                        <div class="absolute inset-0 bg-teal-500 rounded-full blur-2xl opacity-0 group-hover:opacity-30 transition-opacity duration-300"></div>
+                        <img
+                            src="https://api.builder.io/api/v1/image/assets/TEMP/15d5e1ec965f0a760f7f9efd1ff73c90b5a802fd?placeholderIfAbsent=true&apiKey=ac04cd396e1f47f18955cd19640f183d"
+                            alt="GRI Economy Icon"
+                            class="relative object-contain w-40 h-40 rounded-full"
+                        />
+                    </div>
+                    
+                    <!-- Title -->
+                    <h3 class="relative z-10 text-2xl font-bold text-teal-700 mb-2 text-center">
+                        GRI Economy
+                    </h3>
+                    
+                    <!-- Description -->
+                    <p class="relative z-10 text-sm text-gray-600 text-center mb-6 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                        Economic performance and impacts
+                    </p>
+                    
+                    <!-- Button -->
+                    <a href="/mitra/gri-1" 
+                       class="relative z-10 flex items-center justify-center gap-2 px-8 py-3 mt-auto text-base font-semibold text-white bg-gradient-to-r from-orange-500 to-orange-600 rounded-xl shadow-md transition-all duration-300 hover:shadow-lg hover:scale-105 active:scale-95 w-full">
+                        <span>Start Now</span>
+                        <svg class="w-5 h-5 transition-transform duration-300 group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                        </svg>
+                    </a>
                 </div>
-            </section>
-        </main>
+            </article>
 
-    <script>
-        (() => {
-            const state = {};
+            <!-- GRI Social Card -->
+            <article class="group">
+                <div class="relative flex flex-col items-center px-8 py-10 bg-white rounded-2xl shadow-lg transition-all duration-300 hover:shadow-2xl hover:-translate-y-2 border-2 border-transparent hover:border-teal-500 overflow-hidden">
+                    <!-- Background Gradient on Hover -->
+                    <div class="absolute inset-0 bg-gradient-to-br from-teal-50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                    
+                    <!-- Icon Container -->
+                    <div class="relative z-10 mb-6 transform transition-transform duration-300 group-hover:scale-110">
+                        <div class="absolute inset-0 bg-teal-500 rounded-full blur-2xl opacity-0 group-hover:opacity-30 transition-opacity duration-300"></div>
+                        <img
+                            src="https://api.builder.io/api/v1/image/assets/TEMP/11944f7e945ab76cd741cbfe8b739301f56ce0af?width=372" 
+                            alt="GRI Social Icon"
+                            class="relative object-contain w-40 h-40 rounded-full"
+                        />
+                    </div>
+                    
+                    <!-- Title -->
+                    <h3 class="relative z-10 text-2xl font-bold text-teal-700 mb-2 text-center">
+                        GRI Social
+                    </h3>
+                    
+                    <!-- Description -->
+                    <p class="relative z-10 text-sm text-gray-600 text-center mb-6 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                        Social responsibility & impacts
+                    </p>
+                    
+                    <!-- Button -->
+                    <a href="/mitra/social-1" 
+                       class="relative z-10 flex items-center justify-center gap-2 px-8 py-3 mt-auto text-base font-semibold text-white bg-gradient-to-r from-orange-500 to-orange-600 rounded-xl shadow-md transition-all duration-300 hover:shadow-lg hover:scale-105 active:scale-95 w-full">
+                        <span>Start Now</span>
+                        <svg class="w-5 h-5 transition-transform duration-300 group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                        </svg>
+                    </a>
+                </div>
+            </article>
 
-            let context = null;
-            let nodesToDestroy = [];
-            let pendingUpdate = false;
+            <!-- GRI Environment Card -->
+            <article class="group">
+                <div class="relative flex flex-col items-center px-8 py-10 bg-white rounded-2xl shadow-lg transition-all duration-300 hover:shadow-2xl hover:-translate-y-2 border-2 border-transparent hover:border-teal-500 overflow-hidden">
+                    <!-- Background Gradient on Hover -->
+                    <div class="absolute inset-0 bg-gradient-to-br from-teal-50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                    
+                    <!-- Icon Container -->
+                    <div class="relative z-10 mb-6 transform transition-transform duration-300 group-hover:scale-110">
+                        <div class="absolute inset-0 bg-teal-500 rounded-full blur-2xl opacity-0 group-hover:opacity-30 transition-opacity duration-300"></div>
+                        <img
+                            src="https://api.builder.io/api/v1/image/assets/TEMP/1c71a2a9be3de365531c3991c3339c7e3c083b53?width=462"
+                            alt="GRI Environment Icon"
+                            class="relative object-contain w-40 h-40 rounded-full"
+                        />
+                    </div>
+                    
+                    <!-- Title -->
+                    <h3 class="relative z-10 text-2xl font-bold text-teal-700 mb-2 text-center">
+                        GRI Environment
+                    </h3>
+                    
+                    <!-- Description -->
+                    <p class="relative z-10 text-sm text-gray-600 text-center mb-6 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                        Environmental sustainability
+                    </p>
+                    
+                    <!-- Button -->
+                    <a href="/mitra/env-1" 
+                       class="relative z-10 flex items-center justify-center gap-2 px-8 py-3 mt-auto text-base font-semibold text-white bg-gradient-to-r from-orange-500 to-orange-600 rounded-xl shadow-md transition-all duration-300 hover:shadow-lg hover:scale-105 active:scale-95 w-full">
+                        <span>Start Now</span>
+                        <svg class="w-5 h-5 transition-transform duration-300 group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                        </svg>
+                    </a>
+                </div>
+            </article>
 
-            function destroyAnyNodes() {
-                // destroy current view template refs before rendering again
-                nodesToDestroy.forEach((el) => el.remove());
-                nodesToDestroy = [];
-            }
+            <!-- GRI Governance Card -->
+            <article class="group">
+                <div class="relative flex flex-col items-center px-8 py-10 bg-white rounded-2xl shadow-lg transition-all duration-300 hover:shadow-2xl hover:-translate-y-2 border-2 border-transparent hover:border-teal-500 overflow-hidden">
+                    <!-- Background Gradient on Hover -->
+                    <div class="absolute inset-0 bg-gradient-to-br from-teal-50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                    
+                    <!-- Icon Container -->
+                    <div class="relative z-10 mb-6 transform transition-transform duration-300 group-hover:scale-110">
+                        <div class="absolute inset-0 bg-teal-500 rounded-full blur-2xl opacity-0 group-hover:opacity-30 transition-opacity duration-300"></div>
+                        <img
+                            src="https://api.builder.io/api/v1/image/assets/TEMP/c44af07e3c930c7fea223a8eb981ce2b2a5a5a8c?width=462"
+                            alt="GRI Governance Icon"
+                            class="relative object-contain w-40 h-40 rounded-full"
+                        />
+                    </div>
+                    
+                    <!-- Title -->
+                    <h3 class="relative z-10 text-2xl font-bold text-teal-700 mb-2 text-center">
+                        GRI Governance
+                    </h3>
+                    
+                    <!-- Description -->
+                    <p class="relative z-10 text-sm text-gray-600 text-center mb-6 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                        Corporate governance practices
+                    </p>
+                    
+                    <!-- Button -->
+                    <a href="/mitra/gov-1" 
+                       class="relative z-10 flex items-center justify-center gap-2 px-8 py-3 mt-auto text-base font-semibold text-white bg-gradient-to-r from-orange-500 to-orange-600 rounded-xl shadow-md transition-all duration-300 hover:shadow-lg hover:scale-105 active:scale-95 w-full">
+                        <span>Start Now</span>
+                        <svg class="w-5 h-5 transition-transform duration-300 group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                        </svg>
+                    </a>
+                </div>
+            </article>
 
-            // Function to update data bindings and loops
-            // call update() when you mutate state and need the updates to reflect
-            // in the dom
-            function update() {
-                if (pendingUpdate === true) {
-                    return;
-                }
-                pendingUpdate = true;
+        </div>
+    </section>
 
-                document.querySelectorAll("[data-el='div-1']").forEach((el) => {
-                    el.setAttribute("space", 48);
-                });
+    <!-- Info Section -->
+    <section class="mt-16 w-full bg-gradient-to-r from-teal-50 to-orange-50 rounded-2xl p-8 max-md:p-6">
+        <div class="flex items-start gap-4 max-md:flex-col">
+            <div class="flex-shrink-0">
+                <svg class="w-8 h-8 text-teal-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+            </div>
+            <div>
+                <h3 class="text-xl font-bold text-gray-900 mb-2">What is GRI?</h3>
+                <p class="text-gray-700 leading-relaxed">
+                    The Global Reporting Initiative (GRI) is an international independent standards organization that helps businesses and organizations understand and communicate their impacts on critical sustainability issues. Select a category above to begin your reporting journey.
+                </p>
+            </div>
+        </div>
+    </section>
+</main>
 
-                destroyAnyNodes();
+<style>
+    /* Card entrance animation */
+    @keyframes slideInUp {
+        from {
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
 
-                pendingUpdate = false;
-            }
+    article {
+        animation: slideInUp 0.6s ease-out;
+        animation-fill-mode: both;
+    }
 
-            // Update with initial state on first load
-            update();
-        })();
-    </script>
+    article:nth-child(1) { animation-delay: 0.1s; }
+    article:nth-child(2) { animation-delay: 0.2s; }
+    article:nth-child(3) { animation-delay: 0.3s; }
+    article:nth-child(4) { animation-delay: 0.4s; }
+
+    /* Shimmer effect on button hover */
+    a[href^="/mitra/"]::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+        transition: left 0.5s;
+    }
+
+    a[href^="/mitra/"]:hover::before {
+        left: 100%;
+    }
+
+    /* Responsive grid adjustments */
+    @media (max-width: 1024px) {
+        .grid {
+            grid-template-columns: repeat(2, 1fr);
+        }
+    }
+
+    @media (max-width: 640px) {
+        .grid {
+            grid-template-columns: 1fr;
+        }
+    }
+</style>

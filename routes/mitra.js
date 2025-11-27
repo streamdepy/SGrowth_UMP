@@ -1,5 +1,6 @@
 const express = require("express");
 const router = express.Router();
+const axios = require('axios');
 
 // D:\Agif\Lomba\Sgrowth_WICE\ump\routes\mitra.js
 
@@ -53,7 +54,7 @@ router.get("/dashboard", function (req, res, next) {
   res.render("mitra/dashboard", {
       title: "Dashboard mitra",
       layout: "mitra",
-      business: businessData 
+      // business: businessData 
   });
 });
 
@@ -515,6 +516,46 @@ router.get("/history", function (req, res, next) {
     layout: "mitra",
     currentPath: req.path,
   });
+});
+
+router.get("/chatAI", function (req, res, next) {
+  res.render("mitra/chatAI", {
+    title: "Chat AI",
+    layout: "mitra",
+    currentPath: req.path
+  });
+});
+
+const API_KEY = process.env.OPENROUTER_API_KEY;
+console.log("API KEY:", API_KEY); // Pastikan kunci API terbaca di sini
+ 
+// Definisikan rute chat Anda di dalam router
+router.post('/chatAI', async (req, res) => {
+  const { prompt } = req.body;
+
+  try {
+    const response = await axios.post(
+      'https://openrouter.ai/api/v1/chat/completions',
+      {
+        model: 'nousresearch/hermes-2-pro-llama-3-8b',
+        messages: [
+          { role: 'system', content: 'Kamu adalah asisten pelaporan ESG untuk UMKM dan sejenisnya untuk asia tenggara berdasarkan standar GRI. response in english' },
+          { role: 'user', content: prompt }
+        ]
+      },
+      {
+        headers: {
+          'Authorization': `Bearer ${API_KEY}`,
+          'HTTP-Referer': 'http://localhost:3000',
+          'Content-Type': 'application/json'
+        }
+      }
+    );
+    res.json({ response: response.data.choices[0].message.content });
+  } catch (error) {
+    console.error(error.response?.data || error.message);
+    res.status(500).json({ response: 'AI gagal menjawab. Coba lagi nanti.' });
+  }
 });
 
 module.exports = router;

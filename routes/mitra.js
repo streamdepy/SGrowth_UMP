@@ -54,7 +54,7 @@ router.get("/dashboard", function (req, res, next) {
   res.render("mitra/dashboard", {
       title: "Dashboard mitra",
       layout: "mitra",
-      // business: businessData 
+      business: businessData 
   });
 });
 

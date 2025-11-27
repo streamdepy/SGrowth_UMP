@@ -548,62 +548,146 @@ document.addEventListener('DOMContentLoaded', () => {
   <div class="w-full mt-8">
     <div class="flex gap-5 max-md:flex-col">
       <!-- Supplier Types (Multiple Choice) -->
-      <div class="w-4/12 max-md:w-full">
+      <div class="w-1/2 max-md:w-full">
         <label class="block pb-2 text-base font-medium">Supplier Types</label>
         <div class="flex flex-col gap-2">
           <label class="flex items-center gap-2 cursor-pointer">
-            <input type="checkbox" name="supplier_type[]" value="Broker"> Broker
+            <input type="checkbox" id="broker-checkbox" name="supplier_type[]" value="Broker" onclick="toggleNumberInput('broker-input')"> Broker
+            <input
+              type="number"
+              id="broker-input"
+              name="broker_number"
+              placeholder="Enter number for Broker"
+              class="px-8 py-4 text-base text-black rounded-2xl border border-gray-300 bg-slate-50 placeholder-black/50 outline-none hover:ring focus:ring-2 focus:ring-teal-600 transition"
+              style="display: none;"
+            />
           </label>
           <label class="flex items-center gap-2 cursor-pointer">
-            <input type="checkbox" name="supplier_type[]" value="Contractor"> Contractor
+            <input type="checkbox" id="contractor-checkbox" name="supplier_type[]" value="Contractor" onclick="toggleNumberInput('contractor-input')"> Contractor
+            <input
+              type="number"
+              id="contractor-input"
+              name="contractor_number"
+              placeholder="Enter number for Contractor"
+              class="px-8 py-4 text-base text-black rounded-2xl border border-gray-300 bg-slate-50 placeholder-black/50 outline-none hover:ring focus:ring-2 focus:ring-teal-600 transition"
+              style="display: none;"
+            />
           </label>
           <label class="flex items-center gap-2 cursor-pointer">
-            <input type="checkbox" name="supplier_type[]" value="Wholesaler"> Wholesaler
+            <input type="checkbox" id="wholesaler-checkbox" name="supplier_type[]" value="Wholesaler" onclick="toggleNumberInput('wholesaler-input')"> Wholesaler
+            <input
+              type="number"
+              id="wholesaler-input"
+              name="wholesaler_number"
+              placeholder="Enter number for Wholesaler"
+              class="px-8 py-4 text-base text-black rounded-2xl border border-gray-300 bg-slate-50 placeholder-black/50 outline-none hover:ring focus:ring-2 focus:ring-teal-600 transition"
+              style="display: none;"
+            />
           </label>
           <label class="flex items-center gap-2 cursor-pointer">
-            <input type="checkbox" name="supplier_type[]" value="Other"> Other
+            <input type="checkbox" id="other-checkbox" name="supplier_type[]" value="Other" onclick="toggleNumberInput('other-input')"> Other
+            <input
+              type="number"
+              id="other-input"
+              name="other_number"
+              placeholder="Enter number for Other"
+              class="px-8 py-4 text-base text-black rounded-2xl border border-gray-300 bg-slate-50 placeholder-black/50 outline-none hover:ring focus:ring-2 focus:ring-teal-600 transition"
+              style="display: none;"
+            />
           </label>
         </div>
       </div>
 
-      <!-- Number of Suppliers -->
-      <div class="w-4/12 max-md:w-full">
-        <label for="number_of_suppliers" class="block pb-2 text-base font-medium">Number of Suppliers</label>
-        <input
-          type="number"
-          id="number_of_suppliers"
-          name="number_of_suppliers"
-          placeholder="Enter the number of suppliers"
-          class="px-8 py-4 text-base text-black rounded-2xl border border-gray-300 bg-slate-50 placeholder-black/50 outline-none hover:ring focus:ring-2 focus:ring-teal-600 transition"
-        />
-      </div>
-
       <!-- Supplier Relationship Types -->
-      <div class="w-4/12 max-md:w-full">
+      <div class="w-1/2 max-md:w-full">
         <label class="block pb-2 text-base font-medium">Supplier Relationship</label>
         <div class="flex flex-col gap-2">
           <label class="flex items-center gap-2 cursor-pointer">
-            <input type="checkbox" name="supplier_relationship[]" value="Long-Term"> Long-Term
+            <input type="checkbox" id="long-term-checkbox" name="supplier_relationship[]" value="Long-Term" onclick="toggleNumberInput('long-term-input')"> Long-Term
+            <input
+              type="number"
+              id="long-term-input"
+              name="long_term_number"
+              placeholder="Enter number for Long-Term"
+              class="px-8 py-4 text-base text-black rounded-2xl border border-gray-300 bg-slate-50 placeholder-black/50 outline-none hover:ring focus:ring-2 focus:ring-teal-600 transition"
+              style="display: none;"
+            />
           </label>
           <label class="flex items-center gap-2 cursor-pointer">
-            <input type="checkbox" name="supplier_relationship[]" value="Short-Term"> Short-Term
+            <input type="checkbox" id="short-term-checkbox" name="supplier_relationship[]" value="Short-Term" onclick="toggleNumberInput('short-term-input')"> Short-Term
+            <input
+              type="number"
+              id="short-term-input"
+              name="short_term_number"
+              placeholder="Enter number for Short-Term"
+              class="px-8 py-4 text-base text-black rounded-2xl border border-gray-300 bg-slate-50 placeholder-black/50 outline-none hover:ring focus:ring-2 focus:ring-teal-600 transition"
+              style="display: none;"
+            />
           </label>
           <label class="flex items-center gap-2 cursor-pointer">
-            <input type="checkbox" name="supplier_relationship[]" value="Contract"> Contract
+            <input type="checkbox" id="contract-checkbox" name="supplier_relationship[]" value="Contract" onclick="toggleNumberInput('contract-input')"> Contract
+            <input
+              type="number"
+              id="contract-input"
+              name="contract_number"
+              placeholder="Enter number for Contract"
+              class="px-8 py-4 text-base text-black rounded-2xl border border-gray-300 bg-slate-50 placeholder-black/50 outline-none hover:ring focus:ring-2 focus:ring-teal-600 transition"
+              style="display: none;"
+            />
           </label>
           <label class="flex items-center gap-2 cursor-pointer">
-            <input type="checkbox" name="supplier_relationship[]" value="Non-Contract"> Non-Contract
+            <input type="checkbox" id="non-contract-checkbox" name="supplier_relationship[]" value="Non-Contract" onclick="toggleNumberInput('non-contract-input')"> Non-Contract
+            <input
+              type="number"
+              id="non-contract-input"
+              name="non_contract_number"
+              placeholder="Enter number for Non-Contract"
+              class="px-8 py-4 text-base text-black rounded-2xl border border-gray-300 bg-slate-50 placeholder-black/50 outline-none hover:ring focus:ring-2 focus:ring-teal-600 transition"
+              style="display: none;"
+            />
           </label>
           <label class="flex items-center gap-2 cursor-pointer">
-            <input type="checkbox" name="supplier_relationship[]" value="Project-Based"> Project-Based
+            <input type="checkbox" id="project-based-checkbox" name="supplier_relationship[]" value="Project-Based" onclick="toggleNumberInput('project-based-input')"> Project-Based
+            <input
+              type="number"
+              id="project-based-input"
+              name="project_based_number"
+              placeholder="Enter number for Project-Based"
+              class="px-8 py-4 text-base text-black rounded-2xl border border-gray-300 bg-slate-50 placeholder-black/50 outline-none hover:ring focus:ring-2 focus:ring-teal-600 transition"
+              style="display: none;"
+            />
           </label>
           <label class="flex items-center gap-2 cursor-pointer">
-            <input type="checkbox" name="supplier_relationship[]" value="Event-Based"> Event-Based
+            <input type="checkbox" id="event-based-checkbox" name="supplier_relationship[]" value="Event-Based" onclick="toggleNumberInput('event-based-input')"> Event-Based
+            <input
+              type="number"
+              id="event-based-input"
+              name="event_based_number"
+              placeholder="Enter number for Event-Based"
+              class="px-8 py-4 text-base text-black rounded-2xl border border-gray-300 bg-slate-50 placeholder-black/50 outline-none hover:ring focus:ring-2 focus:ring-teal-600 transition"
+              style="display: none;"
+            />
           </label>
         </div>
       </div>
     </div>
   </div>
+
+<script>
+  // Function to toggle visibility of the input field based on checkbox status
+  function toggleNumberInput(inputId) {
+    var checkBox = document.querySelector(`#${inputId.replace('-input', '-checkbox')}`);
+    var inputField = document.getElementById(inputId);
+
+    // Show or hide the number input based on checkbox status
+    if (checkBox.checked) {
+      inputField.style.display = "block";
+    } else {
+      inputField.style.display = "none";
+    }
+  }
+</script>
+
 
 
 

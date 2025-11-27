@@ -1,47 +1,63 @@
-
-<body>
-    <div class="flex overflow-hidden flex-col pb-16 bg-white">
-
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Live Consultation Chat</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-50">
+    <div class="min-h-screen pb-8">
         <!-- Main Content Area -->
-        <main class="self-center mt-10 ml-4 w-full max-w-[1310px] max-md:max-w-full">
-            <div class="flex gap-5 max-md:flex-col">
+        <main class="max-w-7xl mx-auto mt-10 px-4">
+            <div class="flex gap-6 max-md:flex-col">
                 <!-- Session Timer Section -->
-                <aside class="w-[32%] max-md:ml-0 max-md:w-full">
-                    <section class="flex flex-col w-full max-md:mt-10">
-                        <h2 class="self-start text-2xl font-bold text-neutral-900">
+                <aside class="w-80 max-md:w-full">
+                    <section class=" p-6 sticky top-4">
+                        <h2 class="text-2xl font-bold text-neutral-900 mb-6">
                             Session Time
                         </h2>
 
                         <!-- Timer Display -->
-                        <div class="flex gap-4 items-start px-4 py-6 whitespace-nowrap">
+                        <div class="flex gap-3 justify-center mb-6">
                             <!-- Hours -->
-                            <div class="w-[100px]">
-                                <div class="flex justify-center items-center px-3 max-w-full text-lg font-bold leading-none text-white bg-orange-500 rounded-lg min-h-14 w-[100px]">
-                                    <span class="self-stretch my-auto w-[25px]">00</span>
+                            <div class="flex flex-col items-center">
+                                <div class="flex justify-center items-center w-20 h-20 text-3xl font-bold text-white bg-gradient-to-br from-orange-500 to-orange-600 rounded-xl shadow-lg">
+                                    <span id="hours" class="timer-hours">00</span>
                                 </div>
-                                <div class="flex justify-center items-center mt-4 max-w-full text-sm text-neutral-900 w-[100px]">
-                                    <span class="self-stretch my-auto w-10">Hours</span>
-                                </div>
+                                <span class="text-sm text-gray-600 mt-2">Hours</span>
                             </div>
+
+                            <div class="flex items-center text-3xl font-bold text-orange-500 pb-6">:</div>
 
                             <!-- Minutes -->
-                            <div class="w-[100px]">
-                                <div class="flex justify-center items-center px-3 max-w-full text-lg font-bold leading-none text-white bg-orange-500 rounded-lg min-h-14 w-[100px]">
-                                    <span class="self-stretch my-auto w-6">55</span>
+                            <div class="flex flex-col items-center">
+                                <div class="flex justify-center items-center w-20 h-20 text-3xl font-bold text-white bg-gradient-to-br from-orange-500 to-orange-600 rounded-xl shadow-lg">
+                                    <span id="minutes" class="timer-minutes">55</span>
                                 </div>
-                                <div class="flex justify-center items-center mt-4 max-w-full text-sm text-neutral-900 w-[100px]">
-                                    <span class="self-stretch my-auto w-[53px]">Minutes</span>
-                                </div>
+                                <span class="text-sm text-gray-600 mt-2">Minutes</span>
                             </div>
 
+                            <div class="flex items-center text-3xl font-bold text-orange-500 pb-6">:</div>
+
                             <!-- Seconds -->
-                            <div class="w-[100px]">
-                                <div class="flex justify-center items-center px-3 max-w-full text-lg font-bold leading-none text-white bg-orange-500 rounded-lg min-h-14 w-[100px]">
-                                    <span class="self-stretch my-auto w-6">55</span>
+                            <div class="flex flex-col items-center">
+                                <div class="flex justify-center items-center w-20 h-20 text-3xl font-bold text-white bg-gradient-to-br from-orange-500 to-orange-600 rounded-xl shadow-lg">
+                                    <span id="seconds" class="timer-seconds">55</span>
                                 </div>
-                                <div class="flex justify-center items-center mt-4 max-w-full text-sm text-neutral-900 w-[100px]">
-                                    <span class="self-stretch my-auto w-[58px]">Seconds</span>
-                                </div>
+                                <span class="text-sm text-gray-600 mt-2">Seconds</span>
+                            </div>
+                        </div>
+
+                        <!-- Session Info -->
+                        <div class="bg-gray-50 rounded-lg p-4 mb-4">
+                            <div class="flex items-center justify-between mb-2">
+                                <span class="text-sm text-gray-600">Session Type</span>
+                                <span class="text-sm font-semibold text-teal-700">Video Call</span>
+                            </div>
+                            <div class="flex items-center justify-between">
+                                <span class="text-sm text-gray-600">Duration</span>
+                                <span class="text-sm font-semibold text-teal-700">1 Hour</span>
                             </div>
                         </div>
 
@@ -53,118 +69,155 @@
                 </aside>
 
                 <!-- Chat Interface Section -->
-                <section class="ml-5 w-[68%] max-md:ml-0 max-md:w-full">
-                    <div class="grow pt-9 w-full bg-white rounded-2xl shadow-2xl max-md:mt-10 max-md:max-w-full">
+                <section class="flex-1">
+                    <div class="bg-white rounded-2xl shadow-lg overflow-hidden flex flex-col h-[700px]">
                         <!-- Chat Header -->
-                        <header class="px-1.5 w-full max-md:max-w-full">
-                            <div class="flex flex-wrap gap-5 justify-between ml-4 max-w-full w-[750px]">
+                        <header class="bg-white border-b border-gray-200 p-4">
+                            <div class="flex justify-between items-center">
                                 <!-- Consultant Info -->
-                                <div class="flex gap-3.5">
-                                    <img
-                                        src="https://api.builder.io/api/v1/image/assets/TEMP/e4ad899ce9a1bf41b43f681cab16d30e4156efc6?placeholderIfAbsent=true&apiKey=ac04cd396e1f47f18955cd19640f183d"
-                                        alt="Consultant Avatar"
-                                        class="object-contain shrink-0 rounded-full aspect-[1.01] w-[71px]"
-                                    />
-                                    <div class="flex flex-col grow shrink-0 self-start basis-0 w-fit">
-                                        <h3 class="self-start text-xl font-semibold text-teal-700">
-                                            Budi Santosa, M.Si
+                                <div class="flex gap-4 items-center">
+                                    <div class="relative">
+                                        <img
+                                            src="https://api.builder.io/api/v1/image/assets/TEMP/e4ad899ce9a1bf41b43f681cab16d30e4156efc6?placeholderIfAbsent=true&apiKey=ac04cd396e1f47f18955cd19640f183d"
+                                            alt="Consultant Avatar"
+                                            class="w-16 h-16 rounded-full object-cover border-2 border-teal-500"
+                                        />
+                                    </div>
+                                    <div>
+                                        <h3 class="text-xl font-semibold text-teal-700">
+                                            Dr. Budi Santosa, M.Si
                                         </h3>
-                                        <p class="mt-3.5 text-sm leading-7 text-gray-500">
-                                            Sustainability Analyst | UKM & Agrikultur
+                                        <p class="text-sm text-gray-500 flex items-center gap-1">
+                                            <span class="w-2 h-2 bg-green-500 rounded-full"></span>
+                                            Online - Sustainability Analyst
                                         </p>
                                     </div>
                                 </div>
 
                                 <!-- Call Controls -->
-                                <div class="flex gap-2.5 my-auto">
-                                    <button aria-label="Mute call">
-                                        <img
-                                            src="https://api.builder.io/api/v1/image/assets/TEMP/e0687728cea61f5573b20850183fda7a8a7e846b?placeholderIfAbsent=true&apiKey=ac04cd396e1f47f18955cd19640f183d"
-                                            alt="Mute"
-                                            class="object-contain shrink-0 rounded-none aspect-[1.61] w-[69px] hover:opacity-80 transition-opacity cursor-pointer"
-                                        />
+                                <div class="flex gap-2">
+                                    <button id="muteBtn" onclick="toggleMute()" class="p-3 bg-gray-100 rounded-xl hover:bg-gray-200 transition-colors" title="Mute/Unmute">
+                                        <svg class="w-6 h-6 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z"/>
+                                        </svg>
                                     </button>
-                                    <button aria-label="End call">
-                                        <img
-                                            src="https://api.builder.io/api/v1/image/assets/TEMP/c9ab059f5cef5e08a02ae2e5451370a360f0e53c?placeholderIfAbsent=true&apiKey=ac04cd396e1f47f18955cd19640f183d"
-                                            alt="End Call"
-                                            class="object-contain shrink-0 rounded-none aspect-[1.61] w-[69px] hover:opacity-80 transition-opacity cursor-pointer"
-                                        />
+                                    <button id="videoBtn" onclick="toggleVideo()" class="p-3 bg-gray-100 rounded-xl hover:bg-gray-200 transition-colors" title="Turn On/Off Video">
+                                        <svg class="w-6 h-6 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"/>
+                                        </svg>
+                                    </button>
+                                    <button onclick="endSession()" class="p-3 bg-red-500 rounded-xl hover:bg-red-600 transition-colors" title="End Call">
+                                        <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 8l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2M5 3a2 2 0 00-2 2v1c0 8.284 6.716 15 15 15h1a2 2 0 002-2v-3.28a1 1 0 00-.684-.948l-4.493-1.498a1 1 0 00-1.21.502l-1.13 2.257a11.042 11.042 0 01-5.516-5.517l2.257-1.128a1 1 0 00.502-1.21L9.228 3.683A1 1 0 008.279 3H5z"/>
+                                        </svg>
                                     </button>
                                 </div>
                             </div>
-                            <hr class="shrink-0 mt-3.5 h-px border border-gray-300 border-solid max-md:max-w-full" />
                         </header>
 
                         <!-- Chat Messages Area -->
-                        <div class="overflow-hidden z-10 mt-1.5 w-full min-h-[569px] max-md:mr-1 max-md:max-w-full">
+                        <div id="chatMessages" class="flex-1 overflow-y-auto p-6 space-y-4 bg-gray-50">
                             <!-- Consultant Message -->
-                            <article class="flex flex-wrap gap-3 items-end p-4 w-full max-md:max-w-full">
+                            <div class="flex gap-3 items-end">
                                 <img
                                     src="https://api.builder.io/api/v1/image/assets/TEMP/bcba37ffb992fc3cf03e940e64040c7655bfe947?placeholderIfAbsent=true&apiKey=ac04cd396e1f47f18955cd19640f183d"
-                                    alt="Dr. Evelyn Reed"
-                                    class="object-contain shrink-0 w-10 rounded-3xl aspect-square"
+                                    alt="Dr. Budi Santosa"
+                                    class="w-10 h-10 rounded-full object-cover flex-shrink-0"
                                 />
-                                <div class="flex flex-col flex-1 shrink items-start basis-0 min-w-60 max-md:max-w-full">
-                                    <p class="w-24 text-sm leading-loose text-slate-500">
-                                        Dr. Evelyn Reed
-                                    </p>
-                                    <div class="flex items-start py-3 pl-4 mt-1 max-w-full text-base leading-6 bg-gray-100 rounded-lg text-neutral-900 w-[360px]">
-                                        <p class="w-[344px]">
-                                            Hi there, I'm Dr. Reed. I'm ready to discuss your concerns. How can I assist you today?
+                                <div class="flex-1 max-w-md">
+                                    <p class="text-xs text-gray-500 mb-1">Dr. Budi Santosa</p>
+                                    <div class="bg-white rounded-2xl rounded-bl-sm p-4 shadow-sm">
+                                        <p class="text-gray-800">
+                                            Hello! I'm Dr. Santosa. I'm ready to discuss your business sustainability concerns. How can I assist you today?
                                         </p>
                                     </div>
+                                    <p class="text-xs text-gray-400 mt-1">10:00 AM</p>
                                 </div>
-                            </article>
+                            </div>
 
                             <!-- User Message -->
-                            <article class="flex flex-wrap gap-3 items-end p-4 w-full max-md:max-w-full">
-                                <div class="flex flex-col flex-1 shrink items-end basis-0 min-w-60 max-md:max-w-full">
-                                    <p class="text-sm leading-loose text-right text-slate-500 w-[94px]">
-                                        Sophia Bennett
-                                    </p>
-                                    <div class="flex items-start py-3 pl-4 mt-1 max-w-full text-base leading-6 text-white bg-lime-500 rounded-lg w-[360px]">
-                                        <p class="w-[344px]">
-                                            Hi Dr. Reed, I'm Sophia. I've been feeling overwhelmed lately with work and personal life. I'm looking for advice on managing stress and improving my work-life balance.
+                            <div class="flex gap-3 items-end justify-end">
+                                <div class="flex-1 max-w-md text-right">
+                                    <p class="text-xs text-gray-500 mb-1">You</p>
+                                    <div class="bg-gradient-to-br from-lime-500 to-lime-600 rounded-2xl rounded-br-sm p-4 shadow-md">
+                                        <p class="text-white">
+                                            Hi Dr. Santosa! I'm looking for guidance on implementing sustainable practices in my small agricultural business. I want to reduce environmental impact while maintaining profitability.
                                         </p>
                                     </div>
+                                    <p class="text-xs text-gray-400 mt-1">10:01 AM</p>
                                 </div>
                                 <img
                                     src="https://api.builder.io/api/v1/image/assets/TEMP/6eca9dd5e7d5c1607fea4f38faaa16d7850d3897?placeholderIfAbsent=true&apiKey=ac04cd396e1f47f18955cd19640f183d"
-                                    alt="Sophia Bennett"
-                                    class="object-contain shrink-0 w-10 rounded-3xl aspect-square"
+                                    alt="Your Avatar"
+                                    class="w-10 h-10 rounded-full object-cover flex-shrink-0"
                                 />
-                            </article>
+                            </div>
 
-                            <!-- Message Input Area -->
-                            <div class="flex gap-3 items-center px-4 py-16 w-full min-h-[183px] max-md:max-w-full">
-                                <div class="flex-1 shrink self-stretch my-auto w-full basis-0 min-h-12 min-w-40 max-md:max-w-full">
-                                    <div class="flex flex-wrap flex-1 rounded-lg size-full max-md:max-w-full">
-                                        <input
-                                            type="text"
-                                            placeholder="Type a message"
-                                            class="flex overflow-hidden flex-1 shrink items-center py-2 pr-2 pl-4 h-full text-base bg-gray-100 rounded-lg basis-0 min-w-60 text-slate-500 max-md:max-w-full border-none outline-none"
-                                        />
-                                        <button
-                                            class="flex justify-center items-center pr-2 w-10 h-full bg-gray-100 rounded-none hover:bg-gray-200 transition-colors"
-                                            aria-label="Send message"
-                                        >
-                                            <div class="flex flex-1 shrink gap-4 items-center self-stretch my-auto w-full basis-0">
-                                                <div class="flex flex-1 shrink gap-1 items-center self-stretch my-auto w-full basis-0">
-                                                    <div class="flex flex-1 shrink justify-center items-center self-stretch p-1.5 my-auto w-full basis-0">
-                                                        <div class="flex-1 shrink self-stretch my-auto w-full basis-0">
-                                                            <img
-                                                                src="https://api.builder.io/api/v1/image/assets/TEMP/3f33dfc4641970ad97010143f0166dbe0527e957?placeholderIfAbsent=true&apiKey=ac04cd396e1f47f18955cd19640f183d"
-                                                                alt="Send"
-                                                                class="object-contain flex-1 w-5 aspect-square"
-                                                            />
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </button>
+                            <!-- Consultant Message -->
+                            <div class="flex gap-3 items-end">
+                                <img
+                                    src="https://api.builder.io/api/v1/image/assets/TEMP/bcba37ffb992fc3cf03e940e64040c7655bfe947?placeholderIfAbsent=true&apiKey=ac04cd396e1f47f18955cd19640f183d"
+                                    alt="Dr. Budi Santosa"
+                                    class="w-10 h-10 rounded-full object-cover flex-shrink-0"
+                                />
+                                <div class="flex-1 max-w-md">
+                                    <p class="text-xs text-gray-500 mb-1">Dr. Budi Santosa</p>
+                                    <div class="bg-white rounded-2xl rounded-bl-sm p-4 shadow-sm">
+                                        <p class="text-gray-800">
+                                            That's an excellent goal! Let's start by assessing your current operations. What type of agricultural products do you focus on, and what are your main environmental concerns?
+                                        </p>
+                                    </div>
+                                    <p class="text-xs text-gray-400 mt-1">10:02 AM</p>
+                                </div>
+                            </div>
+
+                            <!-- Typing Indicator -->
+                            <div id="typingIndicator" class="hidden flex gap-3 items-end">
+                                <img
+                                    src="https://api.builder.io/api/v1/image/assets/TEMP/bcba37ffb992fc3cf03e940e64040c7655bfe947?placeholderIfAbsent=true&apiKey=ac04cd396e1f47f18955cd19640f183d"
+                                    alt="Dr. Budi Santosa"
+                                    class="w-10 h-10 rounded-full object-cover flex-shrink-0"
+                                />
+                                <div class="bg-white rounded-2xl rounded-bl-sm px-6 py-4 shadow-sm">
+                                    <div class="flex gap-1">
+                                        <span class="w-2 h-2 bg-gray-400 rounded-full animate-bounce"></span>
+                                        <span class="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style="animation-delay: 0.1s"></span>
+                                        <span class="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style="animation-delay: 0.2s"></span>
                                     </div>
                                 </div>
+                            </div>
+                        </div>
+
+                        <!-- Message Input Area -->
+                        <div class="bg-white border-t border-gray-200 p-4">
+                            <div class="flex gap-3 items-center">
+                                <button class="p-3 text-gray-500 hover:text-gray-700 hover:bg-gray-100 rounded-xl transition-colors" title="Attach file">
+                                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.172 7l-6.586 6.586a2 2 0 102.828 2.828l6.414-6.586a4 4 0 00-5.656-5.656l-6.415 6.585a6 6 0 108.486 8.486L20.5 13"/>
+                                    </svg>
+                                </button>
+                                
+                                <div class="flex-1 relative">
+                                    <input
+                                        id="messageInput"
+                                        type="text"
+                                        placeholder="Type your message..."
+                                        class="w-full px-4 py-3 bg-gray-100 rounded-xl border-none outline-none focus:ring-2 focus:ring-teal-500 transition-all"
+                                    />
+                                </div>
+
+                                <button class="p-3 text-gray-500 hover:text-gray-700 hover:bg-gray-100 rounded-xl transition-colors" title="Add emoji">
+                                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                                    </svg>
+                                </button>
+
+                                <button id="sendBtn" onclick="sendMessage()" class="px-6 py-3 bg-gradient-to-r from-lime-500 to-lime-600 text-white rounded-xl hover:from-lime-600 hover:to-lime-700 transition-all shadow-md font-semibold flex items-center gap-2">
+                                    <span>Send</span>
+                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"/>
+                                    </svg>
+                                </button>
                             </div>
                         </div>
                     </div>
@@ -181,14 +234,13 @@
             seconds: 55
         };
 
-        function updateTimerDisplay() {
-            const hoursElement = document.querySelector('.timer-hours');
-            const minutesElement = document.querySelector('.timer-minutes');
-            const secondsElement = document.querySelector('.timer-seconds');
+        let isMuted = false;
+        let isVideoOff = false;
 
-            if (hoursElement) hoursElement.textContent = sessionTime.hours.toString().padStart(2, '0');
-            if (minutesElement) minutesElement.textContent = sessionTime.minutes.toString().padStart(2, '0');
-            if (secondsElement) secondsElement.textContent = sessionTime.seconds.toString().padStart(2, '0');
+        function updateTimerDisplay() {
+            document.getElementById('hours').textContent = sessionTime.hours.toString().padStart(2, '0');
+            document.getElementById('minutes').textContent = sessionTime.minutes.toString().padStart(2, '0');
+            document.getElementById('seconds').textContent = sessionTime.seconds.toString().padStart(2, '0');
         }
 
         function startTimer() {
@@ -202,47 +254,110 @@
                     sessionTime.hours--;
                     sessionTime.minutes = 59;
                     sessionTime.seconds = 59;
+                } else {
+                    // Session ended
+                    alert('Session time has ended!');
                 }
                 updateTimerDisplay();
             }, 1000);
         }
 
-        // Message input functionality
-        function setupMessageInput() {
-            const messageInput = document.querySelector('input[placeholder="Type a message"]');
-            const sendButton = document.querySelector('button[aria-label="Send message"]');
+        function toggleMute() {
+            isMuted = !isMuted;
+            const btn = document.getElementById('muteBtn');
+            if (isMuted) {
+                btn.classList.add('bg-red-100');
+                btn.classList.remove('bg-gray-100');
+            } else {
+                btn.classList.remove('bg-red-100');
+                btn.classList.add('bg-gray-100');
+            }
+            console.log('Mute toggled:', isMuted);
+        }
 
-            if (messageInput && sendButton) {
-                sendButton.addEventListener('click', () => {
-                    const message = messageInput.value.trim();
-                    if (message) {
-                        // Here you would typically send the message to a server
-                        console.log('Sending message:', message);
-                        messageInput.value = '';
-                    }
-                });
+        function toggleVideo() {
+            isVideoOff = !isVideoOff;
+            const btn = document.getElementById('videoBtn');
+            if (isVideoOff) {
+                btn.classList.add('bg-red-100');
+                btn.classList.remove('bg-gray-100');
+            } else {
+                btn.classList.remove('bg-red-100');
+                btn.classList.add('bg-gray-100');
+            }
+            console.log('Video toggled:', isVideoOff);
+        }
 
-                messageInput.addEventListener('keypress', (e) => {
-                    if (e.key === 'Enter') {
-                        sendButton.click();
-                    }
-                });
+        function endSession() {
+            if (confirm('Are you sure you want to end this consultation session?')) {
+                alert('Session ended. Thank you for consulting with us!');
+               window.location.href = '/mitra/history';
             }
         }
 
-        // Initialize functionality when DOM is loaded
-        document.addEventListener('DOMContentLoaded', () => {
-            // Add timer classes for easier selection
-            const timerElements = document.querySelectorAll('.bg-orange-500 span');
-            if (timerElements.length >= 3) {
-                timerElements[0].classList.add('timer-hours');
-                timerElements[1].classList.add('timer-minutes');
-                timerElements[2].classList.add('timer-seconds');
+        function sendMessage() {
+            const input = document.getElementById('messageInput');
+            const message = input.value.trim();
+            
+            if (message) {
+                const chatMessages = document.getElementById('chatMessages');
+                const time = new Date().toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' });
+                
+                // Create new message element
+                const messageDiv = document.createElement('div');
+                messageDiv.className = 'flex gap-3 items-end justify-end';
+                messageDiv.innerHTML = `
+                    <div class="flex-1 max-w-md text-right">
+                        <p class="text-xs text-gray-500 mb-1">You</p>
+                        <div class="bg-gradient-to-br from-lime-500 to-lime-600 rounded-2xl rounded-br-sm p-4 shadow-md">
+                            <p class="text-white">${message}</p>
+                        </div>
+                        <p class="text-xs text-gray-400 mt-1">${time}</p>
+                    </div>
+                    <img
+                        src="https://api.builder.io/api/v1/image/assets/TEMP/6eca9dd5e7d5c1607fea4f38faaa16d7850d3897?placeholderIfAbsent=true&apiKey=ac04cd396e1f47f18955cd19640f183d"
+                        alt="Your Avatar"
+                        class="w-10 h-10 rounded-full object-cover flex-shrink-0"
+                    />
+                `;
+                
+                chatMessages.appendChild(messageDiv);
+                chatMessages.scrollTop = chatMessages.scrollHeight;
+                input.value = '';
+                
+                // Show typing indicator
+                showTypingIndicator();
             }
+        }
 
-            updateTimerDisplay();
-            startTimer();
-            setupMessageInput();
+        function showTypingIndicator() {
+            const indicator = document.getElementById('typingIndicator');
+            indicator.classList.remove('hidden');
+            
+            const chatMessages = document.getElementById('chatMessages');
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+            
+            // Hide after 2 seconds (simulate consultant typing)
+            setTimeout(() => {
+                indicator.classList.add('hidden');
+            }, 2000);
+        }
+
+        // Enter key to send message
+        document.getElementById('messageInput').addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                sendMessage();
+            }
         });
+
+        // Auto-scroll to bottom on load
+        window.addEventListener('load', () => {
+            const chatMessages = document.getElementById('chatMessages');
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        });
+
+        // Start timer
+        startTimer();
     </script>
 </body>
+</html>

@@ -1,85 +1,477 @@
-<div class="flex overflow-hidden flex-col pb-24 bg-white max-md:pb-16">
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <title>SGrowth Dashboard</title>
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes pulse-border {
+            0%, 100% {
+                border-color: rgb(253, 186, 116);
+            }
+            50% {
+                border-color: rgb(249, 115, 22);
+            }
+        }
+        
+        .animate-fade-in-up {
+            animation: fadeInUp 0.6s ease-out forwards;
+        }
+        
+        .animate-pulse-border {
+            animation: pulse-border 2s ease-in-out infinite;
+        }
+        
+        .card-hover {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+        }
+        
+        .glass-effect {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+        }
 
-  <div class="flex flex-col items-start mt-12 w-full max-md:mt-8 max-md:max-w-full">
-    <!-- Company Header -->
-    <div class="ml-36 mt-6 max-w-full w-[600px]">
-      <div class="flex gap-5 max-md:flex-col">
-        <div class="flex flex-col w-3/12 max-md:w-full">
-          <div class="flex items-center justify-center w-[130px] h-[130px] mt-1 border-[4px] border-orange-300 rounded-full">
-            <img loading="lazy" src="https://api.builder.io/api/v1/image/assets/TEMP/880531a01c86810a2330e5d2ff1ff5f0134415e1?placeholderIfAbsent=true&apiKey=ac04cd396e1f47f18955cd19640f183d" class="object-contain w-[120px] h-[120px]" />
-          </div>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: linear-gradient(to bottom right, #f0fdfa, #ffffff, #ffedd5);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 2rem 1rem;
+        }
+
+        .profile-header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 1.5rem;
+            box-shadow: 0 25px 50px -12px rgb(0 0 0 / 0.25);
+            padding: 2rem;
+            margin-bottom: 2rem;
+            border: 1px solid white;
+            animation: fadeInUp 0.6s ease-out forwards;
+        }
+
+        .profile-content {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        @media (min-width: 768px) {
+            .profile-content {
+                flex-direction: row;
+                align-items: center;
+            }
+        }
+
+        .profile-image-wrapper {
+            position: relative;
+            display: flex;
+            justify-content: center;
+        }
+
+        .profile-image-border {
+            width: 8rem;
+            height: 8rem;
+            border-radius: 50%;
+            background: linear-gradient(to bottom right, rgb(251, 146, 60), rgb(234, 88, 12));
+            padding: 4px;
+            animation: pulse-border 2s ease-in-out infinite;
+        }
+
+        .profile-image-inner {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            background: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .profile-image {
+            width: 7rem;
+            height: 7rem;
+            object-fit: cover;
+            border-radius: 50%;
+        }
+
+        .status-badge {
+            position: absolute;
+            bottom: -0.5rem;
+            right: -0.5rem;
+            width: 2.5rem;
+            height: 2.5rem;
+            background: rgb(34, 197, 94);
+            border-radius: 50%;
+            border: 4px solid white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .profile-info {
+            flex: 1;
+            text-align: center;
+        }
+
+        @media (min-width: 768px) {
+            .profile-info {
+                text-align: left;
+            }
+        }
+
+        .welcome-text {
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: rgb(249, 115, 22);
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            margin-bottom: 0.5rem;
+        }
+
+        .company-name {
+            font-size: 1.875rem;
+            font-weight: bold;
+            color: rgb(31, 41, 55);
+            margin-bottom: 0.5rem;
+        }
+
+        .company-details {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            align-items: center;
+            color: rgb(15, 118, 110);
+            justify-content: center;
+        }
+
+        @media (min-width: 768px) {
+            .company-details {
+                justify-content: flex-start;
+            }
+        }
+
+        .detail-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-weight: 500;
+        }
+
+        .status-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            background: rgb(254, 242, 242);
+            border: 2px solid rgb(254, 202, 202);
+            color: rgb(220, 38, 38);
+            border-radius: 9999px;
+            font-size: 0.875rem;
+            font-weight: 600;
+            margin-top: 1rem;
+        }
+
+        .section-title {
+            font-size: 1.875rem;
+            font-weight: bold;
+            color: rgb(15, 118, 110);
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            animation: fadeInUp 0.6s ease-out forwards;
+        }
+
+        .title-bar {
+            width: 0.375rem;
+            height: 2rem;
+            background: rgb(249, 115, 22);
+            border-radius: 9999px;
+        }
+
+        .info-card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 1rem;
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1);
+            padding: 2rem;
+            border: 1px solid white;
+            animation: fadeInUp 0.6s ease-out forwards;
+            animation-delay: 0.1s;
+        }
+
+        .info-grid {
+            display: grid;
+            gap: 1.5rem;
+        }
+
+        @media (min-width: 768px) {
+            .info-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        .info-column {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .info-row {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            padding: 0.75rem;
+            border-radius: 0.5rem;
+            transition: background-color 0.3s;
+        }
+
+        .info-row:hover {
+            background: rgb(240, 253, 250);
+        }
+
+        .info-label {
+            color: rgb(75, 85, 99);
+            font-weight: 500;
+            min-width: 140px;
+        }
+
+        .info-value {
+            color: rgb(15, 118, 110);
+            font-weight: 600;
+        }
+
+        .chart-card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 1rem;
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1);
+            padding: 2rem;
+            border: 1px solid white;
+            animation: fadeInUp 0.6s ease-out forwards;
+            animation-delay: 0.2s;
+            margin-top: 2rem;
+        }
+
+        .chart-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .chart-title {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: rgb(31, 41, 55);
+        }
+
+        .chart-subtitle {
+            color: rgb(107, 114, 128);
+            font-size: 0.875rem;
+            margin-top: 0.25rem;
+        }
+
+        .time-selector {
+            display: flex;
+            gap: 0.5rem;
+            background: rgb(243, 244, 246);
+            padding: 0.25rem;
+            border-radius: 0.5rem;
+        }
+
+        .time-btn {
+            padding: 0.5rem 1rem;
+            border: none;
+            background: transparent;
+            color: rgb(75, 85, 99);
+            font-weight: 500;
+            border-radius: 0.375rem;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .time-btn:hover {
+            background: rgb(229, 231, 235);
+        }
+
+        .time-btn.active {
+            background: white;
+            color: rgb(249, 115, 22);
+            box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1);
+        }
+
+        .chart-container {
+            position: relative;
+            height: 400px;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .stat-card {
+            background: linear-gradient(135deg, rgb(240, 253, 250), rgb(255, 255, 255));
+            padding: 1.5rem;
+            border-radius: 1rem;
+            border: 1px solid rgb(204, 251, 241);
+            transition: all 0.3s;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1);
+        }
+
+        .stat-label {
+            color: rgb(107, 114, 128);
+            font-size: 0.875rem;
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-value {
+            color: rgb(15, 118, 110);
+            font-size: 1.875rem;
+            font-weight: bold;
+        }
+
+        .stat-unit {
+            color: rgb(107, 114, 128);
+            font-size: 1rem;
+            margin-left: 0.25rem;
+        }
+
+        .quality-indicator {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.25rem 0.75rem;
+            border-radius: 9999px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            margin-top: 0.5rem;
+        }
+
+        .quality-good {
+            background: rgb(220, 252, 231);
+            color: rgb(22, 163, 74);
+        }
+
+        .quality-moderate {
+            background: rgb(254, 249, 195);
+            color: rgb(202, 138, 4);
+        }
+
+        .quality-poor {
+            background: rgb(254, 226, 226);
+            color: rgb(220, 38, 38);
+        }
+    </style>
+</head>
+<body class="bg-gradient-to-br from-teal-50 via-white to-orange-50 min-h-screen">
+    <div class="container mx-auto px-4 py-8 max-w-7xl">
+        
+        <!-- Company Header with Enhanced Design -->
+        <div class="glass-effect rounded-3xl shadow-2xl p-8 mb-8 animate-fade-in-up border border-white">
+            <div class="flex flex-col md:flex-row items-center gap-6">
+                <!-- Profile Image with Animated Border -->
+                <div class="relative">
+                    <div class="w-32 h-32 rounded-full bg-gradient-to-br from-orange-400 to-orange-600 p-1 animate-pulse-border">
+                        <div class="w-full h-full rounded-full bg-white flex items-center justify-center overflow-hidden">
+                            <img src="https://api.builder.io/api/v1/image/assets/TEMP/880531a01c86810a2330e5d2ff1ff5f0134415e1" 
+                                 class="w-28 h-28 object-cover rounded-full" 
+                                 alt="Company Logo" />
+                        </div>
+                    </div>
+                    <div class="absolute -bottom-2 -right-2 w-10 h-10 bg-green-500 rounded-full border-4 border-white flex items-center justify-center">
+                        <svg class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                        </svg>
+                    </div>
+                </div>
+                
+                <!-- Company Info -->
+                <div class="flex-1 text-center md:text-left">
+                    <div class="text-sm font-semibold text-orange-500 tracking-widest uppercase mb-2">Welcome Back</div>
+                    <h1 class="text-3xl font-bold text-gray-800 mb-2">Pengguna - Perusahaan Anda</h1>
+                    <div class="flex flex-wrap gap-4 items-center justify-center md:justify-start text-teal-700">
+                        <div class="flex items-center gap-2">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                                <path d="M10.394 2.08a1 1 0 00-.788 0l-7 3a1 1 0 000 1.84L5.25 8.051a.999.999 0 01.356-.257l4-1.714a1 1 0 11.788 1.838L7.667 9.088l1.94.831a1 1 0 00.787 0l7-3a1 1 0 000-1.838l-7-3zM3.31 9.397L5 10.12v4.102a8.969 8.969 0 00-1.05-.174 1 1 0 01-.89-.89 11.115 11.115 0 01.25-3.762zM9.3 16.573A9.026 9.026 0 007 14.935v-3.957l1.818.78a3 3 0 002.364 0l5.508-2.361a11.026 11.026 0 01.25 3.762 1 1 0 01-.89.89 8.968 8.968 0 00-5.35 2.524 1 1 0 01-1.4 0zM6 18a1 1 0 001-1v-2.065a8.935 8.935 0 00-2-.712V17a1 1 0 001 1z"/>
+                            </svg>
+                            <span class="font-medium">Industri Umum</span>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <div class="w-1.5 h-1.5 rounded-full bg-teal-500"></div>
+                            <span class="font-medium">Est. 2020</span>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"/>
+                            </svg>
+                            <span class="font-medium">Alamat Tidak Ada</span>
+                        </div>
+                    </div>
+                    <div class="mt-4">
+                        <span class="inline-flex items-center gap-2 px-4 py-2 bg-red-50 border-2 border-red-200 text-red-600 rounded-full text-sm font-semibold">
+                            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clip-rule="evenodd"/>
+                            </svg>
+                            ESG Not Available
+                        </span>
+                    </div>
+                </div>
+            </div>
         </div>
 
-        <div class="flex flex-col ml-4 w-full max-md:w-full">
-          <div class="flex flex-col ml-4 w-full max-md:w-full">
-      <div class="flex flex-col w-full">
-        <div class="self-start text-xl font-medium text-gray-500 tracking-[3px]">
-          Welcome,
-          {{#if business.pic_name}}
-            {{business.pic_name}}
-          {{else}}
-            User
-          {{/if}}
-          {{#if business.organization_name}}
-            {{business.organization_name}}
-          {{else}}
-            Your Company
-          {{/if}}
-        </div>
-        <div class="flex flex-col items-start pr-10 pl-1 w-full text-base font-regular text-teal-700">
-          <div class="flex gap-2">
-            <div class="flex-auto">
-              {{#if business.industry_type}}
-                {{business.industry_type}}
-              {{else}}
-                Industri Umum
-              {{/if}}
-            </div>
-            <div class="flex gap-1 whitespace-nowrap">
-              <div class="w-2 h-2 my-auto rounded-full bg-teal-700/50"></div>
-              <div>{{business.established_year}}</div>
-            </div>
-          </div>
-          <div class="mt-1">
-            Headquarters: 
-            {{#if business.headquarters}}
-              {{business.headquarters}}
-            {{else}}
-              Alamat Tidak Ada
-            {{/if}}
-          </div>
-        </div>
-        <div class="flex flex-wrap gap-6 mt-3">
-          {{#if business.organization_name}}
-            <div class="flex flex-col justify-center px-5 py-1 text-xs font-semibold text-green-600 border border-green-600 bg-green-600/20 rounded-full">
-              <div>ESG Data Available</div>
-            </div>
-          {{else}}
-            <div class="flex flex-col justify-center px-5 py-1 text-xs font-semibold text-red-600 border border-red-600 bg-red-600/20 rounded-full">
-              <div>ESG Not Available</div>
-            </div>
-          {{/if}}
-        </div>
-      </div>
-    </div>
-  </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- General Info -->
-    <div class="mt-12 ml-24 text-2xl font-bold text-teal-700">General Information</div>
-<div class="flex flex-wrap gap-6 px-10 py-8 ml-24 mt-6 w-full max-w-7xl bg-white rounded-xl border shadow-xl border-neutral-100">
-  <div class="flex-auto">
-    <div class="flex gap-5 max-md:flex-col">
+        <!-- General Information Card -->
+        <div class="mb-8 animate-fade-in-up" style="animation-delay: 0.1s">
+            <h2 class="text-3xl font-bold text-teal-700 mb-6 flex items-center gap-3">
+                <div class="w-1.5 h-8 bg-orange-500 rounded-full"></div>
+                General Information
+            </h2>
+            <div class="glass-effect rounded-2xl shadow-xl p-8 border border-white">
+                <div class="grid md:grid-cols-2 gap-6">
+                    <div class="flex gap-5 max-md:flex-col">
       <div class="flex flex-col w-6/12 max-md:w-full">
         <div class="flex flex-col text-lg text-gray-800">
           <div>Business Name</div>
           <div class="mt-2">Business ID</div>
           <div class="mt-2">Headquarters</div>
           <div class="mt-2">Year Established</div>
-          <div class="mt-2">Business Scale</div>
-          <div class="mt-2">Target Market</div>
           <div class="mt-2">Legal Form</div>
           <div class="mt-2">Ownership Type</div>
           <div class="mt-2">PIC Email</div>
@@ -101,12 +493,6 @@
             : {{#if business.established_year}} {{business.established_year}} {{else}} N/A {{/if}}
           </div>
           <div class="mt-2">
-            : {{#if business.business_scale}} {{business.business_scale}} {{else}} - (Complete your Information) {{/if}}
-          </div>
-          <div class="mt-2">
-            : {{#if business.target_market}} {{business.target_market}} {{else}} - (Complete your Information) {{/if}}
-          </div>
-          <div class="mt-2">
             : {{#if business.legal_form}} {{business.legal_form}} {{else}} N/A {{/if}}
           </div>
           <div class="mt-2">
@@ -121,98 +507,352 @@
         </div>
       </div>
     </div>
-  </div>
-  <a href="/mitra/form-gi" class="flex items-center self-start px-10 py-3 text-base font-medium text-center text-white whitespace-nowrap bg-orange-500 rounded-xl hover:bg-orange-600 transition-colors max-md:px-5">
-    Complete
-  </a>
-</div>
+                </div>
+                <div class="mt-6 flex justify-end">
+                    <a href="/mitra/form-gi" class="bg-orange-500 text-white hover:bg-orange-600 text-white font-semibold px-8 py-3 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105">
+                        Complete Information
+                    </a>
+                </div>
+            </div>
+        </div>
 
-    <!-- Choose Feature -->
-    <div class="ml-16 mt-16 text-2xl font-bold text-teal-700">Choose SGrowth Feature</div>
-    <div class="mt-8 ml-12 w-full pr-36">
-      <div class="flex gap-4 max-md:flex-col">
+                <!-- Air Quality Monitoring Chart -->
+        <div class="chart-card">
+            <div class="chart-header">
+                <div>
+                    <h3 class="chart-title">Air Quality Monitoring</h3>
+                    <p class="chart-subtitle">Particulate Matter (PM2.5) Levels in Company Area</p>
+                </div>
+                <div class="time-selector">
+                    <button class="time-btn" onclick="updateChart('day')">24H</button>
+                    <button class="time-btn active" onclick="updateChart('week')">7D</button>
+                    <button class="time-btn" onclick="updateChart('month')">30D</button>
+                </div>
+            </div>
 
-        <!-- Consultation -->
-        <a href="/mitra/cari-konsultan" class="flex flex-col w-3/12 max-md:w-full bg-white rounded-xl p-6 text-center shadow hover:bg-teal-50 hover:shadow-xl hover:scale-105 cursor-pointer transition duration-300">
-          <img src="https://api.builder.io/api/v1/image/assets/TEMP/97ce986950f0a4769eaddaf761da0fe743aac5df?apiKey=ac04cd396e1f47f18955cd19640f183d&" class="object-contain w-[180px] mx-auto" />
-          <div class="mt-4 text-xl font-semibold text-teal-700">Consultation</div>
-          <div class="text-sm text-gray-500">Choose an expert to review</div>
-        </a>
+            <!-- Statistics Cards -->
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-label">Current PM2.5</div>
+                    <div>
+                        <span class="stat-value">38</span>
+                        <span class="stat-unit">μg/m³</span>
+                    </div>
+                    <span class="quality-indicator quality-good">Good</span>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-label">Average (7 Days)</div>
+                    <div>
+                        <span class="stat-value">42</span>
+                        <span class="stat-unit">μg/m³</span>
+                    </div>
+                    <span class="quality-indicator quality-moderate">Moderate</span>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-label">Peak Level</div>
+                    <div>
+                        <span class="stat-value">68</span>
+                        <span class="stat-unit">μg/m³</span>
+                    </div>
+                    <span class="quality-indicator quality-moderate">Moderate</span>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-label">Safe Days</div>
+                    <div>
+                        <span class="stat-value">5/7</span>
+                        <span class="stat-unit">days</span>
+                    </div>
+                    <span class="quality-indicator quality-good">71% Compliant</span>
+                </div>
+            </div>
 
-        <!-- Community -->
-        <a href="/mitra/komunitas" class="flex flex-col w-3/12 max-md:w-full bg-white rounded-xl p-6 text-center shadow hover:bg-teal-50 hover:shadow-xl hover:scale-105 cursor-pointer transition duration-300">
-          <img src="https://api.builder.io/api/v1/image/assets/TEMP/0a1eaba1c15ca2ff43c5868ce8a526e2f0160ed0?apiKey=ac04cd396e1f47f18955cd19640f183d&" class="object-contain w-[150px] mx-auto" />
-          <div class="mt-2 text-xl font-semibold text-teal-700">Community</div>
-          <div class="text-sm text-gray-500">Share and discuss together</div>
-        </a>
+            <!-- Chart -->
+            <div class="chart-container">
+                <canvas id="airQualityChart"></canvas>
+            </div>
+        </div>
 
-        <!-- Report -->
-        <a href="/mitra/laporan" class="flex flex-col w-3/12 max-md:w-full bg-white rounded-xl p-6 text-center shadow hover:bg-teal-50 hover:shadow-xl hover:scale-105 cursor-pointer transition duration-300">
-          <img src="https://api.builder.io/api/v1/image/assets/TEMP/82c8c2fbd5cd9543a3d5095cd6e71a74e66a9aa1?apiKey=ac04cd396e1f47f18955cd19640f183d&" class="object-contain w-[180px] mx-auto" />
-          <div class="mt-3 text-xl font-semibold text-teal-700">Report</div>
-          <div class="text-sm text-gray-500">ESG status results</div>
-        </a>
+        <!-- Features Section -->
+        <div class="mb-8 mt-8 animate-fade-in-up" style="animation-delay: 0.2s">
+            <h2 class="text-3xl font-bold text-teal-700 mb-6 flex items-center gap-3">
+                <div class="w-1.5 h-8 bg-orange-500 rounded-full"></div>
+                Choose SGrowth Feature
+            </h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-6">
+                
+                <!-- Consultation Card -->
+                <a href="/umkm/cari-konsultan" class="glass-effect rounded-2xl p-6 text-center shadow-lg card-hover cursor-pointer border border-white group">
+                    <img src="https://api.builder.io/api/v1/image/assets/TEMP/97ce986950f0a4769eaddaf761da0fe743aac5df?apiKey=ac04cd396e1f47f18955cd19640f183d&" class="object-contain w-[180px] mx-auto mb-4" alt="Consultation" />
+                    <h3 class="text-xl font-bold text-teal-700 mb-2">Consultation</h3>
+                    <p class="text-sm text-gray-600">Choose an expert to review</p>
+                </a>
 
-        <!-- Chat AI -->
-        <a href="/mitra/chatAI" class="flex flex-col w-3/12 max-md:w-full bg-white rounded-xl p-6 text-center shadow hover:bg-teal-50 hover:shadow-xl hover:scale-105 cursor-pointer transition duration-300">
-          <img src="https://api.builder.io/api/v1/image/assets/TEMP/97ce986950f0a4769eaddaf761da0fe743aac5df?apiKey=ac04cd396e1f47f18955cd19640f183d&" class="object-contain w-[180px] mx-auto" />
-          <div class="mt-4 text-xl font-semibold text-teal-700">Chat AI</div>
-          <div class="text-sm text-gray-500">Ask questions with AI</div>
-        </a>
+                <!-- Community Card -->
+                <a href="/umkm/komunitas" class="glass-effect rounded-2xl p-6 text-center shadow-lg card-hover cursor-pointer border border-white group">
+                    <img src="https://api.builder.io/api/v1/image/assets/TEMP/0a1eaba1c15ca2ff43c5868ce8a526e2f0160ed0?apiKey=ac04cd396e1f47f18955cd19640f183d&" class="object-contain w-[150px] mx-auto mb-2" alt="Community" />
+                    <h3 class="text-xl font-bold text-teal-700 mb-2">Community</h3>
+                    <p class="text-sm text-gray-600">Share and discuss together</p>
+                </a>
 
-        <!-- Fill GRI -->
-        <a href="/mitra/form-gi" class="flex flex-col w-3/12 max-md:w-full bg-white rounded-xl p-6 text-center shadow hover:bg-teal-50 hover:shadow-xl hover:scale-105 cursor-pointer transition duration-300">
-          <img src="https://api.builder.io/api/v1/image/assets/TEMP/05808ca298f3565cc120745302c8076d602aa93c?apiKey=ac04cd396e1f47f18955cd19640f183d&" class="object-contain w-[140px] mx-auto" />
-          <div class="mt-4 text-xl font-semibold text-teal-700">Fill GRI</div>
-          <div class="text-sm text-gray-500">Fill in GRI for evaluation</div>
-        </a>
-      </div>
+                <!-- Report Card -->
+                <a href="/umkm/laporan" class="glass-effect rounded-2xl p-6 text-center shadow-lg card-hover cursor-pointer border border-white group">
+                    <img src="https://api.builder.io/api/v1/image/assets/TEMP/82c8c2fbd5cd9543a3d5095cd6e71a74e66a9aa1?apiKey=ac04cd396e1f47f18955cd19640f183d&" class="object-contain w-[180px] mx-auto mb-3" alt="Report" />
+                    <h3 class="text-xl font-bold text-teal-700 mb-2">Report</h3>
+                    <p class="text-sm text-gray-600">ESG status results</p>
+                </a>
+
+                <!-- Chat AI Card -->
+                <a href="/umkm/chatAI" class="glass-effect rounded-2xl p-6 text-center shadow-lg card-hover cursor-pointer border border-white group">
+                    <img src="https://api.builder.io/api/v1/image/assets/TEMP/97ce986950f0a4769eaddaf761da0fe743aac5df?apiKey=ac04cd396e1f47f18955cd19640f183d&" class="object-contain w-[180px] mx-auto mb-4" alt="Chat AI" />
+                    <h3 class="text-xl font-bold text-teal-700 mb-2">Chat AI</h3>
+                    <p class="text-sm text-gray-600">Ask questions with AI</p>
+                </a>
+
+                <!-- Fill GRI Card -->
+                <a href="/umkm/form-gi" class="glass-effect rounded-2xl p-6 text-center shadow-lg card-hover cursor-pointer border border-white group">
+                    <img src="https://api.builder.io/api/v1/image/assets/TEMP/05808ca298f3565cc120745302c8076d602aa93c?apiKey=ac04cd396e1f47f18955cd19640f183d&" class="object-contain w-[140px] mx-auto mb-4" alt="Fill GRI" />
+                    <h3 class="text-xl font-bold text-teal-700 mb-2">Fill GRI</h3>
+                    <p class="text-sm text-gray-600">Fill in GRI for evaluation</p>
+                </a>
+
+            </div>
+        </div>
+
+        <!-- Articles Section -->
+        <div class="animate-fade-in-up" style="animation-delay: 0.3s">
+            <div class="bg-gradient-to-r from-orange-500 to-orange-600 rounded-3xl shadow-2xl p-8 text-white">
+                <div class="flex justify-between items-center mb-8">
+                    <div>
+                        <h2 class="text-3xl font-bold mb-2">Article Release</h2>
+                        <p class="text-orange-100 text-lg">News, Articles, and Latest Updates</p>
+                    </div>
+                    <button class="flex items-center gap-2 bg-white text-orange-600 px-6 py-3 rounded-xl font-bold hover:bg-orange-50 transition-all shadow-lg hover:shadow-xl transform hover:scale-105">
+                        <span>View All</span>
+                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd"/>
+                        </svg>
+                    </button>
+                </div>
+
+                <div class="grid md:grid-cols-3 gap-6">
+                    
+                    <!-- Article 1 -->
+                    <div class="bg-white rounded-2xl overflow-hidden shadow-xl card-hover">
+                        <div class="h-48 overflow-hidden">
+                            <img src="https://storage.googleapis.com/sahabat-pegadaian-asset-prd/20250319-064620_efisiensi-anggaran-2025webp.webp" 
+                                 class="w-full h-full object-cover transform hover:scale-110 transition-transform duration-500" 
+                                 alt="Budget Efficiency" />
+                        </div>
+                        <div class="p-6">
+                            <span class="inline-block bg-orange-100 text-orange-600 text-xs font-bold px-3 py-1 rounded-full mb-3">Article</span>
+                            <h3 class="text-lg font-bold text-gray-800 mb-3 line-clamp-2">Budget Efficiency 2025 – What Are the Goals and Impacts?</h3>
+                            <a href="https://sahabat.pegadaian.co.id/artikel/keuangan/efisiensi-anggaran-2025" 
+                               target="_blank" 
+                               class="inline-flex items-center gap-2 text-orange-500 font-semibold hover:text-orange-600 transition-colors">
+                                Read More
+                                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd"/>
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Article 2 -->
+                    <div class="bg-white rounded-2xl overflow-hidden shadow-xl card-hover">
+                        <div class="h-48 overflow-hidden">
+                            <img src="https://img2.beritasatu.com/cache/investor/960x620-3/1604940685.png" 
+                                 class="w-full h-full object-cover transform hover:scale-110 transition-transform duration-500" 
+                                 alt="Mining Industry" />
+                        </div>
+                        <div class="p-6">
+                            <span class="inline-block bg-orange-100 text-orange-600 text-xs font-bold px-3 py-1 rounded-full mb-3">Article</span>
+                            <h3 class="text-lg font-bold text-gray-800 mb-3 line-clamp-2">Mining Industry Needs to Prioritize Sustainability Aspects</h3>
+                            <a href="https://investor.id/business/390383/industri-pertambangan-perlu-kedepankan-aspek-keberlanjutan" 
+                               target="_blank" 
+                               class="inline-flex items-center gap-2 text-orange-500 font-semibold hover:text-orange-600 transition-colors">
+                                Read More
+                                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd"/>
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Article 3 -->
+                    <div class="bg-white rounded-2xl overflow-hidden shadow-xl card-hover">
+                        <div class="h-48 overflow-hidden">
+                            <img src="https://i.guim.co.uk/img/media/8c594b171a40e318a2773576e90485bc3ab13c4e/0_179_3500_2099/master/3500.jpg?width=620&dpr=1&s=none&crop=none" 
+                                 class="w-full h-full object-cover transform hover:scale-110 transition-transform duration-500" 
+                                 alt="HSBC Climate" />
+                        </div>
+                        <div class="p-6">
+                            <span class="inline-block bg-orange-100 text-orange-600 text-xs font-bold px-3 py-1 rounded-full mb-3">Article</span>
+                            <h3 class="text-lg font-bold text-gray-800 mb-3 line-clamp-2">Watchdog bans HSBC climate ads in fresh blow to bank's green credentials</h3>
+                            <a href="https://www.theguardian.com/business/2022/oct/19/watchdog-bans-hsbc-ads-green-cop26-climate-crisis" 
+                               target="_blank" 
+                               class="inline-flex items-center gap-2 text-orange-500 font-semibold hover:text-orange-600 transition-colors">
+                                Read More
+                                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd"/>
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
     </div>
+        <script>
+        // Data for different time periods
+        const chartData = {
+            day: {
+                labels: ['00:00', '04:00', '08:00', '12:00', '16:00', '20:00', '23:59'],
+                data: [32, 28, 45, 52, 48, 38, 35]
+            },
+            week: {
+                labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+                data: [35, 42, 48, 38, 45, 52, 38]
+            },
+            month: {
+                labels: ['Week 1', 'Week 2', 'Week 3', 'Week 4'],
+                data: [40, 45, 42, 38]
+            }
+        };
 
-    <!-- Articles -->
-    <div class="flex flex-col px-12 pt-8 pb-12 mt-16 w-full bg-orange-500 rounded-2xl max-md:px-5">
-      <div class="flex justify-between items-center text-white">
-        <div>
-          <div class="text-2xl font-bold">Article Release</div>
-          <div class="mt-1 text-lg">News, Articles, and Latest Updates</div>
-        </div>
-        <a href="#" class="flex items-center gap-3 text-lg font-bold hover:text-yellow-100 transition-colors cursor-pointer">
-          <span>View All</span>
-          <img src="https://api.builder.io/api/v1/image/assets/TEMP/d287c7a8a628ddcce69dd319938d22d62912e17c?apiKey=ac04cd396e1f47f18955cd19640f183d&" class="w-4" />
-        </a>
-      </div>
+        let currentChart = null;
 
-      <div class="mt-8 grid grid-cols-3 gap-4 max-md:grid-cols-1">
-        <div class="bg-white rounded-lg shadow p-4">
-          <a href="https://sahabat.pegadaian.co.id/artikel/keuangan/efisiensi-anggaran-2025" target="_blank">
-            <img src="https://storage.googleapis.com/sahabat-pegadaian-asset-prd/20250319-064620_efisiensi-anggaran-2025webp.webp" class="rounded-lg w-full" />
-            <div class="mt-2 text-orange-500 text-sm">Article</div>
-            <div class="mt-2 text-lg font-semibold text-black">
-              Budget Efficiency 2025 – What Are the Goals and Impacts?
-            </div>
-          </a>
-        </div>
+        function createChart(period) {
+            const ctx = document.getElementById('airQualityChart').getContext('2d');
+            
+            if (currentChart) {
+                currentChart.destroy();
+            }
 
-        <div class="bg-white rounded-lg shadow p-4">
-          <a href="https://investor.id/business/390383/industri-pertambangan-perlu-kedepankan-aspek-keberlanjutan#goog_rewarded" target="_blank">
-            <img src="https://img2.beritasatu.com/cache/investor/960x620-3/1604940685.png" class="rounded-lg w-full" />
-            <div class="mt-2 text-orange-500 text-sm">Article</div>
-            <div class="mt-2 text-lg font-semibold text-black">
-              Mining Industry Needs to Prioritize Sustainability Aspects
-            </div>
-          </a>
-        </div>
-        
-        <div class="bg-white rounded-lg shadow p-4">
-          <a href="https://www.theguardian.com/business/2022/oct/19/watchdog-bans-hsbc-ads-green-cop26-climate-crisis" target="_blank">
-            <img src="https://i.guim.co.uk/img/media/8c594b171a40e318a2773576e90485bc3ab13c4e/0_179_3500_2099/master/3500.jpg?width=620&dpr=1&s=none&crop=none" class="rounded-lg w-full" />
-            <div class="mt-2 text-orange-500 text-sm">Article</div>
-            <div class="mt-2 text-lg font-semibold text-black">
-              Watchdog bans HSBC climate ads in fresh blow to bank’s green credentials
-            </div>
-          </a>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
+            const data = chartData[period];
+            
+            currentChart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: data.labels,
+                    datasets: [{
+                        label: 'PM2.5 Level (μg/m³)',
+                        data: data.data,
+                        borderColor: 'rgb(249, 115, 22)',
+                        backgroundColor: 'rgba(249, 115, 22, 0.1)',
+                        borderWidth: 3,
+                        fill: true,
+                        tension: 0.4,
+                        pointRadius: 6,
+                        pointHoverRadius: 8,
+                        pointBackgroundColor: 'rgb(249, 115, 22)',
+                        pointBorderColor: 'white',
+                        pointBorderWidth: 2,
+                        pointHoverBackgroundColor: 'rgb(234, 88, 12)',
+                        pointHoverBorderColor: 'white'
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            display: true,
+                            position: 'top',
+                            labels: {
+                                font: {
+                                    size: 14,
+                                    weight: 'bold'
+                                },
+                                color: 'rgb(31, 41, 55)',
+                                usePointStyle: true,
+                                padding: 20
+                            }
+                        },
+                        tooltip: {
+                            backgroundColor: 'rgba(31, 41, 55, 0.95)',
+                            titleFont: {
+                                size: 14,
+                                weight: 'bold'
+                            },
+                            bodyFont: {
+                                size: 13
+                            },
+                            padding: 12,
+                            cornerRadius: 8,
+                            displayColors: true,
+                            callbacks: {
+                                label: function(context) {
+                                    let label = context.dataset.label || '';
+                                    if (label) {
+                                        label += ': ';
+                                    }
+                                    label += context.parsed.y + ' μg/m³';
+                                    
+                                    // Add quality indicator
+                                    const value = context.parsed.y;
+                                    let quality = '';
+                                    if (value <= 50) quality = ' (Good)';
+                                    else if (value <= 100) quality = ' (Moderate)';
+                                    else quality = ' (Poor)';
+                                    
+                                    return label + quality;
+                                }
+                            }
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            max: 100,
+                            ticks: {
+                                callback: function(value) {
+                                    return value + ' μg/m³';
+                                },
+                                font: {
+                                    size: 12
+                                },
+                                color: 'rgb(107, 114, 128)'
+                            },
+                            grid: {
+                                color: 'rgba(156, 163, 175, 0.2)',
+                                drawBorder: false
+                            }
+                        },
+                        x: {
+                            ticks: {
+                                font: {
+                                    size: 12
+                                },
+                                color: 'rgb(107, 114, 128)'
+                            },
+                            grid: {
+                                display: false
+                            }
+                        }
+                    },
+                    interaction: {
+                        intersect: false,
+                        mode: 'index'
+                    }
+                }
+            });
+        }
+
+        function updateChart(period) {
+            // Update active button
+            document.querySelectorAll('.time-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            event.target.classList.add('active');
+            
+            // Update chart
+            createChart(period);
+        }
+
+        // Initialize chart with weekly data
+        createChart('week');
+    </script>
+</body>
+</html>

@@ -43,13 +43,18 @@ app.use(
 
 var authRouter = require("./routes/auth");
 var mitraRouter = require("./routes/mitra");
+const apiRoute = require("./routes/api");
 app.use("/", authRouter);
 app.use("/mitra", mitraRouter);
+app.use("/api", apiRoute);
+
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
   next(createError(404));
 });
+
+
 
 // DB Sync
 sequelize.sync().then(() => {

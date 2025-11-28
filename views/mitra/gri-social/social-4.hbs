@@ -13,142 +13,101 @@
     </div>
   </header>
 
-  <!-- 404-2: Programs for Improving Employee Skills & Transition Assistance -->
+  <!-- GRI 404-1: Average Training Hours per Year per Employee -->
   <section class="self-stretch pt-12 pb-20 pl-16 mb-16 mt-10 bg-white rounded-2xl shadow-2xl max-md:pl-5 max-md:max-w-full">
     <h3 class="text-3xl font-semibold text-teal-700">
-      404-2 • Programs for Improving Employee Skills and Transition Assistance
+      404-1 • Average Training Hours per Year per Employee
     </h3>
     <p class="mt-3 text-gray-500">
-      Please provide details on the programs and support offered to improve employee skills and facilitate transition assistance for continuous employability and career management, including from retirement or involuntary termination.
+      Please fill in the total training hours for all employees during the reporting period. Breakdown by gender, employee category, and position level.
     </p>
 
-    <!-- Meta period (optional) -->
+    <!-- Reporting Period & Other Meta -->
     <div class="mt-6 grid grid-cols-1 md:grid-cols-3 gap-4 pr-8 md:pr-12 lg:pr-16">
       <div>
         <label class="block pb-2 text-base font-medium">Reporting Period</label>
         <input type="text" name="reporting_period" value="2025-Q3" 
           class="w-full px-8 py-4 text-base rounded-2xl border border-gray-300 bg-slate-50 outline-none hover:ring focus:ring-2 focus:ring-teal-600 transition">
       </div>
-      <div>
-        <label class="block pb-2 text-base font-medium">Program Location</label>
-        <select name="program_location"
-          class="w-full px-8 py-4 text-base rounded-2xl border border-gray-300 bg-slate-50 outline-none hover:ring focus:ring-2 focus:ring-teal-600 transition">
-          <option value="">Select Location</option>
-          <option value="global">Global</option>
-          <option value="regional">Regional</option>
-          <option value="local">Local</option>
-        </select>
-      </div>
     </div>
 
-    <!-- Skills Improvement Programs -->
-    <div id="skills_program_list" class="space-y-8 mt-8 pr-8 md:pr-12 lg:pr-16">
-      <!-- Entry #0 (initial) -->
-      <div class="skills-item border border-gray-200 rounded-2xl p-4">
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
-          <!-- Program Type -->
+    <!-- Training Hours Sections -->
+    <div id="training_list" class="space-y-8 mt-8 pr-8 md:pr-12 lg:pr-16">
+      <!-- Entry 1 -->
+      <div class="training-item border border-gray-200 rounded-2xl p-4">
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-5">
+          <!-- Gender -->
           <div>
-            <label class="block pb-2 text-base font-medium">Program Type</label>
-            <select class="hi-program-type w-full px-8 py-4 text-base rounded-2xl border border-gray-300 bg-slate-50 outline-none hover:ring focus:ring-2 focus:ring-teal-600 transition">
+            <label class="block pb-2 text-base font-medium">Gender</label>
+            <select class="hi-gender w-full px-8 py-4 text-base rounded-2xl border border-gray-300 bg-slate-50 outline-none hover:ring focus:ring-2 focus:ring-teal-600 transition">
               <option value="">Select</option>
-              <option value="On-the-job training">On-the-job Training</option>
-              <option value="Job Rotation">Job Rotation</option>
-              <option value="Classroom training">Classroom Training</option>
-              <option value="Online Training">Online Training</option>
-              <option value="Mentorship">Mentorship</option>
-              <option value="Other">Other</option>
+              <option value="Female">Female</option>
+              <option value="Male">Male</option>
+              <option value="Non-binary">Non-binary</option>
+              <option value="Prefer not to say">Prefer not to say</option>
             </select>
-            <input type="text" class="hi-program-other w-full px-4 py-3 mt-3 border rounded-lg bg-slate-50 hidden" placeholder="Specify other program">
           </div>
 
-          <!-- Program Duration -->
+          <!-- Employee Category -->
           <div>
-            <label class="block pb-2 text-base font-medium">Program Duration (months)</label>
-            <input type="number" class="hi-program-duration w-full px-8 py-4 text-base rounded-2xl border border-gray-300 bg-slate-50 outline-none hover:ring focus:ring-2 focus:ring-teal-600 transition" min="1" placeholder="Months">
+            <label class="block pb-2 text-base font-medium">Employee Category</label>
+            <select class="hi-category w-full px-8 py-4 text-base rounded-2xl border border-gray-300 bg-slate-50 outline-none hover:ring focus:ring-2 focus:ring-teal-600 transition">
+              <option value="">Select</option>
+              <option value="Full-time">Full-time</option>
+              <option value="Part-time">Part-time</option>
+              <option value="Temporary">Temporary</option>
+              <option value="Contractor">Contractor</option>
+            </select>
           </div>
 
-          <!-- Program Participants -->
+          <!-- Training Hours -->
           <div>
-            <label class="block pb-2 text-base font-medium">Number of Participants</label>
-            <input type="number" class="hi-participants w-full px-8 py-4 text-base rounded-2xl border border-gray-300 bg-slate-50 outline-none hover:ring focus:ring-2 focus:ring-teal-600 transition" min="1" placeholder="Number of Participants">
+            <label class="block pb-2 text-base font-medium">Training Hours</label>
+            <input type="number" min="0" class="hi-hours w-full px-8 py-4 text-base rounded-2xl border border-gray-300 bg-slate-50 outline-none hover:ring focus:ring-2 focus:ring-teal-600 transition" placeholder="Training hours per employee">
           </div>
+                <div>
+        <label class="block pb-2 text-base font-medium">Total Employees</label>
+        <input type="number" min="0" id="total_employees" value="0"
+          class="w-full px-8 py-4 text-base rounded-2xl border border-gray-300 bg-slate-50 outline-none hover:ring focus:ring-2 focus:ring-teal-600 transition" placeholder="Total number of employees">
+      </div>
         </div>
       </div>
     </div>
 
-    <!-- Add entry buttons -->
+    <!-- Add Entry Button -->
     <div class="mt-6 flex justify-end pr-8 md:pr-12 lg:pr-16">
-      <button type="button" id="skills_add_item"
+      <button type="button" id="training_add_item"
               class="inline-flex items-center gap-2 px-4 py-2 rounded-xl text-teal-700 text-sm font-medium transition hover:bg-teal-50">
         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none"
              viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
           <path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4"/>
         </svg>
-        Add Skills Program
+        Add Entry
       </button>
     </div>
 
-    <!-- Transition Assistance Programs -->
-    <div id="transition_program_list" class="space-y-8 mt-8 pr-8 md:pr-12 lg:pr-16">
-      <!-- Entry #1 (initial) -->
-      <div class="transition-item border border-gray-200 rounded-2xl p-4">
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
-          <!-- Program Type -->
-          <div>
-            <label class="block pb-2 text-base font-medium">Transition Assistance Type</label>
-            <select class="hi-transition-type w-full px-8 py-4 text-base rounded-2xl border border-gray-300 bg-slate-50 outline-none hover:ring focus:ring-2 focus:ring-teal-600 transition">
-              <option value="">Select</option>
-              <option value="Career Counseling">Career Counseling</option>
-              <option value="Severance Support">Severance Support</option>
-              <option value="Job Placement Support">Job Placement Support</option>
-              <option value="Retirement Planning">Retirement Planning</option>
-              <option value="Other">Other</option>
-            </select>
-            <input type="text" class="hi-transition-other w-full px-4 py-3 mt-3 border rounded-lg bg-slate-50 hidden" placeholder="Specify other assistance">
-          </div>
-
-          <!-- Assistance Duration -->
-          <div>
-            <label class="block pb-2 text-base font-medium">Assistance Duration (months)</label>
-            <input type="number" class="hi-transition-duration w-full px-8 py-4 text-base rounded-2xl border border-gray-300 bg-slate-50 outline-none hover:ring focus:ring-2 focus:ring-teal-600 transition" min="1" placeholder="Months">
-          </div>
-
-          <!-- Number of Beneficiaries -->
-          <div>
-            <label class="block pb-2 text-base font-medium">Number of Beneficiaries</label>
-            <input type="number" class="hi-beneficiaries w-full px-8 py-4 text-base rounded-2xl border border-gray-300 bg-slate-50 outline-none hover:ring focus:ring-2 focus:ring-teal-600 transition" min="1" placeholder="Number of Beneficiaries">
+    <!-- Automatic Summary -->
+    <div class="mt-10 pr-8 md:pr-12 lg:pr-16">
+      <h4 class="text-2xl font-semibold text-teal-700">Total Summary (Automatic)</h4>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-5 mt-4">
+        <div>
+          <div class="text-gray-500">Total Training Hours</div>
+          <div class="text-3xl text-teal-700 font-semibold" id="sum_training_hours">0</div>
+        </div>
+        <div>
+          <div class="text-gray-500">Total Employees</div>
+          <div class="text-3xl text-teal-700 font-semibold" id="sum_employees">0</div>
+        </div>
+        <div>
+          <div class="text-gray-500">Average Training Hours per Employee</div>
+          <div class="text-3xl text-teal-700 font-semibold">
+            <span id="sum_avg_hours">0.00</span><span class="text-xl"> hrs</span>
           </div>
         </div>
       </div>
     </div>
 
-    <!-- Add Transition Assistance Button -->
-    <div class="mt-6 flex justify-end pr-8 md:pr-12 lg:pr-16">
-      <button type="button" id="transition_add_item"
-              class="inline-flex items-center gap-2 px-4 py-2 rounded-xl text-teal-700 text-sm font-medium transition hover:bg-teal-50">
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none"
-             viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
-          <path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4"/>
-        </svg>
-        Add Transition Assistance Program
-      </button>
-    </div>
-
-        <!-- Program Results Section -->
-    <div class="mt-8 pr-8 md:pr-12 lg:pr-16">
-      <h4 class="text-2xl font-semibold text-teal-700">Program Results</h4>
-      <p class="mt-3 text-gray-500">Please provide the impact of these programs on employee retention, internal promotions, and job satisfaction.</p>
-      <textarea class="w-full px-8 py-4 text-base rounded-2xl border border-gray-300 bg-slate-50 outline-none hover:ring focus:ring-2 focus:ring-teal-600 transition" rows="5" placeholder="Describe the impact of the program on employee retention, promotions, and job satisfaction..."></textarea>
-    </div>
-
-    <!-- Best Practices Section -->
-    <div class="mt-8 pr-8 md:pr-12 lg:pr-16">
-      <h4 class="text-2xl font-semibold text-teal-700">Best Practices</h4>
-      <p class="mt-3 text-gray-500">Provide a brief narrative about one successful skills improvement initiative.</p>
-      <textarea class="w-full px-8 py-4 text-base rounded-2xl border border-gray-300 bg-slate-50 outline-none hover:ring focus:ring-2 focus:ring-teal-600 transition" rows="5" placeholder="Provide details on a successful skills improvement initiative..."></textarea>
-    </div>
-
-    <!-- Navigation -->
+    <!-- Navigation Buttons -->
     <div class="flex justify-end gap-4 mt-10 w-full pr-8 md:pr-12 lg:pr-16">
       <button type="button" onclick="window.history.back()"
         class="px-8 py-2 text-base font-medium text-center text-teal-700 border-teal-700 border border-solid whitespace-nowrap bg-white rounded-xl hover:bg-teal-700 hover:text-white transition-colors">
@@ -162,73 +121,44 @@
   </section>
 </main>
 
-<!-- Template for adding new skills program -->
-<template id="skills_item_tpl">
-  <div class="skills-item border border-gray-200 rounded-2xl p-4">
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+<!-- Template entry for Training Hours -->
+<template id="training_item_tpl">
+  <div class="training-item border border-gray-200 rounded-2xl p-4">
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-5">
       <div>
-        <label class="block pb-2 text-base font-medium">Program Type</label>
-        <select class="hi-program-type w-full px-8 py-4 text-base rounded-2xl border border-gray-300 bg-slate-50 outline-none hover:ring focus:ring-2 focus:ring-teal-600 transition">
+        <label class="block pb-2 text-base font-medium">Gender</label>
+        <select class="hi-gender w-full px-8 py-4 text-base rounded-2xl border border-gray-300 bg-slate-50 outline-none hover:ring focus:ring-2 focus:ring-teal-600 transition">
           <option value="">Select</option>
-          <option value="On-the-job training">On-the-job Training</option>
-          <option value="Job Rotation">Job Rotation</option>
-          <option value="Classroom training">Classroom Training</option>
-          <option value="Online Training">Online Training</option>
-          <option value="Mentorship">Mentorship</option>
-          <option value="Other">Other</option>
+          <option value="Female">Female</option>
+          <option value="Male">Male</option>
+          <option value="Non-binary">Non-binary</option>
+          <option value="Prefer not to say">Prefer not to say</option>
         </select>
-        <input type="text" class="hi-program-other w-full px-4 py-3 mt-3 border rounded-lg bg-slate-50 hidden" placeholder="Specify other program">
       </div>
 
       <div>
-        <label class="block pb-2 text-base font-medium">Program Duration (months)</label>
-        <input type="number" class="hi-program-duration w-full px-8 py-4 text-base rounded-2xl border border-gray-300 bg-slate-50 outline-none hover:ring focus:ring-2 focus:ring-teal-600 transition" min="1" placeholder="Months">
-      </div>
-
-      <div>
-        <label class="block pb-2 text-base font-medium">Number of Participants</label>
-        <input type="number" class="hi-participants w-full px-8 py-4 text-base rounded-2xl border border-gray-300 bg-slate-50 outline-none hover:ring focus:ring-2 focus:ring-teal-600 transition" min="1" placeholder="Number of Participants">
-      </div>
-    </div>
-
-    <!-- Remove button -->
-    <div class="mt-4 flex justify-end">
-      <button type="button" class="remove-btn px-4 py-2 border rounded-xl text-gray-700 hover:bg-gray-50">
-        Remove Entry
-      </button>
-    </div>
-  </div>
-</template>
-
-<!-- Template for adding new transition assistance program -->
-<template id="transition_item_tpl">
-  <div class="transition-item border border-gray-200 rounded-2xl p-4">
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
-      <div>
-        <label class="block pb-2 text-base font-medium">Transition Assistance Type</label>
-        <select class="hi-transition-type w-full px-8 py-4 text-base rounded-2xl border border-gray-300 bg-slate-50 outline-none hover:ring focus:ring-2 focus:ring-teal-600 transition">
+        <label class="block pb-2 text-base font-medium">Employee Category</label>
+        <select class="hi-category w-full px-8 py-4 text-base rounded-2xl border border-gray-300 bg-slate-50 outline-none hover:ring focus:ring-2 focus:ring-teal-600 transition">
           <option value="">Select</option>
-          <option value="Career Counseling">Career Counseling</option>
-          <option value="Severance Support">Severance Support</option>
-          <option value="Job Placement Support">Job Placement Support</option>
-          <option value="Retirement Planning">Retirement Planning</option>
-          <option value="Other">Other</option>
+          <option value="Full-time">Full-time</option>
+          <option value="Part-time">Part-time</option>
+          <option value="Temporary">Temporary</option>
+          <option value="Contractor">Contractor</option>
         </select>
-        <input type="text" class="hi-transition-other w-full px-4 py-3 mt-3 border rounded-lg bg-slate-50 hidden" placeholder="Specify other assistance">
       </div>
 
       <div>
-        <label class="block pb-2 text-base font-medium">Assistance Duration (months)</label>
-        <input type="number" class="hi-transition-duration w-full px-8 py-4 text-base rounded-2xl border border-gray-300 bg-slate-50 outline-none hover:ring focus:ring-2 focus:ring-teal-600 transition" min="1" placeholder="Months">
+        <label class="block pb-2 text-base font-medium">Training Hours</label>
+        <input type="number" min="0" class="hi-hours w-full px-8 py-4 text-base rounded-2xl border border-gray-300 bg-slate-50 outline-none hover:ring focus:ring-2 focus:ring-teal-600 transition" placeholder="Training hours per employee">
       </div>
-
       <div>
-        <label class="block pb-2 text-base font-medium">Number of Beneficiaries</label>
-        <input type="number" class="hi-beneficiaries w-full px-8 py-4 text-base rounded-2xl border border-gray-300 bg-slate-50 outline-none hover:ring focus:ring-2 focus:ring-teal-600 transition" min="1" placeholder="Number of Beneficiaries">
+        <label class="block pb-2 text-base font-medium">Total Employees</label>
+        <input type="number" min="0" id="total_employees" value="0"
+          class="w-full px-8 py-4 text-base rounded-2xl border border-gray-300 bg-slate-50 outline-none hover:ring focus:ring-2 focus:ring-teal-600 transition" placeholder="Total number of employees">
       </div>
     </div>
 
-    <!-- Remove button -->
+
     <div class="mt-4 flex justify-end">
       <button type="button" class="remove-btn px-4 py-2 border rounded-xl text-gray-700 hover:bg-gray-50">
         Remove Entry
@@ -239,32 +169,40 @@
 
 <script>
   document.addEventListener('DOMContentLoaded', function() {
-    // Skills program addition
-    const skillsAddBtn = document.getElementById('skills_add_item');
-    const skillsList = document.getElementById('skills_program_list');
-    const skillsTpl = document.getElementById('skills_item_tpl');
+    const addBtn = document.getElementById('training_add_item');
+    const list = document.getElementById('training_list');
+    const tpl = document.getElementById('training_item_tpl');
 
-    skillsAddBtn.addEventListener('click', function() {
-      const clone = skillsTpl.content.firstElementChild.cloneNode(true);
-      skillsList.appendChild(clone);
+    addBtn.addEventListener('click', function() {
+      const clone = tpl.content.firstElementChild.cloneNode(true);
+      list.appendChild(clone);
       const removeBtn = clone.querySelector('.remove-btn');
       removeBtn.addEventListener('click', function() {
         clone.remove();
+        recomputeAll(); // Recompute after removal
       });
+      recomputeAll(); // Recompute when new item is added
     });
 
-    // Transition assistance program addition
-    const transitionAddBtn = document.getElementById('transition_add_item');
-    const transitionList = document.getElementById('transition_program_list');
-    const transitionTpl = document.getElementById('transition_item_tpl');
+    // Automatic summary calculation
+    function recomputeAll() {
+      let totalTrainingHours = 0;
+      let totalEmployees = 0;
 
-    transitionAddBtn.addEventListener('click', function() {
-      const clone = transitionTpl.content.firstElementChild.cloneNode(true);
-      transitionList.appendChild(clone);
-      const removeBtn = clone.querySelector('.remove-btn');
-      removeBtn.addEventListener('click', function() {
-        clone.remove();
+      list.querySelectorAll('.training-item').forEach(item => {
+        const trainingHours = parseFloat(item.querySelector('.hi-hours').value || 0);
+        totalTrainingHours += trainingHours;
+        totalEmployees += 1; // Counting each entry as an employee
       });
-    });
+
+      const avgTrainingHours = totalEmployees > 0 ? (totalTrainingHours / totalEmployees).toFixed(2) : 0;
+
+      document.getElementById('sum_training_hours').textContent = totalTrainingHours.toString();
+      document.getElementById('sum_employees').textContent = totalEmployees.toString();
+      document.getElementById('sum_avg_hours').textContent = avgTrainingHours;
+    }
+
+    // Initial computation
+    recomputeAll();
   });
 </script>

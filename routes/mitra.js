@@ -131,7 +131,8 @@ router.get("/gri-2", function (req, res, next) {
     taxes,
     taxes_notes,
     community_investment,
-    community_investment_notes
+    community_investment_notes,
+    pic_name
   } = req.query;
 
   // Helper function untuk convert ke number
@@ -270,6 +271,7 @@ router.get("/gri-2", function (req, res, next) {
     taxes_notes,
     community_investment: community_investment || 0,
     community_investment_notes,
+    pic_name,
     
     // Calculated values
     totalOperational: formatCurrency(totalOperational),
@@ -430,6 +432,22 @@ router.get("/social-3", function (req, res, next) {
   });
 });
 
+router.get("/laporan", function (req, res, next) {
+  res.render("mitra/laporan", {
+    title: "Form GRI",
+    layout: "mitra",
+    currentPath: req.path,
+  });
+});
+
+router.get("/lap", function (req, res, next) {
+  res.render("mitra/lap", {
+    title: "Form GRI",
+    layout: "mitra",
+    currentPath: req.path,
+  });
+});
+
 router.get("/social-4", function (req, res, next) {
   res.render("mitra/gri-social/social-4", {
     title: "Form GRI",
@@ -528,7 +546,7 @@ router.get("/chatAI", function (req, res, next) {
 
 const API_KEY = process.env.OPENROUTER_API_KEY;
 console.log("API KEY:", API_KEY); // Pastikan kunci API terbaca di sini
- 
+
 // Definisikan rute chat Anda di dalam router
 router.post('/chatAI', async (req, res) => {
   const { prompt } = req.body;

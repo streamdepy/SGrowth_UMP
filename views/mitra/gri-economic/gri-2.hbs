@@ -27,28 +27,35 @@
             Total Revenue
           </div>
           <div class="mt-7 text-4xl leading-none text-teal-700">
-            Rp. {{#if revenue}}{{revenue}}{{else}}0{{/if}}
+            $ {{#if revenue}}{{revenue}}{{else}}0{{/if}}
           </div>
 
           <div class="mt-8 font-medium text-gray-500">
             Total Operational Costs
           </div>
           <div class="mt-7 text-4xl leading-none text-teal-700">
-            Rp. {{#if totalOperational}}{{totalOperational}}{{else}}0{{/if}}
+            $ {{#if totalOperational}}{{totalOperational}}{{else}}0{{/if}}
           </div>
 
           <div class="mt-6 font-medium text-gray-500">
             Total Non-Operating Costs
           </div>
           <div class="mt-7 text-4xl leading-none text-teal-700">
-            Rp. {{#if totalNonOperating}}{{totalNonOperating}}{{else}}0{{/if}}
+            $ {{#if totalNonOperating}}{{totalNonOperating}}{{else}}0{{/if}}
+          </div>
+
+          <div class="mt-6 font-medium text-gray-500">
+            Total Ekspenses
+          </div>
+          <div class="mt-7 text-4xl leading-none text-teal-700">
+            $ {{#if totalExpenses}}{{totalExpenses}}{{else}}0{{/if}}
           </div>
 
           <div class="mt-6 font-medium text-gray-500">
             Profit/Loss
           </div>
           <div class="mt-7 text-4xl leading-none {{profitLossColor}}">
-            Rp. {{#if profitLoss}}{{profitLoss}}{{else}}0{{/if}}
+            $ {{#if profitLoss}}{{profitLoss}}{{else}}0{{/if}}
           </div>
         </div>
       </aside>
@@ -60,7 +67,7 @@
             <thead class="bg-teal-700 text-white">
               <tr>
                 <th class="px-4 py-2">Category</th>
-                <th class="px-4 py-2">Amount (Rp)</th>
+                <th class="px-4 py-2">Amount ($)</th>
                 <th class="px-4 py-2">Notes</th>
               </tr>
             </thead>
@@ -73,28 +80,28 @@
               <!-- Net Sales -->
               <tr>
                 <td class="border px-4 py-2">Net Sales</td>
-                <td class="border px-4 py-2">Rp. {{#if net_sales}}{{net_sales}}{{else}}0{{/if}}</td>
+                <td class="border px-4 py-2">$ {{#if net_sales}}{{net_sales}}{{else}}0{{/if}}</td>
                 <td class="border px-4 py-2">{{#if net_sales_notes}}{{net_sales_notes}}{{else}}-{{/if}}</td>
               </tr>
 
               <!-- Sales -->
               <tr>
                 <td class="border px-4 py-2">Sales</td>
-                <td class="border px-4 py-2">Rp. {{#if sales}}{{sales}}{{else}}0{{/if}}</td>
+                <td class="border px-4 py-2">$ {{#if sales}}{{sales}}{{else}}0{{/if}}</td>
                 <td class="border px-4 py-2">{{#if sales_notes}}{{sales_notes}}{{else}}-{{/if}}</td>
               </tr>
 
               <!-- Financial Investment Income -->
               <tr>
                 <td class="border px-4 py-2">Financial Investment Income</td>
-                <td class="border px-4 py-2">Rp. {{#if financial_investment_income}}{{financial_investment_income}}{{else}}0{{/if}}</td>
+                <td class="border px-4 py-2">$ {{#if financial_investment_income}}{{financial_investment_income}}{{else}}0{{/if}}</td>
                 <td class="border px-4 py-2">{{#if financial_investment_income_notes}}{{financial_investment_income_notes}}{{else}}-{{/if}}</td>
               </tr>
 
               <!-- Income from Asset Sales -->
               <tr>
                 <td class="border px-4 py-2">Income from Asset Sales</td>
-                <td class="border px-4 py-2">Rp. {{#if asset_sales_income}}{{asset_sales_income}}{{else}}0{{/if}}</td>
+                <td class="border px-4 py-2">$. {{#if asset_sales_income}}{{asset_sales_income}}{{else}}0{{/if}}</td>
                 <td class="border px-4 py-2">{{#if asset_sales_income_notes}}{{asset_sales_income_notes}}{{else}}-{{/if}}</td>
               </tr>
 
@@ -106,135 +113,129 @@
               <!-- General & Administrative Expenses -->
               <tr>
                 <td class="border px-4 py-2">General & Administrative Expenses</td>
-                <td class="border px-4 py-2">Rp. {{#if general_admin_expenses}}{{general_admin_expenses}}{{else}}0{{/if}}</td>
+                <td class="border px-4 py-2">$. {{#if general_admin_expenses}}{{general_admin_expenses}}{{else}}0{{/if}}</td>
                 <td class="border px-4 py-2">{{#if general_admin_notes}}{{general_admin_notes}}{{else}}-{{/if}}</td>
               </tr>
 
               <!-- Salary Expenses -->
               <tr>
                 <td class="border px-4 py-2">Salary Expenses</td>
-                <td class="border px-4 py-2">Rp. {{#if salary_expenses}}{{salary_expenses}}{{else}}0{{/if}}</td>
+                <td class="border px-4 py-2">$. {{#if salary_expenses}}{{salary_expenses}}{{else}}0{{/if}}</td>
                 <td class="border px-4 py-2">{{#if salary_employee_notes}}{{salary_employee_notes}}{{else}}-{{/if}}</td>
               </tr>
 
               <!-- Transportation Expenses -->
               <tr>
                 <td class="border px-4 py-2">Transportation Expenses</td>
-                <td class="border px-4 py-2">Rp. {{#if transport_expenses}}{{transport_expenses}}{{else}}0{{/if}}</td>
+                <td class="border px-4 py-2">$. {{#if transport_expenses}}{{transport_expenses}}{{else}}0{{/if}}</td>
                 <td class="border px-4 py-2">{{#if transport_notes}}{{transport_notes}}{{else}}-{{/if}}</td>
               </tr>
 
               <!-- Fuel Expenses -->
               <tr>
                 <td class="border px-4 py-2">Fuel Expenses</td>
-                <td class="border px-4 py-2">Rp. {{#if fuel_expenses}}{{fuel_expenses}}{{else}}0{{/if}}</td>
+                <td class="border px-4 py-2">$. {{#if fuel_expenses}}{{fuel_expenses}}{{else}}0{{/if}}</td>
                 <td class="border px-4 py-2">{{#if fuel_notes}}{{fuel_notes}}{{else}}-{{/if}}</td>
               </tr>
 
               <!-- Electricity Expenses -->
               <tr>
                 <td class="border px-4 py-2">Electricity Expenses</td>
-                <td class="border px-4 py-2">Rp. {{#if electricity_expenses}}{{electricity_expenses}}{{else}}0{{/if}}</td>
+                <td class="border px-4 py-2">$. {{#if electricity_expenses}}{{electricity_expenses}}{{else}}0{{/if}}</td>
                 <td class="border px-4 py-2">{{#if electricity_notes}}{{electricity_notes}}{{else}}-{{/if}}</td>
               </tr>
 
               <!-- Internet Expenses -->
               <tr>
                 <td class="border px-4 py-2">Internet Expenses</td>
-                <td class="border px-4 py-2">Rp. {{#if internet_expenses}}{{internet_expenses}}{{else}}0{{/if}}</td>
+                <td class="border px-4 py-2">$. {{#if internet_expenses}}{{internet_expenses}}{{else}}0{{/if}}</td>
                 <td class="border px-4 py-2">{{#if internet_notes}}{{internet_notes}}{{else}}-{{/if}}</td>
               </tr>
 
               <!-- Telephone Expenses -->
               <tr>
                 <td class="border px-4 py-2">Telephone Expenses</td>
-                <td class="border px-4 py-2">Rp. {{#if telephone_expenses}}{{telephone_expenses}}{{else}}0{{/if}}</td>
+                <td class="border px-4 py-2">$. {{#if telephone_expenses}}{{telephone_expenses}}{{else}}0{{/if}}</td>
                 <td class="border px-4 py-2">{{#if telephone_notes}}{{telephone_notes}}{{else}}-{{/if}}</td>
               </tr>
 
               <!-- Water Expenses -->
               <tr>
                 <td class="border px-4 py-2">Water Expenses</td>
-                <td class="border px-4 py-2">Rp. {{#if water_expenses}}{{water_expenses}}{{else}}0{{/if}}</td>
+                <td class="border px-4 py-2">$. {{#if water_expenses}}{{water_expenses}}{{else}}0{{/if}}</td>
                 <td class="border px-4 py-2">{{#if water_notes}}{{water_notes}}{{else}}-{{/if}}</td>
               </tr>
 
               <!-- Property Rental Expenses -->
               <tr>
                 <td class="border px-4 py-2">Property Rental Expenses</td>
-                <td class="border px-4 py-2">Rp. {{#if property_rental_expenses}}{{property_rental_expenses}}{{else}}0{{/if}}</td>
+                <td class="border px-4 py-2">$. {{#if property_rental_expenses}}{{property_rental_expenses}}{{else}}0{{/if}}</td>
                 <td class="border px-4 py-2">{{#if property_rental_notes}}{{property_rental_notes}}{{else}}-{{/if}}</td>
               </tr>
 
               <!-- License Fees -->
               <tr>
                 <td class="border px-4 py-2">License Fees</td>
-                <td class="border px-4 py-2">Rp. {{#if license_fees}}{{license_fees}}{{else}}0{{/if}}</td>
+                <td class="border px-4 py-2">$. {{#if license_fees}}{{license_fees}}{{else}}0{{/if}}</td>
                 <td class="border px-4 py-2">{{#if license_fees_notes}}{{license_fees_notes}}{{else}}-{{/if}}</td>
               </tr>
 
               <!-- Facility Payments -->
               <tr>
                 <td class="border px-4 py-2">Facility Payments</td>
-                <td class="border px-4 py-2">Rp. {{#if facility_payments}}{{facility_payments}}{{else}}0{{/if}}</td>
+                <td class="border px-4 py-2">$. {{#if facility_payments}}{{facility_payments}}{{else}}0{{/if}}</td>
                 <td class="border px-4 py-2">{{#if facility_payments_notes}}{{facility_payments_notes}}{{else}}-{{/if}}</td>
               </tr>
 
               <!-- Royalties -->
               <tr>
                 <td class="border px-4 py-2">Royalties</td>
-                <td class="border px-4 py-2">Rp. {{#if royalties}}{{royalties}}{{else}}0{{/if}}</td>
+                <td class="border px-4 py-2">$. {{#if royalties}}{{royalties}}{{else}}0{{/if}}</td>
                 <td class="border px-4 py-2">{{#if royalties_notes}}{{royalties_notes}}{{else}}-{{/if}}</td>
               </tr>
 
               <!-- Contract Worker Payments -->
               <tr>
                 <td class="border px-4 py-2">Contract Worker Payments</td>
-                <td class="border px-4 py-2">Rp. {{#if contract_worker_payments}}{{contract_worker_payments}}{{else}}0{{/if}}</td>
+                <td class="border px-4 py-2">$. {{#if contract_worker_payments}}{{contract_worker_payments}}{{else}}0{{/if}}</td>
                 <td class="border px-4 py-2">{{#if contract_worker_notes}}{{contract_worker_notes}}{{else}}-{{/if}}</td>
               </tr>
 
               <!-- Training Costs -->
               <tr>
                 <td class="border px-4 py-2">Training Costs</td>
-                <td class="border px-4 py-2">Rp. {{#if training_costs}}{{training_costs}}{{else}}0{{/if}}</td>
+                <td class="border px-4 py-2">$. {{#if training_costs}}{{training_costs}}{{else}}0{{/if}}</td>
                 <td class="border px-4 py-2">{{#if training_costs_notes}}{{training_costs_notes}}{{else}}-{{/if}}</td>
               </tr>
 
               <!-- Protective Clothing Costs -->
               <tr>
                 <td class="border px-4 py-2">Protective Clothing Costs</td>
-                <td class="border px-4 py-2">Rp. {{#if protective_clothing_costs}}{{protective_clothing_costs}}{{else}}0{{/if}}</td>
+                <td class="border px-4 py-2">$. {{#if protective_clothing_costs}}{{protective_clothing_costs}}{{else}}0{{/if}}</td>
                 <td class="border px-4 py-2">{{#if protective_clothing_notes}}{{protective_clothing_notes}}{{else}}-{{/if}}</td>
               </tr>
 
               <!-- Dividend & Interest Expenses -->
               <tr>
                 <td class="border px-4 py-2">Dividend & Interest Payments</td>
-                <td class="border px-4 py-2">Rp. {{#if dividend_interest_expenses}}{{dividend_interest_expenses}}{{else}}0{{/if}}</td>
+                <td class="border px-4 py-2">$. {{#if dividend_interest_expenses}}{{dividend_interest_expenses}}{{else}}0{{/if}}</td>
                 <td class="border px-4 py-2">{{#if dividend_interest_notes}}{{dividend_interest_notes}}{{else}}-{{/if}}</td>
               </tr>
 
               <!-- Taxes -->
               <tr>
                 <td class="border px-4 py-2">Taxes</td>
-                <td class="border px-4 py-2">Rp. {{#if taxes}}{{taxes}}{{else}}0{{/if}}</td>
+                <td class="border px-4 py-2">$. {{#if taxes}}{{taxes}}{{else}}0{{/if}}</td>
                 <td class="border px-4 py-2">{{#if taxes_notes}}{{taxes_notes}}{{else}}-{{/if}}</td>
               </tr>
 
               <!-- Community Investment -->
               <tr>
                 <td class="border px-4 py-2">Community Investment</td>
-                <td class="border px-4 py-2">Rp. {{#if community_investment}}{{community_investment}}{{else}}0{{/if}}</td>
+                <td class="border px-4 py-2">$. {{#if community_investment}}{{community_investment}}{{else}}0{{/if}}</td>
                 <td class="border px-4 py-2">{{#if community_investment_notes}}{{community_investment_notes}}{{else}}-{{/if}}</td>
               </tr>
 
-              <!-- TOTAL ROW -->
-              <tr class="bg-gray-100 font-semibold">
-                <td class="border px-4 py-2">TOTAL EXPENSES</td>
-                <td class="border px-4 py-2">Rp. {{#if totalExpenses}}{{totalExpenses}}{{else}}0{{/if}}</td>
-                <td class="border px-4 py-2">-</td>
-              </tr>
             </tbody>
           </table>
         </div>
@@ -248,7 +249,7 @@
               is the largest expense, reaching 
               <span class="font-semibold text-teal-700">{{biggestExpense.percentage}}%</span> 
               of total operational costs 
-              (Rp. {{biggestExpense.amount}}).
+              ($ {{biggestExpense.amount}}).
             </p>
           {{else}}
             <p class="text-lg text-gray-500 mt-4">No operational cost data entered yet.</p>

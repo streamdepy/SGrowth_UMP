@@ -426,23 +426,23 @@
                 <!-- Company Info -->
                 <div class="flex-1 text-center md:text-left">
                     <div class="text-sm font-semibold text-orange-500 tracking-widest uppercase mb-2">Welcome Back</div>
-                    <h1 class="text-3xl font-bold text-gray-800 mb-2">Pengguna - Perusahaan Anda</h1>
+                    <h1 class="text-3xl font-bold text-gray-800 mb-2">{{#if business.pic_name}} {{business.pic_name}} {{else}} User {{/if}} - {{#if business.organization_name}} {{business.organization_name}} {{else}} Your Company {{/if}}</h1>
                     <div class="flex flex-wrap gap-4 items-center justify-center md:justify-start text-teal-700">
                         <div class="flex items-center gap-2">
                             <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
                                 <path d="M10.394 2.08a1 1 0 00-.788 0l-7 3a1 1 0 000 1.84L5.25 8.051a.999.999 0 01.356-.257l4-1.714a1 1 0 11.788 1.838L7.667 9.088l1.94.831a1 1 0 00.787 0l7-3a1 1 0 000-1.838l-7-3zM3.31 9.397L5 10.12v4.102a8.969 8.969 0 00-1.05-.174 1 1 0 01-.89-.89 11.115 11.115 0 01.25-3.762zM9.3 16.573A9.026 9.026 0 007 14.935v-3.957l1.818.78a3 3 0 002.364 0l5.508-2.361a11.026 11.026 0 01.25 3.762 1 1 0 01-.89.89 8.968 8.968 0 00-5.35 2.524 1 1 0 01-1.4 0zM6 18a1 1 0 001-1v-2.065a8.935 8.935 0 00-2-.712V17a1 1 0 001 1z"/>
                             </svg>
-                            <span class="font-medium">Industri Umum</span>
+                            <span class="font-medium">{{#if business.legal_form}} {{business.legal_form}} {{else}} N/A {{/if}}</span>
                         </div>
                         <div class="flex items-center gap-2">
                             <div class="w-1.5 h-1.5 rounded-full bg-teal-500"></div>
-                            <span class="font-medium">Est. 2020</span>
+                            <span class="font-medium">{{#if business.established_year}} {{business.established_year}} {{else}} N/A {{/if}}</span>
                         </div>
                         <div class="flex items-center gap-2">
                             <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
                                 <path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"/>
                             </svg>
-                            <span class="font-medium">Alamat Tidak Ada</span>
+                            <span class="font-medium">{{#if business.headquarters}} {{business.headquarters}} {{else}} - (Complete your Information) {{/if}}</span>
                         </div>
                     </div>
                     <div class="mt-4">
@@ -481,13 +481,13 @@
       <div class="flex flex-col ml-4 w-6/12 max-md:w-full">
         <div class="flex flex-col text-lg font-semibold text-teal-700">
           <div class="mt-2">
-            : {{#if business.organization_name}} {{business.organization_name}} {{else}} N/A {{/if}}
+            : {{#if business.organization_name}} {{business.organization_name}} {{else}} - (Complete your Information) {{/if}}
           </div>
           <div class="mt-2">
-            : {{#if business.business_license_number}} {{business.business_license_number}} {{else}} - (Complete your Information) {{/if}}
+            : {{#if business.business_license_number}} {{business.business_license_number}} {{else}} N/A {{/if}}
           </div>
           <div class="mt-2">
-            : {{#if business.headquarters}} {{business.headquarters}} {{else}} N/A {{/if}}
+            : {{#if business.headquarters}} {{business.headquarters}} {{else}} - (Complete your Information) {{/if}}
           </div>
           <div class="mt-2">
             : {{#if business.established_year}} {{business.established_year}} {{else}} N/A {{/if}}

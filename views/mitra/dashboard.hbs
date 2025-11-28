@@ -517,60 +517,55 @@
         </div>
 
                 <!-- Air Quality Monitoring Chart -->
-        <div class="chart-card">
-            <div class="chart-header">
-                <div>
-                    <h3 class="chart-title">Air Quality Monitoring</h3>
-                    <p class="chart-subtitle">Particulate Matter (PM2.5) Levels in Company Area</p>
-                </div>
-                <div class="time-selector">
-                    <button class="time-btn" onclick="updateChart('day')">24H</button>
-                    <button class="time-btn active" onclick="updateChart('week')">7D</button>
-                    <button class="time-btn" onclick="updateChart('month')">30D</button>
-                </div>
-            </div>
-
-            <!-- Statistics Cards -->
-            <div class="stats-grid">
-                <div class="stat-card">
-                    <div class="stat-label">Current PM2.5</div>
-                    <div>
-                        <span class="stat-value">38</span>
-                        <span class="stat-unit">μg/m³</span>
-                    </div>
-                    <span class="quality-indicator quality-good">Good</span>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-label">Average (7 Days)</div>
-                    <div>
-                        <span class="stat-value">42</span>
-                        <span class="stat-unit">μg/m³</span>
-                    </div>
-                    <span class="quality-indicator quality-moderate">Moderate</span>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-label">Peak Level</div>
-                    <div>
-                        <span class="stat-value">68</span>
-                        <span class="stat-unit">μg/m³</span>
-                    </div>
-                    <span class="quality-indicator quality-moderate">Moderate</span>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-label">Safe Days</div>
-                    <div>
-                        <span class="stat-value">5/7</span>
-                        <span class="stat-unit">days</span>
-                    </div>
-                    <span class="quality-indicator quality-good">71% Compliant</span>
-                </div>
-            </div>
-
-            <!-- Chart -->
-            <div class="chart-container">
-                <canvas id="airQualityChart"></canvas>
-            </div>
+<div class="chart-card">
+    <div class="chart-header">
+        <div>
+            <h3 class="chart-title">Real-time Air Quality Monitoring</h3>
+            <p class="chart-subtitle">Last 10 Seconds Graph of MQ (Gas Particles) and AQI Values</p>
         </div>
+    </div>
+
+    <div class="stats-grid">
+        <div class="stat-card" id="aqi-status-card">
+            <div class="stat-label">Current AQI Status</div>
+            <div>
+                <span class="stat-value text-xl" id="aqi-status-text">Loading...</span>
+            </div>
+            <span class="quality-indicator quality-good">Based on Latest Data</span>
+        </div>
+
+        <div class="stat-card">
+            <div class="stat-label">MQ Sensor Value (Raw)</div>
+            <div>
+                <span class="stat-value" id="latest-mq-value">0.00</span>
+                <span class="stat-unit">ppm</span>
+            </div>
+            <span class="quality-indicator quality-moderate">Direct Raw Value</span>
+        </div>
+
+        <div class="stat-card">
+            <div class="stat-label">AQI Value (Air Quality Index)</div>
+            <div>
+                <span class="stat-value" id="latest-aqi-value">0.00</span>
+                <span class="stat-unit">AQI</span>
+            </div>
+            <span class="quality-indicator quality-good">Safe Limit < 50</span>
+        </div>
+
+        <div class="stat-card" style="text-align: center;">
+            <div class="stat-label">IoT Connection Status</div>
+            <div>
+                <span class="stat-value" id="iot-status-value" style="color: #dc3545;">OFFLINE</span>
+            </div>
+            <span class="quality-indicator quality-poor">Check Device Connection</span>
+        </div>
+    </div>
+
+    <div class="chart-container">
+        <canvas id="chart"></canvas>
+    </div>
+</div>
+
 
         <!-- Features Section -->
         <div class="mb-8 mt-8 animate-fade-in-up" style="animation-delay: 0.2s">
@@ -704,155 +699,318 @@
         </div>
 
     </div>
-        <script>
-        // Data for different time periods
-        const chartData = {
-            day: {
-                labels: ['00:00', '04:00', '08:00', '12:00', '16:00', '20:00', '23:59'],
-                data: [32, 28, 45, 52, 48, 38, 35]
-            },
-            week: {
-                labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
-                data: [35, 42, 48, 38, 45, 52, 38]
-            },
-            month: {
-                labels: ['Week 1', 'Week 2', 'Week 3', 'Week 4'],
-                data: [40, 45, 42, 38]
+<script>
+    let chart;
+    const maxPoints = 10;
+    let lastMqEma = null;
+    let lastAqiEma = null;
+    const SMOOTHING_FACTOR = 0.2;
+    let isUpdating = false; // Flag to prevent simultaneous updates
+    let updateQueue = []; // Queue for data waiting to be processed
+
+    const aqiStatusText = document.getElementById("aqi-status-text");
+    const aqiStatusCard = document.getElementById("aqi-status-card");
+    const latestAqiValue = document.getElementById("latest-aqi-value");
+    const latestMqValue = document.getElementById("latest-mq-value");
+    const iotStatusValue = document.getElementById("iot-status-value");
+
+    function calculateEMA(newValue, lastEma, factor) {
+        if (lastEma === null) {
+            return newValue;
+        }
+        return (newValue * factor) + (lastEma * (1 - factor));
+    }
+
+    function getAqiCategory(aqi) {
+        let category = { 
+            text: "Undefined", 
+            class: "", 
+            color: { line: "rgb(107, 114, 128)", fill: "rgba(107, 114, 128, 0.1)" } 
+        }; // Default Gray
+
+        if (aqi >= 0 && aqi <= 50) {
+            category.text = "Good (Safe) ✅";
+            category.class = "status-good";
+            category.color.line = "rgb(22, 163, 74)"; // Green
+            category.color.fill = "rgba(22, 163, 74, 0.15)";
+        } else if (aqi <= 100) {
+            category.text = "Moderate ⚠️";
+            category.class = "status-moderate";
+            category.color.line = "rgb(202, 138, 4)"; // Gold/Yellow
+            category.color.fill = "rgba(202, 138, 4, 0.15)";
+        } else if (aqi <= 150) {
+            category.text = "Unhealthy for Sensitive Groups 🟧";
+            category.class = "status-unhealthy-sensitive";
+            category.color.line = "rgb(249, 115, 22)"; // Orange
+            category.color.fill = "rgba(249, 115, 22, 0.15)";
+        } else if (aqi <= 200) {
+            category.text = "Unhealthy ❌";
+            category.class = "status-unhealthy";
+            category.color.line = "rgb(220, 38, 38)"; // Red
+            category.color.fill = "rgba(220, 38, 38, 0.15)";
+        } else {
+            category.text = "Hazardous 💀";
+            category.class = "status-hazardous";
+            category.color.line = "rgb(124, 58, 237)"; // Violet/Purple
+            category.color.fill = "rgba(124, 58, 237, 0.15)";
+        }
+        return category;
+    }
+
+    function updateInfoCards(newData, category) {
+        latestMqValue.textContent = parseFloat(newData.mq_value).toFixed(2);
+        
+        const aqi = parseFloat(newData.aqi_value);
+
+        aqiStatusText.textContent = category.text;
+        latestAqiValue.textContent = aqi.toFixed(2);
+        
+        aqiStatusCard.className = `stat-card ${category.class}`;
+    }
+
+    function updateIoTStatus(isOnline) {
+        iotStatusValue.textContent = isOnline ? "ONLINE" : "OFFLINE";
+        iotStatusValue.style.color = isOnline ? "#10b981" : "#dc3545";
+    }
+
+    function processUpdateQueue() {
+        if (isUpdating || updateQueue.length === 0) {
+            return;
+        }
+        
+        isUpdating = true;
+        const newData = updateQueue.shift();
+        
+        try {
+            const data = chart.data;
+            const timeLabel = ' '; 
+
+            const mqEma = calculateEMA(parseFloat(newData.mq_value), lastMqEma, SMOOTHING_FACTOR);
+            const aqiEma = calculateEMA(parseFloat(newData.aqi_value), lastAqiEma, SMOOTHING_FACTOR);
+
+            lastMqEma = mqEma;
+            lastAqiEma = aqiEma;
+
+            data.labels.push(timeLabel); 
+            data.datasets[0].data.push(mqEma); 
+            data.datasets[1].data.push(aqiEma); 
+
+            if (data.labels.length > maxPoints) {
+                data.labels.shift();
+                data.datasets[0].data.shift();
+                data.datasets[1].data.shift();
             }
-        };
-
-        let currentChart = null;
-
-        function createChart(period) {
-            const ctx = document.getElementById('airQualityChart').getContext('2d');
             
-            if (currentChart) {
-                currentChart.destroy();
+            // --- Dynamic Color Update: Change AQI line and points based on the latest AQI status ---
+            const aqi = parseFloat(newData.aqi_value);
+            const category = getAqiCategory(aqi);
+
+            // Update Info Cards (using the newly calculated category)
+            updateInfoCards(newData, category); 
+            
+            // Update AQI Line Colors (Dataset 1)
+            const aqiDataset = data.datasets[1];
+            aqiDataset.borderColor = category.color.line;
+            aqiDataset.backgroundColor = category.color.fill;
+            aqiDataset.pointBackgroundColor = category.color.line;
+            aqiDataset.pointHoverBackgroundColor = category.color.line; 
+            // --- End Dynamic Color Update ---
+
+            // Update chart with 'none' mode to avoid disturbing animation
+            chart.update('none');
+            
+        } catch (error) {
+            console.error("Error updating chart:", error);
+        } finally {
+            isUpdating = false;
+            // Process next data if available
+            if (updateQueue.length > 0) {
+                setTimeout(processUpdateQueue, 50);
+            }
+        }
+    }
+
+    function addNewPoint(newData) {
+        // Add to queue and process
+        updateQueue.push(newData);
+        
+        // Limit queue size to avoid stacking
+        if (updateQueue.length > 3) {
+            updateQueue.shift();
+        }
+        
+        processUpdateQueue();
+    }
+
+    async function fetchAndUpdateChart() {
+        try {
+            const res = await fetch("/api/data"); 
+            
+            if (!res.ok) throw new Error(`HTTP error! status: ${res.status}`);
+
+            const data = await res.json();
+            
+            if (data.length === 0) {
+                updateIoTStatus(false);
+                return;
             }
 
-            const data = chartData[period];
-            
-            currentChart = new Chart(ctx, {
-                type: 'line',
-                data: {
-                    labels: data.labels,
-                    datasets: [{
-                        label: 'PM2.5 Level (μg/m³)',
-                        data: data.data,
-                        borderColor: 'rgb(249, 115, 22)',
-                        backgroundColor: 'rgba(249, 115, 22, 0.1)',
-                        borderWidth: 3,
+            addNewPoint(data[0]);
+            updateIoTStatus(true);
+
+        } catch (error) {
+            console.error("Error fetching data:", error);
+            updateIoTStatus(false); 
+        }
+    }
+
+    function initRealtimeChart() {
+        updateIoTStatus(false);
+        
+        // Ensure canvas exists and is not null
+        const canvas = document.getElementById("chart");
+        if (!canvas) {
+            console.error("Canvas element not found!");
+            return;
+        }
+        
+        // Set initial color (example status: "Good")
+        const initialAqiCategory = getAqiCategory(0); // Assume initial AQI = 0
+
+        chart = new Chart(canvas, {
+            type: "line",
+            data: {
+                labels: Array(maxPoints).fill(""),
+                datasets: [
+                    {
+                        // Dataset 0: MQ Value (More subtle gray)
+                        label: "MQ Value (Smoothed)", 
+                        borderColor: "rgb(107, 114, 128)", // Gray
+                        backgroundColor: "rgba(107, 114, 128, 0.05)", // Low opacity fill
+                        borderWidth: 2,
+                        tension: 0.4, 
+                        data: Array(maxPoints).fill(null),
                         fill: true,
+                        pointRadius: 3,
+                        pointHoverRadius: 5,
+                        pointBackgroundColor: 'rgb(107, 114, 128)',
+                        pointBorderColor: 'white',
+                        pointBorderWidth: 1,
+                        pointHoverBackgroundColor: 'rgb(75, 85, 99)'
+                    },
+                    {
+                        // Dataset 1: AQI Value (Initial color set to Good/Green)
+                        label: "AQI Value (Smoothed)", 
+                        borderColor: initialAqiCategory.color.line, 
+                        backgroundColor: initialAqiCategory.color.fill,
+                        borderWidth: 3,
                         tension: 0.4,
+                        data: Array(maxPoints).fill(null),
+                        fill: true,
                         pointRadius: 6,
                         pointHoverRadius: 8,
-                        pointBackgroundColor: 'rgb(249, 115, 22)',
+                        pointBackgroundColor: initialAqiCategory.color.line,
                         pointBorderColor: 'white',
                         pointBorderWidth: 2,
-                        pointHoverBackgroundColor: 'rgb(234, 88, 12)',
-                        pointHoverBorderColor: 'white'
-                    }]
+                        pointHoverBackgroundColor: initialAqiCategory.color.line
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                animation: {
+                    duration: 800, 
+                    easing: 'linear'
                 },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    plugins: {
-                        legend: {
-                            display: true,
-                            position: 'top',
-                            labels: {
-                                font: {
-                                    size: 14,
-                                    weight: 'bold'
-                                },
-                                color: 'rgb(31, 41, 55)',
-                                usePointStyle: true,
-                                padding: 20
-                            }
-                        },
-                        tooltip: {
-                            backgroundColor: 'rgba(31, 41, 55, 0.95)',
-                            titleFont: {
+                interaction: { 
+                    intersect: false,
+                    mode: 'index'
+                },
+                plugins: {
+                    legend: {
+                        display: true,
+                        position: 'top',
+                        labels: {
+                            font: {
                                 size: 14,
                                 weight: 'bold'
                             },
-                            bodyFont: {
-                                size: 13
-                            },
-                            padding: 12,
-                            cornerRadius: 8,
-                            displayColors: true,
-                            callbacks: {
-                                label: function(context) {
-                                    let label = context.dataset.label || '';
-                                    if (label) {
-                                        label += ': ';
-                                    }
-                                    label += context.parsed.y + ' μg/m³';
-                                    
-                                    // Add quality indicator
-                                    const value = context.parsed.y;
-                                    let quality = '';
-                                    if (value <= 50) quality = ' (Good)';
-                                    else if (value <= 100) quality = ' (Moderate)';
-                                    else quality = ' (Poor)';
-                                    
-                                    return label + quality;
-                                }
-                            }
+                            color: 'rgb(31, 41, 55)',
+                            usePointStyle: true,
+                            padding: 20
                         }
                     },
-                    scales: {
-                        y: {
-                            beginAtZero: true,
-                            max: 100,
-                            ticks: {
-                                callback: function(value) {
-                                    return value + ' μg/m³';
-                                },
-                                font: {
-                                    size: 12
-                                },
-                                color: 'rgb(107, 114, 128)'
+                    title: {
+                        display: false
+                    },
+                    tooltip: {
+                        backgroundColor: 'rgba(31, 41, 55, 0.95)',
+                        titleFont: { size: 14, weight: 'bold' },
+                        bodyFont: { size: 13 },
+                        padding: 12,
+                        cornerRadius: 8,
+                        callbacks: {
+                            label: function(context) {
+                                let label = context.dataset.label || '';
+                                if (label) {
+                                    label += ': ';
+                                }
+                                const unit = context.datasetIndex === 0 ? ' ppm' : ' AQI';
+                                label += context.parsed.y.toFixed(2) + unit;
+                                return label;
+                            }
+                        }
+                    }
+                },
+                scales: {
+                    x: {
+                        title: {
+                            display: true,
+                            text: 'Time (Last 10 Seconds)'
+                        },
+                        ticks: {
+                            callback: function(val, index) {
+                                if (index === 0) return '10s ago';
+                                if (index === this.chart.data.labels.length - 1) return 'Now';
+                                return '';
                             },
-                            grid: {
-                                color: 'rgba(156, 163, 175, 0.2)',
-                                drawBorder: false
+                            maxRotation: 0,
+                            color: 'rgb(107, 114, 128)',
+                            font: {
+                                size: 12,
+                                weight: 'bold'
                             }
                         },
-                        x: {
-                            ticks: {
-                                font: {
-                                    size: 12
-                                },
-                                color: 'rgb(107, 114, 128)'
-                            },
-                            grid: {
-                                display: false
-                            }
+                        grid: {
+                            display: false
                         }
                     },
-                    interaction: {
-                        intersect: false,
-                        mode: 'index'
+                    y: { 
+                        beginAtZero: true,
+                        title: {
+                            display: true,
+                            text: 'Sensor Value (Smoothed)'
+                        },
+                        max: 300, 
+                        ticks: {
+                            color: 'rgb(107, 114, 128)'
+                        },
+                        grid: {
+                            color: 'rgba(156, 163, 175, 0.2)',
+                            drawBorder: false
+                        }
                     }
                 }
-            });
-        }
+            }
+        });
 
-        function updateChart(period) {
-            // Update active button
-            document.querySelectorAll('.time-btn').forEach(btn => {
-                btn.classList.remove('active');
-            });
-            event.target.classList.add('active');
-            
-            // Update chart
-            createChart(period);
-        }
+        fetchAndUpdateChart(); 
+        setInterval(fetchAndUpdateChart, 1000);
+    }
 
-        // Initialize chart with weekly data
-        createChart('week');
-    </script>
+    window.onload = initRealtimeChart;
+</script>
+
 </body>
 </html>
